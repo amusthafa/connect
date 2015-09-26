@@ -1,9 +1,13 @@
-Aid = new Meteor.Collection('aid');
-Aid.attachSchema({
-        aidName: {
+Offer = new Meteor.Collection('offer');
+Offer.attachSchema({
+        offerName: {
             type: String
         },
-        aidCategoryId: {
+        offerType: {
+            type: String,
+            allowedValues: ['Self', 'Other']
+        },
+        creatorId: {
             type: String
         },
         rowCreated: {
@@ -31,19 +35,3 @@ Aid.attachSchema({
         }
     }
 );
-/*
-
- // Collection2 already does schema checking
- // Add custom permission rules if needed
- Aid1.allow({
- insert : function () {
- return false;
- },
- update : function () {
- return false;
- },
- remove : function () {
- return false;
- }
- });
- */

@@ -1,5 +1,4 @@
-
-Meteor.methods({addAid : function ( aid_category_id,aid_name) {
+Meteor.methods({addAid: function (aid) {
 
     /* var userAlreadyExists = typeof Meteor.users.findOne({ username : user.username }) === 'object';
 
@@ -9,17 +8,23 @@ Meteor.methods({addAid : function ( aid_category_id,aid_name) {
     //"aid_id" :"1","aid_name" :"2","aid_category_id" :"3","row_created" :"4","row_updated" :"5"
     console.log('add aid in server');
 
-  //  console.log(JSON.stringify(queryObj));
-    check (aid_category_id,String);
-    check (aid_name,String);
-    var data ={
-        "aid_category_id" : aid_category_id,
-        "aid_name" : aid_name
-        ,"row_created" :new Date()
-        ,"row_updated" :new Date()
+    console.log(JSON.stringify(aid));
+    //TO-DO: remove check()
+    check(aid, Object);
+    /*check (aid_category_id,String);
+     check (aid_name,String);*/
+    var data = {
+        "aidName": aid.aid_name,
+        "aidCategoryId": aid.aid_category_id
     }
+    Aid.insert(data, function (error, result) {
 
-    Aid.insert(data);
-    console.log("Aid find " +  JSON.stringify(Aid.find().fetch()));
-
+        console.log("Aid find " + JSON.stringify(Aid.find().fetch()));
+        if (error) {
+            console.log("Errors !!" + error + "  Result - " + result);
+            //TO-DO: error message()
+            // throw new Meteor.Error("insert-failed", error.message);    });
+            throw new Meteor.Error("insert-failed", error);
+        }
+    });
 }});

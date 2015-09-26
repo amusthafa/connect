@@ -1,9 +1,28 @@
-Aid = new Meteor.Collection('aid');
-Aid.attachSchema({
-        aidName: {
+VolunteerAid = new Meteor.Collection('volunteerAid');
+VolunteerAid.attachSchema({
+        offerId: {
+            type: String
+        },
+        volunteerId: {
+            type: String
+        },
+//TO-DO: should the whole aid object be here??
+        aidId: {
             type: String
         },
         aidCategoryId: {
+            type: String
+        },
+        aidExpiry: {
+            type: Date
+        },
+
+        status: {
+            type: String,
+            allowedValues: ['Active', 'Inactive']
+        },
+        //To-DO : should the whole address object be here??
+        address_id: {
             type: String
         },
         rowCreated: {
@@ -31,19 +50,3 @@ Aid.attachSchema({
         }
     }
 );
-/*
-
- // Collection2 already does schema checking
- // Add custom permission rules if needed
- Aid1.allow({
- insert : function () {
- return false;
- },
- update : function () {
- return false;
- },
- remove : function () {
- return false;
- }
- });
- */
