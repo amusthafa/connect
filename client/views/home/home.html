@@ -3,8 +3,13 @@
 <template name="home">
     <h1>Connect</h1>
     <ul>
-        <li><a href="/" > Sign Up/ Sign In / Forgot Password</a></li>
-        <li><a href="/" > Profile creation with Sign up</a></li>
+        {{#if currentUser}}
+        <li><a href=# class="logout">Logout</a></li>
+        {{else}}
+        <li><a href="{{pathFor route='login'}}">Login</a></li>
+        <li><a href="{{pathFor route='signUp'}}" >Register</a></li>
+        {{/if}}
+        <li><a href="{{pathFor route='createProfile'}}" >Create Profile</a></li>
         <li><a href="/" > Create request/offer/both </a></li>
         <li> <a href="/" > Manage request - Edit, Delete, Cancel </a></li>
         <li> <a href="/" > Connect - Connect, Manual Connect by Admin, Rating </a></li>

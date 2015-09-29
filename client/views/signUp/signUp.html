@@ -1,0 +1,77 @@
+<template name="signUp">
+<h1>Sign Up</h1>
+<form class="signUp" action="" method="post" id="SignUpform">
+<p>
+<label>First Name : </label>
+<input type="text" required name="firstName" id="firstName" /></p>
+<p></p>
+<p>
+<label>Last Name : </label>
+<input type="text" name="lastName" id="lastName" /></p>
+<p></p>
+<p>Email id : <input type="email" required name="mailId" id="maidId" /></p>
+<p></p>
+<p>Password : <input type="password" pattern=".{6,}" maxlength="12" required name="password" id = "password" /></p>
+<p></p>
+<p>Mobile no : <input type="tel" pattern=".{10,}" maxlength="10" required name="mobileNo" id="mobileNo" /></p>
+<p></p>
+<p>Share mobile no :
+<select name="shareNo" id="shareNo">
+  <option value="No">No</option>
+  <option value="Yes">Yes</option>
+</select>
+</p>
+<p></p>
+<p>Address Line 1 : <input type="text" required name="addr1" id="addr1" /></p>
+<p></p>
+<p>Address Line 2 : <input type="text" name="addr2" id="addr2" /></p>
+<p></p>
+<p>City : <input type="text" required name="city" id="city" /></p>
+<p></p>
+<p>State : <input type="text" required name="state" id="state" /></p>
+<p></p>
+<p>Country : <input type="text" required name="country" id="country" /></p>
+<p></p>
+<p>Pincode : <input type="text" pattern=".{6,}" maxlength="6" required name="pincode" id="pincode" /></p>
+<p></p>
+<p>Gender :
+<select name="gender" id="gender">
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
+</p>
+<p></p>
+<p>
+<label>Differently Abled : </label><br>
+<input type="radio" name="diffAbled" value="Yes">Yes<br>
+<input type="radio" name="diffAbled" value="No">No
+</p>
+<p>Date of Birth : <input type="date" name="dob" id="dob" /></p>
+<p></p>
+<p>Occupation : <input type="text" name="occupation" id="occupation" /></p>
+<p></p>
+<p>Role :
+<select name="role" id="role">
+  <option value="Seeker">Seeker</option>
+  <option value="Volunteer">Volunteer</option>
+</select>
+</p>
+<p></p>
+<p>Organisation :
+<select name="organisation" id="organisation">
+  <option value="No">No</option>
+  <option value="Yes">Yes</option>
+</select>
+</p>
+<p></p>
+{{#if isOrganisation}}
+<p>Organisation Name : <input type="text" required="required" name="organisationName" id="organisationName" value="name"/></p>
+{{/if}}
+<table align="left" width="10%">
+<tr>
+<td><input type="reset" value="Reset" /></td>
+<td><input type="submit" value="SignUp" /></td>
+</tr>
+</table>
+</form>
+</template>
