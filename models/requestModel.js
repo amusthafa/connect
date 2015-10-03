@@ -22,15 +22,19 @@ Request.attachSchema({
             type: String
         },
         requiredBy: {
-            type: Date
+          type: Date,
+          autoform: {
+            type: "bootstrap-datepicker"
+          }
         },
+        //To-do : should make it Boolean
         emergency: {
-            type: Boolean
+            type: String
         },
         //To-DO : To update the list of statuses
         status: {
             type: String,
-            allowedValues: []
+            allowedValues: ["Submitted"]
         },
         //To-DO : should the whole address object be here??
         address_id: {
@@ -61,3 +65,15 @@ Request.attachSchema({
         }
     }
 );
+
+// autoform to be implemented
+FieldValueIs = new Mongo.Collection("FieldValueIs");
+FieldValueIs.attachSchema(new SimpleSchema({
+  requestType: {
+    type: String,
+    allowedValues: ["Self", "Other"]
+  },
+  name: {
+    type: String
+  }
+}));

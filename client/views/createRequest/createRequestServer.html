@@ -1,0 +1,56 @@
+<template name="createRequest">
+
+<h1>Create Request</h1>
+<form action="" method="post" id="requestForm">
+<!-- <table> -->
+    <p>
+    <td>requestName: </td> <td><input id = 'requestName' /></td>
+    </p>
+    <p>
+    <td>requestType: </td>
+    <td><input id = 'requestType' /></td>
+
+    <!-- {{#autoForm collection="FieldValueIs" type="insert" id="FieldValueIsForm"}}
+    {{> afQuickField name="requestType" options="allowed" noselect=true}}
+    {{#if afFieldValueIs name="requestType" value="Other"}}
+      {{> afQuickField name="name"}}
+    {{/if}}
+    {{/autoForm}} -->
+
+    <!-- {{> afQuickField name="typeTest" type="bootstrap-datepicker"}}
+    {{> afFormGroup name="typeTest" type="bootstrap-datepicker"}}
+    {{> afFieldInput name="typeTest" type="bootstrap-datepicker"}} -->
+
+    </p>
+    <p>
+    <td>creatorId: </td> <td><input id = 'creatorId' /></td>
+    </p>
+    <p>
+    <td>requestorId: </td> <td><input id = 'requestorId' /></td>
+    </p>
+    <p>
+    <td>aidId: </td> <td><input id = 'aidId' /></td>
+    </p>
+    <p>
+    <td>aidCategoryId: </td> <td><input id = 'aidCategoryId' /></td>
+    </p>
+    <p>
+    <td>requiredBy: </td> <td><input id = 'requiredBy' /></td>
+    <!-- {{> afFieldInput name="typeTest" type="bootstrap-datepicker" buttonClasses="glyphicon glyphicon-calendar"}} -->
+
+    </p>
+    <p>
+    <td>Emergency: </td> <td><input id = 'emergency' /></td>
+    </p>
+    <p>
+    <td>status: </td> <td><input id = 'status' /></td>
+    </p>
+    <p>
+    <td>addressId: </td> <td><input id = 'addressId' /></td>
+    </p>
+<!-- </table> -->
+    <input type="submit" class="createRequest" value="Request" />
+</form>
+
+
+</template>

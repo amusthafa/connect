@@ -51,5 +51,12 @@ Router.route("/addAid", {
         };
         Meteor.call("addAid", abc);
     }
-
 });
+
+Router.route('/createRequest', {
+    name: 'createRequest',
+    // template: 'createRequest',
+    action: function () {
+        this.render('createRequest');
+  }
+  });
