@@ -1,38 +1,29 @@
-Template.aid.helpers({
-    'add': function () {
-        return "add aid";
-    }
-});
-
-Template.aid.events({
+Template.adminAuth.events({
 
     'submit form': function (event) {
         event.preventDefault();
         //console.log('form submitted');
-        console.log('clicked add aid' + event.target.aidCategory.value);
-        console.log('clicked add aid' + event.target.aidName.value);
-        var aid = {};
-        aid.aid_category_id = event.target.aidCategory.value;
-        aid.aid_name = event.target.aidName.value;
+        var adminAuth = {};
+             adminAuth.user = event.target.user.value;
+        adminAuth.status = event.target.status.value;
 
         // var aidJson = JSON.stringify(aid);
-        // alert('client ' + paramsJson);
+         alert('client ' + adminAuth);
         //Router.go("/addAid",{query : 1});
 
-
-        Meteor.call("addAid", aid, function (error, result) {
+        Meteor.call("updateAdminAuth", adminAuth, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
-          /*  if (error) {
+            if (error) {
                 console.log("error" + error);
-            }*/
+            }
          //   console.log("routing to home");
         //    else
          //       Router.go("/");
 
-            /*if (error.error === "insert-failed") {
+            if (error.error === "insert-failed") {
              console.log("Please specify mandatory fields.");
              //sAlert.error("Please specify mandatory fields.");
-             }*/
+             }
             //
            // alert('routing to home');
             Router.go("/home");

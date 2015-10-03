@@ -1,17 +1,13 @@
-Meteor.methods({addAid: function (aid) {
+/**
+ * Created by amusthafa on 9/27/2015.
+ */
+Meteor.methods({updateAdminAuth: function (adminAuth) {
 
     //TO-DO: remove check()
-    check(aid, Object);
-    /*check (aid_category_id,String);
-     check (aid_name,String);*/
-    var data = {
-        "aidName": aid.aid_name,
-        "aidCategoryId": aid.aid_category_id
-    }
-    //TO-DO: return one record
-    var aidExists=Aid.find({aidName: aid.aid_name}).fetch();
-
-    console.log('aidExists - '+aidExists.length);
+    check(adminAuth, Object);
+Request.insert({requestName:"abc",requestType:"Other"});
+   // User.update({'username': adminAuth.user},{$set:{'UserProfilestatus':adminAuth.status}})
+    /*console.log('aidExists - '+data);
     var length = aidExists.length;
     if (length===0) {
         Aid.insert(data, function (error, result) {
@@ -27,8 +23,8 @@ Meteor.methods({addAid: function (aid) {
     }
     else
         throw new Meteor.Error("Aid already exists");
-
+*/
     return true;
 
-   // return Aid.insert(data);
+    // return Aid.insert(data);
 }});
