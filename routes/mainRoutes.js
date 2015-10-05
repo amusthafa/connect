@@ -59,3 +59,20 @@ Router.route('/manageRequest', {
   //   template: 'getRequest',
   //   data: function() { return Request.find({requestorId : this.params._id}).fetch(); }
   // });
+
+
+Router.route('/loadAdminAuth', {
+    name: 'adminAuth',
+    // template: 'createRequest',
+    action: function () {
+        this.render('adminAuth');
+    }
+});
+
+
+Router.route('/loadMatch', {
+    name: 'match',
+    action: function () {
+        this.render('match');
+    }
+});

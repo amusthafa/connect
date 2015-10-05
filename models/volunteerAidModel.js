@@ -15,12 +15,11 @@ VolunteerAid.attachSchema({
         },
         aidExpiry: {
             type: Date
-        },
-
+        }/*,
         status: {
             type: String,
             allowedValues: ['Active', 'Inactive']
-        },
+        }*/,
         //To-DO : should the whole address object be here??
         address_id: {
             type: String
