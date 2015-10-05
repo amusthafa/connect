@@ -2,19 +2,7 @@
 Template.createRequest.events({
 
     'submit form': function (event) {
-        console.log('form submitted');
-
         var request = {};
-        // request.requestName = $('[id=requestName]').val();
-        // request.requestType =  $('[id=requestType]').val();
-        // request.creatorId =  $('[id=creatorId]').val();
-        // request.requestorId =  $('[id=requestorId]').val();
-        // request.aidId = $('[id=aidId]').val();
-        // request.aidCategoryId =  $('[id=aidCategoryId]').val();
-        // request.requiredBy =  $('[id=requiredBy]').val();
-        // request.emergency =  $('[id=emergency]').val();
-        // request.status =  $('[id=status]').val();
-        // request.addressId =  $('[id=addressId]').val();
 
         request.requestName =  event.target.requestName.value;
         request.requestType =  event.target.requestType.value;
@@ -35,9 +23,12 @@ Template.createRequest.events({
         // Meteor.call("abcd", request);
 
         Meteor.call("saveRequest", request, function (error, result) {
-            console.log("Client : error" + error + "result - " + result);
+            console.log("Client : error" + error + "result - " + JSON.stringify(result));
             if (error) {
                 console.log("error" + error);
+            }
+            else{
+              console.log('form submitted');
             }
             /*if (error.error === "insert-failed") {
              console.log("Please specify mandatory fields.");

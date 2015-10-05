@@ -39,24 +39,23 @@ Router.route('/loadAid', {
     }
 });
 
-
-Router.route("/addAid", {
-    name: 'home',
-    template: 'aid',
-    data: function () {
-        console.log('router Q - ' + JSON.stringify(this.query));
-        //Meteor.call("addAid",this.aid);
-        var abc = {
-            "a": "b"
-        };
-        Meteor.call("addAid", abc);
-    }
-});
-
 Router.route('/createRequest', {
     name: 'createRequest',
-    // template: 'createRequest',
     action: function () {
         this.render('createRequest');
   }
   });
+
+Router.route('/manageRequest', {
+    name: 'manageRequest',
+    action: function () {
+        this.render('manageRequest');
+  }
+  });
+
+
+  // Router.route('getRequest', {
+  //   path: '/getRequest/4qAuokmjDMh2jdmkq',
+  //   template: 'getRequest',
+  //   data: function() { return Request.find({requestorId : this.params._id}).fetch(); }
+  // });

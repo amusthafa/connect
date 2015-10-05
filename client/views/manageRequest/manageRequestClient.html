@@ -1,0 +1,40 @@
+<template name="manageRequest">
+
+<h1>Manage Request</h1>
+
+
+<form action="" method="post" id="requestForm">
+    <td><input hidden id = '_id' value={{getRequest._id}} /></td>
+    <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
+    <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
+    <td><input hidden id = 'status' value={{getRequest.status}} /></td>
+    <p>
+    <td>requestName: </td> <td><input id = 'requestName' value={{getRequest.request_name}} /></td>
+    </p>
+    <p>
+    <td>requestType: </td>
+    <td><input id = 'requestType' value={{getRequest.requestType}} /></td>
+    </p>
+
+    <p>
+    <td>aidId: </td> <td><input id = 'aidId' value={{getRequest.aidId}} /></td>
+    </p>
+    <p>
+    <td>aidCategoryId: </td> <td><input id = 'aidCategoryId' value={{getRequest.aidCategoryId}} /></td>
+    </p>
+    <p>
+    <td>requiredBy: </td> <td><input id = 'requiredBy' value={{getRequest.requiredBy}} /></td>
+    </p>
+    <p>
+    <td>Emergency: </td> <td><input id = 'emergency' value={{getRequest.emergency}} /></td>
+    </p>
+    <p>
+    <td>addressId: </td> <td><input id = 'addressId' value={{getRequest.address_id}} /></td>
+    </p>
+  <input type="submit" id="editRequest" value="EditRequest" />
+  <!-- <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
+
+</form>
+
+
+</template>
