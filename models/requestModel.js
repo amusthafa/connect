@@ -66,14 +66,3 @@ Request.attachSchema({
     }
 );
 
-// autoform to be implemented
-FieldValueIs = new Mongo.Collection("FieldValueIs");
-FieldValueIs.attachSchema(new SimpleSchema({
-  requestType: {
-    type: String,
-    allowedValues: ["Self", "Other"]
-  },
-  name: {
-    type: String
-  }
-}));

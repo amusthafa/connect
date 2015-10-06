@@ -1,11 +1,17 @@
 <template name="createOfferPage">
+
 <h1>Create Offer </h1>
 
 <form action="" method="post" id="createOfferForm">
 <table>
-Self <input  id="offerTypeSelf" type="radio" value="Self" name="offerType" />
-Other <input  id="offerTypeOther" type="radio" value="Other" name="offerType" />
-<br>
+
+    Self <input  id="userType" type="radio" value="Self" name="userType" />
+   Other <input  id="userType" type="radio" value="Other" name="userType" />
+   <br>
+    {{#if isOtherChecked}}
+        <p>User Name : <input type="text" required="required" name="requestorId" id="requestorId" /></p>
+    {{/if}}
+
 <tr>
 <td>Offer Name </td> <td><input id = 'offerName' /></td>
 </tr>

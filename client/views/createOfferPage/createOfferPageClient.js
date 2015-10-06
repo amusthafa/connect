@@ -1,33 +1,30 @@
+Session.setDefault("isOther", "Self");
+
 Template.createOfferPage.helpers({
-  'add' : function () {
-    return "create offer";
+  'isOtherChecked' : function(event) {
+    return (Session.get("isOther") === "Other");
   }
 });
 
-FieldValueIs = new Mongo.Collection("FieldValueIs");
-FieldValueIs.attachSchema(new SimpleSchema({
-  a: {
-    type: String,
-    allowedValues: ["Self", "Other"]
-  },
-  b: {
-    type: String
-  }
-}));
-
 Template.createOfferPage.events({
-
-
+  'change #userType': function (event) {
+    console.log(event.currentTarget.name);
+    Session.set("isOther", event.currentTarget.value);
+    console.log(Session.get("isOther"));
+  },
   'submit form': function(event) {
-
+    event.preventDefault();
   var createOfferPage = {};
 
 
-    if(event.target.offerTypeSelf.checked){
+    if(event.target.userType.value === "Self"){
       createOfferPage.offerType="Self";
       createOfferPage.creatorId=Meteor.userId();
+      createOfferPage.volunteerId=Meteor.userId();
     }else{
-      createOfferPage.OfferType="Other";
+      createOfferPage.offerType="Other";
+      createOfferPage.creatorId=Meteor.userId();
+      createOfferPage.requestorId=event.target.requestorId.value;
     }
     createOfferPage.offerName=event.target.offerName.value;
 
@@ -51,12 +48,15 @@ Template.createOfferPage.events({
     createOfferPage.fromDate=event.target.fromDate.value;
     createOfferPage.toDate=event.target.toDate.value;
     createOfferPage.comment=event.target.comment.value;
-  Meteor.call("createOffer", createOfferPage);
-    Meteor.call("volunteerAid", createOfferPage);
+    Meteor.call("createOffer", createOfferPage);
   Router.go("/");
  }
 
 });
+
+
+
+
 
 
 

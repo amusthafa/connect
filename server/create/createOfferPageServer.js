@@ -3,10 +3,18 @@ Meteor.methods({createOffer : function ( OfferIp) {
 
     check(OfferIp, Object);
 
+    if(OfferIp.volunteerId === Meteor.userId()){
+        volunteerId= OfferIp.volunteerId;
+    }else if (OfferIp.volunteerId !== Meteor.userId()){
+        id= JSON.stringify(Accounts.findUserByEmail(OfferIp.requestorId));
+        console.log(id.split(":")[1].split(",")[0].replace("\"","").replace("\"",""));
+        volunteerId = id.split(":")[1].split(",")[0].replace("\"","").replace("\"","")};
+
     Offer.insert({
         "offerName":OfferIp.offerName,
         "offerType":OfferIp.offerType,
         "creatorId":OfferIp.creatorId,
+        "volunteerId":volunteerId,
         "line1":OfferIp.line1,
         "line2": OfferIp.line2,
         "city":OfferIp.city,
@@ -26,7 +34,7 @@ Meteor.methods({createOffer : function ( OfferIp) {
 
         VolunteerAid.insert({
             "offerId":result,
-            "volunteerId":OfferIp.creatorId,
+            "volunteerId":volunteerId,
             "aid":OfferIp.aid,
                 "line1":OfferIp.line1,
                 "line2": OfferIp.line2,

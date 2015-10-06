@@ -10,6 +10,10 @@ Offer.attachSchema({
         creatorId: {
             type: String
         },
+        volunteerId:{
+        type: String,
+        optional: true
+    },
         line1: {
             type: String
         },
