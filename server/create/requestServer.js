@@ -1,9 +1,6 @@
 Meteor.methods({
-getRequest : function(requestorId){
-  var requestorId = "76";
-  check(requestorId, String);
-
-  var request = Request.findOne({requestorId : requestorId});
+getRequest : function(){
+  var request = Request.findOne({requestorId : Meteor.user()._id});
   console.log("Server getRequest:" , JSON.stringify(request));
   return request;
 },
