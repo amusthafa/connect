@@ -23,19 +23,20 @@ Address1: <input  id="address1" type="radio" value="Address1" name="Address" />
 <tr>
 <td>Line 2</td> <td><input id = 'p_line2' /></td>
 </tr>
-    <!--
-City: <select name="City">
-    <option disabled selected>Choose City</option>
-    {{#each city}}
-        <option>{{city_name}}</option>
+    City <select id="pcity-select">
+        <option selected="selected">Please Select</option>
+        {{#each city}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    State <select id="pstate-select">
+    <option selected="selected">Please Select</option>
+    {{#each state}}
+        <option value="{{this}}">{{this}}</option>
     {{/each}}
-</select>-->
-    <tr>
-        <td>City</td> <td><input id = 'p_city' /></td>
-    </tr>
-<tr>
-<td>State</td> <td><input id = 'p_state' /></td>
-</tr>
+</select>
+
     <tr>
         <td>Country</td> <td><input id = 'p_country' /></td>
     </tr>
@@ -50,12 +51,20 @@ Address2: <input  id="address2" type="radio" value="Address2" name="Address"/>
 <tr>
 <td>Line 2</td> <td><input id = 's_line2' /></td>
 </tr>
-<tr>
-<td>City</td> <td><input id = 's_city' /></td>
-</tr>
-<tr>
-<td>State</td> <td><input id = 's_state' /></td>
-</tr>
+    City <select id="scity-select">
+    <option selected="selected">Please Select</option>
+    {{#each city}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
+
+    State <select id="sstate-select">
+    <option selected="selected">Please Select</option>
+    {{#each state}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
+
 <tr>
 <td>Country</td> <td><input id = 's_country' /></td>
 </tr>
