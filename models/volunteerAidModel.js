@@ -6,23 +6,25 @@ VolunteerAid.attachSchema({
         volunteerId: {
             type: String
         },
-//TO-DO: should the whole aid object be here??
-        aidId: {
+               aid: {
             type: String
         },
-        aidCategoryId: {
+        line1: {
             type: String
         },
-        aidExpiry: {
-            type: Date
+        line2: {
+            type: String
         },
-
-        status: {
-            type: String,
-            allowedValues: ['Active', 'Inactive']
+        city: {
+            type: String
         },
-        //To-DO : should the whole address object be here??
-        address_id: {
+        state: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        pincode: {
             type: String
         },
         rowCreated: {

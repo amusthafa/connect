@@ -1,26 +1,19 @@
-Template.aid.helpers({
-    'add': function () {
+Template.connect.helpers({
+    'connect': function () {
         return "add aid";
     }
 });
 
-Template.aid.events({
+Template.connect.events({
 
     'submit form': function (event) {
         event.preventDefault();
-        //console.log('form submitted');
-        console.log('clicked add aid' + event.target.aidCategory.value);
-        console.log('clicked add aid' + event.target.aidName.value);
-        var aid = {};
-        aid.aid_category_id = event.target.aidCategory.value;
-        aid.aid_name = event.target.aidName.value;
+       // alert('form submitted');
+        console.log('clicked request id' + event.target.requestId.value);
 
-        // var aidJson = JSON.stringify(aid);
-        // alert('client ' + paramsJson);
-        //Router.go("/addAid",{query : 1});
-
-
-        Meteor.call("addAid", aid, function (error, result) {
+        var request = {};
+        request._id= 'oEsBxoiLvhXHwRJ3G';
+        Meteor.call("connect", request, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
           /*  if (error) {
                 console.log("error" + error);
@@ -35,7 +28,7 @@ Template.aid.events({
              }*/
             //
            // alert('routing to home');
-            Router.go("/");
+          //  Router.go("/");
         });
 
     }
