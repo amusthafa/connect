@@ -17,10 +17,10 @@ Request.attachSchema({
         aidId: {
             type: String
         },
-        //TO-DO: should the whole aid object be here??
-        aidCategoryId: {
-            type: String
-        },
+        // //TO-DO: should the whole aid object be here??
+        // aidCategoryId: {
+        //     type: String
+        // },
         requiredBy: {
           type: Date,
           autoform: {
