@@ -1,0 +1,84 @@
+<template name="createOfferPage">
+<h1>Create Offer </h1>
+
+<form action="" method="post" id="createOfferForm">
+<table>
+Self <input  id="offerTypeSelf" type="radio" value="Self" name="offerType" />
+Other <input  id="offerTypeOther" type="radio" value="Other" name="offerType" />
+<br>
+<tr>
+<td>Offer Name </td> <td><input id = 'offerName' /></td>
+</tr>
+
+Address1: <input  id="address1" type="radio" value="Address1" name="Address" />
+<tr>
+<td>Line 1</td> <td><input id = 'p_line1' /></td>
+</tr>
+<tr>
+<td>Line 2</td> <td><input id = 'p_line2' /></td>
+</tr>
+    <!--
+City: <select name="City">
+    <option disabled selected>Choose City</option>
+    {{#each city}}
+        <option>{{city_name}}</option>
+    {{/each}}
+</select>-->
+    <tr>
+        <td>City</td> <td><input id = 'p_city' /></td>
+    </tr>
+<tr>
+<td>State</td> <td><input id = 'p_state' /></td>
+</tr>
+    <tr>
+        <td>Country</td> <td><input id = 'p_country' /></td>
+    </tr>
+<tr>
+<td>Pin Code</td> <td><input id = 'p_pincode' /></td>
+</tr>
+
+Address2: <input  id="address2" type="radio" value="Address2" name="Address"/>
+<tr>
+<td>Line 1</td> <td><input id = 's_line1' /></td>
+</tr>
+<tr>
+<td>Line 2</td> <td><input id = 's_line2' /></td>
+</tr>
+<tr>
+<td>City</td> <td><input id = 's_city' /></td>
+</tr>
+<tr>
+<td>State</td> <td><input id = 's_state' /></td>
+</tr>
+<tr>
+<td>Country</td> <td><input id = 's_country' /></td>
+</tr>
+<tr>
+<td>Pin Code</td> <td><input id = 's_pincode' /></td>
+</tr>
+
+<br>
+Offer :
+ <select id="Aid">
+    <option value="Scribe">Scribe</option>
+     <option value="All">All</option>
+  </select>
+  <br><br>
+
+    From :
+    <input type="date" id="fromDate">
+
+    To:
+     <input type="date" id="toDate">
+     <br><br>
+
+     <tr>
+     <td>Comment</td> <td><input id = 'comment' /></td>
+     </tr>
+
+</table>
+    <input type="submit" class="createOffer" value="Create Offer" />
+</form>
+
+
+</template>

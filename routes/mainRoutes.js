@@ -76,3 +76,10 @@ Router.route('/loadMatch', {
         this.render('match');
     }
 });
+
+Router.route('/createOfferPage', {
+    name: 'createOfferPage',
+    action: function () {
+        this.render('createOfferPage');
+    }
+});
