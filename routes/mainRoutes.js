@@ -53,7 +53,12 @@ Router.route('/manageRequest', {
   }
   });
 
-
+  Router.route('/SearchId', {
+      name: 'SearchId',
+      action: function () {
+          this.render('SearchId');
+      }
+  });
   // Router.route('getRequest', {
   //   path: '/getRequest/4qAuokmjDMh2jdmkq',
   //   template: 'getRequest',
