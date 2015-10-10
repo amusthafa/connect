@@ -64,7 +64,13 @@ UserProfile = new SimpleSchema({
         optional: true
     },
     status: {
-        type: String
+        type: String,
+        allowedValues: ['Warned', 'Blacklist', 'Authentic'],
+        optional: true
+    },
+    availability_status: {
+        type: String,
+        allowedValues: ['Active', 'Inactive']
     },
     comments: {
         type: String

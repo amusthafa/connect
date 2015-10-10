@@ -3,6 +3,12 @@ Session.setDefault("isOrg", "No");
 Template.signUp.helpers({
   'isOrganisation' : function(event) {
     return (Session.get("isOrg") === "Yes");
+  },
+  'cityList': function () {
+      return (Session.get('cityList'));
+  },
+  'stateList': function () {
+      return (Session.get('stateList'));
   }
 });
 
