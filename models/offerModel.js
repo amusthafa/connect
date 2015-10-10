@@ -1,4 +1,27 @@
 Offer = new Meteor.Collection('offer');
+
+Address = new SimpleSchema({
+    line1: {
+        type: String
+    },
+    line2: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    pinCode: {
+        type: String
+    }
+});
+
+
 Offer.attachSchema({
         offerName: {
             type: String
@@ -14,23 +37,8 @@ Offer.attachSchema({
         type: String,
         optional: true
     },
-        line1: {
-            type: String
-        },
-        line2: {
-            type: String
-        },
-        city: {
-            type: String
-        },
-        state: {
-            type: String
-        },
-        country: {
-            type: String
-        },
-        pincode: {
-            type: String
+        offerAddress:  {
+            type: Address
         },
         aidId: {
             type: String
