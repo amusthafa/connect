@@ -19,9 +19,6 @@ Address = new SimpleSchema({
     },
     pinCode: {
         type: String
-    },
-    primary: {
-        type: String
     }
 });
 

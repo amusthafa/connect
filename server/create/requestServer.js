@@ -20,7 +20,14 @@ saveRequest: function (request) {
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,
         "status": request.status,
-        "address_id": request.addressId
+        "requestAddress":{
+            "line1": request.line1,
+            "line2": request.line2,
+            "city": request.city,
+            "state": request.state,
+            "country": request.country,
+            "pinCode": request.pincode,
+        }
     }
 
     console.log("request inn server:", JSON.stringify(request));
