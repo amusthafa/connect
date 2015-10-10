@@ -2,7 +2,7 @@ Session.setDefault("isOther", "Self");
 Session.setDefault("sCity", "Please Select");
 Session.setDefault("sState", "Please Select");
 
-Template.createOfferPage.helpers({
+Template.createOffer.helpers({
     'isOtherChecked': function (event) {
         return (Session.get("isOther") === "Other");
     },
@@ -29,10 +29,10 @@ Template.createOfferPage.helpers({
 });
 
 
-Template.createOfferPage.events({
+Template.createOffer.events({
     'click .searchUser': function (event) {
         event.preventDefault();
-        Meteor.call("SearchUser", document.getElementById("requestorId").value, function (error, result) {
+        Meteor.call("SearchUserOffer", document.getElementById("requestorId").value, function (error, result) {
             Session.set("searchResult", result);
         });
     },
@@ -72,48 +72,48 @@ Template.createOfferPage.events({
 
     'submit form': function (event) {
         event.preventDefault();
-        var createOfferPage = {};
+        var createOffer = {};
 
 
         if (event.target.userType.value === "Self") {
-            createOfferPage.offerType = "Self";
-            createOfferPage.creatorId = Meteor.userId();
-            createOfferPage.volunteerId = Meteor.userId();
+            createOffer.offerType = "Self";
+            createOffer.creatorId = Meteor.userId();
+            createOffer.volunteerId = Meteor.userId();
         } else {
-            createOfferPage.offerType = "Other";
-            createOfferPage.creatorId = Meteor.userId();
-            createOfferPage.requestorId = event.target.requestorId.value;
+            createOffer.offerType = "Other";
+            createOffer.creatorId = Meteor.userId();
+            createOffer.requestorId = event.target.requestorId.value;
         }
-        createOfferPage.offerName = event.target.offerName.value;
+        createOffer.offerName = event.target.offerName.value;
 
         if (event.target.address1.checked) {
-            createOfferPage.line1 = event.target.p_line1.value;
-            createOfferPage.line2 = event.target.p_line2.value;
-            createOfferPage.city =event.target.p_city.value;
-            createOfferPage.state = event.target.p_state.value;
-            createOfferPage.country = event.target.p_country.value;
-            createOfferPage.pincode = event.target.p_pincode.value;
+            createOffer.line1 = event.target.p_line1.value;
+            createOffer.line2 = event.target.p_line2.value;
+            createOffer.city =event.target.p_city.value;
+            createOffer.state = event.target.p_state.value;
+            createOffer.country = event.target.p_country.value;
+            createOffer.pincode = event.target.p_pincode.value;
         } else {
-            createOfferPage.line1 = event.target.s_line1.value;
-            createOfferPage.line2 = event.target.s_line2.value;
-            createOfferPage.city = Session.get("sCity");
-            createOfferPage.state = Session.get("sState");
-            createOfferPage.country = event.target.s_country.value;
-            createOfferPage.pincode = event.target.s_pincode.value;
+            createOffer.line1 = event.target.s_line1.value;
+            createOffer.line2 = event.target.s_line2.value;
+            createOffer.city = Session.get("sCity");
+            createOffer.state = Session.get("sState");
+            createOffer.country = event.target.s_country.value;
+            createOffer.pincode = event.target.s_pincode.value;
         }
 
-        createOfferPage.aid = event.target.Aid.value;
-        createOfferPage.fromDate = event.target.fromDate.value;
-        createOfferPage.toDate = event.target.toDate.value;
-        createOfferPage.comment = event.target.comment.value;
-        Meteor.call("createOffer", createOfferPage);
+        createOffer.aid = event.target.Aid.value;
+        createOffer.fromDate = event.target.fromDate.value;
+        createOffer.toDate = event.target.toDate.value;
+        createOffer.comment = event.target.comment.value;
+        Meteor.call("createOffer", createOffer);
         Router.go("/");
     }
 
 })
 ;
 
-Template.createOfferPage.onRendered(function () {
+Template.createOffer.onRendered(function () {
     console.log(Meteor.userId());
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         Session.set("userDetails", result);

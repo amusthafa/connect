@@ -13,7 +13,7 @@ Meteor.methods(
             }
             return request;
         },
-        "SearchUser": function (name) {
+        "SearchUserOffer": function (name) {
 
             //Check is made for name
             check(name, String);
