@@ -1,6 +1,5 @@
 Meteor.methods({
   signUp: function (userProfile) {
-    process.env.MAIL_URL='smtp://vardhini.mv25%40gmail.com:11500000@smtp.gmail.com:465/';
     console.log('Register');
     console.log(JSON.stringify(userProfile));
     check(userProfile, Object);
@@ -14,15 +13,15 @@ Meteor.methods({
         "lastName": userProfile.lastName,
         "birthday": userProfile.dob,
         "gender": userProfile.gender,
-        "organization_flag": userProfile.orgFlag,
+        "organizationFlag": userProfile.orgFlag,
         "organization": userProfile.organisationName,
         "occupation": userProfile.occupation,
         "phone": userProfile.mobileNo,
-        "share_phone": userProfile.shareNo,
-        "availability_status": "Active",
+        "sharePhone": userProfile.shareNo,
+        "availabilityStatus": "Active",
         "status": "",
         "comments": userProfile.comments,
-        "differently_abled": userProfile.diffAbled,
+        "differentlyAbled": userProfile.diffAbled,
         "address": {line1: userProfile.addr1,
         line2: userProfile.addr2,
         city: userProfile.city,
@@ -30,7 +29,7 @@ Meteor.methods({
         country: userProfile.country,
         pinCode: userProfile.pincode,
         primary: "Yes"},
-        "app_role": userProfile.role
+        "appRole": userProfile.role
       },
       "roles": "Admin"
     });

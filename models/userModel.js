@@ -44,7 +44,7 @@ UserProfile = new SimpleSchema({
         allowedValues: ['Male', 'Female'],
         optional: true
     },
-    organization_flag: {
+    organizationFlag: {
         type: Boolean,
         optional: true
     },
@@ -59,7 +59,7 @@ UserProfile = new SimpleSchema({
     phone: {
         type: Number
     },
-    share_phone: {
+    sharePhone: {
         type: Boolean,
         optional: true
     },
@@ -68,21 +68,21 @@ UserProfile = new SimpleSchema({
 	  allowedValues: ['Warned', 'Blacklist', 'Authentic'],
         optional: true
     },
-    availability_status: {
+    availabilityStatus: {
         type: String,
         allowedValues: ['Active', 'Inactive']
     },
     comments: {
         type: String
     },
-    differently_abled: {
+    differentlyAbled: {
         type: String
     },
     address: {
         type: Address,
         optional: true
     },
-    app_role: {
+    appRole: {
         type: String,
         allowedValues: ['Seeker', 'Volunteer', 'Both'],
         optional: true
