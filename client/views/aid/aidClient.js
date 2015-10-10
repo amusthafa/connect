@@ -8,12 +8,9 @@ Template.aid.events({
 
     'click .getaid' : function (event) {
         event.preventDefault();
-        alert('entering click');
         Meteor.call("getAid", function (error, result) {
-
             console.log('getaid' + result);
-            alert('getaid' + JSON.stringify(result));
-            });
+   });
     }
     ,
 
