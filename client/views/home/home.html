@@ -1,12 +1,14 @@
 <template name="home">
     <div class="logo">
-        <img src='/logo.png'/>
+        <img src='/logo.ico'/>
     </div>
     <ul>
         {{#if currentUser}}
 
             <div class="topNav">
-                <a href=# class="logout">Logout</a> | <a href="{{pathFor route='createProfile'}}">Create Profile</a>
+                Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!! <a href=#
+                                                                                            class="logout">Logout </a> |
+                <a href="{{pathFor route='createProfile'}}">Create Profile</a>
             </div>
 
             <a href="{{pathFor route='createRequest'}}"> Create Request </a> <br>
