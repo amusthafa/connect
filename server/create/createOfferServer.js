@@ -13,32 +13,18 @@ Meteor.methods(
             }
             return request;
         },
-        "SearchUserOffer": function (name) {
-
-            //Check is made for name
-            check(name, String);
-            count_value = Meteor.users.find({'profile.firstName': name}).count();
-            if (count_value == 0) {
-                return 0;
-            } else {
-                data = []
-                data = Meteor.users.find({'profile.firstName': name}).fetch();
-                return data;
-            }
-        },
         createOffer: function (OfferIp) {
             check(OfferIp, Object);
             if (OfferIp.volunteerId === Meteor.userId()) {
                 volunteerId = OfferIp.volunteerId;
             } else if (OfferIp.volunteerId !== Meteor.userId()) {
-                var emailId= OfferIp.requestorId.split("-")[1];
-                console.log(emailId)
+                var emailId = OfferIp.requestorId.split("-")[1];
                 id = JSON.stringify(Accounts.findUserByEmail(emailId));
-                console.log(OfferIp.requestorId);
                 volunteerId = id.split(":")[1].split(",")[0].replace("\"", "").replace("\"", "");
             }
             ;
 
+         aidName = Aid.findOne({'aidName': OfferIp.aid});
             Offer.insert({
                 "offerName": OfferIp.offerName,
                 "offerType": OfferIp.offerType,
@@ -50,7 +36,7 @@ Meteor.methods(
                 "state": OfferIp.state,
                 "country": OfferIp.country,
                 "pincode": OfferIp.pincode,
-                "aid": OfferIp.aid,
+                "aid": aidName._id,
                 "fromDate": OfferIp.fromDate,
                 "toDate": OfferIp.toDate,
                 "comment": OfferIp.comment,
@@ -64,13 +50,16 @@ Meteor.methods(
                 VolunteerAid.insert({
                         "offerId": result,
                         "volunteerId": volunteerId,
-                        "aid": OfferIp.aid,
-                        "line1": OfferIp.line1,
-                        "line2": OfferIp.line2,
-                        "city": OfferIp.city,
-                        "state": OfferIp.state,
-                        "country": OfferIp.country,
-                        "pincode": OfferIp.pincode,
+                        "aid": aidName._id,
+                        "aidExpiry": OfferIp.toDate,
+                        "aidAddress": {
+                            "line1": OfferIp.line1,
+                            "line2": OfferIp.line2,
+                            "city": OfferIp.city,
+                            "state": OfferIp.state,
+                            "country": OfferIp.country,
+                            "pinCode": OfferIp.pincode,
+                        },
                         "row_created": new Date(),
                         "row_updated": new Date()
                     }, function (error, result) {
