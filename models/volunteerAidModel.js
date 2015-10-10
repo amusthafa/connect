@@ -1,31 +1,4 @@
 VolunteerAid = new Meteor.Collection('volunteerAid');
-
-
-Address = new SimpleSchema({
-    line1: {
-        type: String
-    },
-    line2: {
-        type: String
-    },
-    city: {
-        type: String
-    },
-    state: {
-        type: String
-    },
-    country: {
-        type: String
-    },
-    pinCode: {
-        type: String
-    },
-    primary: {
-        type: String
-    }
-});
-
-
 VolunteerAid.attachSchema({
         offerId: {
             type: String
@@ -33,20 +6,26 @@ VolunteerAid.attachSchema({
         volunteerId: {
             type: String
         },
-//TO-DO: should the whole aid object be here??
-        aidId: {
+        aid: {
             type: String
         },
-        aidExpiry: {
-            type: Date
-        }/*,
-        status: {
-            type: String,
-            allowedValues: ['Active', 'Inactive']
-        }*/,
-        //To-DO : should the whole address object be here??
-        aidAddress: {
-            type: Address
+        line1: {
+            type: String
+        },
+        line2: {
+            type: String
+        },
+        city: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        pincode: {
+            type: String
         },
         rowCreated: {
             type: Date,

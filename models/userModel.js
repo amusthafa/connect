@@ -52,7 +52,6 @@ UserProfile = new SimpleSchema({
         type: String,
         optional: true
     },
-
     occupation: {
         type: String,
         optional: true
@@ -65,6 +64,12 @@ UserProfile = new SimpleSchema({
         optional: true
     },
     status: {
+        type: String
+    },
+    comments: {
+        type: String
+    },
+    differently_abled: {
         type: String
     },
     address: {
@@ -125,11 +130,11 @@ User = new SimpleSchema({
     // Roles.addUsersToRoles(userId, ["admin"], Roles.GLOBAL_GROUP);
     // You can't mix and match adding with and without a group since
     // you will fail validation in some cases.
-    roles: {
-        type: Object,
-        optional: true,
-        blackbox: true
-    },
+    // roles: {
+    //     type: Object,
+    //     optional: true,
+    //     blackbox: true
+    // },
     // Option 2: [String] type
     // If you are sure you will never need to use role groups, then
     // you can specify [String] as the type

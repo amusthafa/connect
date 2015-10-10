@@ -21,7 +21,10 @@ Template.signUp.events({
         userProfile.email = event.target.mailId.value;
         userProfile.password = event.target.password.value;
         userProfile.mobileNo = event.target.mobileNo.value;
-        userProfile.shareNo = event.target.shareNo.value;
+        if (event.target.shareNo.value == "Yes")
+          userProfile.shareNo = true;
+        else
+          userProfile.shareNo = false;
         userProfile.addr1 = event.target.addr1.value;
         userProfile.addr2 = event.target.addr2.value;
         userProfile.city = event.target.city.value;
@@ -41,12 +44,14 @@ Template.signUp.events({
          userProfile.organisationName = event.target.organisationName.value;
         else
          userProfile.organisationName = "";
+        userProfile.comments = event.target.comments.value;
         Session.set("isOrg","No");
         var profile = JSON.stringify(userProfile);
         Meteor.call("signUp", userProfile, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
             if (error) {
                 console.log("error" + error);
+                alert(error);
             }
             if (Meteor.user() == null) {
               console.log("Sign up log in");

@@ -10,7 +10,8 @@ Template.manageRequest.helpers({getRequest : function() {
 
 Template.manageRequest.onRendered(function() {
   if ( _.isEmpty(Session.get('req')) ) {
-    Meteor.call('getRequest', '76', function(err, result) {
+    console.log("Meteor.user", Meteor.user()._id );
+    Meteor.call('getRequest', function(err, result) {
       console.log("on rendered result:", JSON.stringify(result));
       Session.set('req', result);
     });
@@ -31,7 +32,6 @@ Template.manageRequest.events({
         request.creatorId =  event.target.creatorId.value;
         request.requestorId =  event.target.requestorId.value;
         request.aidId = event.target.aidId.value;
-        request.aidCategoryId =  event.target.aidCategoryId.value;
         request.requiredBy =  event.target.requiredBy.value;
         request.emergency =  event.target.emergency.value;
         request.status =  event.target.status.value;

@@ -54,6 +54,7 @@
 <select name="role" id="role">
   <option value="Seeker">Seeker</option>
   <option value="Volunteer">Volunteer</option>
+  <option value="Both">Both</option>
 </select>
 </p>
 <p></p>
@@ -67,6 +68,8 @@
 {{#if isOrganisation}}
 <p>Organisation Name : <input type="text" required="required" name="organisationName" id="organisationName" value="name"/></p>
 {{/if}}
+<p>Comments : <input type="text" required name="comments" id="comments" /></p>
+<p></p>
 <table align="left" width="10%">
 <tr>
 <td><input type="reset" value="Reset" /></td>

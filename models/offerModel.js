@@ -10,6 +10,41 @@ Offer.attachSchema({
         creatorId: {
             type: String
         },
+        volunteerId:{
+        type: String,
+        optional: true
+    },
+        line1: {
+            type: String
+        },
+        line2: {
+            type: String
+        },
+        city: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        pincode: {
+            type: String
+        },
+        aid: {
+            type: String
+        },
+        comment: {
+            type: String
+        },
+        fromDate: {
+            type: String
+        },
+        toDate: {
+            type: String
+        },
+
         rowCreated: {
             type: Date,
             denyUpdate: true,
@@ -35,3 +70,5 @@ Offer.attachSchema({
         }
     }
 );
+
+

@@ -53,7 +53,12 @@ Router.route('/manageRequest', {
   }
   });
 
-
+  Router.route('/SearchId', {
+      name: 'SearchId',
+      action: function () {
+          this.render('SearchId');
+      }
+  });
   // Router.route('getRequest', {
   //   path: '/getRequest/4qAuokmjDMh2jdmkq',
   //   template: 'getRequest',
@@ -74,5 +79,12 @@ Router.route('/loadMatch', {
     name: 'match',
     action: function () {
         this.render('match');
+    }
+});
+
+Router.route('/createOfferPage', {
+    name: 'createOfferPage',
+    action: function () {
+        this.render('createOfferPage');
     }
 });
