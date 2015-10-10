@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by amusthafa on 9/25/2015.
  */
 
@@ -65,7 +65,12 @@ UserProfile = new SimpleSchema({
     },
     status: {
         type: String,
-        allowedValues: ['Authentic','Warned', 'Blacklist']
+	  allowedValues: ['Warned', 'Blacklist', 'Authentic'],
+        optional: true
+    },
+    availability_status: {
+        type: String,
+        allowedValues: ['Active', 'Inactive']
     },
     comments: {
         type: String

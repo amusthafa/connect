@@ -1,3 +1,7 @@
+Template.login.onRendered(function() {
+  this.$('#loginform').validate()
+});
+
 Template.login.helpers({
 });
 
@@ -9,8 +13,17 @@ Template.login.events({
         var credentials = {};
         credentials.email = event.target.mailId.value;
         credentials.password = event.target.password.value;
-        Meteor.loginWithPassword(credentials.email, credentials.password);
-        Router.go("/");
+        Meteor.loginWithPassword(credentials.email, credentials.password, function(error) {
+          if (error != null) {
+            console.log("login result" + error.reason);
+            alert("Email id or password is wrong");
+          }
+          else {
+            console.log("Success");
+            Router.go("/");
+          }
+        });
+
         //
         //
         // Meteor.call("loginVerify", credentials, function (error, result) {
@@ -26,5 +39,4 @@ Template.login.events({
         //      Router.go("/");
         // });
     }
-
 });

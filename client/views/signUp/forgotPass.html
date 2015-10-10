@@ -1,0 +1,16 @@
+<template name="forgotPass">
+<!-- {{#if resetPassword}} -->
+  <!-- <form method="post" id="setNewPass">
+<p>New Password: <input type="password" class="required" pattern=".{6,}" maxlength="12" id="password" name="password" /></p>
+<input type="submit" value="Set New Password"/>
+<p id="form-messages"></p>
+</form>
+{{else}} -->
+<h1>Forgot Password</h1>
+<form method="post" id="forgotPassForm">
+<p>Email id: <input type="email" class="required email" id="maidId" name="mailId" /></p>
+<input type="submit" value="Send Mail" />
+<p id="form-messages"></p>
+</form>
+<!-- {{/if}} -->
+</template>
