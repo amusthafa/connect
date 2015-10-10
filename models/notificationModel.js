@@ -22,8 +22,7 @@ Notification.attachSchema({
                 'SeekerCanceled', 'PendingCompletion','Completed','CompletedWithRating']
         },
         description: {
-            type: String,
-            allowedValues: ['Admin', 'User']
+            type: String
         },
         rowCreated: {
             type: Date,

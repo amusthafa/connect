@@ -42,7 +42,7 @@ Meteor.methods(
                     };
 
                     Notification.insert(notificationData, function (error, result) {
-                            console.log("connect id - " + result);
+                            console.log("notification id - " + result);
                             if (error) {
                                 console.log("Errors !!" + error + "  Result - " + result);
                                 //TO-DO: error message()
