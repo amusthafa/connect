@@ -6,7 +6,7 @@ Meteor.methods({matchRequestVolunteer: function (request) {
     //TO-DO: remove check()
     check(request, Object);
 
-    console.log('entered connect' + request._id);
+    console.log('entered connect request._id -- ' + request._id);
 
     var request = Request.findOne({"_id": request._id });
 
@@ -121,7 +121,12 @@ var finalVolunteerList=[];
             finalVolunteerList.push(volunteersMap[user]);
     }
 
-    return finalVolunteerList;
+    var matchDtls = {};
+    matchDtls.requestId= request._id;
+    matchDtls.requiredBy=request.requiredBy;
+    matchDtls.volunteerList=finalVolunteerList;
+    check(matchDtls, Object);
+    return matchDtls;
 
 }})
 ;

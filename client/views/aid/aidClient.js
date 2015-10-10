@@ -6,14 +6,6 @@ Template.aid.helpers({
 
 Template.aid.events({
 
-    'click .getaid' : function (event) {
-        event.preventDefault();
-        Meteor.call("getAid", function (error, result) {
-            console.log('getaid' + result);
-   });
-    }
-    ,
-
     'submit form': function (event) {
         event.preventDefault();
         //console.log('form submitted');
