@@ -18,7 +18,7 @@ Meteor.methods({matchRequestVolunteer: function (request) {
 
 
     var volunteers = VolunteerAid.find({ "aidId": request.aidId
-         ,"aidAddress.city": request.address.city
+        ,"aidAddress.city": request.requestAddress.city
          ,aidExpiry: {$gte: request.requiredBy}
         }
     )

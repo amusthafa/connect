@@ -1,6 +1,6 @@
 Router.route('/', function () {
     this.render('home');
-    SEO.set({ title: 'Home -' + Meteor.App.NAME });
+    SEO.set({ title: 'Home - Ola Amigo!!'});
 });
 
 Router.route('/Login', {
@@ -86,5 +86,12 @@ Router.route('/createOffer', {
     name: 'createOffer',
     action: function () {
         this.render('createOffer');
+    }
+});
+
+Router.route('/analytics', {
+    name: 'analytics',
+    action: function () {
+        this.render('analytics');
     }
 });
