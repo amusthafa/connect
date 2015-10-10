@@ -18,9 +18,38 @@
     <p>
     <td>Emergency: </td> <td><input id = 'emergency' /></td>
     </p>
-    <p>
-    <td>addressId: </td> <td><input id = 'addressId' /></td>
-    </p>
+
+    Address2: <input id="address2" type="radio" value="Address2" name="Address"/>
+    <tr>
+        <td>Line 1</td>
+        <td><input id='s_line1'/></td>
+    </tr>
+    <tr>
+        <td>Line 2</td>
+        <td><input id='s_line2'/></td>
+    </tr>
+    City <select id="scity-select">
+    <option selected="selected">Please Select</option>
+    {{#each cityList}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
+
+    State <select id="sstate-select">
+    <option selected="selected">Please Select</option>
+    {{#each stateList}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
+
+    <tr>
+        <td>Country</td>
+        <td><input id='s_country'/></td>
+    </tr>
+    <tr>
+        <td>Pin Code</td>
+        <td><input id='s_pincode'/></td>
+    </tr>
     <input type="submit" class="createRequest" value="Request" />
 </form>
 
