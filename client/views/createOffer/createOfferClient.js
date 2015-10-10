@@ -126,4 +126,3 @@ Template.createOffer.onRendered(function () {
 
 
 
-
