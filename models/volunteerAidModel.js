@@ -1,4 +1,31 @@
 VolunteerAid = new Meteor.Collection('volunteerAid');
+
+Address = new SimpleSchema({
+    line1: {
+        type: String
+    },
+    line2: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    pinCode: {
+        type: String
+    },
+    primary: {
+        type: String
+    }
+});
+
+
+
 VolunteerAid.attachSchema({
         offerId: {
             type: String
@@ -9,23 +36,11 @@ VolunteerAid.attachSchema({
         aid: {
             type: String
         },
-        line1: {
-            type: String
+        aidExpiry: {
+            type: Date
         },
-        line2: {
-            type: String
-        },
-        city: {
-            type: String
-        },
-        state: {
-            type: String
-        },
-        country: {
-            type: String
-        },
-        pincode: {
-            type: String
+        aidAddress: {
+            type: Address
         },
         rowCreated: {
             type: Date,

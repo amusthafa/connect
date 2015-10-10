@@ -1,4 +1,31 @@
 Request = new Meteor.Collection('request');
+
+
+Address = new SimpleSchema({
+    line1: {
+        type: String
+    },
+    line2: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    pinCode: {
+        type: String
+    },
+    primary: {
+        type: String
+    }
+});
+
+
 Request.attachSchema({
         request_name: {
             type: String
@@ -37,8 +64,8 @@ Request.attachSchema({
             allowedValues: ["Submitted"]
         },
         //To-DO : should the whole address object be here??
-        address_id: {
-            type: String
+        requestAddress: {
+            type: Address
         },
         rowCreated: {
             type: Date,
