@@ -82,9 +82,9 @@ Router.route('/loadMatch', {
     }
 });
 
-Router.route('/createOfferPage', {
-    name: 'createOfferPage',
+Router.route('/createOffer', {
+    name: 'createOffer',
     action: function () {
-        this.render('createOfferPage');
+        this.render('createOffer');
     }
 });

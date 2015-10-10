@@ -13,3 +13,4 @@ Meteor.startup(
         Session.set("cityList", cityArr);
         Session.set("stateList", stateArr);
     });
+

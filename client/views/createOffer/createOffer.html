@@ -69,14 +69,14 @@
             </tr>
             City <select id="scity-select">
             <option selected="selected">Please Select</option>
-            {{#each city}}
+            {{#each cityList}}
                 <option value="{{this}}">{{this}}</option>
             {{/each}}
         </select>
 
             State <select id="sstate-select">
             <option selected="selected">Please Select</option>
-            {{#each state}}
+            {{#each stateList}}
                 <option value="{{this}}">{{this}}</option>
             {{/each}}
         </select>
@@ -92,12 +92,13 @@
 
             <br>
             Offer :
-            <select id="Aid" multiple="multiple">
-                <option value="Scribe">Scribe</option>
-                <option value="Blood Donation">Blood Donation</option>
-                <option value="All">All</option>
+            <select id="Aid">
+                <option selected="selected">Please Select</option>
+                {{#each aidList}}
+                <option >{{aidName}} </option>
+                {{/each}}
             </select>
-            <br><br>
+
 
             From :
             <input type="date" id="fromDate">
