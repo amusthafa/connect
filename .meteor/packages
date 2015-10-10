@@ -39,3 +39,6 @@ twbs:bootstrap
 rajit:bootstrap3-datepicker
 aldeed:autoform
 aldeed:autoform-bs-datepicker
+email
+themeteorchef:jquery-validation
+accounts-ui

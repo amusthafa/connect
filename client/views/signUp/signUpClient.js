@@ -53,13 +53,17 @@ Template.signUp.events({
                 console.log("error" + error);
                 alert(error);
             }
-            if (Meteor.user() == null) {
-              console.log("Sign up log in");
-              Meteor.loginWithPassword(userProfile.email, userProfile.password);
-            }
-            else {
-              console.log("create profile");
-            }
+            // if (Meteor.user() == null) {
+            //   console.log("Sign up log in");
+            //   Meteor.loginWithPassword(userProfile.email, userProfile.password);
+            //   // Meteor.call("mailVerification", Meteor.userId() ,userProfile.email);
+            // }
+            // else {
+            //   console.log("create profile");
+            //   // console.log(Meteor.users.find({'emails.address' : userProfile.email}, {_id : 1}));
+            //   // Meteor.call("mailVerification", Meteor.users.find({'emails.address' : userProfile.email}, {_id : 1}),userProfile.email);
+            // }
+
             /*if (error.error === "insert-failed") {
              console.log("Please specify mandatory fields.");
              //sAlert.error("Please specify mandatory fields.");

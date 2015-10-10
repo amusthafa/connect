@@ -10,6 +10,13 @@ Router.route('/Login', {
     }
 });
 
+Router.route('/ForgotPassword', {
+    name: 'forgotPassword',
+    action: function () {
+        this.render('forgotPass');
+    }
+});
+
 Router.route('/Logout', {
     name: 'logout',
     action: function () {
