@@ -1,99 +1,119 @@
 <template name="createOfferPage">
 
-<h1>Create Offer </h1>
+    <h1>Create Offer </h1>
 
-<form action="" method="post" id="createOfferForm">
-<table>
+    <form action="" method="post" id="createOfferForm">
+        <table>
+            Self <input id="userType" type="radio" value="Self" name="userType" checked/>
+            Other <input id="userType" type="radio" value="Other" name="userType"/>
+            <br>
+            {{#if isOtherChecked}}
+                <p> User Name : <input type="text" required="required" name="requestorId" id="requestorId"
+                                       default="Please Enter Name" value={{userId}}></p>
+                <button type="button" class="searchUser" value="Search">Search</button>
 
-    Self <input  id="userType" type="radio" value="Self" name="userType" />
-   Other <input  id="userType" type="radio" value="Other" name="userType" />
-   <br>
-    {{#if isOtherChecked}}
-        <p>User Name : <input type="text" required="required" name="requestorId" id="requestorId" /></p>
-    {{/if}}
+                {{#if searchUser}}
+                    <select id="selectedUser">
+                        <option selected="selected">First Name, Last Name - Email Id</option>
+                        {{#each searchUser}}
+                            <option type="selection"> {{profile.firstName}},{{profile.lastName}}-{{#each emails}}{{address}}{{/each}}  </option>
+                        {{/each}}
+                    </select>
+                {{/if}}
 
-<tr>
-<td>Offer Name </td> <td><input id = 'offerName' /></td>
-</tr>
+            {{/if}}
 
-Address1: <input  id="address1" type="radio" value="Address1" name="Address" />
-<tr>
-<td>Line 1</td> <td><input id = 'p_line1' /></td>
-</tr>
-<tr>
-<td>Line 2</td> <td><input id = 'p_line2' /></td>
-</tr>
-    City <select id="pcity-select">
-        <option selected="selected">Please Select</option>
-        {{#each city}}
-            <option value="{{this}}">{{this}}</option>
-        {{/each}}
-    </select>
 
-    State <select id="pstate-select">
-    <option selected="selected">Please Select</option>
-    {{#each state}}
-        <option value="{{this}}">{{this}}</option>
-    {{/each}}
-</select>
+            <tr>
+                <td>Offer Name</td>
+                <td><input id='offerName'/></td>
+            </tr>
 
-    <tr>
-        <td>Country</td> <td><input id = 'p_country' /></td>
-    </tr>
-<tr>
-<td>Pin Code</td> <td><input id = 'p_pincode' /></td>
-</tr>
+            Address1: <input id="address1" type="radio" value="Address1" name="Address" checked/>
 
-Address2: <input  id="address2" type="radio" value="Address2" name="Address"/>
-<tr>
-<td>Line 1</td> <td><input id = 's_line1' /></td>
-</tr>
-<tr>
-<td>Line 2</td> <td><input id = 's_line2' /></td>
-</tr>
-    City <select id="scity-select">
-    <option selected="selected">Please Select</option>
-    {{#each city}}
-        <option value="{{this}}">{{this}}</option>
-    {{/each}}
-</select>
+            <tr>
+                <td>Line 1</td>
+                <td><input id='p_line1' value={{getAddress.profile.address.line1}} disabled/></td>
+            </tr>
+            <tr>
+                <td>Line 2</td>
+                <td><input id='p_line2' value= {{getAddress.profile.address.line2}} disabled/></td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td><input id='p_city' value= {{getAddress.profile.address.city}} disabled/></td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td><input id='p_state' value= {{getAddress.profile.address.state}} disabled/></td>
+            </tr>
 
-    State <select id="sstate-select">
-    <option selected="selected">Please Select</option>
-    {{#each state}}
-        <option value="{{this}}">{{this}}</option>
-    {{/each}}
-</select>
+            <tr>
+                <td>Country</td>
+                <td><input id='p_country' value="INDIA" disabled/></td>
+            </tr>
+            <tr>
+                <td>Pin Code</td>
+                <td><input id='p_pincode' value={{getAddress.profile.address.pinCode}} disabled></td>
+            </tr>
 
-<tr>
-<td>Country</td> <td><input id = 's_country' /></td>
-</tr>
-<tr>
-<td>Pin Code</td> <td><input id = 's_pincode' /></td>
-</tr>
 
-<br>
-Offer :
- <select id="Aid">
-    <option value="Scribe">Scribe</option>
-     <option value="All">All</option>
-  </select>
-  <br><br>
+            Address2: <input id="address2" type="radio" value="Address2" name="Address"/>
+            <tr>
+                <td>Line 1</td>
+                <td><input id='s_line1'/></td>
+            </tr>
+            <tr>
+                <td>Line 2</td>
+                <td><input id='s_line2'/></td>
+            </tr>
+            City <select id="scity-select">
+            <option selected="selected">Please Select</option>
+            {{#each city}}
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
 
-    From :
-    <input type="date" id="fromDate">
+            State <select id="sstate-select">
+            <option selected="selected">Please Select</option>
+            {{#each state}}
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
 
-    To:
-     <input type="date" id="toDate">
-     <br><br>
+            <tr>
+                <td>Country</td>
+                <td><input id='s_country'/></td>
+            </tr>
+            <tr>
+                <td>Pin Code</td>
+                <td><input id='s_pincode'/></td>
+            </tr>
 
-     <tr>
-     <td>Comment</td> <td><input id = 'comment' /></td>
-     </tr>
+            <br>
+            Offer :
+            <select id="Aid" multiple="multiple">
+                <option value="Scribe">Scribe</option>
+                <option value="Blood Donation">Blood Donation</option>
+                <option value="All">All</option>
+            </select>
+            <br><br>
 
-</table>
-    <input type="submit" class="createOffer" value="Create Offer" />
-</form>
+            From :
+            <input type="date" id="fromDate">
+
+            To:
+            <input type="date" id="toDate">
+            <br><br>
+
+            <tr>
+                <td>Comment</td>
+                <td><input id='comment'/></td>
+            </tr>
+
+        </table>
+        <input type="submit" class="createOffer" value="Create Offer"/>
+    </form>
 
 
 </template>
