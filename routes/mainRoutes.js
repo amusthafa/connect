@@ -102,3 +102,9 @@ Router.route('/analytics', {
         this.render('analytics');
     }
 });
+Router.route('/loadNotifications', {
+    name: 'notifications',
+    action: function () {
+        this.render('notifications');
+    }
+});

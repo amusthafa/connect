@@ -18,8 +18,8 @@ Meteor.methods({matchRequestVolunteer: function (request) {
 
 
     var volunteers = VolunteerAid.find({ "aidId": request.aidId
-        ,"aidAddress.city": request.requestAddress.city
-         ,aidExpiry: {$gte: request.requiredBy}
+            ,"aidAddress.city": request.requestAddress.city
+            ,aidExpiry: {$gte: request.requiredBy}
         }
     )
         .fetch();
@@ -39,9 +39,6 @@ Meteor.methods({matchRequestVolunteer: function (request) {
         volunteersMap[volunteer.volunteerId]= volunteer;
         console.log(volunteersMap[volunteer.volunteerId]);
     }
-
-    console.log("volunteersMap YuZPZAMFuLfi27CGf -- " + JSON.stringify((volunteersMap["YuZPZAMFuLfi27CGf"])));
-    console.log("volunteerArr -- " + (volunteerArr));
 
     var users = Meteor.users.find({_id: { $in: volunteerArr }, "profile.availabilityStatus": "Active",
         "profile.status": "Authentic"  })
@@ -64,7 +61,7 @@ Meteor.methods({matchRequestVolunteer: function (request) {
     var connectedUsers =Connect.find({
         aidId: request.aidId,
         volunteerId: { $in: userArr },
-    status: { $in: ["initiated", "declined" , "volunteercancel", "seekercancel"]}
+        status: { $in: ["initiated", "declined" , "volunteercancel", "seekercancel"]}
     }).fetch();
 
     var connectedUserArr = [];
@@ -74,7 +71,7 @@ Meteor.methods({matchRequestVolunteer: function (request) {
         connectedUserArr.push(connectedUser._id);
     }
 
-     var finalremoveList = _.difference(removeList,connectedUserArr);
+    var finalremoveList = _.difference(removeList,connectedUserArr);
 
 
     console.log('finalremoveList' + finalremoveList);
@@ -90,31 +87,31 @@ Meteor.methods({matchRequestVolunteer: function (request) {
 
     //Retrieve required details and send to ui for connect
 
-        /*
+    /*
 
-            //List of connected users
-            Connect.find({
-
-
-            });
+     //List of connected users
+     Connect.find({
 
 
-                //List of available users
-            //check if volunteer is not connected for that aid on that day
-            //{$ne : request.requiredBy} or (date )  && status in list
-            Connect.find({
-                aidId: request.aidId,
-                volunteerId: { $in: userArr },
-                $or: [
-                    { requestedBy: {$ne: request.requiredBy}},
-                    { $and: [
-                        { requestedBy: {$eq: request.requiredBy}},
-                        { status: { $in: ["initiated", "declined" , "volunteercancel", "seekercancel"}}
-                        ]
-                    }
-                ]      }).fetch();
-        */
-var finalVolunteerList=[];
+     });
+
+
+     //List of available users
+     //check if volunteer is not connected for that aid on that day
+     //{$ne : request.requiredBy} or (date )  && status in list
+     Connect.find({
+     aidId: request.aidId,
+     volunteerId: { $in: userArr },
+     $or: [
+     { requestedBy: {$ne: request.requiredBy}},
+     { $and: [
+     { requestedBy: {$eq: request.requiredBy}},
+     { status: { $in: ["initiated", "declined" , "volunteercancel", "seekercancel"}}
+     ]
+     }
+     ]      }).fetch();
+     */
+    var finalVolunteerList=[];
     for (i in userArr){
         var user = userArr[i];
         if (volunteersMap[user])

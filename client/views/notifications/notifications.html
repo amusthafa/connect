@@ -1,0 +1,18 @@
+<template name="notifications">
+
+<h1>Add Aid </h1>
+<form action="" method="post" id="aidform">
+<table>
+    <th>_id,connectId,requestId,volunteerAidId,userId,type,description</th>
+    {{#each notifications}}
+    <tr data-match="{{volunteerId}}">
+        <td>
+            {{_id}}, {{connectId}},{{requestId}},{{volunteerAidId}},{{userId}},{{type}},{{description}}
+        </td>
+    </tr>
+    {{/each}}
+
+</table>
+    <input type="submit" class="addaid" value="Add Aid" />
+</form>
+</template>

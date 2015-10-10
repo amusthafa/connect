@@ -1,5 +1,5 @@
-Notification = new Meteor.Collection('notification');
-Notification.attachSchema({
+Notifications = new Meteor.Collection('notifications');
+Notifications.attachSchema({
         connectId: {
             type: String
         },
