@@ -41,7 +41,7 @@ Meteor.methods(
                         description: 'Request for ' + connect.aidId
                     };
 
-                    Notification.insert(notificationData, function (error, result) {
+                    Notifications.insert(notificationData, function (error, result) {
                             console.log("notification id - " + result);
                             if (error) {
                                 console.log("Errors !!" + error + "  Result - " + result);
