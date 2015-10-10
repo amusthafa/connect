@@ -37,14 +37,19 @@ Request.attachSchema({
         requestorId: {
             type: String
         },
+        requestAddress: {
+            type: Address
+        },
+
         //TO-DO: should the whole aid object be here??
         aidId: {
             type: String
         },
-        // //TO-DO: should the whole aid object be here??
-        // aidCategoryId: {
-        //     type: String
-        // },
+
+        comment: {
+            type: String
+        },
+
         requiredBy: {
             type: Date,
             autoform: {
@@ -60,10 +65,7 @@ Request.attachSchema({
             type: String,
             allowedValues: ["Submitted"]
         },
-        //To-DO : should the whole address object be here??
-        requestAddress: {
-            type: Address
-        },
+
         rowCreated: {
             type: Date,
             denyUpdate: true,

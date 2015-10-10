@@ -27,7 +27,8 @@ saveRequest: function (request) {
             "state": request.state,
             "country": request.country,
             "pinCode": request.pincode,
-        }
+        },
+        "comment": request.comment
     }
 
     console.log("request inn server:", JSON.stringify(request));

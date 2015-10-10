@@ -1,7 +1,7 @@
 Meteor.methods(
     {
         getAddress: function (userId) {
-            check(userId, String);
+            check(userId, Object);
             if (userId === Meteor.userId()) {
                 var request = Meteor.users.findOne({_id: userId});
                 console.log("Server getRequest:", JSON.stringify(request));

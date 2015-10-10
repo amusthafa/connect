@@ -1,16 +1,66 @@
+Session.setDefault("isOther", "Self");
+Session.setDefault("sCity", "Please Select");
+Session.setDefault("sState", "Please Select");
 
 Template.createRequest.helpers({
-cityList: function () {
-    console.log(Session.get('cityList'));
-    return (Session.get('cityList'));
-},
+    'isOtherChecked': function (event) {
+        return (Session.get("isOther") === "Other");
+    },
 
-stateList: function () {
-    console.log(Session.get('stateList'));
-    return (Session.get('stateList'));
-}
+    // getAddress: function () {
+    //     var req = Session.get('userDetails');
+    //     return (Session.get('userDetails'));
+    // },
+
+    searchUser: function () {
+        console.log("Search" + JSON.stringify(Session.get('searchResult')));
+        return (Session.get('searchResult'));
+    },
+
+    userId: function () {
+        console.log(Session.get('requestorId'));
+        return (Session.get('requestorId'));
+    },
+
+    cityList: function () {
+      console.log(Session.get('cityList'));
+      return (Session.get('cityList'));
+    },
+
+    stateList: function () {
+        console.log(Session.get('stateList'));
+        return (Session.get('stateList'));
+    },
+    aidList: function () {
+        console.log(Session.get('aidList'));
+        return (Session.get('aidList'));
+    }
 });
+
+
 Template.createRequest.events({
+    'click .searchUser': function (event) {
+        event.preventDefault();
+        Meteor.call("SearchUser", document.getElementById("requestorId").value, function (error, result) {
+            Session.set("searchResult", result);
+        });
+    },
+
+    "change #selectedUser": function (event, template) {
+        var requestorId = $(event.currentTarget).val();
+        Session.set("requestorId", requestorId);
+        console.log(Session.get("requestorId"));
+        Meteor.call('getAddress', Session.get("requestorId"), function (err, result) {
+            Session.set("userDetails", result);
+            console.log("on rendered result:", JSON.stringify(result));
+        });
+    },
+
+    'change #requestType': function (event) {
+        console.log(event.currentTarget.name);
+        Session.set("isOther", event.currentTarget.value);
+        console.log(Session.get("isOther"));
+    },
 
     "change #scity-select": function (event, template) {
         var city = $(event.currentTarget).val();
@@ -25,14 +75,21 @@ Template.createRequest.events({
     },
 
     'submit form': function (event) {
+      console.log("submit start");
         event.preventDefault();
         var request = {};
 
+        if (event.target.requestType.value === "Self") {
+            request.requestType = "Self";
+            request.creatorId = Meteor.userId();
+            request.requestorId = Meteor.userId();
+        } else {
+            request.requestType = "Other";
+            request.creatorId = Meteor.userId();
+            request.requestorId = event.target.requestorId.value;
+        }
         request.requestName =  event.target.requestName.value;
-        request.requestType =  event.target.requestType.value;
-        request.creatorId =  Meteor.user()._id;
-        request.requestorId =  Meteor.user()._id;
-        request.aidId = event.target.aidId.value;
+        request.aidId = event.target.Aid.value;
         request.requiredBy =  event.target.requiredBy.value;
         request.emergency =  event.target.emergency.value;
         request.status =  "Submitted";
@@ -42,11 +99,11 @@ Template.createRequest.events({
         request.state = Session.get("sState");
         request.country = event.target.s_country.value;
         request.pincode = event.target.s_pincode.value;
+        request.comment = event.target.comment.value;
+
 
         var requestJson = JSON.stringify(request);
         console.log("CREATE REQUEST:" , requestJson);
-        // alert('create request ' + requestJson);
-        // Router.go("/saveRequest",{query : 1});
 
         Meteor.call("saveRequest", request, function (error, result) {
             console.log("Client : error" + error + "result - " + JSON.stringify(result));
@@ -54,7 +111,7 @@ Template.createRequest.events({
                 console.log("error" + error);
             }
             else{
-              console.log('form submitted');
+              console.log('crate request form submitted');
             }
           });
     }

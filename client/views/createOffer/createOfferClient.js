@@ -60,24 +60,19 @@ Template.createOffer.events({
         console.log(event.currentTarget.name);
         Session.set("isOther", event.currentTarget.value);
         console.log(Session.get("isOther"));
-    }
-    ,
-
+    },
 
     "change #scity-select": function (event, template) {
         var city = $(event.currentTarget).val();
         Session.set("sCity", city);
         console.log(Session.get("sCity"));
-    }
-    ,
-
+    },
 
     "change #sstate-select": function (event, template) {
         var state = $(event.currentTarget).val();
         Session.set("sState", state);
         console.log(Session.get("sState"));
-    }
-    ,
+    },
 
     'submit form': function (event) {
         event.preventDefault();
@@ -129,10 +124,3 @@ Template.createOffer.onRendered(function () {
         Session.set("userDetails", result);
     });
 });
-
-
-
-
-
-
-
