@@ -32,7 +32,7 @@ Offer.attachSchema({
         pincode: {
             type: String
         },
-        aid: {
+        aidId: {
             type: String
         },
         comment: {

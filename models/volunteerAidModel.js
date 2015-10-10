@@ -30,7 +30,7 @@ VolunteerAid.attachSchema({
         volunteerId: {
             type: String
         },
-        aid: {
+        aidId: {
             type: String
         },
         aidExpiry: {
