@@ -3,9 +3,6 @@ Aid.attachSchema({
         aidName: {
             type: String
         },
-        aidCategoryId: {
-            type: String
-        },
         rowCreated: {
             type: Date,
             denyUpdate: true,
