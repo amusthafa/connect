@@ -36,7 +36,7 @@ Meteor.methods(
                 "state": OfferIp.state,
                 "country": OfferIp.country,
                 "pincode": OfferIp.pincode,
-                "aid": aidName._id,
+                "aidId": aidName._id,
                 "fromDate": OfferIp.fromDate,
                 "toDate": OfferIp.toDate,
                 "comment": OfferIp.comment,
@@ -50,7 +50,7 @@ Meteor.methods(
                 VolunteerAid.insert({
                         "offerId": result,
                         "volunteerId": volunteerId,
-                        "aid": aidName._id,
+                        "aidId": aidName._id,
                         "aidExpiry": OfferIp.toDate,
                         "aidAddress": {
                             "line1": OfferIp.line1,
