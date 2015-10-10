@@ -8,6 +8,6 @@ function loadFixture(fixtures, collection) {
 }
 
 Meteor.startup(function () {
-  process.env.MAIL_URL='smtp://vardhini.mv25%40gmail.com:11500000@smtp.gmail.com:465/';
+  process.env.MAIL_URL='smtp://olaamigo.app%40gmail.com:123456xyz@smtp.gmail.com:465/';
   //loadFixture(Fixtures['dummyFixture'], DummyCollection);
 });
