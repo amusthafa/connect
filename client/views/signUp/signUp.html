@@ -26,9 +26,23 @@
 <p></p>
 <p>Address Line 2 : <input type="text" name="addr2" id="addr2" /></p>
 <p></p>
-<p>City : <input type="text" required name="city" id="city" /></p>
+<p>City :
+  <select id="city">
+  <option selected="selected">Please Select</option>
+  {{#each cityList}}
+      <option value="{{this}}">{{this}}</option>
+  {{/each}}
+  </select>
+</p>
 <p></p>
-<p>State : <input type="text" required name="state" id="state" /></p>
+<p>State :
+  <select id="state">
+  <option selected="selected">Please Select</option>
+  {{#each stateList}}
+      <option value="{{this}}">{{this}}</option>
+  {{/each}}
+</select>
+</p>
 <p></p>
 <p>Country : <input type="text" required name="country" id="country" /></p>
 <p></p>

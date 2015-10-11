@@ -8,7 +8,7 @@ Template.adminAuth.events({
         adminAuth.status = event.target.status.value;
 
         // var aidJson = JSON.stringify(aid);
-         alert('client ' + adminAuth);
+     //    alert('client ' + adminAuth);
         //Router.go("/addAid",{query : 1});
 
         Meteor.call("updateAdminAuth", adminAuth, function (error, result) {
@@ -26,7 +26,7 @@ Template.adminAuth.events({
              }
             //
            // alert('routing to home');
-            Router.go("/home");
+            Router.go("/");
         });
 
     }

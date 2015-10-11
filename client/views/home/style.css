@@ -1,0 +1,15 @@
+body {
+    background: #eee;
+    text-align: left;
+    font-family: arial, sans-serif;
+}
+
+.topNav {
+    text-align: right;
+    padding-right: 50px;
+}
+
+.logo {
+    text-align: center;
+}
+

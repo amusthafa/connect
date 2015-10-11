@@ -1,43 +1,28 @@
-VolunteerAid = new Meteor.Collection('volunteerAid');
-
-Address = new SimpleSchema({
-    line1: {
-        type: String
-    },
-    line2: {
-        type: String
-    },
-    city: {
-        type: String
-    },
-    state: {
-        type: String
-    },
-    country: {
-        type: String
-    },
-    pinCode: {
-        type: String
-    }
-});
-
-
-
-VolunteerAid.attachSchema({
-        offerId: {
+Notifications = new Meteor.Collection('notifications');
+Notifications.attachSchema({
+        connectId: {
             type: String
         },
-        volunteerId: {
+        requestId: {
             type: String
         },
-        aidId: {
+        volunteerAidId: {
             type: String
         },
-        aidExpiry: {
-            type: Date
+        status: {
+            type: String
         },
-        aidAddress: {
-            type: Address
+        userId: {
+            type: String
+        },
+        type: {
+            type: String,
+            //same set of values as status of connect
+            allowedValues: ['Initiated', 'Accepted','Declined','VolunteerCanceled',
+                'SeekerCanceled', 'PendingCompletion','Completed','CompletedWithRating']
+        },
+        description: {
+            type: String
         },
         rowCreated: {
             type: Date,

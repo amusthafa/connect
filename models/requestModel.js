@@ -1,4 +1,28 @@
 Request = new Meteor.Collection('request');
+
+
+Address = new SimpleSchema({
+    line1: {
+        type: String
+    },
+    line2: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    pinCode: {
+        type: String
+    }
+});
+
+
 Request.attachSchema({
         request_name: {
             type: String
@@ -13,19 +37,24 @@ Request.attachSchema({
         requestorId: {
             type: String
         },
+        requestAddress: {
+            type: Address
+        },
+
         //TO-DO: should the whole aid object be here??
         aidId: {
             type: String
         },
-        // //TO-DO: should the whole aid object be here??
-        // aidCategoryId: {
-        //     type: String
-        // },
+
+        comment: {
+            type: String
+        },
+
         requiredBy: {
-          type: Date,
-          autoform: {
-            type: "bootstrap-datepicker"
-          }
+            type: Date,
+            autoform: {
+                type: "bootstrap-datepicker"
+            }
         },
         //To-do : should make it Boolean
         emergency: {
@@ -36,10 +65,7 @@ Request.attachSchema({
             type: String,
             allowedValues: ["Submitted"]
         },
-        //To-DO : should the whole address object be here??
-        address_id: {
-            type: String
-        },
+
         rowCreated: {
             type: Date,
             denyUpdate: true,

@@ -1,12 +1,19 @@
 Router.route('/', function () {
     this.render('home');
-    SEO.set({ title: 'Home -' + Meteor.App.NAME });
+    SEO.set({ title: 'Home - Ola Amigo!!'});
 });
 
 Router.route('/Login', {
     name: 'login',
     action: function () {
         this.render('login');
+    }
+});
+
+Router.route('/ForgotPassword', {
+    name: 'forgotPassword',
+    action: function () {
+        this.render('forgotPass');
     }
 });
 
@@ -82,9 +89,22 @@ Router.route('/loadMatch', {
     }
 });
 
-Router.route('/createOfferPage', {
-    name: 'createOfferPage',
+Router.route('/createOffer', {
+    name: 'createOffer',
     action: function () {
-        this.render('createOfferPage');
+        this.render('createOffer');
+    }
+});
+
+Router.route('/analytics', {
+    name: 'analytics',
+    action: function () {
+        this.render('analytics');
+    }
+});
+Router.route('/loadNotifications', {
+    name: 'notifications',
+    action: function () {
+        this.render('notifications');
     }
 });

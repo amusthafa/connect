@@ -1,28 +1,104 @@
 <template name="createRequest">
 
-<h1>Create Request</h1>
-<form action="" method="post" id="requestForm">
-    <p>
-    <td>requestName: </td> <td><input id = 'requestName' /></td>
-    </p>
-    <p>
-    <td>requestType: </td>
-    <td><input id = 'requestType' /></td>
-    </p>
-    <p>
-    <td>aidId: </td> <td><input id = 'aidId' /></td>
-    </p>
-    <p>
-    <td>requiredBy: </td> <td><input id = 'requiredBy' /></td>
-    </p>
-    <p>
-    <td>Emergency: </td> <td><input id = 'emergency' /></td>
-    </p>
-    <p>
-    <td>addressId: </td> <td><input id = 'addressId' /></td>
-    </p>
-    <input type="submit" class="createRequest" value="Request" />
-</form>
+    <h1>Create Request </h1>
+
+    <form action="" method="post" id="requestForm">
+        <table>
+            Self <input id="requestType" type="radio" value="Self" name="requestType" checked/>
+            Other <input id="requestType" type="radio" value="Other" name="requestType"/>
+            <br>
+            {{#if isOtherChecked}}
+                <p> User Name : <input type="text" required="required" name="requestorId" id="requestorId"
+                                       default="Please Enter Name" value={{userId}}></p>
+                <button type="button" class="searchUser" value="Search">Search</button>
+
+                {{#if searchUser}}
+                    <select id="selectedUser">
+                        <option selected="selected">First Name, Last Name - Email Id</option>
+                        {{#each searchUser}}
+                            <option type="selection"> {{profile.firstName}},{{profile.lastName}}-{{#each emails}}{{address}}{{/each}}  </option>
+                        {{/each}}
+                    </select>
+                {{/if}}
+
+            {{/if}}
+
+
+            <tr>
+                <td>Request Name</td>
+                <td><input id='requestName'/></td>
+            </tr>
+
+            Address:
+            <tr>
+                <td>Line 1</td>
+                <td><input id='s_line1'/></td>
+            </tr>
+            <tr>
+                <td>Line 2</td>
+                <td><input id='s_line2'/></td>
+            </tr>
+
+            <tr>
+                <td>City </td>
+                <td><select id="scity-select">
+                <option selected="selected">Please Select</option>
+                  {{#each cityList}}
+                      <option value="{{this}}">{{this}}</option>
+                  {{/each}}
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td> State </td>
+              <td><select id="sstate-select">
+              <option selected="selected">Please Select</option>
+                {{#each stateList}}
+                    <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+            </td>
+          </tr>
+
+            <tr>
+                <td>Country</td>
+                <td><input id='s_country'/></td>
+            </tr>
+            <tr>
+                <td>Pin Code</td>
+                <td><input id='s_pincode'/></td>
+            </tr>
+
+            <tr>
+              <td> Aid :</td>
+              <td>
+                <select id="Aid">
+                  <option selected="selected">Please Select</option>
+                  {{#each aidList}}
+                  <option >{{aidName}} </option>
+                  {{/each}}
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td> Required By : </td>
+              <td><input type="date" id="requiredBy"></td>
+            </tr>
+
+            <tr>
+              <td>Emergency:</td>
+              <td><input id="emergency"></td>
+            </tr>
+
+            <tr>
+                <td>Comment</td>
+                <td><input id='comment'/></td>
+            </tr>
+
+        </table>
+        <input type="submit" class="createRequest" value="Request"/>
+    </form>
 
 
 </template>

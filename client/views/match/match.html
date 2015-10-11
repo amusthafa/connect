@@ -1,14 +1,29 @@
-<template name="connect">
+<template name="match">
 
     <h1>Connect </h1>
-    <form action="" method="post" id="aidform">
+    <form action="" method="post" id="matchform">
         <table>
             <tr>
-                <td>Request Id: </td> <td><input id = 'requestId' /></td>
+                <td>Request Id: </td> <td><input id = 'requestId' value="99RwmKaY4wAib8pmx" /></td>
             </tr>
 
         </table>
-        <input type="submit" class="connect" value="Connect" />
-    </form>
+        <input type="submit" class="match" value="Match" />
 
+<table>
+    <input type="text" id = "requestId" value="{{requestId}}" />
+    <input type="text" id = "requestDate" value="{{requestDate}}" />
+    {{#each matchRequestVolunteer}}
+    <tr data-match="{{volunteerId}}">
+        <td>
+            {{_id}}, {{volunteerId}},{{aidId}},{{aidAddress.city}}
+        </td>
+    </tr>
+    {{/each}}
+    <tr>  <td>Volunteer Aid Id: </td> <td><input id = 'volunteerAidId' /></td> </tr>
+<tr>  <td>Volunteer Id: </td> <td><input id = 'volunteerId' /></td> </tr>
+    <tr>  <td>Aid Id: </td> <td><input id = 'aidId' /></td> </tr>
+    <input type="button" value="Connect" class="connect" />
+</table>
+    </form>
 </template>
