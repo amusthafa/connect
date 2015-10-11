@@ -58,9 +58,13 @@ livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
 manuelschoebel:ms-seo@0.4.1
+matteodem:easy-search@1.6.4
 matteodem:easy-security@0.1.4
 meteor@1.1.9
 meteor-base@1.0.1
+meteor-platform@1.2.3
+meteorhacks:aggregate@1.2.1
+meteorhacks:collection-utils@1.2.0
 meteorhacks:fast-render@2.10.0
 meteorhacks:inject-data@1.4.1
 meteorhacks:picker@1.0.3
@@ -71,6 +75,7 @@ mobile-status-bar@1.0.6
 momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
+mongo-livedata@1.0.9
 natestrauser:animate-css@3.4.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1

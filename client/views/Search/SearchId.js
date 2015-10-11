@@ -6,7 +6,10 @@ Template.SearchId.helpers({
 
 //UserprofileDummy = new Meteor.Collection('userprofiles');
 
-
+Meteor.users.initEasySearch('profile.firstName', {
+    'limit' : 20,
+    'use' : 'mongo-db'
+});
 Template.SearchId.events({
     //'click .search': function (event, next) {
       //  name = document.getElementById('name').value;

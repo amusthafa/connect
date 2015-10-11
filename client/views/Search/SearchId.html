@@ -2,9 +2,14 @@
   <h1>Search User </h1>
      <form>
       <tr> <td> Enter User name </td>
-      <td>   <input type="text" id="Ename"> </td>
-       </tr>
-        <input type="submit" class="search" value="SEARCH">
+           </tr>
+
+        <span> {{> esAutosuggest index="user" placeholder="Search...."}}
+</span>
+{{#ifEsIsSearching index="users"}}
+    <div>Loading...</div>
+{{/ifEsIsSearching}}
+
         <div id="SearchResult">
 
         </div>
