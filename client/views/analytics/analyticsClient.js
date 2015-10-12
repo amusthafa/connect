@@ -4,9 +4,8 @@ var chart;
  * Function to draw the chart
  */
 function builtLineChart() {
-
     var data = Session.get("getAnalyticsByDate");
-    console.log(JSON.stringify(Session.get("getAnalyticsByDate")));
+    console.log("1st" + JSON.stringify(Session.get("getAnalyticsByDate")));
     var chart = AmCharts.makeChart("chartdiv", {
         type: "serial",
         dataProvider: data,
@@ -72,7 +71,7 @@ function builtLineChart() {
 Template.analytics.rendered = function () {
     Meteor.call('getAnalyticsByDate', function (err, result) {
         Session.set("getAnalyticsByDate", result);
-        console.log(JSON.stringify(Session.get("getAnalyticsByDate")));
+        console.log("render" + JSON.stringify(Session.get("getAnalyticsByDate")));
     });
 
     builtLineChart();
