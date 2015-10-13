@@ -18,7 +18,7 @@ Connect.attachSchema({
         status: {
             type: String,
             allowedValues: ['Initiated', 'Accepted','Declined','VolunteerCanceled',
-                'SeekerCanceled', 'PendingCompletion','Completed','CompletedWithRating']
+                'SeekerCanceled', 'PendingCompletion','Completed','Unsuccessful']
         },
         requestorRating: {
             type: Number,

@@ -7,7 +7,13 @@
     {{#each notifications}}
     <tr data-match="{{volunteerId}}">
         <td>
-            {{_id}}, {{connectId}},{{requestId}},{{volunteerAidId}},{{userId}},{{type}},{{description}}
+            {{_id}}, {{connectId}},
+        </td>
+        <td>
+            <a href=# id="getRequest" data-id="{{connectId}}" data-notif-id="{{_id}}"> {{requestId}} </a>
+        </td>
+        <td>
+        {{volunteerAidId}},{{userId}},{{type}},{{description}}
         </td>
     </tr>
     {{/each}}

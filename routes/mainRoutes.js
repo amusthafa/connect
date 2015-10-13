@@ -108,3 +108,17 @@ Router.route('/loadNotifications', {
         this.render('notifications');
     }
 });
+Router.route('/connectUpdate', {
+    name: 'connectUpdate',
+    action: function () {
+        this.render('connectUpdate');
+    }
+});
+
+
+Router.route('/updateStatus', {
+    name: 'updateStatus',
+    action: function () {
+        this.render('updateStatus');
+    }
+});

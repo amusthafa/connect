@@ -1,0 +1,78 @@
+<template name="updateStatus">
+    <form action="" method="post" id="requestForm">
+    <h1>Get Request</h1>
+        <input id = 'requestId' />
+        <input type="hidden" id="_id" value="getRequestforUpdate.connect._id" />
+        <input type="submit" id="getRequest" value="getRequest" />
+        {{getRequestforUpdate}}
+        request name - {{getRequestforUpdate.request.request_name}}<br>
+      request status  - {{getRequestforUpdate.request.status}}<br>
+        connect status  -  {{getRequestforUpdate.connect.status}}<br>
+
+        <select id="status">
+            <option value="Accepted">Accept</option>
+            <option  value="Declined">Decline</option>
+            <option value="Canceled">Cancel</option>
+            <option value="Completed">Successful</option>
+            <option value="Failed">Unsuccessful</option>
+        </select>
+
+
+        <!--
+        {{#if getRequestforUpdate.connect}}
+           {{#if getRequestforUpdate.connect.status='Initiated'}}
+            Seeker has sent you a request. Kindly accept or decline the request.
+            <select id="status">
+            <option value="Accepted">Accept</option>
+            <option  value="Declined">Decline</option>
+            </select>
+            {{/if}}
+
+                {{#if getRequestforUpdate.connect.status='Accepted'}}
+
+                <select id="status">
+                    <option value="Canceled">Cancel</option>
+
+                </select>
+                {{/if}}
+
+                {{#if getRequestforUpdate.connect.status='PendingCompletion'}}
+
+                <select id="status">
+                    <option value="Completed">Successful</option>
+                    <option value="Failed">Unsuccessful</option>
+               </select>
+                {{/if}}
+                {{/if}}
+        -->
+        <input type="button" value="Update" class="update" />
+        </form>
+
+    <!--    <td><input hidden id = '_id' value={{getRequest._id}} /></td>
+    <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
+    <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
+    <td><input hidden id = 'status' value={{getRequest.status}} /></td>
+    <p>
+    <td>requestName: </td> <td><input id = 'requestName' value={{getRequest.request_name}} /></td>
+    </p>
+    <p>
+    <td>requestType: </td>
+    <td><input id = 'requestType' value={{getRequest.requestType}} /></td>
+    </p>
+
+    <p>
+    <td>aidId: </td> <td><input id = 'aidId' value={{getRequest.aidId}} /></td>
+    </p>
+    <p>
+    <td>requiredBy: </td> <td><input id = 'requiredBy' value={{getRequest.requiredBy}} /></td>
+    </p>
+    <p>
+    <td>Emergency: </td> <td><input id = 'emergency' value={{getRequest.emergency}} /></td>
+    </p>
+    <p>
+    <td>addressId: </td> <td><input id = 'addressId' value={{getRequest.address_id}} /></td>
+    </p>
+    <input type="submit" id="editRequest" value="EditRequest" />
+ <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
+
+</template>
