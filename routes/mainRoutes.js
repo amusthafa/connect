@@ -108,3 +108,18 @@ Router.route('/loadNotifications', {
         this.render('notifications');
     }
 });
+
+Router.route('/analyticsRequestCreated', {
+    name: 'analyticsRequestCreated',
+    action: function () {
+        this.render('analyticsRequestCreated');
+    }
+});
+
+Router.route('/analyticsOfferCreated', {
+    name: 'analyticsOfferCreated',
+    action: function () {
+        this.render('analyticsOfferCreated');
+    }
+});
+
