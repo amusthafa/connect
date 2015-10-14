@@ -1,8 +1,9 @@
 
 Template.manageRequest.helpers({getRequest : function() {
   check();
-  var req = Session.get('req');
+ // var req = Session.get('req');
   // console.log("Session:" , JSON.stringify(Session.get('req')) );
+   // alert('helper called');
   return (Session.get('req'));
 }
 

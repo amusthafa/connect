@@ -1,8 +1,9 @@
 Meteor.methods({
-getRequest : function(){
-  var request = Request.findOne({requestorId : Meteor.user()._id});
+getRequest : function(req){
+    check(req,Object);
+  var request = Request.findOne({ _id : req.requestId});
   console.log("Server getRequest:" , JSON.stringify(request));
-  return request;
+    return request;
 },
 saveRequest: function (request) {
     // console.log("inside method cresteREquwst");
@@ -26,7 +27,7 @@ saveRequest: function (request) {
             "city": request.city,
             "state": request.state,
             "country": request.country,
-            "pinCode": request.pincode,
+            "pinCode": request.pincode
         },
         "comment": request.comment
     }
@@ -99,5 +100,36 @@ deleteRequest : function (requestID) {
             throw new Meteor.Error("insert-failed", error);
         }
     });
-}
+},
+
+    updateStatus : function(request){
+        Request.update({_id : request._id}, { $set :{"status": request.status}}
+            , function (error, result) {
+                console.log("result " + result + ' error ' + error );
+                if (error) {
+                    console.log("Errors !!" + error + "  Result - " + result);
+                    //TO-DO: error message()
+                    // throw new Meteor.Error("insert-failed", error.message);
+                    throw new Meteor.Error("update-failed", error);
+                }
+            });
+    },
+
+    getRequestWithConnect : function(req){
+        check(req,Object);
+
+     //get request
+        var request = Request.findOne({ _id : req.requestId});
+        console.log("Server getRequest:" , JSON.stringify(request));
+
+     //get connect associated with it
+        var connect = Connect.findOne({ requestId :  req.requestId, status : {$in: ['Initiated','Accepted',
+             'PendingCompletion','Completed'] }  });
+
+        var data = {request : request, connect: connect};
+        console.log('data' +JSON.stringify(data));
+        return data;
+    }
+
+
 });

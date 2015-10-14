@@ -1,14 +1,44 @@
-<template name="aid">
+<template name="connectUpdate">
+    <form action="" method="post" id="requestForm">
+    <h1>Update Connect</h1>
 
-<h1>Add Aid </h1>
-<form action="" method="post" id="aidform">
-<table>
+   {{#if connectDetails.status='Initiated'}}
+    Seeker has sent you a request. Kindly accept or decline the request.
+    <select id="status">
+    <option value="Accepted">Accept</option>
+    <option  value="Declined">Decline</option>
+    </select>
+    {{/if}}
+        <input hidden id = '_id' value={{connectDetails._id}} />
+        <input hidden id = 'requestId' value={{connectDetails.requestId}} />
+    <input type="submit" id="connectUpdateSubmit" value="connectUpdate Submit" />
+        </form>
 
-<tr>
-<td>Aid Name: </td> <td><input id = 'aidName' /></td>
-</tr>
+    <!--    <td><input hidden id = '_id' value={{getRequest._id}} /></td>
+    <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
+    <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
+    <td><input hidden id = 'status' value={{getRequest.status}} /></td>
+    <p>
+    <td>requestName: </td> <td><input id = 'requestName' value={{getRequest.request_name}} /></td>
+    </p>
+    <p>
+    <td>requestType: </td>
+    <td><input id = 'requestType' value={{getRequest.requestType}} /></td>
+    </p>
 
-</table>
-    <input type="submit" class="addaid" value="Add Aid" />
-</form>
+    <p>
+    <td>aidId: </td> <td><input id = 'aidId' value={{getRequest.aidId}} /></td>
+    </p>
+    <p>
+    <td>requiredBy: </td> <td><input id = 'requiredBy' value={{getRequest.requiredBy}} /></td>
+    </p>
+    <p>
+    <td>Emergency: </td> <td><input id = 'emergency' value={{getRequest.emergency}} /></td>
+    </p>
+    <p>
+    <td>addressId: </td> <td><input id = 'addressId' value={{getRequest.address_id}} /></td>
+    </p>
+    <input type="submit" id="editRequest" value="EditRequest" />
+ <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
+
 </template>
