@@ -47,3 +47,5 @@ meteorhacks:aggregate
 em0ney:amcharts
 insecure
 meteor-platform
+percolate:synced-cron
+babrahams:transactions
