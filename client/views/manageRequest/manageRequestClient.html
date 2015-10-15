@@ -25,9 +25,47 @@
     <p>
     <td>Emergency: </td> <td><input id = 'emergency' value={{getRequest.emergency}} /></td>
     </p>
-    <p>
-    <td>addressId: </td> <td><input id = 'addressId' value={{getRequest.address_id}} /></td>
-    </p>
+    Address:
+     <tr>
+         <td>Line 1</td>
+         <td><input id = 'line1' value={{getRequest.requestAddress.line1}} /></td>
+     </tr>
+     <tr>
+         <td>Line 2</td>
+         <td><input id = 'line2' value={{getRequest.requestAddress.line2}} /></td>
+     </tr>
+
+     <tr>
+         <td>City </td>
+         <td><select id="scity-select">
+         <option selected="selected">{{getRequest.requestAddress.city}}</option>
+           {{#each cityList}}
+               <option value="{{this}}">{{this}}</option>
+           {{/each}}
+         </select>
+       </td>
+     </tr>
+
+     <tr>
+       <td> State </td>
+       <td><select id="sstate-select">
+       <option selected="selected">{{getRequest.requestAddress.state}}</option>
+         {{#each stateList}}
+             <option value="{{this}}">{{this}}</option>
+         {{/each}}
+       </select>
+     </td>
+   </tr>
+
+     <tr>
+         <td>Country</td>
+         <td><input id = 'country' value={{getRequest.requestAddress.country}} /></td>
+     </tr>
+     <tr>
+         <td>Pin Code</td>
+         <td><input id = 'pinCode' value={{getRequest.requestAddress.pinCode}} /></td>
+     </tr>
+
   <input type="submit" id="editRequest" value="EditRequest" />
   <!-- <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
 

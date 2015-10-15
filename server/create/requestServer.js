@@ -1,10 +1,20 @@
 Meteor.methods({
 getRequest : function(req){
     check(req,Object);
-  var request = Request.findOne({ _id : req.requestId});
+    console.log("get request for req id: ", req);
+  var request = Request.findOne({_id:req.requestId});
   console.log("Server getRequest:" , JSON.stringify(request));
     return request;
 },
+
+getListOfRequest : function(req){
+    check(req,Object);
+  var requestList = Request.find({requestorId : req.requestorId}).fetch();
+  console.log("Server getListOfRequest:" , JSON.stringify(requestList));
+//  check(request, Match.Any);
+    return requestList;
+},
+
 saveRequest: function (request) {
     // console.log("inside method cresteREquwst");
     console.log("server saverequest -- "+JSON.stringify(request));

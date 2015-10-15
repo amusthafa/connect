@@ -1,24 +1,60 @@
 
 Template.manageRequest.helpers({getRequest : function() {
   check();
- // var req = Session.get('req');
-  // console.log("Session:" , JSON.stringify(Session.get('req')) );
-   // alert('helper called');
-  return (Session.get('req'));
+  return (Session.get('getRequest'));
 }
 
 });
 
 Template.manageRequest.onRendered(function() {
-  if ( _.isEmpty(Session.get('req')) ) {
-    console.log("Meteor.user", Meteor.user()._id );
-    Meteor.call('getRequest', function(err, result) {
+  Session.get('request');
+    var requestId = Session.get('requestId');
+    var request = {requestId:requestId};
+    console.log("manage Request with session set:", JSON.stringify(request));
+    Meteor.call('getRequest', request, function(err, result) {
       console.log("on rendered result:", JSON.stringify(result));
-      Session.set('req', result);
+      Session.set('getRequest',result);
     });
-  }
 });
 
+Template.registerHelper('formatDate', function(date) {
+  return moment(date).format('MM-DD-YYYY');
+});
+
+Template.manageRequest.helpers({
+    'isOtherChecked': function (event) {
+        return (Session.get("isOther") === "Other");
+    },
+
+    getAddress: function () {
+        console.log(Session.get("getRequest"));
+        return (Session.get('getRequest'));
+    },
+
+    searchUser: function () {
+        console.log("Search" + JSON.stringify(Session.get('searchResult')));
+        return (Session.get('searchResult'));
+    },
+
+    userId: function () {
+        console.log(Session.get('requestorId'));
+        return (Session.get('requestorId'));
+    },
+
+    cityList: function () {
+      console.log(Session.get('cityList'));
+      return (Session.get('cityList'));
+    },
+
+    stateList: function () {
+        console.log(Session.get('stateList'));
+        return (Session.get('stateList'));
+    },
+    aidList: function () {
+        console.log(Session.get('aidList'));
+        return (Session.get('aidList'));
+    }
+});
 
 Template.manageRequest.events({
 
@@ -36,7 +72,12 @@ Template.manageRequest.events({
         request.requiredBy =  event.target.requiredBy.value;
         request.emergency =  event.target.emergency.value;
         request.status =  event.target.status.value;
-        request.addressId =  event.target.addressId.value;
+        request.line1 = event.target.s_line1.value;
+        request.line2 = event.target.s_line2.value;
+        request.city = Session.get("sCity");
+        request.state = Session.get("sState");
+        request.country = event.target.s_country.value;
+        request.pincode = event.target.s_pincode.value;
         var requestJson = JSON.stringify(request);
         console.log("REQUEST:" , requestJson);
 
@@ -52,20 +93,20 @@ Template.manageRequest.events({
         });
 
       }
-      // else if (event.target.deleteRequest.value === "DeleteRequest"){
-      //   console.log("DELETE REQ!!");
-      //
-      //           Meteor.call("deleteRequest", requestID , function (error, result) {
-      //               console.log("Client : error" + error + "result - " + JSON.stringify(result));
-      //               if (error) {
-      //                   console.log("error" + error);
-      //               }
-      //               else{
-      //                 console.log('form submitted');
-      //               }
-      //
-      //           });
-      // }
+      else if (event.target.deleteRequest.value === "DeleteRequest"){
+        console.log("DELETE REQ!!");
+
+                Meteor.call("deleteRequest", requestID , function (error, result) {
+                    console.log("Client : error" + error + "result - " + JSON.stringify(result));
+                    if (error) {
+                        console.log("error" + error);
+                    }
+                    else{
+                      console.log('form submitted');
+                    }
+
+                });
+      }
   }
 
 });
