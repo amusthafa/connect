@@ -7,6 +7,12 @@
 
     <a href="{{urlFor 'analyticsOfferCreated'}}">Offer's Created</a>
 
+    <br>
+
+    <a href="{{urlFor 'analyticsAidRequestedFor'}}">Aid's Requested For..</a>
+
+    <br>
+
 </template>
 
 
@@ -21,5 +27,12 @@
 
     <h2>Offers Created (per day)</h2>
     <div id="chartdivSerialOffer" style="min-width: 200px; height: 200px;"></div>
+
+</template>
+
+<template name="analyticsAidRequestedFor">
+
+    <h2>Aid's Requested For.. (per day)</h2>
+    <div id="chartdivAid" style="min-width: 200px; height: 200px;"></div>
 
 </template>

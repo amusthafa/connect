@@ -137,3 +137,10 @@ Router.route('/updateStatus', {
         this.render('updateStatus');
     }
 });
+
+Router.route('/analyticsAidRequestedFor', {
+    name: 'analyticsAidRequestedFor',
+    action: function () {
+        this.render('analyticsAidRequestedFor');
+    }
+});
