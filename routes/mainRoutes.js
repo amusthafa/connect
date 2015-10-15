@@ -115,6 +115,21 @@ Router.route('/loadNotifications', {
         this.render('notifications');
     }
 });
+
+Router.route('/analyticsRequestCreated', {
+    name: 'analyticsRequestCreated',
+    action: function () {
+        this.render('analyticsRequestCreated');
+    }
+});
+
+Router.route('/analyticsOfferCreated', {
+    name: 'analyticsOfferCreated',
+    action: function () {
+        this.render('analyticsOfferCreated');
+    }
+});
+
 Router.route('/connectUpdate', {
     name: 'connectUpdate',
     action: function () {
@@ -127,5 +142,12 @@ Router.route('/updateStatus', {
     name: 'updateStatus',
     action: function () {
         this.render('updateStatus');
+    }
+});
+
+Router.route('/analyticsAidRequestedFor', {
+    name: 'analyticsAidRequestedFor',
+    action: function () {
+        this.render('analyticsAidRequestedFor');
     }
 });

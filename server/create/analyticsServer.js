@@ -46,5 +46,31 @@ Meteor.methods(
             var result = Offer.aggregate(pipeline);
             console.log(result);
             return result;
+        },
+
+        getAnalyticsForAidRequested: function () {
+            data = Meteor.call("getAid", function (error, result) {});
+
+            var pipeline = [
+                {
+                    $group: {
+                        _id: {
+                            $add: [
+                                {$dayOfYear: "$rowCreated"},
+                                {
+                                    $multiply: [400, {$year: "$rowCreated"}]
+                                }
+                            ]
+                        },
+                        count: {$sum: 1},
+                        date: {$min: "$rowCreated"}
+                    }
+                },
+                {$limit: 30}
+            ];
+
+            var result = Offer.aggregate(pipeline);
+            console.log(result);
+            return result;
         }
     });

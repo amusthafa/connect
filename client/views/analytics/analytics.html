@@ -1,18 +1,38 @@
 <template name="analytics">
+    <h4> Daily </h4>
+
+    <a href="{{urlFor 'analyticsRequestCreated'}}">Request's Created</a>
+
+    <br>
+
+    <a href="{{urlFor 'analyticsOfferCreated'}}">Offer's Created</a>
+
+    <br>
+
+    <a href="{{urlFor 'analyticsAidRequestedFor'}}">Aid's Requested For..</a>
+
+    <br>
+
+</template>
+
+
+<template name="analyticsRequestCreated">
+
     <h2>Requests Created (per day)</h2>
     <div id="chartdiv" style="min-width: 200px; height: 200px;"></div>
 
-    <br>
+</template>
 
-    <div id="chartdivSerial" style="min-width: 200px; height: 200px;"></div>
+<template name="analyticsOfferCreated">
 
-    <br>
-
-    <div id="chartdivOffer" style="min-width: 200px; height: 200px;"></div>
-
-    <br>
-
+    <h2>Offers Created (per day)</h2>
     <div id="chartdivSerialOffer" style="min-width: 200px; height: 200px;"></div>
 
-    <br>
+</template>
+
+<template name="analyticsAidRequestedFor">
+
+    <h2>Aid's Requested For.. (per day)</h2>
+    <div id="chartdivAid" style="min-width: 200px; height: 200px;"></div>
+
 </template>

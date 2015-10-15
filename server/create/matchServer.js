@@ -61,7 +61,7 @@ Meteor.methods({matchRequestVolunteer: function (request) {
     var connectedUsers =Connect.find({
         aidId: request.aidId,
         volunteerId: { $in: userArr },
-        status: { $in: ["initiated", "declined" , "volunteercancel", "seekercancel"]}
+        status: { $in: ["Initiated", "Declined" , "VolunteerCanceled", "SeekerCanceled"]}
     }).fetch();
 
     var connectedUserArr = [];

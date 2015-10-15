@@ -1,7 +1,8 @@
 Notifications = new Meteor.Collection('notifications');
 Notifications.attachSchema({
         connectId: {
-            type: String
+            type: String,
+            optional :true
         },
         requestId: {
             type: String
@@ -18,7 +19,7 @@ Notifications.attachSchema({
         type: {
             type: String,
             //same set of values as status of connect
-            allowedValues: ['Initiated', 'Accepted','Declined','VolunteerCanceled',
+            allowedValues: ['Submitted','Initiated', 'Accepted','Declined','VolunteerCanceled',
                 'SeekerCanceled', 'PendingCompletion','Completed','CompletedWithRating']
         },
         description: {
