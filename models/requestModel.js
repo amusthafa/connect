@@ -47,7 +47,8 @@ Request.attachSchema({
         },
 
         comment: {
-            type: String
+            type: String,
+            optional : true
         },
 
         requiredBy: {
@@ -63,7 +64,7 @@ Request.attachSchema({
         //To-DO : To update the list of statuses
         status: {
             type: String,
-            allowedValues: ["Submitted"]
+            allowedValues: ["Submitted","InProgress","Closed","Canceled"]
         },
 
         rowCreated: {

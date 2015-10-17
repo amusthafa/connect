@@ -1,38 +1,40 @@
-Template.aid.helpers({
-    'add': function () {
-        return "add aid";
-    }
+Template.connectUpdate.helpers({connectDetails : function() {
+    check();
+// var req = Session.get('req');
+// console.log("Session:" , JSON.stringify(Session.get('req')) );
+// alert('helper called');
+return (Session.get('connectDetails'));
+}
+
 });
 
-Template.aid.events({
+Template.connectUpdate.onRendered(function() {
+  /*  if ( _.isEmpty(Session.get('req')) ) {
+        console.log("Meteor.user", Meteor.user()._id );
+        Meteor.call('getRequest', function(err, result) {
+            console.log("on rendered result:", JSON.stringify(result));
+            Session.set('req', result);
+        });
+    }*/
+});
+
+Template.connectUpdate.events({
 
     'submit form': function (event) {
         event.preventDefault();
-        //console.log('form submitted');
-        console.log('clicked add aid' + event.target.aidName.value);
-        var aid = {};
-        aid.aid_name = event.target.aidName.value;
+        console.log('form submitted');
+        //console.log('clicked add aid' + event.target.aidName.value);
+        var connectUpdate = {};
+        connectUpdate.status = event.target.status.value;
+        connectUpdate._id = event.target._id.value;
+        connectUpdate.requestId = event.target.requestId.value;
 
         // var aidJson = JSON.stringify(aid);
         // alert('client ' + paramsJson);
         //Router.go("/addAid",{query : 1});
 
-
-        Meteor.call("addAid", aid, function (error, result) {
+        Meteor.call("updateConnect", connectUpdate, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
-          /*  if (error) {
-                console.log("error" + error);
-            }*/
-         //   console.log("routing to home");
-        //    else
-         //       Router.go("/");
-
-            /*if (error.error === "insert-failed") {
-             console.log("Please specify mandatory fields.");
-             //sAlert.error("Please specify mandatory fields.");
-             }*/
-            //
-           // alert('routing to home');
             Router.go("/");
         });
 

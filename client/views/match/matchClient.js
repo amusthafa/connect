@@ -36,6 +36,7 @@ Template.match.events({
             alert('connect - '+JSON.stringify(connect));
          Meteor.call("connect",connect, function (error, result) {
          console.log('connect - ' + result);
+             Router.go("/");
          });
     }
     ,
@@ -66,6 +67,7 @@ Template.match.events({
           //  Router.go("/");
 
             Session.set("match",result);
+
         });
 
     }

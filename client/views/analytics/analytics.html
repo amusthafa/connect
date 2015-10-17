@@ -1,0 +1,42 @@
+<template name="analytics">
+    <h4>Top 10</h4>
+
+    <a href="{{urlFor 'analyticsAidRequestedFor'}}">Top 10 Aid</a>
+
+    <br>
+
+    <h4> Daily </h4>
+
+    <a href="{{urlFor 'analyticsRequestCreated'}}">Request's Created</a>
+
+    <br>
+
+    <a href="{{urlFor 'analyticsOfferCreated'}}">Offer's Created</a>
+
+
+</template>
+
+
+<template name="analyticsRequestCreated">
+
+    <h2>Requests Created (per day)</h2>
+
+    <div id="chartdiv" style="min-width: 200px; height: 200px;"></div>
+
+</template>
+
+<template name="analyticsOfferCreated">
+
+    <h2>Offers Created (per day)</h2>
+
+    <div id="chartdivSerialOffer" style="min-width: 200px; height: 200px;"></div>
+
+</template>
+
+<template name="analyticsAidRequestedFor">
+
+    <h2>Top 10 Aid</h2>
+
+    <div id="chartdivAid" style="min-width: 200px; height: 200px;"></div>
+
+</template>

@@ -1,0 +1,35 @@
+<template name="listOfRequest">
+
+<h1>List of Request</h1>
+
+
+<table>
+  {{#each getRequestList}}
+  <form action="" method="post" id="requestForm">
+  <p>
+  <tr>
+    <td>Request {{index_1}} :</td>
+  </tr>
+    <td><input  id = 'reqID' hidden value={{_id}} /></td>
+  <tr>
+    <td>requestName: </td> <td><input id = 'requestName' value={{request_name}} /></td>
+  </tr>
+  <tr>
+    <td>Aid: </td> <td><input id = 'aidId' value={{aidId}} /></td>
+    </tr>
+    <tr>
+    <td>Required By Date: </td> <td><input id = 'requiredBy' value={{formatDate requiredBy}} /></td>
+    </tr>
+    <tr>
+      <!-- <a href="{{pathFor route='manageRequest'}}">Manage Request</a> -->
+    <input type="submit" id="manageRequest" value="ManageRequest" />
+  </tr>
+</p>
+</form>
+
+    {{/each}}
+  <!-- <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
+</table>
+
+
+</template>

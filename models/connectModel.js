@@ -18,19 +18,24 @@ Connect.attachSchema({
         status: {
             type: String,
             allowedValues: ['Initiated', 'Accepted','Declined','VolunteerCanceled',
-                'SeekerCanceled', 'PendingCompletion','Completed','CompletedWithRating']
+                'SeekerCanceled', 'PendingCompletion','Completed','Unsuccessful']
         },
+
+        //given by Volunteer
         requestorRating: {
             type: Number,
             min : 1,
             max : 5,
-            optional: true
+            optional: true,
+            defaultValue : 0
         },
+        //given by Seeker/ Requestor
         volunteerAidRating: {
             type: Number,
             min : 1,
             max : 5,
-            optional: true
+            optional: true,
+            defaultValue : 0
         },
         connectedBy: {
             type: String,

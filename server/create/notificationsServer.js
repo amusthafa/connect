@@ -8,13 +8,13 @@ Meteor.methods(
             var notificationsList = Notifications.find(
                 {
                  $query: {
-                     "userId" : user.userId, "status" : 'Unread'
+                         "userId" : user.userId, "status" : 'Unread'
                      }
                 ,
                 $orderby: { rowCreated : -1 }
             }
 ).fetch();
-
+            /*
             var notificationsArr = [];
             for (var i in notificationsList) {
 
@@ -24,7 +24,9 @@ Meteor.methods(
 
             }
             console.log(notificationsArr);
+
             //update the status as read for retrieved notifications
+
 
             Notifications.update( {_id: { $in: notificationsArr }}, { $set :{"status": "Read"}}
                 , function (error, result) {
@@ -36,6 +38,7 @@ Meteor.methods(
                         throw new Meteor.Error("update-failed", error);
                     }
                 });
+*/
 
             console.log('notificationsList  ' + notificationsList);
             return notificationsList;

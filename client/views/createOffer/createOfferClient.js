@@ -4,11 +4,12 @@ Session.setDefault("sState", "Please Select");
 
 Template.createOffer.helpers({
     'isOtherChecked': function (event) {
+        console.log(Session.get("isOther"));
         return (Session.get("isOther") === "Other");
     },
 
     getAddress: function () {
-        var req = Session.get('userDetails');
+        console.log(Session.get("userDetails"));
         return (Session.get('userDetails'));
     },
 
@@ -49,29 +50,23 @@ Template.createOffer.events({
     "change #selectedUser": function (event, template) {
         var requestorId = $(event.currentTarget).val();
         Session.set("requestorId", requestorId);
-        console.log(Session.get("requestorId"));
         Meteor.call('getAddress', Session.get("requestorId"), function (err, result) {
             Session.set("userDetails", result);
-            console.log("on rendered result:", JSON.stringify(result));
         });
     },
 
     'change #userType': function (event) {
-        console.log(event.currentTarget.name);
         Session.set("isOther", event.currentTarget.value);
-        console.log(Session.get("isOther"));
     },
 
     "change #scity-select": function (event, template) {
         var city = $(event.currentTarget).val();
         Session.set("sCity", city);
-        console.log(Session.get("sCity"));
     },
 
     "change #sstate-select": function (event, template) {
         var state = $(event.currentTarget).val();
         Session.set("sState", state);
-        console.log(Session.get("sState"));
     },
 
     'submit form': function (event) {
@@ -83,7 +78,6 @@ Template.createOffer.events({
             createOffer.offerType = "Self";
             createOffer.creatorId = Meteor.userId();
             createOffer.volunteerId = Meteor.userId();
-            console.log(Meteor.userId());
         } else {
             createOffer.offerType = "Other";
             createOffer.creatorId = Meteor.userId();
@@ -107,7 +101,7 @@ Template.createOffer.events({
             createOffer.pincode = event.target.s_pincode.value;
         }
 
-        createOffer.aid =event.target.Aid.value;
+        createOffer.aid = event.target.Aid.value;
         createOffer.fromDate = event.target.fromDate.value;
         createOffer.toDate = event.target.toDate.value;
         createOffer.comment = event.target.comment.value;
@@ -119,7 +113,6 @@ Template.createOffer.events({
 ;
 
 Template.createOffer.onRendered(function () {
-    console.log(Meteor.userId());
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         Session.set("userDetails", result);
     });

@@ -53,12 +53,19 @@ Router.route('/createRequest', {
   }
   });
 
-Router.route('/manageRequest', {
-    name: 'manageRequest',
+Router.route('/listOfRequest', {
+    name: 'listOfRequest',
     action: function () {
-        this.render('manageRequest');
+        this.render('listOfRequest');
   }
   });
+
+  Router.route('/manageRequest', {
+      name: 'manageRequest',
+      action: function () {
+          this.render('manageRequest');
+    }
+    });
 
   Router.route('/SearchId', {
       name: 'SearchId',
@@ -106,5 +113,41 @@ Router.route('/loadNotifications', {
     name: 'notifications',
     action: function () {
         this.render('notifications');
+    }
+});
+
+Router.route('/analyticsRequestCreated', {
+    name: 'analyticsRequestCreated',
+    action: function () {
+        this.render('analyticsRequestCreated');
+    }
+});
+
+Router.route('/analyticsOfferCreated', {
+    name: 'analyticsOfferCreated',
+    action: function () {
+        this.render('analyticsOfferCreated');
+    }
+});
+
+Router.route('/connectUpdate', {
+    name: 'connectUpdate',
+    action: function () {
+        this.render('connectUpdate');
+    }
+});
+
+
+Router.route('/updateStatus', {
+    name: 'updateStatus',
+    action: function () {
+        this.render('updateStatus');
+    }
+});
+
+Router.route('/analyticsAidRequestedFor', {
+    name: 'analyticsAidRequestedFor',
+    action: function () {
+        this.render('analyticsAidRequestedFor');
     }
 });

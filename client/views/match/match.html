@@ -4,15 +4,15 @@
     <form action="" method="post" id="matchform">
         <table>
             <tr>
-                <td>Request Id: </td> <td><input id = 'requestId' value="99RwmKaY4wAib8pmx" /></td>
+                <td>Request Id: </td> <td><input id = 'requestId' value="Jx4pArzfzTFyfyNc3" /></td>
             </tr>
 
         </table>
         <input type="submit" class="match" value="Match" />
 
 <table>
-    <input type="text" id = "requestId" value="{{requestId}}" />
-    <input type="text" id = "requestDate" value="{{requestDate}}" />
+    requestId -  {{requestId}}
+    requestDate - {{requestDate}}
     {{#each matchRequestVolunteer}}
     <tr data-match="{{volunteerId}}">
         <td>
