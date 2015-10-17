@@ -24,7 +24,6 @@ Meteor.methods(
             }
             ;
 
-         aidName = Aid.findOne({'aidName': OfferIp.aid});
             Offer.insert({
                 "offerName": OfferIp.offerName,
                 "offerType": OfferIp.offerType,
@@ -38,7 +37,7 @@ Meteor.methods(
                     "country": OfferIp.country,
                     "pinCode": OfferIp.pincode,
                 },
-                "aidId": aidName._id,
+                "aidId": OfferIp.aid,
                 "fromDate": OfferIp.fromDate,
                 "toDate": OfferIp.toDate,
                 "comment": OfferIp.comment,
@@ -52,7 +51,7 @@ Meteor.methods(
                 VolunteerAid.insert({
                         "offerId": result,
                         "volunteerId": volunteerId,
-                        "aidId": aidName._id,
+                        "aidId": OfferIp.aid,
                         "aidExpiry": OfferIp.toDate,
                         "aidAddress": {
                             "line1": OfferIp.line1,

@@ -50,3 +50,6 @@ meteor-platform
 momentjs:moment
 percolate:synced-cron
 babrahams:transactions
+semantic:ui
+mrt:fullcalendar
+rzymek:fullcalendar

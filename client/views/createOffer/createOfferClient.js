@@ -42,6 +42,7 @@ Template.createOffer.helpers({
 Template.createOffer.events({
     'click .searchUser': function (event) {
         event.preventDefault();
+        console.log("calling");
         Meteor.call("SearchUser", document.getElementById("requestorId").value, function (error, result) {
             Session.set("searchResult", result);
         });
@@ -84,7 +85,7 @@ Template.createOffer.events({
             createOffer.requestorId = event.target.requestorId.value;
         }
         createOffer.offerName = event.target.offerName.value;
-
+        console.log(event.target.address1.checked);
         if (event.target.address1.checked) {
             createOffer.line1 = event.target.p_line1.value;
             createOffer.line2 = event.target.p_line2.value;
@@ -106,7 +107,6 @@ Template.createOffer.events({
         createOffer.toDate = event.target.toDate.value;
         createOffer.comment = event.target.comment.value;
         Meteor.call("createOffer", createOffer);
-        Router.go("/");
     }
 
 })
