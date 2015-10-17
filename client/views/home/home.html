@@ -1,47 +1,39 @@
 <template name="home">
-    <div class="logo">
-        <img src='/logo.ico'/>
-    </div>
-    <ul>
-        {{#if currentUser}}
 
-            <div class="topNav">
-                Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!! <a href=#
-                                                                                            class="logout">Logout </a> |
-                <a href="{{pathFor route='createProfile'}}">Create Profile</a>
-            </div>
+    {{#if currentUser}}
+        <div class="logo">
+            <img src='/logo.ico'/>
+        </div>
 
-            <a href="{{pathFor route='createRequest'}}"> Create Request </a> <br>
-            <a href="{{pathFor route='createOffer'}}"> Create Offer</a> <br>
-            <a href="{{pathFor route='listOfRequest'}}"> List of requests - Edit, Delete, Cancel </a> <br>
-            <a href="{{pathFor route='match'}}"> Connect - Match, Connect, Manual Connect by Admin, Rating </a> <br>
-            <a href="{{pathFor route='notifications'}}"> Notifications </a> <br>
-            <a href="{{pathFor route='updateStatus'}}"> Get Request & Update Status </a> <br>
-            <a href="{{pathFor route='SearchId'}}"> Search People </a> <br>
-            <a href="{{pathFor route='adminAuth'}}"> Admin - Authentication/ Blacklisting</a> <br>
-            <a href="{{pathFor route='aid'}}"> Admin - Add Aid</a> <br>
-            <a href="{{pathFor route='analytics'}}" > Analytics </a> <br>
+        <div class="topNav">
+            Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!!
+            <a href=# class="logout">Logout </a> | <a href="{{pathFor route='createProfile'}}">Create Profile</a>
+        </div>
 
-            <a href="/" style="display: none"> STANDOUT?? </a>
-            <a href="/" style="display: none"> Notifications </a>
-            <a href="/" style="display: none"> Informational Details Update </a>
-            <a href="/" style="display: none"> Informational Details View </a>
+        <a href="{{pathFor route='createRequest'}}"> Create Request </a> <br>
+        <a href="{{pathFor route='createOffer'}}"> Create Offer</a> <br>
+        <a href="{{pathFor route='listOfRequest'}}"> List of requests - Edit, Delete, Cancel </a> <br>
+        <a href="{{pathFor route='match'}}"> Connect - Match, Connect, Manual Connect by Admin, Rating </a> <br>
+        <a href="{{pathFor route='notifications'}}"> Notifications </a> <br>
+        <a href="{{pathFor route='updateStatus'}}"> Get Request & Update Status </a> <br>
+        <a href="{{pathFor route='SearchId'}}"> Search People </a> <br>
+        <a href="{{pathFor route='adminAuth'}}"> Admin - Authentication/ Blacklisting</a> <br>
+        <a href="{{pathFor route='aid'}}"> Admin - Add Aid</a> <br>
+        <a href="{{pathFor route='analytics'}}"> Analytics </a> <br>
 
-            <a href="/" style="display: none"> Phone, Video Call, Chat </a>
-            <a href="/" style="display: none"> Settings </a>
-            <a href="/" style="display: none"> Contact us - Raise complaint </a>
+        <a href="/" style="display: none"> STANDOUT?? </a>
+        <a href="/" style="display: none"> Notifications </a>
+        <a href="/" style="display: none"> Informational Details Update </a>
+        <a href="/" style="display: none"> Informational Details View </a>
 
-        {{else}}
+        <a href="/" style="display: none"> Phone, Video Call, Chat </a>
+        <a href="/" style="display: none"> Settings </a>
+        <a href="/" style="display: none"> Contact us - Raise complaint </a>
 
-            Log In <a href="{{pathFor route='login'}}" target="_parent">
-            <button>Login</button>
-        </a>
-            or
-            Sign Up <a href="{{pathFor route='signUp'}}" target="_parent">
-            <button>Sign Up</button>
-        </a>
+    {{else}}
 
-        {{/if}}
+        {{>login}}
 
-    </ul>
+    {{/if}}
+
 </template>
