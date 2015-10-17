@@ -7,10 +7,10 @@ Template.createRequest.helpers({
         return (Session.get("isOther") === "Other");
     },
 
-    // getAddress: function () {
-    //     var req = Session.get('userDetails');
-    //     return (Session.get('userDetails'));
-    // },
+    getAddress: function () {
+        console.log(Session.get("userDetails"));
+        return (Session.get('userDetails'));
+    },
 
     searchUser: function () {
         console.log("Search" + JSON.stringify(Session.get('searchResult')));
@@ -37,6 +37,11 @@ Template.createRequest.helpers({
     }
 });
 
+Template.createRequest.onRendered(function () {
+    Meteor.call('getAddress', Meteor.userId(), function (err, result) {
+        Session.set("userDetails", result);
+    });
+});
 
 Template.createRequest.events({
     'click .searchUser': function (event) {

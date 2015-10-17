@@ -53,12 +53,19 @@ Router.route('/createRequest', {
   }
   });
 
-Router.route('/manageRequest', {
-    name: 'manageRequest',
+Router.route('/listOfRequest', {
+    name: 'listOfRequest',
     action: function () {
-        this.render('manageRequest');
+        this.render('listOfRequest');
   }
   });
+
+  Router.route('/manageRequest', {
+      name: 'manageRequest',
+      action: function () {
+          this.render('manageRequest');
+    }
+    });
 
   Router.route('/SearchId', {
       name: 'SearchId',
