@@ -5,7 +5,7 @@ SyncedCron.add({
     name: 'Scheduled task for Connect',
     schedule: function(parser) {
         // parser is a later.parse object
-        return parser.text('every 1 minutes');
+        return parser.text('every 60 minutes');
     },
     job: function() {
         console.log("=================Scheduled job start=================");

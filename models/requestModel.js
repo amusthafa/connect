@@ -47,7 +47,8 @@ Request.attachSchema({
         },
 
         comment: {
-            type: String
+            type: String,
+            optional : true
         },
 
         requiredBy: {
