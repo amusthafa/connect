@@ -4,14 +4,20 @@
       <tr> <td> Enter User name </td>
            </tr>
 
-        <span> {{> esAutosuggest index="user" placeholder="Search...."}}
+        <tr><td><span> {{> esAutosuggest id="Ename" index='users' placeholder="Search...." }}
 </span>
-{{#ifEsIsSearching index="users"}}
+{{#ifEsIsSearching index='users'}}
     <div>Loading...</div>
-{{/ifEsIsSearching}}
+{{/ifEsIsSearching}}</td>
+ <td><input type="submit" class="search" value="SEARCH" /></td></tr>
+
+</form>
 
         <div id="SearchResult">
 
         </div>
-    </form>
+
+
+
+
 </template>
