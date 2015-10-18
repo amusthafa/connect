@@ -1,23 +1,48 @@
 <template name = "SearchId">
   <h1>Search User </h1>
      <form>
-      <tr> <td> Enter User name </td>
-           </tr>
+      <tr> <td> Enter User name </td> </tr>
+        <tr><td><input type="text" default="search by Username " id="Ename" /></td>
+          <td><input type="submit" class="search" value="SEARCH" /></td></tr>
 
-        <tr><td><span> {{> esAutosuggest id="Ename" index='users' placeholder="Search...." }}
-</span>
-{{#ifEsIsSearching index='users'}}
-    <div>Loading...</div>
-{{/ifEsIsSearching}}</td>
- <td><input type="submit" class="search" value="SEARCH" /></td></tr>
+        {{#each searchuser}}
+        <tr><td>UserName:</td>
+            <td>  {{profile.firstName}},{{profile.lastName}}</td> <td> <input type="button" value="Profile" class="Profile" /></td>
+             <td> <input type="button" value="Request" class="Request" /></td></tr>
+          {{/each}}
 
-</form>
+            {{#each getUserProfile}}
+            <tr><td>Gender:</td>
+              <td>{{profile.gender}}</td></tr>
+            <tr><td>Address:</td>
+              <td> {{profile.address.line1}} </td></tr>
+            <tr> <td></td><td>{{profile.address.line2}}</td></tr>
+            <tr> <td></td><td>{{profile.address.city}} , {{profile.address.state}},{{profile.address.country}}-{{profile.address.pinCode}}</td></tr>
+              <tr> <td> Email:</td>
+            <td> {{#each emails}}{{address}}{{/each}} </td></tr>
+            {{#if profile.share_phone}}
+            <tr><td>PhoneNumber:</td>
+              <td>{{profile.phone}}</td></tr>
+             {{/if}}
+             {{/each}}
 
-        <div id="SearchResult">
-
-        </div>
-
-
-
-
-</template>
+             {{#each getUserRequest}}
+             <tr><td>Request Name: </td>
+               <td>{{request_name}}</td></tr>
+              <tr><td>Requested For:</td>
+                <td>{{requestType}}</td></tr>
+                <tr><td>Address:</td>
+                <td> {{requestAddress.line1}} </td></tr>
+                <tr> <td></td><td> {{requestAddress.line2}}</td></tr>
+                <tr> <td></td><td> {{requestAddress.city}} , {{requestAddress.state}},{{requestAddress.country}}-{{requestAddress.pinCode}}</td></tr>
+                <tr><td>Aid</td>
+                  <td>{{aidId}}</td></tr>
+                <tr><td>Required by</td>
+                  <td>{{requiredBy}}</td></tr>
+                <tr><td>Is Emergency</td>
+                  <td>{{emergency}}</td></tr>
+                  <tr><td>Status</td>
+                    <td>{{status}}</td></tr>
+                {{/each}}
+   </form>
+  </template>
