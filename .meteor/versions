@@ -85,6 +85,8 @@ momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
 mongo-livedata@1.0.9
+mrt:fullcalendar@1.6.1
+mrt:jquery-ui@1.9.2
 natestrauser:animate-css@3.4.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
@@ -101,7 +103,10 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
+rzymek:fullcalendar@2.4.0
+semantic:ui@2.1.4_5
 semantic:ui-css@1.12.3
+semantic:ui-data@2.1.4_5
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4

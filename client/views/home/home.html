@@ -1,47 +1,39 @@
 <template name="home">
-    <div class="logo">
-        <img src='/logo.ico'/>
+
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AdminLTE 2 | Dashboard</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        {{>common}}
+
     </div>
-    <ul>
-        {{#if currentUser}}
+    </body>
+    </html>
 
-            <div class="topNav">
-                Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!! <a href=#
-                                                                                            class="logout">Logout </a> |
-                <a href="{{pathFor route='createProfile'}}">Create Profile</a>
-            </div>
-
-            <a href="{{pathFor route='createRequest'}}"> Create Request </a> <br>
-            <a href="{{pathFor route='createOffer'}}"> Create Offer</a> <br>
-            <a href="{{pathFor route='listOfRequest'}}"> List of requests - Edit, Delete, Cancel </a> <br>
-            <a href="{{pathFor route='match'}}"> Connect - Match, Connect, Manual Connect by Admin, Rating </a> <br>
-            <a href="{{pathFor route='notifications'}}"> Notifications </a> <br>
-            <a href="{{pathFor route='updateStatus'}}"> Get Request & Update Status </a> <br>
-            <a href="{{pathFor route='SearchId'}}"> Search People </a> <br>
-            <a href="{{pathFor route='adminAuth'}}"> Admin - Authentication/ Blacklisting</a> <br>
-            <a href="{{pathFor route='aid'}}"> Admin - Add Aid</a> <br>
-            <a href="{{pathFor route='analytics'}}" > Analytics </a> <br>
-
-            <a href="/" style="display: none"> STANDOUT?? </a>
-            <a href="/" style="display: none"> Notifications </a>
-            <a href="/" style="display: none"> Informational Details Update </a>
-            <a href="/" style="display: none"> Informational Details View </a>
-
-            <a href="/" style="display: none"> Phone, Video Call, Chat </a>
-            <a href="/" style="display: none"> Settings </a>
-            <a href="/" style="display: none"> Contact us - Raise complaint </a>
-
-        {{else}}
-
-            Log In <a href="{{pathFor route='login'}}" target="_parent">
-            <button>Login</button>
-        </a>
-            or
-            Sign Up <a href="{{pathFor route='signUp'}}" target="_parent">
-            <button>Sign Up</button>
-        </a>
-
-        {{/if}}
-
-    </ul>
 </template>
