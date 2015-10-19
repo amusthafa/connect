@@ -105,7 +105,7 @@ Template.createRequest.events({
         }
 
         request.requestName =  event.target.requestName.value;
-        request.aidName = event.target.Aid.value;
+        request.aid = event.target.aid.value;
         request.requiredBy =  event.target.requiredBy.value;
 
         if(event.target.emergencyYes.checked){

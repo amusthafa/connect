@@ -21,16 +21,16 @@ saveRequest: function (request) {
     //TO-DO: remove check()
     check(request, Object);
 try{
-  console.log("request.aid:",request.aidName);
-  var aidName = Aid.findOne({'aidName':request.aidName});
-  console.log("aid name:", aidName);
+  console.log("request.aid:",request.aid);
+  var aid = Aid.findOne({'aidName':request.aid});
+  console.log("aid name:", aid);
 
     var requestDb = {
         "request_name": request.requestName,
         "requestType":request.requestType,
         "creatorId": request.creatorId,
         "requestorId": request.requestorId,
-        "aidId": aidName._id,
+        "aidId": aid._id,
         "aidCategoryId": request.aidCategoryId,
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,
