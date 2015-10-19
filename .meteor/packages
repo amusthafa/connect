@@ -50,3 +50,5 @@ meteor-platform
 momentjs:moment
 percolate:synced-cron
 babrahams:transactions
+juliancwirko:s-alert
+juliancwirko:s-alert-slide
