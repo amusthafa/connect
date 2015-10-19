@@ -34,7 +34,7 @@
 
     <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
+        {{>header}}
         {{>common}}
 
         <div class="content-wrapper">
@@ -86,9 +86,7 @@
                                                     <option selected="selected">First Name, Last Name - Email Id
                                                     </option>
                                                     {{#each searchUser}}
-                                                        <option type="selection"> {{profile.firstName}}
-                                                            ,{{profile.lastName}}
-                                                            -{{#each emails}}{{address}}{{/each}}  </option>
+                                                        <option type="selection">{{profile.firstName}},{{profile.lastName}}-{{#each emails}}{{address}}{{/each}}</option>
                                                     {{/each}}
                                                 </select>
                                             {{/if}}
