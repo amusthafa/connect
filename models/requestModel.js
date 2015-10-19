@@ -48,7 +48,7 @@ Request.attachSchema({
 
         comment: {
             type: String,
-            optional : true
+            optional: true
         },
 
         requiredBy: {
@@ -59,7 +59,8 @@ Request.attachSchema({
         },
         //To-do : should make it Boolean
         emergency: {
-            type: String
+            type: String,
+            allowedValues: ['Yes', 'No']
         },
         //To-DO : To update the list of statuses
         status: {

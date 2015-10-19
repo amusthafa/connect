@@ -20,13 +20,17 @@ saveRequest: function (request) {
     console.log("server saverequest -- "+JSON.stringify(request));
     //TO-DO: remove check()
     check(request, Object);
+try{
+  console.log("request.aid:",request.aidName);
+  var aidName = Aid.findOne({'aidName':request.aidName});
+  console.log("aid name:", aidName);
 
     var requestDb = {
         "request_name": request.requestName,
         "requestType":request.requestType,
         "creatorId": request.creatorId,
         "requestorId": request.requestorId,
-        "aidId": request.aidId,
+        "aidId": aidName._id,
         "aidCategoryId": request.aidCategoryId,
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,
@@ -41,20 +45,27 @@ saveRequest: function (request) {
         },
         "comment": request.comment
     }
+  }
+  catch(e){
+    console.log("error caught!!:", e);
+    // throw new Meteor.Error(e,"Please fill in the required details");
+    throw new Meteor.Error(e.error, "Please select the Aid" , e.details);
 
-    console.log("request inn server:", JSON.stringify(request));
+  }
+
+    console.log("request in server:", JSON.stringify(request));
+
     Request.insert(requestDb, function (error, result) {
 
-        console.log("Request insert " + JSON.stringify(Request.find().fetch()));
+        console.log("Request insert " + JSON.stringify(result));
         if (error) {
-            console.log("Errors !!" + error + "  Result - " + result);
-            //TO-DO: error message()
-            // throw new Meteor.Error("insert-failed", error.message);
-            throw new Meteor.Error("insert-failed", error);
+              console.log("sanitizedError!!!:", error.sanitizedError);
+            throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
         }
+        else{
+        return requestDb;
+      }
     });
-
-    return requestDb;
 },
 
 editRequest : function (requestID , request) {

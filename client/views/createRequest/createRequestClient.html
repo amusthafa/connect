@@ -1,5 +1,7 @@
 <template name="createRequest">
 
+  {{> sAlert}}
+
     <h1>Create Request </h1>
 
     <form action="" method="post" id="requestForm">
@@ -116,7 +118,10 @@
 
             <tr>
               <td>Emergency:</td>
-              <td><input id="emergency"></td>
+
+              Yes <input id="emergencyYes" type="radio" value="Yes" name="emergency" checked/>
+              No <input id="emergencyNo" type="radio" value="No" name="emergency"/>
+              <!-- <td><input id="emergency"></td> -->
             </tr>
 
             <tr>

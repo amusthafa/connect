@@ -39,6 +39,7 @@ twbs:bootstrap
 rajit:bootstrap3-datepicker
 aldeed:autoform
 aldeed:autoform-bs-datepicker
+matteodem:easy-search
 maazalik:highcharts
 email
 themeteorchef:jquery-validation
@@ -50,6 +51,8 @@ meteor-platform
 momentjs:moment
 percolate:synced-cron
 babrahams:transactions
+juliancwirko:s-alert
+juliancwirko:s-alert-slide
 semantic:ui
 mrt:fullcalendar
 rzymek:fullcalendar
