@@ -1,0 +1,111 @@
+<template name="common">
+    {{#if currentUser}}
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+
+                <ul class="sidebar-menu">
+
+                    <a href=#>Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!! </a>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='createProfile'}}">
+                            <span>Create Profile</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='createRequest'}}">
+                            <span>Create Request</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{pathFor route='createOffer'}}">
+                            <i class="fa fa-edit"></i> <span>Create Offer</span>
+                            <small class="label pull-right bg-red"></small>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='listOfRequest'}}">
+                            <span>List of requests </span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='match'}}">
+                            <span>Connect</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='notifications'}}">
+                            <span>Notifications</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='updateStatus'}}">
+                            <span>Get Request & Update Status</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='SearchId'}}">
+                            <span>Search People</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='adminAuth'}}">
+                            <span>Authentication/ Blacklisting</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='aid'}}">
+                            <span>Admin - Add Aid</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{pathFor route='analytics'}}">
+                            <span>Analytics</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <a href=# class="logout">Logout </a>
+
+
+                <a href="/" style="display: none"> STANDOUT?? </a>
+                <a href="/" style="display: none"> Notifications </a>
+                <a href="/" style="display: none"> Informational Details Update </a>
+                <a href="/" style="display: none"> Informational Details View </a>
+
+                <a href="/" style="display: none"> Phone, Video Call, Chat </a>
+                <a href="/" style="display: none"> Settings </a>
+                <a href="/" style="display: none"> Contact us - Raise complaint </a>
+
+
+            </section>
+        </aside>
+    {{else}}
+
+        {{>login}}
+
+    {{/if}}
+</template>

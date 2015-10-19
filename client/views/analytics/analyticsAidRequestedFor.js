@@ -1,109 +1,36 @@
 var chart;
 
-function aidRequestCreatedChart() {
-    var data = Session.get("analyticsAidRequestedFor");
-    console.log("data"+ data);
+function aidChart() {
+    var data = Session.get("analyticsForRequestedAid");
+    console.log("offer" + data);
     var chart = AmCharts.makeChart("chartdivAid", {
         "type": "serial",
         "theme": "light",
-        "legend": {
-            "horizontalGap": 10,
-            "maxColumns": 1,
-            "position": "right",
-            "useGraphSettings": true,
-            "markerSize": 10
-        },
-        "dataProvider": [{
-            "year": 2003,
-            "europe": 2.5,
-            "namerica": 2.5,
-            "asia": 2.1,
-            "lamerica": 0.3,
-            "meast": 0.2,
-            "africa": 0.1
-        }, {
-            "year": 2004,
-            "europe": 2.6,
-            "namerica": 2.7,
-            "asia": 2.2,
-            "lamerica": 0.3,
-            "meast": 0.3,
-            "africa": 0.1
-        }, {
-            "year": 2005,
-            "europe": 2.8,
-            "namerica": 2.9,
-            "asia": 2.4,
-            "lamerica": 0.3,
-            "meast": 0.3,
-            "africa": 0.1
-        }],
+        "marginRight": 70,
+        "dataProvider":data,
         "valueAxes": [{
-            "stackType": "regular",
-            "axisAlpha": 0.3,
-            "gridAlpha": 0
+            "axisAlpha": 0,
+            "position": "left",
+            "title": "Count"
         }],
+        "startDuration": 1,
         "graphs": [{
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Europe",
+            "balloonText": "<b>[[category]]: [[value]]</b>",
+            "fillColorsField": "color",
+            "fillAlphas": 0.9,
+            "lineAlpha": 0.2,
             "type": "column",
-            "color": "#000000",
-            "valueField": "europe"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "North America",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "namerica"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Asia-Pacific",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "asia"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Latin America",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "lamerica"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Middle-East",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "meast"
-        }, {
-            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
-            "fillAlphas": 0.8,
-            "labelText": "[[value]]",
-            "lineAlpha": 0.3,
-            "title": "Africa",
-            "type": "column",
-            "color": "#000000",
-            "valueField": "africa"
+            "valueField": "value"
         }],
-        "categoryField": "year",
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "key",
         "categoryAxis": {
             "gridPosition": "start",
-            "axisAlpha": 0,
-            "gridAlpha": 0,
-            "position": "left"
+            "labelRotation": 45
         },
         "export": {
             "enabled": true
@@ -113,12 +40,9 @@ function aidRequestCreatedChart() {
 }
 
 Template.analyticsAidRequestedFor.onRendered(function () {
-
     Meteor.call('getAnalyticsForAidRequested', function (err, result) {
-        Session.set("analyticsAidRequestedFor", result);
-        console.log("render" + JSON.stringify(Session.get("analyticsAidRequestedFor")));
+        Session.set("analyticsForRequestedAid", result);
+        console.log("render" + JSON.stringify(Session.get("analyticsForRequestedAid")));
     });
-
-    aidRequestCreatedChart();
+    aidChart();
 })
-

@@ -73,6 +73,12 @@ Router.route('/listOfRequest', {
           this.render('SearchId');
       }
   });
+  // Router.route('/SearchRequest', {
+  //     name: 'SearchRequest',
+  //     action: function () {
+  //         this.render('SearchRequest');
+  //     }
+  // });
   // Router.route('getRequest', {
   //   path: '/getRequest/4qAuokmjDMh2jdmkq',
   //   template: 'getRequest',
@@ -122,6 +128,7 @@ Router.route('/analyticsRequestCreated', {
         this.render('analyticsRequestCreated');
     }
 });
+
 
 Router.route('/analyticsOfferCreated', {
     name: 'analyticsOfferCreated',

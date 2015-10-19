@@ -49,28 +49,32 @@ Meteor.methods(
         },
 
         getAnalyticsForAidRequested: function () {
-            data = Meteor.call("getAid", function (error, result) {});
 
             var pipeline = [
                 {
                     $group: {
                         _id: {
-                            $add: [
-                                {$dayOfYear: "$rowCreated"},
-                                {
-                                    $multiply: [400, {$year: "$rowCreated"}]
-                                }
-                            ]
+                            aid: "$aidId"
                         },
-                        count: {$sum: 1},
-                        date: {$min: "$rowCreated"}
+                        aidCount: {$sum: 1}
+
                     }
                 },
-                {$limit: 30}
+                {$limit: 10}
             ];
-
-            var result = Offer.aggregate(pipeline);
-            console.log(result);
-            return result;
+            //**Have to change to Request
+            var results = Offer.aggregate(pipeline);
+            console.log(results);
+            result = JSON.stringify(results);
+            resultChanged = JSON.parse(result.split(":{\"aid\"").join("").split("\"},\"").join("\",\""));
+            console.log(resultChanged);
+            var aidDetails=[];
+            for (var x in resultChanged) {
+                res = resultChanged[x];
+                var request = Aid.findOne({_id: res._id});
+                aidDetails.push({key: request.aidName, value: res.aidCount});
+            }
+            console.log(aidDetails);
+            return aidDetails;
         }
     });
