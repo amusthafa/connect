@@ -20,5 +20,14 @@ Meteor.methods({
    requestData=[]
    requestData=Request.find({requestorId:id}).fetch();
    return requestData;
+ },
+ "SearchProfile" : function(id) {
+   check(id,String);
+   console.log("profile server",id);
+ count_value =Meteor.users.find({_id : id}).count();
+ console.log(count_value);
+ profileData=[]
+ profileData=Meteor.users.find({_id : id}).fetch();
+ return  profileData;
  }
 });

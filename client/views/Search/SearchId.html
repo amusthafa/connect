@@ -5,13 +5,19 @@
         <tr><td><input type="text" default="search by Username " id="Ename" /></td>
           <td><input type="submit" class="search" value="SEARCH" /></td></tr>
 
+{{#if searchuser}}
         {{#each searchuser}}
         <tr><td>UserName:</td>
-            <td>  {{profile.firstName}},{{profile.lastName}}</td> <td> <input type="button" value="Profile" class="Profile" /></td>
+            <td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
+            {{/each}}
+            <tr> <td> <input type="button" value="Profile" class="Profile" /></td>
              <td> <input type="button" value="Request" class="Request" /></td></tr>
-          {{/each}}
+             {{/if}}
 
             {{#each getUserProfile}}
+            <tr><b>USER PROFILE</b></tr>
+            <tr><td> Fullname : </td>
+              <td>{{profile.firstName}},{{profile.lastName}}</td></tr>
             <tr><td>Gender:</td>
               <td>{{profile.gender}}</td></tr>
             <tr><td>Address:</td>
@@ -27,6 +33,7 @@
              {{/each}}
 
              {{#each getUserRequest}}
+             <tr><b>REQUEST</b></tr>
              <tr><td>Request Name: </td>
                <td>{{request_name}}</td></tr>
               <tr><td>Requested For:</td>

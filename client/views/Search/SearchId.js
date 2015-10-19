@@ -15,23 +15,30 @@ Template.SearchId.helpers ({
       return(Session.get('getUserRequest'));
     },
     'getUserProfile' :function() {
-      return(Session.get('userProfileDetails'));
+      return(Session.get('getUserProfile'));
+    },
+    'getSelectedUserId' :function() {
+    return(Session.get('userId'));
     }
+  });
 
-});
+
 
 Template.SearchId.events({
   'click .Request': function(event){
     event.preventDefault();
     console.log("clicked request");
-  var UserReq = Session.get('searchResult');
-  for(var key in UserReq)
- {
-   console.log (key);
-  for(var field in UserReq[key]){
-    if(field.match('_id'))
-    var userId= UserReq[key]._id;
-  }}
+    var UserReq = Session.get('searchResult');
+ var UserReq = Session.get('searchResult');
+for(var key in UserReq)
+{
+ id_user=UserReq[key]._id;
+if($('input[name=SelectUser]:radio:checked').val() === id_user)
+{
+Session.set('userId',UserReq[key]._id);
+userId= UserReq[key]._id;
+}
+ else continue;
  console.log(userId);
  Meteor.call("SearchRequest",userId, function(error, result) {
    if (result == 0)
@@ -42,19 +49,28 @@ Template.SearchId.events({
      Session.set('getUserRequest',result);
      console.log("Requests:"+JSON.stringify(result));
        }
-
-
- });
-   }
+});
+   }}
    ,
    'click .Profile': function(event){
      event.preventDefault();
  console.log("Clicked Profile");
- var userDetails=Session.get('searchResult');
- Session.set('userProfileDetails',userDetails);
- console.log("userprofile:"+JSON.stringify('Session.get(userProfileDetails)'));
-   }
-   ,
+ var UserReq = Session.get('searchResult');
+for(var key in UserReq)
+{
+id_user=UserReq[key]._id;
+if($('input[name=SelectUser]:radio:checked').val() === id_user)
+{
+Session.set('userId',UserReq[key]._id);
+userId= UserReq[key]._id;
+}
+else continue;
+Meteor.call("SearchProfile",userId, function(error, result) {
+    Session.set('getUserProfile',result);
+    console.log("Profile:"+JSON.stringify(Session.get('getUserProfile')));
+    });
+ }}
+ ,
        'submit form': function (event) {
         event.preventDefault();
         EnteredName = event.target.Ename.value;
