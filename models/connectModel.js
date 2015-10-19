@@ -24,7 +24,7 @@ Connect.attachSchema({
         //given by Volunteer
         requestorRating: {
             type: Number,
-            min : 1,
+            min : 0,
             max : 5,
             optional: true,
             defaultValue : 0
@@ -32,7 +32,7 @@ Connect.attachSchema({
         //given by Seeker/ Requestor
         volunteerAidRating: {
             type: Number,
-            min : 1,
+            min : 0,
             max : 5,
             optional: true,
             defaultValue : 0
