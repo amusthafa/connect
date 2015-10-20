@@ -3,65 +3,58 @@
  */
 Meteor.methods({matchRequestVolunteer: function (request) {
     console.log('entered matchRequestVolunteer');
-    //TO-DO: remove check()
     check(request, Object);
 
     console.log('entered connect request._id -- ' + request._id);
 
-    var request = Request.findOne({"_id": request._id });
-
+    var request = Request.findOne({"_id": request._id , status : "Submitted"});
     console.log("req -- " + JSON.stringify(request));
 
     //for Aid
     //City, - Done, Aid expiry > requiredbydate
-    //TO-DO - Date, Rating
-
-
-    var volunteers = VolunteerAid.find({ "aidId": request.aidId
-            ,"aidAddress.city": request.requestAddress.city
-            ,aidExpiry: {$gte: request.requiredBy}
+    //TODO - OFfer from toDate, Rating
+if (request) {
+    var volunteers = VolunteerAid.find({ "aidId": request.aidId, "aidAddress.city": request.requestAddress.city, aidExpiry: {$gte: request.requiredBy}
         }
     )
         .fetch();
+
     console.log("vol -- " + JSON.stringify(volunteers));
     console.log("vol len-- " + volunteers.length);
 
     var volunteersMap = {};
-    // check if volunteer is active or inactive
-    //chck if he is authentic
-    // db.request.find( { requestType: { $in: [ 'Self', 'Other1' ] } } )
     var volunteerArr = [];
     for (var i in volunteers) {
-
         var volunteer = volunteers[i];
-        //   console.log("volunteer - "+ volunteer);
         volunteerArr.push(volunteer.volunteerId);
-        volunteersMap[volunteer.volunteerId]= volunteer;
-        console.log(volunteersMap[volunteer.volunteerId]);
+        volunteersMap[volunteer.volunteerId] = volunteer;
     }
 
+    // check if volunteer is active or inactive
+    //check if he is authentic
     var users = Meteor.users.find({_id: { $in: volunteerArr }, "profile.availabilityStatus": "Active",
         "profile.status": "Authentic"  })
         .fetch();
-
     console.log("User match -- " + JSON.stringify(users));
 
     var userArr = [];
     for (var i in users) {
-
         var user = users[i];
-        console.log("volunteer - " + user);
+        //console.log("volunteer - " + user);
         userArr.push(user._id);
     }
+    console.log("UserArr -- " + users.length);
+
     //userArr - List of active and authenticated users who can be considered for match
-    var removeList = _.difference(volunteerArr,userArr);
+    //Get the list of user who need to be removed - removeList
+    var removeList = _.difference(volunteerArr, userArr);
 
-
-    //List of volunteers busy on the day
-    var connectedUsers =Connect.find({
+    //With userArr, find the list of volunteers who are busy on the day
+    var connectedUsers = Connect.find({
         aidId: request.aidId,
         volunteerId: { $in: userArr },
-        status: { $in: ["Initiated", "Declined" , "VolunteerCanceled", "SeekerCanceled"]}
+        status: { $in: ["Accepted"]},
+        requestedBy: request.requiredBy
     }).fetch();
 
     var connectedUserArr = [];
@@ -71,16 +64,25 @@ Meteor.methods({matchRequestVolunteer: function (request) {
         connectedUserArr.push(connectedUser._id);
     }
 
-    var finalremoveList = _.difference(removeList,connectedUserArr);
+    var availableVolList = _.difference(userArr, connectedUserArr);
 
+    console.log('availableVolList' + JSON.stringify(availableVolList));
+    console.log('availableVolList' + availableVolList.length);
 
-    console.log('finalremoveList' + finalremoveList);
-
-    for (var i in finalremoveList) {
-        var userId = finalremoveList[i];
-        delete volunteersMap[userId];
+    /*
+     for (var i in finalremoveList) {
+     var userId = finalremoveList[i];
+     delete volunteersMap[userId];
+     }
+     */
+    var finalVolunteerList = [];
+    for (var i in availableVolList) {
+        var userId = availableVolList[i];
+        finalVolunteerList.push(volunteersMap[userId]);
     }
-    console.log('volunteersMap after user removed' + JSON.stringify(volunteersMap));
+
+
+    console.log('finalVolunteerList - ' + JSON.stringify(finalVolunteerList));
 
 
     //REmove them from our list
@@ -111,19 +113,21 @@ Meteor.methods({matchRequestVolunteer: function (request) {
      }
      ]      }).fetch();
      */
-    var finalVolunteerList=[];
-    for (i in userArr){
-        var user = userArr[i];
-        if (volunteersMap[user])
-            finalVolunteerList.push(volunteersMap[user]);
-    }
-
+    /*
+     var finalVolunteerList=[];
+     for (i in userArr){
+     var user = userArr[i];
+     if (volunteersMap[user])
+     finalVolunteerList.push(volunteersMap[user]);
+     }
+     */
     var matchDtls = {};
-    matchDtls.requestId= request._id;
-    matchDtls.requiredBy=request.requiredBy;
-    matchDtls.volunteerList=finalVolunteerList;
+    matchDtls.requestId = request._id;
+    matchDtls.requiredBy = request.requiredBy;
+    matchDtls.volunteerList = finalVolunteerList;
     check(matchDtls, Object);
     return matchDtls;
+}
 
 }})
 ;
