@@ -7,6 +7,15 @@ getRequest : function(req){
     return request;
 },
 
+getAidWithAidID : function(aid){
+  check(aid,Object);
+  console.log("get Aid for aid id: ", aid);
+  var request = Aid.findOne({_id:aid.aidId});
+  console.log("Server getRequest:" , JSON.stringify(request));
+  return request;
+
+},
+
 getListOfRequest : function(req){
     check(req,Object);
   var requestList = Request.find({requestorId : req.requestorId}).fetch();

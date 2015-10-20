@@ -53,17 +53,17 @@ Router.route('/createRequest', {
   }
   });
 
-Router.route('/listOfRequest', {
-    name: 'listOfRequest',
+Router.route('/listOfRequests', {
+    name: 'listOfRequests',
     action: function () {
-        this.render('listOfRequest');
+        this.render('listOfRequests');
   }
   });
 
-  Router.route('/manageRequest', {
-      name: 'manageRequest',
+  Router.route('/editRequest', {
+      name: 'editRequest',
       action: function () {
-          this.render('manageRequest');
+          this.render('editRequest');
     }
     });
 
