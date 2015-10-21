@@ -4,28 +4,44 @@ function requestCreatedChart() {
     var data = Session.get("analyticsByRequestPerMonth");
     console.log("data" + data);
     var chart = AmCharts.makeChart("chartdivPerMonth1", {
-        type: "serial",
-        dataProvider: data,
-        categoryField: "key",
-        rotate: true,
-
-        categoryAxis: {
-            gridPosition: "start",
-            axisColor: "#DADADA"
-        },
-        valueAxes: [{
-            axisAlpha: 0.9,
-            minimum: 0
+        "type": "serial",
+        "theme": "light",
+        "marginTop": 0,
+        "marginRight": 80,
+        "dataProvider": data,
+        "valueAxes": [{
+            "axisAlpha": 0,
+            "position": "left"
         }],
-        graphs: [{
-            type: "column",
-            title: "Requests",
-            valueField: "value",
-            lineAlpha: 0,
-            fillColors: "#ADD981",
-            fillAlphas: 0.9,
-            balloonText: "[[title]] in [[category]]:<b>[[value]]</b>"
-        }]
+        "graphs": [{
+            "id": "g1",
+            "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+            "bullet": "round",
+            "bulletSize": 8,
+            "lineColor": "#d1655d",
+            "lineThickness": 2,
+            "negativeLineColor": "#637bb6",
+            "type": "smoothedLine",
+            "valueField": "count"
+        }],
+        "chartCursor": {
+            "categoryBalloonDateFormat": "MM-YYYY",
+            "cursorAlpha": 0,
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "valueLineAlpha": 0.5,
+            "fullWidth": true
+        },
+        "dataDateFormat": "MM-YYYY",
+        "categoryField": "_id",
+        "categoryAxis": {
+            "parseDates": true,
+            "minorGridAlpha": 0.1,
+            "minorGridEnabled": true
+        },
+        "export": {
+            "enabled": true
+        }
     });
 }
 

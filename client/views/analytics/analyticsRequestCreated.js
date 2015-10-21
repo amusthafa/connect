@@ -22,7 +22,7 @@ function requestCreatedChart() {
             title: "Requests",
             valueField: "value",
             lineAlpha: 0,
-            fillColors: "#ADD981",
+            fillColors: "#66CDAA",
             fillAlphas: 1.0,
             balloonText: "[[title]] in [[category]]:<b>[[value]]</b>"
         }]

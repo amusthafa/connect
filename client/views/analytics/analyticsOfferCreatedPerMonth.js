@@ -4,28 +4,38 @@ function requestCreatedChart() {
     var data = Session.get("analyticsByOfferPerMonth");
     console.log("data" + data);
     var chart = AmCharts.makeChart("chartdivPerMonth2", {
-        type: "serial",
-        dataProvider: data,
-        categoryField: "key",
-        rotate: true,
-
-        categoryAxis: {
-            gridPosition: "start",
-            axisColor: "#DADADA"
-        },
-        valueAxes: [{
-            axisAlpha: 0.9,
-            minimum: 0
+        "theme": "light",
+        "type": "serial",
+        "startDuration": 2,
+        "dataProvider": data,
+        "valueAxes": [{
+            "position": "left",
+            "axisAlpha": 0,
+            "gridAlpha": 0
         }],
-        graphs: [{
-            type: "column",
-            title: "Requests",
-            valueField: "value",
-            lineAlpha: 0,
-            fillColors: "#ADD981",
-            fillAlphas: 0.9,
-            balloonText: "[[title]] in [[category]]:<b>[[value]]</b>"
-        }]
+        "graphs": [{
+            "balloonText": "[[category]]: <b>[[value]]</b>",
+            "fillAlphas": 0.85,
+            "lineAlpha": 0.1,
+            "type": "column",
+            "topRadius": 1,
+            "valueField": "value"
+        }],
+        "depth3D": 40,
+        "angle": 30,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "key",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0
+
+        },
+
     });
 }
 

@@ -110,15 +110,9 @@ Meteor.methods(
 
             var results = Request.aggregate(pipeline);
             result = JSON.stringify(results);
-            console.log(result.split(":{\"month\":").join(":\"").split(",\"year\":").join("-").split("},\"count\"").join("\",\"count\""));
             resultChanged = JSON.parse(result.split(":{\"month\":").join(":\"").split(",\"year\":").join("-").split("},\"count\"").join("\",\"count\""));
-            var monthlyDetails = [];
-            for (var x in resultChanged) {
-                res = resultChanged[x];
-                monthlyDetails.push({key: res._id, value: res.count});
-            }
-            console.log(monthlyDetails);
-            return monthlyDetails;
+            console.log("*****" + resultChanged);
+            return resultChanged;
         },
 
         getAnalyticsByOffertPerMonth: function () {
@@ -160,7 +154,7 @@ Meteor.methods(
                         },
                         "count": {"$sum": 1}
                     }
-                }, {
+                }, {$sort: {_id: 1}}, {$limit: 10}, {
                     "$group": {
                         "_id": "$_id.city",
                         "byRegion": {
@@ -170,7 +164,8 @@ Meteor.methods(
                             }
                         }
                     }
-                }
+                },
+                {$limit: 10}
             ];
 
             var results = Request.aggregate(pipeline1);
