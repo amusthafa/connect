@@ -6,7 +6,6 @@ Meteor.methods({updateAdminAuth: function (adminAuth) {
     //TO-DO: remove check()
     check(adminAuth, Object);
     console.log("adminAuth " + JSON.stringify(adminAuth ));
-    console.log('user get ---' + JSON.stringify(Meteor.users.findOne({_id: 'BS6ABsrpxNwkJYggP'})));
     Meteor.users.update({_id : adminAuth.user}, { $set :{"profile.status": adminAuth.status}}
         , function (error, result) {
         console.log("result " + result + ' error ' + error );

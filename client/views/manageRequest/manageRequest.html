@@ -1,0 +1,275 @@
+<!-- Edit Request -->
+
+<template name="manageRequest">
+    <html>
+    {{>include}}
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        {{>common}}
+        {{>header}}
+        {{>sAlert}}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Connect
+                </h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Edit Request</h3>
+                            </div>
+<!--if edit
+                            <form role="form" method="post" id="requestForm">
+                                <td><input hidden id = '_id' value={{getRequest._id}} /></td>
+                                <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
+                                <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
+                                <td><input hidden id = 'status' value={{getRequest.status}} /></td>
+                                <div class="box-body">
+                                    <div class="form-group">
+
+                                        <label>Request Name</label>
+                                        <input id='requestName' class="form-control" type="text"
+                                               value={{getRequest.request_name}} >
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Request Type</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="requestType" id="userType" value={{getRequest.requestType}} checked>
+                                                Self
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="requestType" id="userType" value={{getRequest.requestType}}> Other
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Aid</label>
+                                        <select id="aidId" class="form-control">
+                                            <option selected="selected">{{getRequest.aidId}}</option>
+                                            {{#each aidList}}
+                                            <option>{{aidName}} </option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Request Date</label>
+                                        <div class="input-group">
+                                            <input type="date" id="requiredBy" value={{formatDate}} {{getRequest.requiredBy}}>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Address:
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        <input type="text" class="form-control" id='p_line1'
+                                               value={{getRequest.requestAddress.line1}}>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        <input type="text" class="form-control" id='p_line2'
+                                               value={{getRequest.requestAddress.line2}}>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control" id="scity-select" value={{getRequest.requestAddress.city}}>
+                                            <option selected="selected">{{getRequest.requestAddress.city}}</option>
+                                            {{#each cityList}}
+                                            <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <select class="form-control" id="sstate-select" value=getRequest.requestAddress.state}} >
+                                            <option selected="selected">{{getRequest.requestAddress.state}} </option>
+                                            {{#each stateList}}
+                                            <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='p_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        <input type="text" class="form-control" id='p_pincode'
+                                               value={{getRequest.requestAddress.pinCode}}>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Emergency</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="emergency" id="emergencyYes" value="Yes" checked>
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="emergency" id="emergencyNo" value="No"> No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Comment</label>
+                                        <textarea id='comment' class="form-control" rows="3"
+                                                  placeholder="Enter ..."></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="submit" class="editRequest" >Edit Request</button>
+                                </div>
+                            </form>
+            -->
+match- {{match}}
+                            <form role="form" method="post" id="requestForm">
+                                <td><input hidden id = '_id' value={{getRequest._id}} /></td>
+                                <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
+                                <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
+                                <td><input hidden id = 'status' value={{getRequest.status}} /></td>
+                                <div class="box-body">
+                                    <div class="form-group">
+
+                                        <label>Request Name</label>
+                                        <label>{{match.request.request_name}}</label>
+
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label>Request Type</label>
+                                        <label>{{match.request.requestType}}</label>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Aid</label>
+                                        <select id="aidId" class="form-control">
+                                            <option selected="selected">{{getRequest.aidId}}</option>
+                                            {{#each aidList}}
+                                            <option>{{aidName}} </option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Request Date</label>
+                                        <div class="input-group">
+                                            <input type="date" id="requiredBy" value={{formatDate}} {{getRequest.requiredBy}}>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Address:
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        <input type="text" class="form-control" id='p_line1'
+                                               value={{getRequest.requestAddress.line1}}>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        <input type="text" class="form-control" id='p_line2'
+                                               value={{getRequest.requestAddress.line2}}>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control" id="scity-select" value={{getRequest.requestAddress.city}}>
+                                            <option selected="selected">{{getRequest.requestAddress.city}}</option>
+                                            {{#each cityList}}
+                                            <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <select class="form-control" id="sstate-select" value=getRequest.requestAddress.state}} >
+                                            <option selected="selected">{{getRequest.requestAddress.state}} </option>
+                                            {{#each stateList}}
+                                            <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='p_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        <input type="text" class="form-control" id='p_pincode'
+                                               value={{getRequest.requestAddress.pinCode}}>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Emergency</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="emergency" id="emergencyYes" value="Yes" checked>
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="emergency" id="emergencyNo" value="No"> No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Comment</label>
+                                        <textarea id='comment' class="form-control" rows="3"
+                                                  placeholder="Enter ..."></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="submit" class="editRequest" >Edit Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </body>
+    </html>
+</template>

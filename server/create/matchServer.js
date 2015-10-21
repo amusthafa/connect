@@ -32,7 +32,7 @@ if (request) {
 
     // check if volunteer is active or inactive
     //check if he is authentic
-    var users = Meteor.users.find({_id: { $in: volunteerArr }, "profile.availabilityStatus": "Active",
+    var users = Meteor.users.find({_id:  { $in: volunteerArr }, "profile.availabilityStatus": "Active",
         "profile.status": "Authentic"  })
         .fetch();
     console.log("User match -- " + JSON.stringify(users));
@@ -67,7 +67,7 @@ if (request) {
     var availableVolList = _.difference(userArr, connectedUserArr);
 
     console.log('availableVolList' + JSON.stringify(availableVolList));
-    console.log('availableVolList' + availableVolList.length);
+    console.log('availableVolList len -' + availableVolList.length);
 
     /*
      for (var i in finalremoveList) {
@@ -124,8 +124,11 @@ if (request) {
     var matchDtls = {};
     matchDtls.requestId = request._id;
     matchDtls.requiredBy = request.requiredBy;
+    matchDtls.request= request;
     matchDtls.volunteerList = finalVolunteerList;
     check(matchDtls, Object);
+
+    console.log('matchDtls -- '+JSON.stringify(matchDtls));
     return matchDtls;
 }
 

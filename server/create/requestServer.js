@@ -18,9 +18,24 @@ getAidWithAidID : function(aid){
 
 getListOfRequest : function(req){
     check(req,Object);
+    check( req.requestorId,String);
   var requestList = Request.find({requestorId : req.requestorId}).fetch();
   console.log("Server getListOfRequest:" , JSON.stringify(requestList));
 //  check(request, Match.Any);
+
+    var aidList=Aid.find({}).fetch();
+    var aidMap={};
+    for (var i in aidList) {
+        var aid = aidList[i];
+        aidMap[aid._id] = aid.aidName;
+    }
+    console.log("aidMap " + JSON.stringify(aidMap));
+    for (var i in requestList) {
+        var req = requestList[i];
+        var aidName=aidMap[req.aidId]
+        req.aidName =aidName ;
+    }
+
     return requestList;
 },
 
