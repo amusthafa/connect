@@ -25,14 +25,14 @@ function offerCreatedChart() {
             "fillAlphas": 0.8,
             "lineAlpha": 0.2,
             "type": "column",
-            "valueField": "count"
+            "valueField": "value"
         }],
         "chartCursor": {
             "categoryBalloonEnabled": false,
             "cursorAlpha": 0,
             "zoomable": false
         },
-        "categoryField": "date",
+        "categoryField": "key",
         "categoryAxis": {
             "gridPosition": "start",
             "gridAlpha": 0
@@ -40,11 +40,19 @@ function offerCreatedChart() {
     });
 }
 
+
 Template.analyticsOfferCreated.onRendered(function () {
     Meteor.call('getAnalyticsByOfferCreatedDate', function (err, result) {
-        Session.set("analyticsByOfferCreatedDate", result);
-        console.log("render" + JSON.stringify(Session.get("analyticsByOfferCreatedDate")));
+
+        if (err) {
+            console.log("Errors !!" + error + "  Result - " + result);
+        }else {
+            Session.set("analyticsByOfferCreatedDate", result);
+            console.log("render" + JSON.stringify(Session.get("analyticsByOfferCreatedDate")));
+            offerCreatedChart();
+        }
+
     });
 
-    offerCreatedChart();
+
 })

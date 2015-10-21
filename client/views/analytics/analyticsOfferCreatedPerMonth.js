@@ -1,9 +1,9 @@
 var chart;
 
 function requestCreatedChart() {
-    var data = Session.get("analyticsByRequestCreatedDate");
-    console.log("data"+ data);
-    var chart = AmCharts.makeChart("chartdiv", {
+    var data = Session.get("analyticsByOfferPerMonth");
+    console.log("data" + data);
+    var chart = AmCharts.makeChart("chartdivPerMonth2", {
         type: "serial",
         dataProvider: data,
         categoryField: "key",
@@ -14,7 +14,7 @@ function requestCreatedChart() {
             axisColor: "#DADADA"
         },
         valueAxes: [{
-            axisAlpha: 1.0,
+            axisAlpha: 0.9,
             minimum: 0
         }],
         graphs: [{
@@ -23,25 +23,24 @@ function requestCreatedChart() {
             valueField: "value",
             lineAlpha: 0,
             fillColors: "#ADD981",
-            fillAlphas: 1.0,
+            fillAlphas: 0.9,
             balloonText: "[[title]] in [[category]]:<b>[[value]]</b>"
         }]
     });
 }
 
-Template.analyticsRequestCreated.onRendered(function () {
+Template.analyticsOfferCreatedPerMonth.onRendered(function () {
 
-    Meteor.call('getAnalyticsByRequestCreatedDate', function (err, result) {
-
+    Meteor.call('getAnalyticsByOffertPerMonth', function (err, result) {
         if (err) {
             console.log("Errors !!" + error + "  Result - " + result);
-        }else {
-            Session.set("analyticsByRequestCreatedDate", result);
-            console.log("render" + JSON.stringify(Session.get("analyticsByRequestCreatedDate")));
+        }
+        else {
+
+            Session.set("analyticsByOfferPerMonth", result);
+            console.log("render" + JSON.stringify(Session.get("analyticsByOfferPerMonth")));
             requestCreatedChart();
         }
     });
-
-
 })
 
