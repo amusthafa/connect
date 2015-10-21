@@ -7,6 +7,15 @@ getRequest : function(req){
     return request;
 },
 
+getAidWithAidID : function(aid){
+  check(aid,Object);
+  console.log("get Aid for aid id: ", aid);
+  var request = Aid.findOne({_id:aid.aidId});
+  console.log("Server getRequest:" , JSON.stringify(request));
+  return request;
+
+},
+
 getListOfRequest : function(req){
     check(req,Object);
   var requestList = Request.find({requestorId : req.requestorId}).fetch();
@@ -21,16 +30,16 @@ saveRequest: function (request) {
     //TO-DO: remove check()
     check(request, Object);
 try{
-  console.log("request.aid:",request.aidName);
-  var aidName = Aid.findOne({'aidName':request.aidName});
-  console.log("aid name:", aidName);
+  console.log("request.aid:",request.aid);
+  var aid = Aid.findOne({'aidName':request.aid});
+  console.log("aid name:", aid);
 
     var requestDb = {
         "request_name": request.requestName,
         "requestType":request.requestType,
         "creatorId": request.creatorId,
         "requestorId": request.requestorId,
-        "aidId": aidName._id,
+        "aidId": aid._id,
         "aidCategoryId": request.aidCategoryId,
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,

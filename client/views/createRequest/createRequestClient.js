@@ -35,6 +35,7 @@ Template.createRequest.onRendered(function () {
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         Session.set("userDetails", result);
     });
+
 });
 
 Template.createRequest.events({
@@ -105,7 +106,7 @@ Template.createRequest.events({
         }
 
         request.requestName =  event.target.requestName.value;
-        request.aidName = event.target.Aid.value;
+        request.aid = event.target.aid.value;
         request.requiredBy =  event.target.requiredBy.value;
 
         if(event.target.emergencyYes.checked){
@@ -138,7 +139,6 @@ Template.createRequest.events({
               delete Session.keys['searchResult'];
               delete Session.keys['cityList'];
               delete Session.keys['stateList'];
-              delete Session.keys['aidList'];
               // Object.keys('isOther','sCity','sState','searchResult','cityList','stateList','aidList').forEach(function(key){ console.log(Session.get(key)); })
             }
           });

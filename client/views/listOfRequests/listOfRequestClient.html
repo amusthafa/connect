@@ -1,35 +1,288 @@
-<template name="listOfRequest">
+<template name="listOfRequests">
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ola Amigos | List of Requests</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+        <!-- Bootstrap Color Picker -->
+        <link rel="stylesheet" href="../../plugins/colorpicker/bootstrap-colorpicker.min.css">
+        <!-- Bootstrap time Picker -->
+        <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
 
-<h1>List of Request</h1>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        {{>common}}
+        {{>header}}
+        {{>sAlert}}
 
 
-<table>
-  {{#each getRequestList}}
-  <form action="" method="post" id="requestForm">
-  <p>
-  <tr>
-    <td>Request {{index_1}} :</td>
-  </tr>
-    <td><input  id = 'reqID' hidden value={{_id}} /></td>
-  <tr>
-    <td>requestName: </td> <td><input id = 'requestName' value={{request_name}} /></td>
-  </tr>
-  <tr>
-    <td>Aid: </td> <td><input id = 'aidId' value={{aidId}} /></td>
-    </tr>
-    <tr>
-    <td>Required By Date: </td> <td><input id = 'requiredBy' value={{formatDate requiredBy}} /></td>
-    </tr>
-    <tr>
-      <!-- <a href="{{pathFor route='manageRequest'}}">Manage Request</a> -->
-    <input type="submit" id="manageRequest" value="ManageRequest" />
-  </tr>
-</p>
-</form>
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    List of Requests
+                </h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                      <form action="" method="post" id="requestForm">
+                        <div class="col-xs-12 table-responsive">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Request</th>
+                                  <th>Request Name</th>
+                                  <th>Aid</th>
+                                  <th>Required By Date</th>
+                                  <!-- <th>Subtotal</th> -->
+                                </tr>
+                              </thead>
+                              {{#each getRequestList}}
+                              <tbody>
+                                    <tr>
+                                      <td>{{index}}</td>
+                                      <td>{{request_name}}</td>
+                                      <td>{{aidId}}</td>
+                                      <td>{{formatDate requiredBy}}</td>
+                                      <td><input id='reqID' value={{_id}} /></td>
+                                      <td><div class="box-footer">
+                                        <!-- <input type="button" class="editRequest" value='Edit Request'/> -->
+                                        <input type="submit" id="submitRequest" value="Edit Request" />
+                                      </div></td>
+                                      <td>
+                                      <div class="box-footer">
+                                          <input type="button" class="deleteRequest" value='Delete Request'/>
+                                          <!-- <input type="submit" id="submitRequest" value="Delete Request"/> -->
+                                      </div>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                              {{/each}}
+                            </table>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </body>
+    </html>
+</template>
 
-    {{/each}}
-  <!-- <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
-</table>
+
+ <!-- Edit Request -->
+
+ <template name="editRequest">
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ola Amigos | Create Request</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+        <!-- Bootstrap Color Picker -->
+        <link rel="stylesheet" href="../../plugins/colorpicker/bootstrap-colorpicker.min.css">
+        <!-- Bootstrap time Picker -->
+        <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        {{>common}}
+        {{>header}}
+        {{>sAlert}}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Edit Request
+                </h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Edit Request</h3>
+                            </div>
+                            <form role="form" method="post" id="requestForm">
+                              <td><input hidden id = '_id' value={{getRequest._id}} /></td>
+                              <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
+                              <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
+                              <td><input hidden id = 'status' value={{getRequest.status}} /></td>
+                                <div class="box-body">
+                                    <div class="form-group">
+
+                    										<label>Request Name</label>
+                                        <input id='requestName' class="form-control" type="text"
+                                              value={{getRequest.request_name}} >
+                                    </div>
 
 
+                                    <div class="form-group">
+                                      <label>Request Type</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="requestType" id="userType" value={{getRequest.requestType}} checked>
+                                                Self
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="requestType" id="userType" value={{getRequest.requestType}}> Other
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                              	        <label>Aid</label>
+										                        <select id="aidId" class="form-control">
+                              	            <option selected="selected">{{getRequest.aidId}}</option>
+                              	            {{#each aidList}}
+                              	                <option>{{aidName}} </option>
+                              	            {{/each}}
+                              	        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Request Date</label>
+                                        <div class="input-group">
+        											               <input type="date" id="requiredBy" value={{formatDate}} {{getRequest.requiredBy}}>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            Address:
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        <input type="text" class="form-control" id='p_line1'
+                                               value={{getRequest.requestAddress.line1}}>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        <input type="text" class="form-control" id='p_line2'
+                                               value={{getRequest.requestAddress.line2}}>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control" id="scity-select" value={{getRequest.requestAddress.city}}>
+                                            <option selected="selected">{{getRequest.requestAddress.city}}</option>
+                                            {{#each cityList}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <select class="form-control" id="sstate-select" value=getRequest.requestAddress.state}} >
+                                            <option selected="selected">{{getRequest.requestAddress.state}} </option>
+                                            {{#each stateList}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='p_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        <input type="text" class="form-control" id='p_pincode'
+                                               value={{getRequest.requestAddress.pinCode}}>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                      <label>Emergency</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="emergency" id="emergencyYes" value="Yes" checked>
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="emergency" id="emergencyNo" value="No"> No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Comment</label>
+                                        <textarea id='comment' class="form-control" rows="3"
+                                                  placeholder="Enter ..."></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="submit" class="editRequest" >Edit Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </body>
+    </html>
 </template>

@@ -5,7 +5,7 @@ SyncedCron.add({
     name: 'Scheduled task for Connect',
     schedule: function(parser) {
         // parser is a later.parse object
-        return parser.text('every 60 minutes');
+        return parser.text('every 1 hours');
     },
     job: function() {
         console.log("=================Scheduled job start=================");
@@ -13,7 +13,7 @@ SyncedCron.add({
          //Scheduled Task 1
         //if request submitted, match available,
         // send notification to seeker, if noti not already sent or read
-
+        console.log(" ----------------Scheduled task 1 ---------------- ");
         var requestList= Request.find({status : "Submitted" ,requiredBy : {$gt:new Date()}}).fetch();
 
         //Chk if Connect Notification already available, type= submitted userid = seeker
@@ -34,7 +34,7 @@ SyncedCron.add({
                         //Entry in notification table
 
                         var notificationData = {
-                            requestorId: request.requestorId,
+                          //  requestorId: request.requestorId,
                           //  connectId: ,
                             requestId: request._id,
                             volunteerAidId: request.aidId,
@@ -63,13 +63,14 @@ SyncedCron.add({
         // update connect status, Accepted -> Pending Completion
         // Send noti to seeker for marking complete
         // If Request is still in Submitted status, mark Closed
-
-        var dateRequestList= Request.find({requiredBy : {$lte:new Date()}, status : 'InProgress' }).fetch();
-
+        console.log(" ----------------Scheduled task 2 ---------------- ");
+        var dateRequestList= Request.find({requiredBy : {$lt: new Date()}, status : 'InProgress' }).fetch();
+        console.log("Scheduled task 2 ");
         for (var i in dateRequestList) {
 
             var request = dateRequestList[i];
-            var connectUpdate = {status : 'Pending Completion'}
+            console.log("Scheduled task 2 request " + JSON.stringify(request));
+            var connectUpdate = {status : 'PendingCompletion'}
 
             Connect.update({_id : request._id,status :'Accepted'},
                 {$set:connectUpdate}, function (error, result) {
@@ -81,33 +82,44 @@ SyncedCron.add({
                     // throw new Meteor.Error("insert-failed", error.message);
                     throw new Meteor.Error("update-failed", error);
                 }
-            });
-            //send notification to seeker for marking complete
-            //Entry in notification table
+                    else
+                {
+                    //send notification to seeker for marking complete
+                    //Entry in notification table
+                    var notification = Notifications.findOne({ type : 'PendingCompletion',
+                        status: 'Unread', requestId: request._id});
 
-            var notificationData = {
-                requestorId: request.requestorId,
-                //  connectId: ,
-                requestId: request._id,
-                volunteerAidId: request.aidId,//???
-                status: 'Unread',
-                userId: request.requestorId,
-                type: 'PendingCompletion',
-                description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
-            };
-            Notifications.insert(notificationData, function (error, result) {
-                console.log("notification id - " + result);
-                if (error) {
-                    console.log("Errors !!" + error + "  Result - " + result);
-                    //TO-DO: error message()
-                    // throw new Meteor.Error("insert-failed", error.message);    });
-                    throw new Meteor.Error("insert-failed", error);
-                }});
+                    if (!notification) {
+                        //Entry in notification table
+                        var notificationData = {
+                            //  requestorId: request.requestorId,
+                            //  connectId: ,
+                            requestId: request._id,
+                            volunteerAidId: request.aidId,//???
+                            status: 'Unread',
+                            userId: request.requestorId,
+                            type: 'PendingCompletion',
+                            description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
+                        };
+                        Notifications.insert(notificationData, function (error, result) {
+                            console.log("notification id - " + result);
+                            if (error) {
+                                console.log("Errors !!" + error + "  Result - " + result);
+                                //TO-DO: error message()
+                                // throw new Meteor.Error("insert-failed", error.message);    });
+                                throw new Meteor.Error("insert-failed", error);
+                            }
+                        });
+                    }
+                }
+            });
+
 
 
         }
-
+        //Scheduled Task 3
         // If Request is still in Submitted status, mark Closed
+        console.log(" ----------------Scheduled task 3 ---------------- ");
        var requestUpdate= {status : "Closed"};
         Request.update({status : "Submitted" ,requiredBy : {$eq:new Date()}},
             {$set:requestUpdate}, function (error, result) {
@@ -121,11 +133,11 @@ SyncedCron.add({
                 }
             });
 
-        //Scheduled Task 3
+        //Scheduled Task 4
         //If request in Pending completion status, no noti or noti is not Unread then create new noti
 
         //find list of requests with status pending completion
-
+        console.log(" ----------------Scheduled task 4 ---------------- ");
         var pcConnectList= Connect.find({status : 'PendingCompletion'}).fetch();
 
         for (var i in pcConnectList) {
@@ -138,7 +150,7 @@ SyncedCron.add({
                 //Entry in notification table
 
                 var notificationData = {
-                    requestorId: connect.requestorId,
+                  //  requestorId: connect.requestorId,
                     connectId:connect._id ,
                     requestId: connect.requestId,
                     volunteerAidId: connect.volunteerAidId,
@@ -159,10 +171,10 @@ SyncedCron.add({
 
         }
 
-        //Scheduled Task 4
+        //Scheduled Task 5
         //If connect completed by seeker and marked so, rating not provided by volunteer
         // then send noti to volunteer to provide rating, check if noti already exists
-
+        console.log(" ----------------Scheduled task 5 ---------------- ");
         var cConnectList= Connect.find({status : 'Completed', requestorRating :0 }).fetch();
 
         for (var i in cConnectList) {
@@ -175,7 +187,7 @@ SyncedCron.add({
                 //Entry in notification table
 
                 var notificationData = {
-                    requestorId: connect.requestorId,
+                  //  requestorId: connect.requestorId,
                       connectId:connect._id ,
                     requestId: connect.requestId,
                     volunteerAidId: connect.volunteerAidId,
