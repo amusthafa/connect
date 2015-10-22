@@ -68,17 +68,17 @@ Template.listOfRequests.events({
     },
 
 
-  'click .deleteRequest': function(event){
+  'click .delete': function(event){
       event.preventDefault();
       console.log("DELETE REQUEST!!!");
-      var requestId = document.getElementById('reqID').value;
+      var requestId = this._id;
       console.log("requestId in delete request", requestId);
       Meteor.call("deleteRequest", requestId , function (error, result) {
           console.log("Client : error" + error + "result - " + JSON.stringify(result));
           if (error) {
           console.log("error body", (error));
           sAlert.error(error.reason);
-          Router.go("/listOfRequests");
+          Router.go("/");
         }
         else{
           console.log("success");
