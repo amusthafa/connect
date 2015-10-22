@@ -180,4 +180,10 @@ Router.route('/analyticsRequestPerRegion', {
     }
 });
 
+Router.route('/manageRequest', {
+    name: 'manageRequest',
+    action: function () {
+        this.render('manageRequest');
+    }
+});
 
