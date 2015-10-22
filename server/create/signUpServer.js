@@ -30,8 +30,8 @@ Meteor.methods({
         pinCode: userProfile.pincode,
         primary: "Yes"},
         "appRole": userProfile.role
-      },
-      "roles": "Admin"
+      }
+      // "roles": "User"
     });
     Accounts.sendVerificationEmail(userID, userProfile.email, function(err){
     if (err) {
@@ -41,6 +41,7 @@ Meteor.methods({
       console.log('Email Sent. Check your mailbox.');
     }
     });
+    Roles.addUsersToRoles( userID, ['User']);
   }
 });
 

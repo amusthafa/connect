@@ -146,7 +146,8 @@ User = new SimpleSchema({
     // you can specify [String] as the type
     roles: {
         type: [String],
-        optional: true
+        optional: true,
+        allowedValues: ['Admin', 'User']
     }
 });
 
