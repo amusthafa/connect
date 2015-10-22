@@ -1,44 +1,86 @@
 <template name="connectUpdate">
-    <form action="" method="post" id="requestForm">
-    <h1>Update Connect</h1>
+    <html>
+    {{>include}}
+    <body class="hold-transition skin-blue sidebar-mini">
 
-   {{#if connectDetails.status='Initiated'}}
-    Seeker has sent you a request. Kindly accept or decline the request.
-    <select id="status">
-    <option value="Accepted">Accept</option>
-    <option  value="Declined">Decline</option>
-    </select>
-    {{/if}}
-        <input hidden id = '_id' value={{connectDetails._id}} />
-        <input hidden id = 'requestId' value={{connectDetails.requestId}} />
-    <input type="submit" id="connectUpdateSubmit" value="connectUpdate Submit" />
-        </form>
+    <div class="wrapper">
+        {{>common}}
+        {{>header}}
+        {{>sAlert}}
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Connect Update
+                </h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
 
-    <!--    <td><input hidden id = '_id' value={{getRequest._id}} /></td>
-    <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
-    <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
-    <td><input hidden id = 'status' value={{getRequest.status}} /></td>
-    <p>
-    <td>requestName: </td> <td><input id = 'requestName' value={{getRequest.request_name}} /></td>
-    </p>
-    <p>
-    <td>requestType: </td>
-    <td><input id = 'requestType' value={{getRequest.requestType}} /></td>
-    </p>
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{connectDetails.request.request_name}}</h3>
+                            </div>
+                            <div class="box-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Requesting for</dt>
+                                    <dd> {{connectDetails.request.aidName}}</dd>
+                                    <dt>On</dt>
+                                    <dd> {{connectDetails.request.requiredBy}}</dd>
+                                    <dt>At</dt>
+                                    <dd>
+                                        {{#if connectDetails.request.requestAddress.line1}}
+                                        {{connectDetails.request.requestAddress.line1}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.line2}}
+                                        {{connectDetails.request.requestAddress.line2}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.city}}
+                                        {{connectDetails.request.requestAddress.city}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.country}}
+                                        {{connectDetails.request.requestAddress.country}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.pinCode}}
+                                        {{connectDetails.request.requestAddress.pinCode}}.
+                                        {{/if}}
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <input hidden id='requestId' value={{connectDetails.request._id}}>
+                    <input hidden id='requestDate' value={{connectDetails.request.requiredBy}}>
+                    <input hidden id='aidId' value={{connectDetails.request.aidId}}>
+                    <input hidden id='connectId' value={{connectDetails.connect._id}}>
+                </div>
 
-    <p>
-    <td>aidId: </td> <td><input id = 'aidId' value={{getRequest.aidId}} /></td>
-    </p>
-    <p>
-    <td>requiredBy: </td> <td><input id = 'requiredBy' value={{getRequest.requiredBy}} /></td>
-    </p>
-    <p>
-    <td>Emergency: </td> <td><input id = 'emergency' value={{getRequest.emergency}} /></td>
-    </p>
-    <p>
-    <td>addressId: </td> <td><input id = 'addressId' value={{getRequest.address_id}} /></td>
-    </p>
-    <input type="submit" id="editRequest" value="EditRequest" />
- <input type="submit" id="deleteRequest" value="DeleteRequest" /> -->
+                {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="Accepted" id="status" value="Accepted" >
+                            Accept the request
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="Declined" id="status" value="Declined">
+                            Decline the request
+                        </label>
+                    </div>
+                </div>
+                {{/if}}
+                <input type="button" class="connectUpdateSubmit" value="Submit" />
+            </section>
+
+        </div>
+
+
+    </div>
+    </body>
+    </html>
+
 
 </template>
+

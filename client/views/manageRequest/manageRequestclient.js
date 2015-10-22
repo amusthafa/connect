@@ -2,6 +2,14 @@
 
 Template.manageRequest.helpers({
 
+    isEqual: function(v1, v2) {
+        if (v1 === v2){
+            alert(v1);
+            return true;}
+
+        return false;
+    },
+
     'match': function (event) {
         return ( Session.get("match"));
     },
