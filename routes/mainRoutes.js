@@ -73,6 +73,12 @@ Router.route('/listOfRequest', {
           this.render('SearchId');
       }
   });
+  Router.route('/informationAdd', {
+      name: 'informationAdd',
+      action: function () {
+          this.render('informationAdd');
+      }
+  });
   // Router.route('/SearchRequest', {
   //     name: 'SearchRequest',
   //     action: function () {
