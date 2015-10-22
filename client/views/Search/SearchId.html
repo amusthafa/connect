@@ -29,7 +29,11 @@
             {{#if profile.share_phone}}
             <tr><td>PhoneNumber:</td>
               <td>{{profile.phone}}</td></tr>
-             {{/if}}
+              {{/if}}
+            {{#if isInRole 'Admin'}}
+            <tr></tr>
+            <tr><td><input type="submit" class="addAdmin" value="Add as Admin" /></td></tr>
+            {{/if}}
              {{/each}}
 
              {{#each getUserRequest}}

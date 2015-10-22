@@ -39,9 +39,11 @@
                                         <td>{{formatDate requiredBy}}</td>
                                         <td><span class="label label-success">{{status}}</span></td>
                                         <td>
+
                                             <input type="button" class="connect"  data-requestId ={{_id}} value="Connect" id="Connect" />
                                             <input type="button" class="edit"  data-requestId ={{_id}} value="Edit" id="Edit" />
                                             <input type="button" class="delete"  data-requestId ={{_id}} value="Delete" id="Delete" />
+
                                             <a href="#" class="cancel">Cancel</a>
                                             <input type="hidden" id="requestId"  value="{{_id}}" />
                                         </td>

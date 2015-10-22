@@ -101,8 +101,20 @@ if (connectId) {
                         throw new Meteor.Error("update-failed", error);
                     }
                 });
+            console.log("connect.requestId - " + connectObj.requestId);
+        //get request details
+        var request = Request.findOne({_id:connectObj.requestId});
 
-            return connectObj;
+            var aid = Aid.findOne({_id:request.aidId});
+            request.aidName= aid.aidName;
+            console.log('request -'+JSON.stringify(request));
+            var contactDetails={};
+            contactDetails.connect = connectObj;
+            contactDetails.request = request;
+
+            console.log('contactDetails -'+JSON.stringify(contactDetails));
+
+            return contactDetails;
         },
         updateConnect: function (connect) {
             check(connect, Object);

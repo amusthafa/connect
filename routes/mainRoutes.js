@@ -32,6 +32,13 @@ Router.route('/SignUp', {
     }
 });
 
+Router.route('/AddAdmin', {
+    name: 'addAdmin',
+    action: function () {
+        this.render('addAdmin');
+    }
+});
+
 Router.route('/CreateProfile', {
     name: 'createProfile',
     action: function () {
@@ -187,4 +194,3 @@ Router.route('/manageRequest', {
         this.render('manageRequest');
     }
 });
-
