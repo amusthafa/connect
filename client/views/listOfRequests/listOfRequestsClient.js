@@ -12,8 +12,8 @@ Template.listOfRequests.helpers({getRequestList : function() {
 
 Template.listOfRequests.onRendered(function() {
   // if ( _.isEmpty(Session.get('req')) ) {
-    var requestorId = Meteor.user()._id ;
-    var request = {requestorId:requestorId};
+    var creatorId = Meteor.user()._id ;
+    var request = {creatorId:creatorId};
   // alert(JSON.stringify(request));
     console.log("list of requestss: request:", JSON.stringify(request));
     console.log("list of  requests with session set:", JSON.stringify(request));
@@ -58,6 +58,16 @@ Template.listOfRequests.events({
         });
        // alert('match '+ JSON.stringify(Session.get("match")));
     },
+
+    'click .edit' : function (event) {
+        event.preventDefault();
+        requestId = this._id;
+        console.log("requestId in edit request:", requestId);
+        Session.set('requestId',requestId);
+        Router.go("/createRequest");
+    },
+
+
   'click .deleteRequest': function(event){
       event.preventDefault();
       console.log("DELETE REQUEST!!!");
