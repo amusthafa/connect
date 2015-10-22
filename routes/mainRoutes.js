@@ -159,3 +159,32 @@ Router.route('/analyticsAidRequestedFor', {
         this.render('analyticsAidRequestedFor');
     }
 });
+
+Router.route('/analyticsRequestCreatedPerMonth', {
+    name: 'analyticsRequestCreatedPerMonth',
+    action: function () {
+        this.render('analyticsRequestCreatedPerMonth');
+    }
+});
+
+Router.route('/analyticsOfferCreatedPerMonth', {
+    name: 'analyticsOfferCreatedPerMonth',
+    action: function () {
+        this.render('analyticsOfferCreatedPerMonth');
+    }
+});
+
+Router.route('/analyticsRequestPerRegion', {
+    name: 'analyticsRequestPerRegion',
+    action: function () {
+        this.render('analyticsRequestPerRegion');
+    }
+});
+
+Router.route('/manageRequest', {
+    name: 'manageRequest',
+    action: function () {
+        this.render('manageRequest');
+    }
+});
+

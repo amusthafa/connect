@@ -1,0 +1,98 @@
+<template name="listOfRequests">
+    <html>
+{{>include}}
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        {{>common}}
+        {{>header}}
+        {{>sAlert}}
+
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                   Manage Requests
+                </h1>
+            </section>
+            <!--<section class="content">
+                <div class="row">
+                    &lt;!&ndash; left column &ndash;&gt;
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Request</th>
+                                  <th>Request Name</th>
+                                  <th>Aid</th>
+                                  <th>Required By Date</th>
+                                  &lt;!&ndash; <th>Subtotal</th> &ndash;&gt;
+                                </tr>
+                              </thead>
+                              {{#each getRequestList}}
+                              <tbody>
+                                    <tr>
+                                      <td>{{index}}</td>
+                                      <td>{{request_name}}</td>
+                                      <td>{{aidId}}</td>
+                                      <td>{{formatDate requiredBy}}</td>
+                                      <input type="hidden" id='reqID' value={{_id}} />
+                                        &lt;!&ndash; <input type="button" class="editRequest" value='Edit Request'/> &ndash;&gt;
+                                        <input type="submit" id="submitRequest" value="Edit Request" />
+                                          <input type="button" class="deleteRequest" value='Delete Request'/>
+                                          &lt;!&ndash; <input type="submit" id="submitRequest" value="Delete Request"/> &ndash;&gt;
+                                     </tr>
+                                </tbody>
+                              {{/each}}
+                            </table>
+                          </div>
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </section>-->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>Request Name</th>
+                                        <th>Aid</th>
+                                        <th>Required By</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+
+                                    {{#each getRequestList}}
+                                    <tr>
+
+                                        <td>{{request_name}}</td>
+                                        <td>{{aidName}}</td>
+                                        <td>{{formatDate requiredBy}}</td>
+                                        <td><span class="label label-success">{{status}}</span></td>
+                                        <td>
+                                            <input type="button" class="connect"  data-requestId ={{_id}} value="Connect" id="Connect" />
+                                            <a href="#" class="edit">Edit</a>
+                                            <a href="#" class="delete">Delete</a>
+                                            <a href="#" class="cancel">Cancel</a>
+                                            <input type="hidden" id="requestId"  value="{{_id}}" />
+                                        </td>
+                                    </tr>
+
+                                    {{/each}}
+                                </table>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    </body>
+    </html>
+</template>
+
+

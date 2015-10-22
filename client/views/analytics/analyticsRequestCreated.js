@@ -6,7 +6,7 @@ function requestCreatedChart() {
     var chart = AmCharts.makeChart("chartdiv", {
         type: "serial",
         dataProvider: data,
-        categoryField: "date",
+        categoryField: "key",
         rotate: true,
 
         categoryAxis: {
@@ -14,15 +14,16 @@ function requestCreatedChart() {
             axisColor: "#DADADA"
         },
         valueAxes: [{
-            axisAlpha: 0.9
+            axisAlpha: 1.0,
+            minimum: 0
         }],
         graphs: [{
             type: "column",
             title: "Requests",
-            valueField: "count",
+            valueField: "value",
             lineAlpha: 0,
-            fillColors: "#ADD981",
-            fillAlphas: 0.9,
+            fillColors: "#66CDAA",
+            fillAlphas: 1.0,
             balloonText: "[[title]] in [[category]]:<b>[[value]]</b>"
         }]
     });
@@ -31,10 +32,16 @@ function requestCreatedChart() {
 Template.analyticsRequestCreated.onRendered(function () {
 
     Meteor.call('getAnalyticsByRequestCreatedDate', function (err, result) {
-        Session.set("analyticsByRequestCreatedDate", result);
-        console.log("render" + JSON.stringify(Session.get("analyticsByRequestCreatedDate")));
+
+        if (err) {
+            console.log("Errors !!" + error + "  Result - " + result);
+        }else {
+            Session.set("analyticsByRequestCreatedDate", result);
+            console.log("render" + JSON.stringify(Session.get("analyticsByRequestCreatedDate")));
+            requestCreatedChart();
+        }
     });
 
-    requestCreatedChart();
+
 })
 

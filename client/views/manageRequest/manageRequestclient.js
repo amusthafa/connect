@@ -1,27 +1,12 @@
 
-Template.manageRequest.helpers({getRequest : function() {
-  check();
-  return (Session.get('getRequest'));
-}
-
-});
-
-Template.manageRequest.onRendered(function() {
-  Session.get('request');
-    var requestId = Session.get('requestId');
-    var request = {requestId:requestId};
-    console.log("manage Request with session set:", JSON.stringify(request));
-    Meteor.call('getRequest', request, function(err, result) {
-      console.log("on rendered result:", JSON.stringify(result));
-      Session.set('getRequest',result);
-    });
-});
-
-Template.registerHelper('formatDate', function(date) {
-  return moment(date).format('MM-DD-YYYY');
-});
 
 Template.manageRequest.helpers({
+
+    'match': function (event) {
+        return ( Session.get("match"));
+    },
+
+
     'isOtherChecked': function (event) {
         return (Session.get("isOther") === "Other");
     },
@@ -42,8 +27,8 @@ Template.manageRequest.helpers({
     },
 
     cityList: function () {
-      console.log(Session.get('cityList'));
-      return (Session.get('cityList'));
+        console.log(Session.get('cityList'));
+        return (Session.get('cityList'));
     },
 
     stateList: function () {
@@ -56,13 +41,32 @@ Template.manageRequest.helpers({
     }
 });
 
+
+
+
+Template.manageRequest.helpers({getRequest : function() {
+    check();
+    return (Session.get('getRequest'));
+}
+
+});
+
+Template.manageRequest.onRendered(function() {
+    Session.get('match');
+});
+
+
+Template.registerHelper('formatDate', function(date) {
+    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
+    return moment(date).format('MM-DD-YYYY');
+});
+
 Template.manageRequest.events({
 
-  'submit form': function (event) {
+    'submit form': function (event) {
 
-    var requestID = event.target._id.value;
-    if (event.target.editRequest.value === "EditRequest"){
-      console.log("EDIT REQ!!");
+        var requestID = event.target._id.value;
+        console.log("EDIT REQ!! requestID:", requestID);
         var request = {};
         request.requestName =  event.target.requestName.value;
         request.requestType =  event.target.requestType.value;
@@ -72,41 +76,28 @@ Template.manageRequest.events({
         request.requiredBy =  event.target.requiredBy.value;
         request.emergency =  event.target.emergency.value;
         request.status =  event.target.status.value;
-        request.line1 = event.target.s_line1.value;
-        request.line2 = event.target.s_line2.value;
+        request.line1 = event.target.p_line1.value;
+        request.line2 = event.target.p_line2.value;
         request.city = Session.get("sCity");
         request.state = Session.get("sState");
-        request.country = event.target.s_country.value;
-        request.pincode = event.target.s_pincode.value;
+        request.country = event.target.p_country.value;
+        request.pincode = event.target.p_pincode.value;
         var requestJson = JSON.stringify(request);
         console.log("REQUEST:" , requestJson);
 
         Meteor.call("editRequest", requestID, request, function (error, result) {
-            console.log("Client : error" + error + "result - " + JSON.stringify(result));
+            console.log("Client editRequest" , JSON.stringify(result));
             if (error) {
-                console.log("error" + error);
+                console.log("error body", (error));
+                // sAlert.error(error.reason);
+                Router.go("/editRequest");
             }
             else{
-              console.log('form submitted');
+                console.log("success");
+                // sAlert.success("Successfully saved your request.");
+                Router.go("/");
             }
 
         });
-
-      }
-      else if (event.target.deleteRequest.value === "DeleteRequest"){
-        console.log("DELETE REQ!!");
-
-                Meteor.call("deleteRequest", requestID , function (error, result) {
-                    console.log("Client : error" + error + "result - " + JSON.stringify(result));
-                    if (error) {
-                        console.log("error" + error);
-                    }
-                    else{
-                      console.log('form submitted');
-                    }
-
-                });
-      }
-  }
-
+    }
 });
