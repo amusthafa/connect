@@ -18,7 +18,7 @@
             <section class="content">
                 <div class="row">
                                     <div class="col-md-6">
-                                        <!-- general form elements -->
+
                                         <div class="box box-primary">
                                             <div class="box-header with-border">
                                                 <h3 class="box-title">{{match.request.request_name}}</h3>
@@ -48,20 +48,16 @@
                                                 {{/if}}
                                             </dd>
                                         </dl>
-                                    </div><!-- /.box-body -->
-                                </div><!-- /.box -->
-                            </div><!-- ./col -->
-            <form role="form" method="post" id="requestForm">
-                                <td><input hidden id = '_id' value={{getRequest._id}} /></td>
-                                <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
-                                <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
-                                <td><input hidden id = 'status' value={{getRequest.status}} /></td>
-
-                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <input hidden id = 'requestId' value={{match.request._id}} />
+                            <input hidden id = 'requestDate' value={{match.request.requiredBy}} />
+                            <input hidden id = 'aidId' value={{match.request.aidId}} />
         </div>
                 <section class="content-header">
                     <h1>
-                        Volunteer Information
+                        Choose a Volunteer
                     </h1>
                 </section>
 
@@ -73,26 +69,26 @@
                                 <div class="box-body table-responsive no-padding">
                                     <table class="table table-hover">
                                         <tr>
-                                            <th></th><!--
-                                                <th>Aid</th>
-                                                <th>Required By</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>-->
-                                        </tr>
+                                            <th></th>
+                                                                                      </tr>
 
                                         {{#each match.volunteerList}}
+
+
                                         <tr>
                                             <td>{{name}}, {{gender}}, {{age}}, {{city}}</td>
                                                 <td>
-                                                    <input type="button" class="connect"  data-volunteerAidId ={{volunteerAidId}} data-aidId ={{aidId}} value="Connect" id="Connect" />
-
+                                                    <input type="button" class="connect"  value="Connect"
+                                                           index={{index}}
+                                                           data-volunteerId ={{_id}}  data-volunteerAidId ={{volunteerAidId}} data-aidId ={{aidId}}
+                                                            />
                                                 </td>
                                             </tr>
 
                                         {{/each}}
                                     </table>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -106,9 +102,18 @@
 
 
         </div>
-
-
-
     </body>
     </html>
+
+
+
 </template>
+
+<template name="test">
+    <!--<div class="test">{{text}}</div>-->
+    <!--<input type="button" class="test" value="{{text}}"/>-->
+
+    a---{{a}}
+</template>
+
+

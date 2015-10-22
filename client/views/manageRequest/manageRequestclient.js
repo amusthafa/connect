@@ -102,9 +102,15 @@ Template.manageRequest.events({
     },
     'click .connect' : function (event) {
         event.preventDefault();
+
         var connect={};
-        connect.volunteerAidId = document.getElementById('volunteerAidId').value;
-        connect.volunteerId = document.getElementById('volunteerId').value;
+
+     ///   alert('connect this val' + JSON.stringify(this));
+        connect.volunteerAidId = this.aidId;///button.getAttribute('data-aidId');
+        connect.volunteerId = this.volunteerId;//button.getAttribute('data-volunteerId');
+   //     alert('connect.volunteerId' +connect.volunteerId);
+        //connect.volunteerAidId = document.getElementById('volunteerAidId').value;
+        //connect.volunteerId = document.getElementById('volunteerId').value;
         connect.requestId = document.getElementById('requestId').value;
         connect.requestDate = document.getElementById('requestDate').value;
         connect.seekerId=Meteor.userId();
