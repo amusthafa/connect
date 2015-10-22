@@ -32,11 +32,14 @@ Template.match.events({
         connect.requestDate = document.getElementById('requestDate').value;
         connect.seekerId=Meteor.userId();
         connect.aidId = document.getElementById('aidId').value;
-
+        connect.connectedBy= 'User';
             alert('connect - '+JSON.stringify(connect));
+        check(connect,Object);
          Meteor.call("connect",connect, function (error, result) {
-         console.log('connect - ' + result);
+         alert('connect - ' + result);
              Router.go("/");
+             alert('error - ' + error);
+
          });
     }
     ,

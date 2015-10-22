@@ -3,15 +3,31 @@ getRequest : function(req){
     check(req,Object);
     console.log("get request for req id: ", req);
   var request = Request.findOne({_id:req.requestId});
+    var aid  =Aid.findOne({_id:request.aidId});
+    request.aidName= aid.aidName;
   console.log("Server getRequest:" , JSON.stringify(request));
     return request;
 },
 
 getListOfRequest : function(req){
     check(req,Object);
-  var requestList = Request.find({requestorId : req.requestorId}).fetch();
+  var requestList = Request.find({creatorId : req.creatorId}).fetch();
   console.log("Server getListOfRequest:" , JSON.stringify(requestList));
 //  check(request, Match.Any);
+
+    var aidList=Aid.find({}).fetch();
+    var aidMap={};
+    for (var i in aidList) {
+        var aid = aidList[i];
+        aidMap[aid._id] = aid.aidName;
+    }
+    console.log("aidMap " + JSON.stringify(aidMap));
+    for (var i in requestList) {
+        var req = requestList[i];
+        var aidName=aidMap[req.aidId]
+        req.aidName =aidName ;
+    }
+
     return requestList;
 },
 
@@ -20,13 +36,17 @@ saveRequest: function (request) {
     console.log("server saverequest -- "+JSON.stringify(request));
     //TO-DO: remove check()
     check(request, Object);
+try{
+  console.log("request.aid:",request.aid);
+  var aid = Aid.findOne({'aidName':request.aid});
+  console.log("aid name:", aid);
 
     var requestDb = {
         "request_name": request.requestName,
         "requestType":request.requestType,
         "creatorId": request.creatorId,
         "requestorId": request.requestorId,
-        "aidId": request.aidId,
+        "aidId": aid._id,
         "aidCategoryId": request.aidCategoryId,
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,
@@ -41,20 +61,27 @@ saveRequest: function (request) {
         },
         "comment": request.comment
     }
+  }
+  catch(e){
+    console.log("error caught!!:", e);
+    // throw new Meteor.Error(e,"Please fill in the required details");
+    throw new Meteor.Error(e.error, "Please select the Aid" , e.details);
 
-    console.log("request inn server:", JSON.stringify(request));
+  }
+
+    console.log("request in server:", JSON.stringify(request));
+
     Request.insert(requestDb, function (error, result) {
 
-        console.log("Request insert " + JSON.stringify(Request.find().fetch()));
+        console.log("Request insert " + JSON.stringify(result));
         if (error) {
-            console.log("Errors !!" + error + "  Result - " + result);
-            //TO-DO: error message()
-            // throw new Meteor.Error("insert-failed", error.message);
-            throw new Meteor.Error("insert-failed", error);
+              console.log("sanitizedError!!!:", error.sanitizedError);
+            throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
         }
+        else{
+        return requestDb;
+      }
     });
-
-    return requestDb;
 },
 
 editRequest : function (requestID , request) {
@@ -62,30 +89,35 @@ editRequest : function (requestID , request) {
     console.log("server update -- "+JSON.stringify(request));
     //TO-DO: remove check()
     check(request, Object);
-
+    console.log("request.aidName!!!:", request.aid);
+    var aid = Aid.findOne({'aidName':request.aid});
+    console.log("AID selected!!!:", JSON.stringify(aid));
     var requestDb = {
         "request_name": request.requestName,
         "requestType":request.requestType,
         "creatorId": request.creatorId,
         "requestorId": request.requestorId,
-        "aidId": request.aidId,
+        "aidId": aid._id,
         "aidCategoryId": request.aidCategoryId,
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,
         "status": request.status,
-        "address_id": request.addressId
+        "requestAddress":{
+            "line1": request.line1,
+            "line2": request.line2,
+            "city": request.city,
+            "state": request.state,
+            "country": request.country,
+            "pinCode": request.pincode
+        },
+          "comment": request.comment
     }
-
-    console.log("request in server:", JSON.stringify(request));
-
-
+    console.log("request in server:", JSON.stringify(requestDb));
     Request.update({_id : requestID},{$set:requestDb}, function (error, result) {
 
         console.log("Request update " + JSON.stringify(Request.find().fetch()));
         if (error) {
             console.log("Errors !!" + error + "  Result - " + result);
-            //TO-DO: error message()
-            // throw new Meteor.Error("insert-failed", error.message);
             throw new Meteor.Error("insert-failed", error);
         }
     });

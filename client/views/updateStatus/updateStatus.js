@@ -39,7 +39,10 @@ Template.updateStatus.events({
     },
     'click .update' : function (event) {
         event.preventDefault();
-        var connect={_id : document.getElementById('_id').value, status :document.getElementById('status').value};
+        var connect={_id : document.getElementById('_id').value,
+            status :document.getElementById('status').value,
+            requestId :document.getElementById('requestId').value
+        };
 
         alert('connect - '+JSON.stringify(connect));
         Meteor.call("updateConnect",connect, function (error, result) {

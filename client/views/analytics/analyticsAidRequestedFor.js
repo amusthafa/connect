@@ -7,7 +7,7 @@ function aidChart() {
         "type": "serial",
         "theme": "light",
         "marginRight": 70,
-        "dataProvider":data,
+        "dataProvider": data,
         "valueAxes": [{
             "axisAlpha": 0,
             "position": "left",
@@ -41,8 +41,14 @@ function aidChart() {
 
 Template.analyticsAidRequestedFor.onRendered(function () {
     Meteor.call('getAnalyticsForAidRequested', function (err, result) {
-        Session.set("analyticsForRequestedAid", result);
-        console.log("render" + JSON.stringify(Session.get("analyticsForRequestedAid")));
+        if (err) {
+            console.log("Errors !!" + error + "  Result - " + result);
+        }
+        else {
+            Session.set("analyticsForRequestedAid", result);
+            console.log("render" + JSON.stringify(Session.get("analyticsForRequestedAid")));
+            aidChart();
+        }
     });
-    aidChart();
+
 })

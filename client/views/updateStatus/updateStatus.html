@@ -2,7 +2,7 @@
     <form action="" method="post" id="requestForm">
     <h1>Get Request</h1>
         <input id = 'requestId' />
-        <input type="hidden" id="_id" value="getRequestforUpdate.connect._id" />
+        <input type="hidden" id="_id" value="{{getRequestforUpdate.connect._id}}" />
         <input type="submit" id="getRequest" value="getRequest" />
         {{getRequestforUpdate}}
         request name - {{getRequestforUpdate.request.request_name}}<br>
@@ -12,7 +12,8 @@
         <select id="status">
             <option value="Accepted">Accept</option>
             <option  value="Declined">Decline</option>
-            <option value="Canceled">Cancel</option>
+            <option value="VolunteerCanceled">Volunteer Cancel</option>
+            <option value="SeekerCanceled">Seeker Cancel</option>
             <option value="Completed">Successful</option>
             <option value="Failed">Unsuccessful</option>
         </select>

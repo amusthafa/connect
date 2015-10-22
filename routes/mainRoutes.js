@@ -19,8 +19,9 @@ Router.route('/ForgotPassword', {
 
 Router.route('/Logout', {
     name: 'logout',
+    onBeforeAction: Meteor.logout,
     action: function () {
-        this.render('logout');
+        this.render('home');
     }
 });
 
@@ -28,6 +29,13 @@ Router.route('/SignUp', {
     name: 'signUp',
     action: function () {
         this.render('signUp');
+    }
+});
+
+Router.route('/AddAdmin', {
+    name: 'addAdmin',
+    action: function () {
+        this.render('addAdmin');
     }
 });
 
@@ -53,17 +61,17 @@ Router.route('/createRequest', {
   }
   });
 
-Router.route('/listOfRequest', {
-    name: 'listOfRequest',
+Router.route('/listOfRequests', {
+    name: 'listOfRequests',
     action: function () {
-        this.render('listOfRequest');
+        this.render('listOfRequests');
   }
   });
 
-  Router.route('/manageRequest', {
-      name: 'manageRequest',
+  Router.route('/editRequest', {
+      name: 'editRequest',
       action: function () {
-          this.render('manageRequest');
+          this.render('editRequest');
     }
     });
 
@@ -162,5 +170,33 @@ Router.route('/analyticsAidRequestedFor', {
     name: 'analyticsAidRequestedFor',
     action: function () {
         this.render('analyticsAidRequestedFor');
+    }
+});
+
+Router.route('/analyticsRequestCreatedPerMonth', {
+    name: 'analyticsRequestCreatedPerMonth',
+    action: function () {
+        this.render('analyticsRequestCreatedPerMonth');
+    }
+});
+
+Router.route('/analyticsOfferCreatedPerMonth', {
+    name: 'analyticsOfferCreatedPerMonth',
+    action: function () {
+        this.render('analyticsOfferCreatedPerMonth');
+    }
+});
+
+Router.route('/analyticsRequestPerRegion', {
+    name: 'analyticsRequestPerRegion',
+    action: function () {
+        this.render('analyticsRequestPerRegion');
+    }
+});
+
+Router.route('/manageRequest', {
+    name: 'manageRequest',
+    action: function () {
+        this.render('manageRequest');
     }
 });
