@@ -19,8 +19,9 @@ Router.route('/ForgotPassword', {
 
 Router.route('/Logout', {
     name: 'logout',
+    onBeforeAction: Meteor.logout,
     action: function () {
-        this.render('logout');
+        this.render('home');
     }
 });
 
