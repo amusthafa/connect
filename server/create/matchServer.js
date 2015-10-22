@@ -121,6 +121,10 @@ if (request) {
      finalVolunteerList.push(volunteersMap[user]);
      }
      */
+    if (request){
+    var aid  =Aid.findOne({_id:request.aidId});
+    request.aidName= aid.aidName;
+    }
     var matchDtls = {};
     matchDtls.requestId = request._id;
     matchDtls.requiredBy = request.requiredBy;
@@ -133,4 +137,4 @@ if (request) {
 }
 
 }})
-;
+;m

@@ -14,7 +14,7 @@ Template.listOfRequests.onRendered(function() {
   // if ( _.isEmpty(Session.get('req')) ) {
     var requestorId = Meteor.user()._id ;
     var request = {requestorId:requestorId};
-   alert(JSON.stringify(request));
+  // alert(JSON.stringify(request));
     console.log("list of requestss: request:", JSON.stringify(request));
     console.log("list of  requests with session set:", JSON.stringify(request));
     Meteor.call('getListOfRequest', request, function(err, result) {
@@ -39,17 +39,17 @@ Template.listOfRequests.events({
     'click .connect' : function (event) {
         event.preventDefault();
 
-         alert('form submitted');
+    //     alert('form submitted');
       //  console.log('clicked request id' + event.target.requestId.value);
 
         var request = {};
         //request._id= 'oEsBxoiLvhXHwRJ3G';
        var button=  document.getElementById('Connect');
-        alert('form submitted'+button);
+      //  alert('form submitted'+button);
 
         if (button)
           request._id = button.getAttribute('data-requestId');
-        alert('request - '+JSON.stringify(request));
+        //alert('request - '+JSON.stringify(request));
 
         Meteor.call("matchRequestVolunteer", request, function (error, result) {
             console.log("Client : error" + error + "result - " + JSON.stringify(result));

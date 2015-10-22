@@ -3,17 +3,10 @@ getRequest : function(req){
     check(req,Object);
     console.log("get request for req id: ", req);
   var request = Request.findOne({_id:req.requestId});
+    var aid  =Aid.findOne({_id:request.aidId});
+    request.aidName= aid.aidName;
   console.log("Server getRequest:" , JSON.stringify(request));
     return request;
-},
-
-getAidWithAidID : function(aid){
-  check(aid,Object);
-  console.log("get Aid for aid id: ", aid);
-  var request = Aid.findOne({_id:aid.aidId});
-  console.log("Server getRequest:" , JSON.stringify(request));
-  return request;
-
 },
 
 getListOfRequest : function(req){
