@@ -11,8 +11,7 @@ getRequest : function(req){
 
 getListOfRequest : function(req){
     check(req,Object);
-    check( req.requestorId,String);
-  var requestList = Request.find({requestorId : req.requestorId}).fetch();
+  var requestList = Request.find({creatorId : req.creatorId}).fetch();
   console.log("Server getListOfRequest:" , JSON.stringify(requestList));
 //  check(request, Match.Any);
 
@@ -90,30 +89,35 @@ editRequest : function (requestID , request) {
     console.log("server update -- "+JSON.stringify(request));
     //TO-DO: remove check()
     check(request, Object);
-
+    console.log("request.aidName!!!:", request.aid);
+    var aid = Aid.findOne({'aidName':request.aid});
+    console.log("AID selected!!!:", JSON.stringify(aid));
     var requestDb = {
         "request_name": request.requestName,
         "requestType":request.requestType,
         "creatorId": request.creatorId,
         "requestorId": request.requestorId,
-        "aidId": request.aidId,
+        "aidId": aid._id,
         "aidCategoryId": request.aidCategoryId,
         "requiredBy": request.requiredBy,
         "emergency": request.emergency,
         "status": request.status,
-        "address_id": request.addressId
+        "requestAddress":{
+            "line1": request.line1,
+            "line2": request.line2,
+            "city": request.city,
+            "state": request.state,
+            "country": request.country,
+            "pinCode": request.pincode
+        },
+          "comment": request.comment
     }
-
-    console.log("request in server:", JSON.stringify(request));
-
-
+    console.log("request in server:", JSON.stringify(requestDb));
     Request.update({_id : requestID},{$set:requestDb}, function (error, result) {
 
         console.log("Request update " + JSON.stringify(Request.find().fetch()));
         if (error) {
             console.log("Errors !!" + error + "  Result - " + result);
-            //TO-DO: error message()
-            // throw new Meteor.Error("insert-failed", error.message);
             throw new Meteor.Error("insert-failed", error);
         }
     });
