@@ -8,4 +8,11 @@ Meteor.methods({
         "password": credentials.password
     }
     console.log("Done");
-   }});
+  },
+
+  getUserId: function(){
+    var userID = this.userId;
+     console.log("this.userId",  this.userId);
+    return (userID);
+  }
+});

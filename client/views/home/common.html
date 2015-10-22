@@ -66,26 +66,32 @@
                         </a>
                     </li>
 
-                    <li class="treeview">
-                        <a href="{{pathFor route='adminAuth'}}">
-                            <span>Authentication/ Blacklisting</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='adminAuth'}}">
+                              <span>Authentication/ Blacklisting</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
+                    
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='aid'}}">
+                              <span>Admin - Add Aid</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
 
-                    <li class="treeview">
-                        <a href="{{pathFor route='aid'}}">
-                            <span>Admin - Add Aid</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
-
-                    <li class="treeview">
-                        <a href="{{pathFor route='analytics'}}">
-                            <span>Analytics</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='analytics'}}">
+                              <span>Analytics</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
                 </ul>
 
 
