@@ -36,7 +36,7 @@ Template.listOfRequests.events({
     Session.set('requestId',requestId);
     Router.go("/editRequest");
   },
-    'click .connect' : function (event) {
+    'click .match' : function (event) {
         event.preventDefault();
 
     //     alert('form submitted');
@@ -44,7 +44,7 @@ Template.listOfRequests.events({
 
         var request = {};
         //request._id= 'oEsBxoiLvhXHwRJ3G';
-       var button=  document.getElementById('Connect');
+       var button=  document.getElementById('Match');
       //  alert('form submitted'+button);
 
         if (button)

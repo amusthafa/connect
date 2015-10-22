@@ -99,5 +99,24 @@ Template.manageRequest.events({
             }
 
         });
+    },
+    'click .connect' : function (event) {
+        event.preventDefault();
+        var connect={};
+        connect.volunteerAidId = document.getElementById('volunteerAidId').value;
+        connect.volunteerId = document.getElementById('volunteerId').value;
+        connect.requestId = document.getElementById('requestId').value;
+        connect.requestDate = document.getElementById('requestDate').value;
+        connect.seekerId=Meteor.userId();
+        connect.aidId = document.getElementById('aidId').value;
+        connect.connectedBy= 'User';
+        alert('connect - '+JSON.stringify(connect));
+        check(connect,Object);
+        Meteor.call("connect",connect, function (error, result) {
+            alert('connect - ' + result);
+            Router.go("/");
+            alert('error - ' + error);
+
+        });
     }
 });
