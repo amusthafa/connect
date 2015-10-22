@@ -1,11 +1,8 @@
-<!-- Edit Request -->
-
 <template name="manageRequest">
     <html>
     {{>include}}
     <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         {{>common}}
         {{>header}}
         {{>sAlert}}
@@ -18,53 +15,96 @@
             </section>
             <section class="content">
                 <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- general form elements -->
-                                        <div class="box box-primary">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title">{{match.request.request_name}}</h3>
-                                            </div>
-                                        <div class="box-body">
-                                        <dl class="dl-horizontal">
-                                            <dt>Requesting for </dt>
-                                            <dd> {{match.request.requestType}} for {{match.request.aidName}}</dd>
-                                            <dt>On </dt>
-                                            <dd> {{match.request.requiredBy}}</dd>
-                                            <dt>At</dt>
-                                            <dd>
-                                                {{#if match.request.requestAddress.line1}}
-                                                    {{match.request.requestAddress.line1}},
-                                                {{/if}}
-                                                {{#if match.request.requestAddress.line2}}
-                                                {{match.request.requestAddress.line2}},
-                                                {{/if}}
-                                                {{#if match.request.requestAddress.city}}
-                                                {{match.request.requestAddress.city}},
-                                                {{/if}}
-                                                {{#if match.request.requestAddress.country}}
-                                                {{match.request.requestAddress.country}},
-                                                {{/if}}
-                                                {{#if match.request.requestAddress.pinCode}}
-                                                {{match.request.requestAddress.pinCode}}.
-                                                {{/if}}
-                                            </dd>
-                                        </dl>
-                                    </div><!-- /.box-body -->
-                                </div><!-- /.box -->
-                            </div><!-- ./col -->
+                    <div class="col-md-6">
 
-
-                            <form role="form" method="post" id="requestForm">
-                                <td><input hidden id = '_id' value={{getRequest._id}} /></td>
-                                <td><input hidden id = 'creatorId' value={{getRequest.creatorId}} /></td>
-                                <td><input hidden id = 'requestorId' value={{getRequest.requestorId}} /></td>
-                                <td><input hidden id = 'status' value={{getRequest.status}} /></td>
-
-                            </form>
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{match.request.request_name}}</h3>
+                            </div>
+                            <div class="box-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Requesting for</dt>
+                                    <dd> {{match.request.requestType}} for {{match.request.aidName}}</dd>
+                                    <dt>On</dt>
+                                    <dd> {{match.request.requiredBy}}</dd>
+                                    <dt>At</dt>
+                                    <dd>
+                                        {{#if match.request.requestAddress.line1}}
+                                        {{match.request.requestAddress.line1}},
+                                        {{/if}}
+                                        {{#if match.request.requestAddress.line2}}
+                                        {{match.request.requestAddress.line2}},
+                                        {{/if}}
+                                        {{#if match.request.requestAddress.city}}
+                                        {{match.request.requestAddress.city}},
+                                        {{/if}}
+                                        {{#if match.request.requestAddress.country}}
+                                        {{match.request.requestAddress.country}},
+                                        {{/if}}
+                                        {{#if match.request.requestAddress.pinCode}}
+                                        {{match.request.requestAddress.pinCode}}.
+                                        {{/if}}
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <input hidden id='requestId' value={{match.request._id}}/>
+                    <input hidden id='requestDate' value={{match.request.requiredBy}}/>
+                    <input hidden id='aidId' value={{match.request.aidId}}/>
                 </div>
+
+                {{#if isEqual match.request.status 'Submitted'}}
+
+                <section class="content-header">
+                    <h1>
+                        Choose a Volunteer
+                    </h1>
+                </section>
+
+                <section class="content">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+
+                                        {{#each match.volunteerList}}
+
+
+                                        <tr>
+                                            <td>{{name}}, {{gender}}, {{age}}, {{city}}</td>
+                                            <td>
+                                                <input type="button" class="connect" value="Connect"
+                                                       index={{index}}
+                                                       data-volunteerId={{_id}} data-volunteerAidId={{volunteerAidId}}
+                                                       data-aidId={{aidId}}
+                                                        />
+                                            </td>
+                                        </tr>
+
+                                        {{/each}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {{/if}}
+
             </section>
+
         </div>
+
+
     </div>
     </body>
     </html>
+
+
 </template>
+

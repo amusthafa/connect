@@ -36,19 +36,18 @@ Template.listOfRequests.events({
     Session.set('requestId',requestId);
     Router.go("/editRequest");
   },
-    'click .connect' : function (event) {
+    'click .match' : function (event) {
         event.preventDefault();
-
+    //    alert('match this val' + JSON.stringify(this));
     //     alert('form submitted');
       //  console.log('clicked request id' + event.target.requestId.value);
 
         var request = {};
         //request._id= 'oEsBxoiLvhXHwRJ3G';
-       var button=  document.getElementById('Connect');
+
       //  alert('form submitted'+button);
 
-        if (button)
-          request._id = button.getAttribute('data-requestId');
+          request._id = this._id;
         //alert('request - '+JSON.stringify(request));
 
         Meteor.call("matchRequestVolunteer", request, function (error, result) {

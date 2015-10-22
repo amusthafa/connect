@@ -2,6 +2,14 @@
 
 Template.manageRequest.helpers({
 
+    isEqual: function(v1, v2) {
+        if (v1 === v2){
+            alert(v1);
+            return true;}
+
+        return false;
+    },
+
     'match': function (event) {
         return ( Session.get("match"));
     },
@@ -97,6 +105,31 @@ Template.manageRequest.events({
                 // sAlert.success("Successfully saved your request.");
                 Router.go("/");
             }
+
+        });
+    },
+    'click .connect' : function (event) {
+        event.preventDefault();
+
+        var connect={};
+
+     ///   alert('connect this val' + JSON.stringify(this));
+        connect.volunteerAidId = this.aidId;///button.getAttribute('data-aidId');
+        connect.volunteerId = this.volunteerId;//button.getAttribute('data-volunteerId');
+   //     alert('connect.volunteerId' +connect.volunteerId);
+        //connect.volunteerAidId = document.getElementById('volunteerAidId').value;
+        //connect.volunteerId = document.getElementById('volunteerId').value;
+        connect.requestId = document.getElementById('requestId').value;
+        connect.requestDate = document.getElementById('requestDate').value;
+        connect.seekerId=Meteor.userId();
+        connect.aidId = document.getElementById('aidId').value;
+        connect.connectedBy= 'User';
+        alert('connect - '+JSON.stringify(connect));
+        check(connect,Object);
+        Meteor.call("connect",connect, function (error, result) {
+            alert('connect - ' + result);
+            Router.go("/");
+            alert('error - ' + error);
 
         });
     }
