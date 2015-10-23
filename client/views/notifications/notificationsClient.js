@@ -1,19 +1,48 @@
 Template.notifications.helpers({
     notifications: function () {
-        check();
         var req = Session.get('notifications');
+        console.log("helper" + JSON.stringify(Session.get('notifications')));
         return (Session.get('notifications'));
-    }
+    },
 
+    getCount: function () {
+        var req = Session.get('count');
+        console.log("helper" + JSON.stringify(Session.get('count')));
+        return (Session.get('count'));
+    }
 });
 
 Template.notifications.onRendered(function () {
     var user = {userId: Meteor.userId()};
-
+    console.log(user);
+    alert("1");
     Meteor.call('getNotifications', user, function (err, result) {
-        console.log("on rendered result:", JSON.stringify(result));
-        Session.set('notifications', result);
+        if (err) {
+            alert("2");
+            console.log("error" + error);
+        } else {
+            alert("3");
+            console.log("on rendered result:", JSON.stringify(result));
+            var res = [];
+            var count = [];
+            for (var i in result) {
+                not = result[i];
+                for (var x in not.notification) {
+                    resfinal = not.notification[i];
+                    res.push(resfinal);
+                }
+                for (var y in not.count) {
+                    countFinal = not.count[i];
+                    count.push(countFinal);
+                }
+            }
+            console.log("NEW" + JSON.stringify(res));
+            console.log("NEW" + JSON.stringify(count));
+            Session.set('notifications', res);
+            Session.set('count', count);
+        }
     });
+
 
 });
 

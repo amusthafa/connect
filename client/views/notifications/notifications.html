@@ -15,23 +15,16 @@
             </section>
 
             <section class="content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-primary">
-                            {{#each notifications}}
-                                <div class="box-header with-border" data-match="{{volunteerId}}">
-                                    <h3 strong class="box-title">{{description}}</h3>
+                <div class="box box-default">
+                    {{#each notifications}}
+                        <div class="box-header with-border" data-match="{{volunteerId}}">
 
-                                    <div class="box-body">
-                                        <dl class="dl-horizontal">
-                                            <dt>Request is</dt>
-                                            <dd>{{type}}</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                            {{/each}}
+                            <h3 strong class="box-title"><a href="#">{{description}}</a></h3>
+                            <small>({{status}})</small>
+                            <small class="pull-right">{{formatDate rowCreated}}</small>
+
                         </div>
-                    </div>
+                    {{/each}}
                 </div>
             </section>
         </div>
