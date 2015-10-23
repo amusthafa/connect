@@ -24,7 +24,7 @@ Address = new SimpleSchema({
 
 
 Information.attachSchema({
-        info_Title: {
+        infoTitle: {
             type: String
         },
         infoType: {
@@ -36,15 +36,15 @@ Information.attachSchema({
 
         },
        contactAddress: {
-            type: Address
+            type: Address,
             optional:true
         },
 
-        contactPPhone:{
-            type:Number
+        contactPhone:{
+            type:Number,
           optional:true
         },
-        addedBy_Id: {
+        addedById: {
               type: String
           },
 

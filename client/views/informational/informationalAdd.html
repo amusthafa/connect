@@ -1,36 +1,104 @@
-<!-- <template name="informationAdd">
+<template name="informationAdd">
+    <html>
+    {{>include}}
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        {{>header}}
+        {{>common}}
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    Admin
+                </h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Add Information</h3>
+                            </div>
+                            <form role="form" method="post" id="addInformationForm">
+                                <div class="box-body">
+                                  <div class="form-group">
+                                      <label>Title:</label>
+                                      <input id='infoTitle' class="form-control" type="text">
+                                   </div>
+                                   <div class="form-group">
+                                       <label>Information Type:</label>
+                                       <select class="form-control" id="stype-select">
+                                           <option selected="selected">Please Select</option>
+                                           {{#each typeList}}
+                                               <option value="{{this}}">{{this}}</option>
+                                           {{/each}}
+                                       </select>
+                                   </div>
+                                   <div class="form-group">
+                                       <label>Description:</label>
+                                       <input id='infoDescription' maxlength="100" class="form-control" type="text">
+                                    </div>
 
-<h1>Add Information </h1>
+                                    <div class="form-group">
+                                        <label>Contact Address:</label>
+                                      </div>
 
-<form>
-  <tr> <td> <label><input id="Information" type="radio" value= "hosp" name="hosp" />Hospitals/Doctors</label></td></tr>
-  <tr> <td> <label><input id="Information" type="radio" value= "aliment" name="hosp" />Aliments</label></td></tr>
-  <tr> <td> <label><input id="Information" type="radio" value= "education" name="hosp" />Education</label></td></tr>
-  <tr> <td> <label><input id="Information" type="radio" value= "jobs" name="hosp" />Jobs</label></td></tr>
-  <tr> <td> <label><input id="Information" type="radio" value= "rights" name="hosp" />Rights</label></td></tr>
-  <tr><td><input type="submit" class="addinfo" value="ADD" /></td></tr>
-  <!-- <tr> <td> <input type="button" value="Add" class="Add" /></td></tr> -->
-  <!-- <tr> <td> <input type="button" value="Delete" class="Delete" /></td></tr> -->
-  <!-- {{#if hosp}}
-  <tr><td>Enter hospital details </td></tr>
-  <tr><td>Hospital Name:</td>
-    <input type="text" class="form-control" id='Hospital_name'></tr>
-  <tr><td>Doctor Name:</td>
-      <input type="text" class="form-control" id='Doctor_name'></tr>
-    <tr><td>Description:</td>
-        <input type="text" class="form-control" id='Facility_desc'></tr>
-  {{/if}}
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        <input type="text" class="form-control" id='s_line1'>
+                                    </div>
 
-  {{#if aliment}}
-  <tr><td>Enter hospital details </td></tr>
-  <tr><td>Hospital Name:</td>
-    <input type="text" class="form-control" id='Hospital_name'></tr>
-  <tr><td>Doctor Name:</td>
-      <input type="text" class="form-control" id='Doctor_name'></tr>
-    <tr><td>Description:</td>
-        <input type="text" class="form-control" id='Facility_desc'></tr>
-  {{/if}}
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        <input type="text" class="form-control" id='s_line2'>
+                                    </div>
 
-</form>
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select class="form-control" id="scity-select">
+                                            <option selected="selected">Please Select</option>
+                                            {{#each cityList}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
 
-</template> --> -->
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <select class="form-control" id="sstate-select">
+                                            <option selected="selected">Please Select</option>
+                                            {{#each stateList}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='s_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        <input type="text" pattern=".{6,}" maxlength="6" class="form-control" id='s_pincode'>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact Number:</label>
+                                        <input id='infoPhone' pattern=".{10,}" maxlength="10" class="form-control" type="text">
+                                     </div>
+                                    </div>
+                                  <div class="box-footer">
+                                      <button type="submit" class="Addinfo">ADD</button>
+                                  </div>
+                                </form>
+                                </div>
+                                </div>
+                                </div>
+                            </section>
+                          </div>
+                          </div>
+                          </body>
+                          </html>
+</template>
