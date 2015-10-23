@@ -9,8 +9,22 @@ Template.notifications.helpers({
         var req = Session.get('count');
         console.log("Count" + JSON.stringify(Session.get('count')));
         return (Session.get('count'));
+    },
+
+    isEqual: function(v1, v2) {
+        if (v1 === v2){
+            return true;}
+
+        return false;
     }
 });
+
+Template.registerHelper('formatDateWithTime', function(date) {
+    console.log("format date:!!!!:", moment(date).format('MMMM DD YYYY'));
+    return moment(date).format('MMMM DD YYYY');
+});
+
+
 
 Template.notifications.onRendered(function () {
     var user = {userId: Meteor.userId()};
