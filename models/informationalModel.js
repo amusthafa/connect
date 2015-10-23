@@ -36,12 +36,12 @@ Information.attachSchema({
 
         },
        contactAddress: {
-            type: Address
+            type: Address,
             optional:true
         },
 
         contactPPhone:{
-            type:Number
+            type:Number,
           optional:true
         },
         addedBy_Id: {

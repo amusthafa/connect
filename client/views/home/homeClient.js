@@ -29,15 +29,18 @@ Template.home.helpers({
 });
 
 
+
 Template.home.onRendered(function () {
   var user = {userId: Meteor.userId()};
   console.log(user);
+  alert("1");
   Meteor.call('getNotifications', user, function (err, result) {
     if (err) {
+      alert("2");
       console.log("error" + error);
     } else {
-      alert("on rendered result:", JSON.stringify(result));
-
+      alert("3");
+      console.log("on rendered result:", JSON.stringify(result));
       var res = [];
       var count = [];
       for (var i in result) {
@@ -47,18 +50,20 @@ Template.home.onRendered(function () {
           res.push(resfinal);
         }
 
-        for (var y in not.count) {
+        for (var y in not.count){
           countFinal = not.count[y];
-          console.log("Count" + countFinal);
           count.push(countFinal);
         }
       }
+
+
       console.log("NEW" + JSON.stringify(res));
-      console.log("NEW" + JSON.stringify(count));
+      console.log("Count" + JSON.stringify(count));
       Session.set('notifications', res);
       Session.set('count', count);
     }
-  })
-});
+  });
+})
+;
 
 

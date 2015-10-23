@@ -15,7 +15,7 @@ Template.header.helpers({
 Template.header.onRendered(function () {
     var user = {userId: Meteor.userId()};
     console.log(user);
-    Meteor.call('getNotifications', user, function (err, result) {
+    Meteor.call('getNotificationsHeader', user, function (err, result) {
         if (err) {
             console.log("error" + error);
            // alert("hi");
