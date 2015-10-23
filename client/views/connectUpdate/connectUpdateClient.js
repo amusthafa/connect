@@ -1,7 +1,14 @@
-Template.connectUpdate.helpers({connectDetails : function() {
+Template.connectUpdate.helpers({
+    isEqual: function(v1, v2) {
+        if (v1 === v2){
+            return true;}
+
+        return false;
+    },
+    connectDetails : function() {
     check();
 // var req = Session.get('req');
-// console.log("Session:" , JSON.stringify(Session.get('req')) );
+ //alert("Session:" + JSON.stringify(Session.get('connectDetails')) );
 // alert('helper called');
 return (Session.get('connectDetails'));
 }
@@ -20,18 +27,15 @@ Template.connectUpdate.onRendered(function() {
 
 Template.connectUpdate.events({
 
-    'submit form': function (event) {
+    'click .connectUpdateSubmit': function (event) {
         event.preventDefault();
         console.log('form submitted');
         //console.log('clicked add aid' + event.target.aidName.value);
         var connectUpdate = {};
-        connectUpdate.status = event.target.status.value;
-        connectUpdate._id = event.target._id.value;
-        connectUpdate.requestId = event.target.requestId.value;
-
-        // var aidJson = JSON.stringify(aid);
-        // alert('client ' + paramsJson);
-        //Router.go("/addAid",{query : 1});
+        alert( document.getElementById('status').value);
+        connectUpdate.status = document.getElementById('status').value;
+        connectUpdate._id =  document.getElementById('connectId').value;
+        connectUpdate.requestId =  document.getElementById('requestId').value;
 
         Meteor.call("updateConnect", connectUpdate, function (error, result) {
             console.log("Client : error" + error + "result - " + result);

@@ -12,8 +12,8 @@ Template.listOfRequests.helpers({getRequestList : function() {
 
 Template.listOfRequests.onRendered(function() {
   // if ( _.isEmpty(Session.get('req')) ) {
-    var requestorId = Meteor.user()._id ;
-    var request = {requestorId:requestorId};
+    var creatorId = Meteor.user()._id ;
+    var request = {creatorId:creatorId};
   // alert(JSON.stringify(request));
     console.log("list of requestss: request:", JSON.stringify(request));
     console.log("list of  requests with session set:", JSON.stringify(request));
@@ -38,17 +38,16 @@ Template.listOfRequests.events({
   },
     'click .match' : function (event) {
         event.preventDefault();
-
+    //    alert('match this val' + JSON.stringify(this));
     //     alert('form submitted');
       //  console.log('clicked request id' + event.target.requestId.value);
 
         var request = {};
         //request._id= 'oEsBxoiLvhXHwRJ3G';
-       var button=  document.getElementById('Match');
+
       //  alert('form submitted'+button);
 
-        if (button)
-          request._id = button.getAttribute('data-requestId');
+          request._id = this._id;
         //alert('request - '+JSON.stringify(request));
 
         Meteor.call("matchRequestVolunteer", request, function (error, result) {
@@ -58,17 +57,27 @@ Template.listOfRequests.events({
         });
        // alert('match '+ JSON.stringify(Session.get("match")));
     },
-  'click .deleteRequest': function(event){
+
+    'click .edit' : function (event) {
+        event.preventDefault();
+        requestId = this._id;
+        console.log("requestId in edit request:", requestId);
+        Session.set('requestId',requestId);
+        Router.go("/createRequest");
+    },
+
+
+  'click .delete': function(event){
       event.preventDefault();
       console.log("DELETE REQUEST!!!");
-      var requestId = document.getElementById('reqID').value;
+      var requestId = this._id;
       console.log("requestId in delete request", requestId);
       Meteor.call("deleteRequest", requestId , function (error, result) {
           console.log("Client : error" + error + "result - " + JSON.stringify(result));
           if (error) {
           console.log("error body", (error));
           sAlert.error(error.reason);
-          Router.go("/listOfRequests");
+          Router.go("/");
         }
         else{
           console.log("success");

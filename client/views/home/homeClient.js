@@ -58,7 +58,7 @@ Template.home.onRendered(function () {
       Session.set('notifications', res);
       Session.set('count', count);
     }
-  });
-
-
+  })
 });
+
+

@@ -8,6 +8,15 @@
             <section class="sidebar">
                 <ul class="sidebar-menu" id="myNavmenu" role="navigation">
 
+                    {{#if isInRole 'Admin'}}
+                  	<li class="treeview">
+                      <a href="{{pathFor route='addAdmin'}}">
+                        <span>Add Users to Admin Group</span>
+                        <span class="label label-primary pull-right"></span>
+                      </a>
+                    </li>
+                  	{{/if}}
+
                     <li class="treeview">
                         <a href="{{pathFor route='createRequest'}}">
                             <span>Create Request</span>
@@ -57,6 +66,7 @@
                         </a>
                     </li>
 
+
                     <li class="treeview">
                         <a href="{{pathFor route='adminAuth'}}">
                             <span>Authentication/ Blacklisting</span>
@@ -72,12 +82,49 @@
                     </li>
 
                     <li class="treeview">
-                        <a href="{{pathFor route='analytics'}}">
-                            <span>Analytics</span>
+                        <a href="{{pathFor route='informationAdd'}}">
+                            <span>Admin - Add Information </span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
+
+                  <li class="treeview">
+                    <a href="{{pathFor route='analytics'}}">
+                        <span>Analytics</span>
+                        <span class="label label-primary pull-right"></span>
+                    </a>
+                </li>
+
+
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='adminAuth'}}">
+                              <span>Authentication/ Blacklisting</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
+
+
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='aid'}}">
+                              <span>Admin - Add Aid</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
+
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='analytics'}}">
+                              <span>Analytics</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
                 </ul>
+
 
 
                 <a href="/" style="display: none"> STANDOUT?? </a>

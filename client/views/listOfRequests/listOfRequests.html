@@ -15,41 +15,7 @@
                    Manage Requests
                 </h1>
             </section>
-            <!--<section class="content">
-                <div class="row">
-                    &lt;!&ndash; left column &ndash;&gt;
-                            <table class="table table-striped">
-                              <thead>
-                                <tr>
-                                  <th>Request</th>
-                                  <th>Request Name</th>
-                                  <th>Aid</th>
-                                  <th>Required By Date</th>
-                                  &lt;!&ndash; <th>Subtotal</th> &ndash;&gt;
-                                </tr>
-                              </thead>
-                              {{#each getRequestList}}
-                              <tbody>
-                                    <tr>
-                                      <td>{{index}}</td>
-                                      <td>{{request_name}}</td>
-                                      <td>{{aidId}}</td>
-                                      <td>{{formatDate requiredBy}}</td>
-                                      <input type="hidden" id='reqID' value={{_id}} />
-                                        &lt;!&ndash; <input type="button" class="editRequest" value='Edit Request'/> &ndash;&gt;
-                                        <input type="submit" id="submitRequest" value="Edit Request" />
-                                          <input type="button" class="deleteRequest" value='Delete Request'/>
-                                          &lt;!&ndash; <input type="submit" id="submitRequest" value="Delete Request"/> &ndash;&gt;
-                                     </tr>
-                                </tbody>
-                              {{/each}}
-                            </table>
-                          </div>
-                    </div>
-                        </form>
-                    </div>
-                </div>
-            </section>-->
+
             <section class="content">
 
                 <div class="row">
@@ -73,9 +39,11 @@
                                         <td>{{formatDate requiredBy}}</td>
                                         <td><span class="label label-success">{{status}}</span></td>
                                         <td>
-                                            <input type="button" class="match"  data-requestId ={{_id}} value="Match" id="Match" />
-                                            <a href="#" class="edit">Edit</a>
-                                            <a href="#" class="delete">Delete</a>
+
+                                            <input type="button" class="connect"  data-requestId ={{_id}} value="Connect" id="Connect" />
+                                            <input type="button" class="edit"  data-requestId ={{_id}} value="Edit" id="Edit" />
+                                            <input type="button" class="delete"  data-requestId ={{_id}} value="Delete" id="Delete" />
+
                                             <a href="#" class="cancel">Cancel</a>
                                             <input type="hidden" id="requestId"  value="{{_id}}" />
                                         </td>
@@ -94,5 +62,3 @@
     </body>
     </html>
 </template>
-
-

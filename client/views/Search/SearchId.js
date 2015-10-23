@@ -4,6 +4,9 @@ Template.SearchId.helpers ({
         check();
       return (Session.get('res'));
     },
+    'isAdmin': function () {
+      return (Session.get('isAdmin'));
+    },
     'searchuser': function () {
          //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
          return (Session.get('searchResult'));
@@ -65,6 +68,10 @@ Session.set('userId',UserReq[key]._id);
 userId= UserReq[key]._id;
 }
 else continue;
+if (Roles.userIsInRole(userId,'Admin'))
+{ console.log("is admin : " + userId);
+  Session.set('isAdmin','true');
+console.log(Session.get('isAdmin'));}
 Meteor.call("SearchProfile",userId, function(error, result) {
     Session.set('getUserProfile',result);
     console.log("Profile:"+JSON.stringify(Session.get('getUserProfile')));
@@ -86,8 +93,12 @@ Meteor.call("SearchProfile",userId, function(error, result) {
               }
 
              });
+          },
+          'click .addAdmin': function(event){
+              console.log("inside add admin");
+              Roles.addUsersToRoles( Session.get('userId'), ['Admin']);
+              // Meteor.users.update({_id : Session.get('userId')}, {$set : {roles : "Admin"}});
           }
-
        });
 
 

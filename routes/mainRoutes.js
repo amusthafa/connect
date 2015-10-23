@@ -32,6 +32,13 @@ Router.route('/SignUp', {
     }
 });
 
+Router.route('/AddAdmin', {
+    name: 'addAdmin',
+    action: function () {
+        this.render('addAdmin');
+    }
+});
+
 Router.route('/CreateProfile', {
     name: 'createProfile',
     action: function () {
@@ -72,6 +79,12 @@ Router.route('/listOfRequests', {
       name: 'SearchId',
       action: function () {
           this.render('SearchId');
+      }
+  });
+  Router.route('/informationAdd', {
+      name: 'informationAdd',
+      action: function () {
+          this.render('informationAdd');
       }
   });
   // Router.route('/SearchRequest', {
@@ -187,4 +200,3 @@ Router.route('/manageRequest', {
         this.render('manageRequest');
     }
 });
-
