@@ -1,19 +1,55 @@
 <template name="notifications">
+    <html>
+    {{>include}}
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
 
-    <table>
-        <th>_id,connectId,requestId,volunteerAidId,userId,type,description</th>
-        {{#each notifications}}
-            <tr data-match="{{volunteerId}}">
-                <td>
-                    {{_id}}, {{connectId}},
-                </td>
-                <td>
-                    <a href=# id="getRequest" data-id="{{connectId}}" data-notif-id="{{_id}}"> {{requestId}} </a>
-                </td>
-                <td>
-                    {{volunteerAidId}},{{userId}},{{type}},{{description}}
-                </td>
-            </tr>
-        {{/each}}
-    </table>
+        {{>common}}
+        {{>header}}
+
+        <div class="content-wrapper">
+
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Notifications</h3>
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <!--<table class="table table-hover">-->
+                                <table class="table table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    {{#each notifications}}
+                                        <tr data-match="{{volunteerId}}">
+                                            {{#if isEqual status 'Unread'}}
+                                                <td><b><a href="#">{{description}}</a></b></td>
+                                                <td><b>{{status}}</b></td>
+                                                <td><b>{{formatDateWithTime rowCreated}}</b></td>
+                                            {{else}}
+                                                <td><a href="#">{{description}}</a></td>
+                                                <td>{{status}}</td>
+                                                <td>{{formatDateWithTime rowCreated}}</td>
+                                            {{/if}}
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </body>
+    </html>
 </template>

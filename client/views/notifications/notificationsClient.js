@@ -1,50 +1,94 @@
-Template.notifications.helpers({notifications: function() {
-    check();
-    var req = Session.get('notifications');
-    return (Session.get('notifications'));
-}
+Template.notifications.helpers({
+    notifications: function () {
+        var req = Session.get('notifications');
+        console.log("helper" + JSON.stringify(Session.get('notifications')));
+        return (Session.get('notifications'));
+    },
 
+    getCount: function () {
+        var req = Session.get('count');
+        console.log("Count" + JSON.stringify(Session.get('count')));
+        return (Session.get('count'));
+    },
+
+    isEqual: function(v1, v2) {
+        if (v1 === v2){
+            return true;}
+
+        return false;
+    }
 });
 
-Template.notifications.onRendered(function() {
-    var user = { userId :Meteor.userId() };
-//    alert('result - ');
+Template.registerHelper('formatDateWithTime', function(date) {
+    console.log("format date:!!!!:", moment(date).format('MMMM DD YYYY'));
+    return moment(date).format('MMMM DD YYYY');
+});
 
-        Meteor.call('getNotifications', user, function(err, result) {
 
-  //          alert('result - '+JSON.stringify(result));
+
+Template.notifications.onRendered(function () {
+    var user = {userId: Meteor.userId()};
+    console.log(user);
+    alert("1");
+    Meteor.call('getNotifications', user, function (err, result) {
+        if (err) {
+            alert("2");
+            console.log("error" + error);
+        } else {
+            alert("3");
             console.log("on rendered result:", JSON.stringify(result));
-            Session.set('notifications', result);
-        });
+            var res = [];
+            var count = [];
+            for (var i in result) {
+                not = result[i];
+                for (var x in not.notification) {
+                    resfinal = not.notification[x];
+                    res.push(resfinal);
+                }
 
-});
+                for (var y in not.count){
+                    countFinal = not.count[y];
+                    count.push(countFinal);
+                }
+            }
 
+
+            console.log("NEW" + JSON.stringify(res));
+            console.log("Count" + JSON.stringify(count));
+            Session.set('notifications', res);
+            Session.set('count', count);
+        }
+    });
+})
+;
 
 
 Template.notifications.events({
-    'click #getRequest': function(event) {
+    'click #getRequest': function (event) {
         event.preventDefault();
-        var connect = {_id : event.target.getAttribute("data-id"),
-         notificationId : event.target.getAttribute("data-notif-id")};
+        var connect = {
+            _id: event.target.getAttribute("data-id"),
+            notificationId: event.target.getAttribute("data-notif-id")
+        };
 
-    /*    Meteor.call('getRequest', request, function(err, result) {
-            console.log(" result:", JSON.stringify(result));
-            Session.set('req', result);
-           alert(result);
-           Router.go("/manageRequest");
-        });
+        /*    Meteor.call('getRequest', request, function(err, result) {
+         console.log(" result:", JSON.stringify(result));
+         Session.set('req', result);
+         alert(result);
+         Router.go("/manageRequest");
+         });
 
-*/
+         */
         //call connect, update request status,
         // get connect details for the volunteer to update the connect status to accept/decline
 
-        Meteor.call('getConnectDetails', connect, function(err, result) {
-                console.log(" result:", JSON.stringify(result));
-                Session.set('connectDetails', result);
-         //       alert(result);
-                Router.go("/connectUpdate");
+        Meteor.call('getConnectDetails', connect, function (err, result) {
+            console.log(" result:", JSON.stringify(result));
+            Session.set('connectDetails', result);
+            //       alert(result);
+            Router.go("/connectUpdate");
 
-            });
+        });
     },
     'submit form': function (event) {
         event.preventDefault();

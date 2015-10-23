@@ -1,4 +1,11 @@
 //Session.setDefault("res","Self");
+Template.SearchId.onRendered(function() {
+  $('.rateit').rateit();
+  $(".rateit").on('rated', function (event, value) {
+            console.log('Rating:' + value)
+            })
+});
+
 Template.SearchId.helpers ({
       'isUser': function () {
         check();

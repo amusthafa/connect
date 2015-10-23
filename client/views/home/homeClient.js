@@ -14,34 +14,56 @@ Template.home.created = function() {
   }
 };
 
-Template.common.helpers ({
-      'isUser': function () {
-        check();
-      return (Session.get('isUser'));
-    },
-    'isAdmin': function () {
-      return (Session.get('isAdmin'));
+Template.home.helpers({
+  notifications: function () {
+    var req = Session.get('notifications');
+    console.log("helper" + JSON.stringify(Session.get('notifications')));
+    return (Session.get('notifications'));
+  },
+
+  getCount: function () {
+    var req = Session.get('count');
+    console.log("helper" + JSON.stringify(Session.get('count')));
+    return (Session.get('count'));
+  }
+});
+
+
+
+Template.home.onRendered(function () {
+  var user = {userId: Meteor.userId()};
+  console.log(user);
+  alert("1");
+  Meteor.call('getNotifications', user, function (err, result) {
+    if (err) {
+      alert("2");
+      console.log("error" + error);
+    } else {
+      alert("3");
+      console.log("on rendered result:", JSON.stringify(result));
+      var res = [];
+      var count = [];
+      for (var i in result) {
+        not = result[i];
+        for (var x in not.notification) {
+          resfinal = not.notification[x];
+          res.push(resfinal);
+        }
+
+        for (var y in not.count){
+          countFinal = not.count[y];
+          count.push(countFinal);
+        }
+      }
+
+
+      console.log("NEW" + JSON.stringify(res));
+      console.log("Count" + JSON.stringify(count));
+      Session.set('notifications', res);
+      Session.set('count', count);
     }
   });
+})
+;
 
 
-Template.common.onRendered(function() {
-  var userId;
-  Meteor.call('getUserId', function(err, result) {
-    console.log("result:", JSON.stringify(result));
-    userId = result;
-    console.log("Roles.userIsInRole(userId,'Admin')", Roles.userIsInRole(userId,'Admin'));
-    console.log("Roles.userIsInRole(userId,'User')", Roles.userIsInRole(userId,'User'));
-    if (Roles.userIsInRole(userId,'Admin'))
-    { console.log("UserID: " , userId);
-      Session.set('isAdmin','true');
-    console.log("isAdmin",Session.get('isAdmin'));}
-
-    if (Roles.userIsInRole(userId,'User'))
-    { console.log(" userID : " , userId);
-      Session.set('isUser','true');
-    console.log("isUser",Session.get('isUser'));}
-  });
-
-
-});
