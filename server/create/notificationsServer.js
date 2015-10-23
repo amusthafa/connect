@@ -15,7 +15,7 @@ Meteor.methods(
                 }
             ).fetch();
 
-            var pipeline1 =Notifications.find(
+            var pipeline1 = Notifications.find(
                 {
                     $query: {
                         "userId": user.userId,
@@ -23,9 +23,6 @@ Meteor.methods(
                     }
                 }
             ).fetch();
-
-            console.log("count" + JSON.stringify(pipeline1.length));
-            console.log("not " + JSON.stringify(notificationsList));
 
             for (var i in notificationsList) {
                 var notification = notificationsList[i];
@@ -40,12 +37,16 @@ Meteor.methods(
                 console.log(request.request_name);
                 notification.requestName = request.request_name;
             }
-
             console.log('notificationsList  ' + JSON.stringify(notificationsList));
+
+            var count = []
+            count.push({"count": pipeline1.length});
+
+            console.log("count" + JSON.stringify(count));
 
             var combined = [];
             combined.push({"notification": notificationsList});
-            combined.push({"count": pipeline1.length});
+            combined.push({"count": count});
             console.log(JSON.stringify(combined));
             return combined;
         }

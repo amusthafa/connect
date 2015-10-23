@@ -7,7 +7,7 @@ Template.notifications.helpers({
 
     getCount: function () {
         var req = Session.get('count');
-        console.log("helper" + JSON.stringify(Session.get('count')));
+        console.log("Count" + JSON.stringify(Session.get('count')));
         return (Session.get('count'));
     }
 });
@@ -28,23 +28,25 @@ Template.notifications.onRendered(function () {
             for (var i in result) {
                 not = result[i];
                 for (var x in not.notification) {
-                    resfinal = not.notification[i];
+                    resfinal = not.notification[x];
                     res.push(resfinal);
                 }
-                for (var y in not.count) {
-                    countFinal = not.count[i];
+
+                for (var y in not.count){
+                    countFinal = not.count[y];
                     count.push(countFinal);
                 }
             }
+
+
             console.log("NEW" + JSON.stringify(res));
-            console.log("NEW" + JSON.stringify(count));
+            console.log("Count" + JSON.stringify(count));
             Session.set('notifications', res);
             Session.set('count', count);
         }
     });
-
-
-});
+})
+;
 
 
 Template.notifications.events({
