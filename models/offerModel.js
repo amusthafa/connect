@@ -40,18 +40,18 @@ Offer.attachSchema({
         offerAddress:  {
             type: Address
         },
-        aidId: {
+        /*aidId: {
             type: String
-        },
+        },*/
         comment: {
             type: String
         },
-        fromDate: {
+        /*fromDate: {
             type: String
         },
         toDate: {
             type: String
-        },
+        },*/
 
         rowCreated: {
             type: Date,
