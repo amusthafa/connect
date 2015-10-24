@@ -11,18 +11,45 @@ Template.notifications.helpers({
         return (Session.get('count'));
     },
 
-    isEqual: function(v1, v2) {
-        if (v1 === v2){
-            return true;}
+    isEqual: function (v1, v2) {
+        if (v1 === v2) {
+            return true;
+        }
         return false;
     }
 });
 
-Template.registerHelper('formatDateWithTime', function(date) {
+Template.registerHelper('formatDateWithTime', function (date) {
     console.log("format date:!!!!:", moment(date).format('MMMM DD, YYYY'));
     return moment(date).format('MMMM DD, YYYY');
 });
 
+Template.notifications.onRendered(function () {
+    Meteor.call('getNotifications', function (err, result) {
+        if (err) {
+            alert("error" + error);
+        } else {
+
+            var res = [];
+            var count = [];
+            for (var i in result) {
+                not = result[i];
+                for (var x in not.notification) {
+                    resfinal = not.notification[x];
+                    res.push(resfinal);
+                }
+
+                for (var y in not.count) {
+                    countFinal = not.count[y];
+                    console.log("Count" + countFinal);
+                    count.push(countFinal);
+                }
+            }
+            Session.set('notifications', res);
+            Session.set('count', count);
+        }
+    });
+});
 
 Template.notifications.events({
     'click #getRequest': function (event) {
@@ -54,33 +81,33 @@ Template.notifications.events({
         });
 
     },
-    'click .notificationConnect' : function (event) {
+    'click .notificationConnect': function (event) {
 
         event.preventDefault();
-       if (this.type == "Initiated"){
-           alert(JSON.stringify(this));
-        var connect = {}
-        connect._id =this.connectId;
-        connect.notificationId =this._id;
-         alert(JSON.stringify(connect));
-        Meteor.call('getConnectDetails', connect, function(err, result) {
-            //  alert(" result:"+ JSON.stringify(result));
-            Session.set('connectDetails', result);
-            //       alert(result);
-            Router.go("/connectUpdate");
+        if (this.type == "Initiated") {
+            alert(JSON.stringify(this));
+            var connect = {}
+            connect._id = this.connectId;
+            connect.notificationId = this._id;
+            alert(JSON.stringify(connect));
+            Meteor.call('getConnectDetails', connect, function (err, result) {
+                //  alert(" result:"+ JSON.stringify(result));
+                Session.set('connectDetails', result);
+                //       alert(result);
+                Router.go("/connectUpdate");
 
-        });
-       }
-        else if (this.type=="Submitted") {
+            });
+        }
+        else if (this.type == "Submitted") {
 //match
-           var request = {};
-           request._id = this.requestId;
-           Meteor.call("matchRequestVolunteer", request, function (error, result) {
-               console.log("Client : error" + error + "result - " + JSON.stringify(result));
-               Session.set("match", result);
-               Router.go('/manageRequest');
-           });
-       }
+            var request = {};
+            request._id = this.requestId;
+            Meteor.call("matchRequestVolunteer", request, function (error, result) {
+                console.log("Client : error" + error + "result - " + JSON.stringify(result));
+                Session.set("match", result);
+                Router.go('/manageRequest');
+            });
+        }
 
     }
 
