@@ -2,7 +2,6 @@
 
 Template.contactUs.onRendered(function () {
     Meteor.call('getContactUsDetails', function (err, result) {
-      alert("!");
         console.log("on rendered : getContactUsDetails:", JSON.stringify(result));
         Session.set("contactUsDetails", result);
     });

@@ -53,11 +53,13 @@
                               <div class="box-body">
 
                                 <div class="form-group">
-                                  <label>Contact Details:</label>
                                   {{#each getContactUsDetails}}
                                     <div>
-                                      {{contactName}}, {{phoneNumber}}, {{emailId}}
+                                      <div>{{contactName}}</div>
+                                      <div>{{phoneNumber}}</div>
+                                      <div>{{emailId}}</div>
                                     </div>
+                                    <hr>
                                   {{/each}}
                               </div>
 
