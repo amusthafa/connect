@@ -40,6 +40,8 @@ Template.SearchId.events({
     console.log("clicked request");
     var UserReq = Session.get('searchResult');
  var UserReq = Session.get('searchResult');
+ if($('input[name=SelectUser]:radio:checked').val())
+ {
 for(var key in UserReq)
 {
  id_user=UserReq[key]._id;
@@ -53,19 +55,25 @@ userId= UserReq[key]._id;
  Meteor.call("SearchRequest",userId, function(error, result) {
    if (result == 0)
    {
-     alert("No Request found for this User");
+     sAlert.error("No Request found for this User");
    }
    else {
      Session.set('getUserRequest',result);
+     Session.set('getUserProfile',0);
      console.log("Requests:"+JSON.stringify(result));
        }
 });
+   }}
+   else {
+     sAlert.error("Select a User");
    }}
    ,
    'click .Profile': function(event){
      event.preventDefault();
  console.log("Clicked Profile");
  var UserReq = Session.get('searchResult');
+ if($('input[name=SelectUser]:radio:checked').val())
+ {
 for(var key in UserReq)
 {
 id_user=UserReq[key]._id;
@@ -81,25 +89,33 @@ if (Roles.userIsInRole(userId,'Admin'))
 console.log(Session.get('isAdmin'));}
 Meteor.call("SearchProfile",userId, function(error, result) {
     Session.set('getUserProfile',result);
-    console.log("Profile:"+JSON.stringify(Session.get('getUserProfile')));
+    Session.set('getUserRequest',0);
     });
  }}
+
+else {
+  sAlert.error("Select a User");
+}
+}
  ,
        'submit form': function (event) {
         event.preventDefault();
+        Session.set('getUserProfile',0);
+        Session.set('getUserRequest',0);
+        Session.set('searchResult',0);
         EnteredName = event.target.Ename.value;
-        console.log('clicked Search ' + EnteredName );
+        if(EnteredName) {
         Meteor.call("SearchUser",EnteredName, function(error, result) {
                            if (result == 0) {
-                 console.log("No Result Found.");
-                 alert("No Result Found !")
+                 sAlert.error("No Result Found !")
                }
-               else {
-                 Session.set('searchResult',result);
-                console.log("Search" + JSON.stringify(Session.get('searchResult')));
-              }
+               else
+                   Session.set('searchResult',result);
+               });
+         }
+         else
+         sAlert.error("Please enter a name to search");
 
-             });
           },
           'click .addAdmin': function(event){
               console.log("inside add admin");
