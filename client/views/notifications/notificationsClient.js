@@ -89,7 +89,7 @@ Template.notifications.events({
             var connect = {}
             connect._id = this.connectId;
             connect.notificationId = this._id;
-            alert(JSON.stringify(connect));
+            //alert(JSON.stringify(connect));
             Meteor.call('getConnectDetails', connect, function (err, result) {
                 //  alert(" result:"+ JSON.stringify(result));
                 Session.set('connectDetails', result);
@@ -102,6 +102,8 @@ Template.notifications.events({
 //match
             var request = {};
             request._id = this.requestId;
+            request.notificationId = this._id;
+           //alert('req - '+JSON.stringify(request));
             Meteor.call("matchRequestVolunteer", request, function (error, result) {
                 console.log("Client : error" + error + "result - " + JSON.stringify(result));
                 Session.set("match", result);

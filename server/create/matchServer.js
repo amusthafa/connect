@@ -1,19 +1,36 @@
 /**
  * Created by amusthafa on 10/4/2015.
  */
-Meteor.methods({matchRequestVolunteer: function (request) {
-    console.log('entered matchRequestVolunteer');
-    check(request, Object);
+Meteor.methods({matchRequestVolunteer: function (requestIp) {
+    console.log('entered matchRequestVolunteer -------------------');
+    check(requestIp, Object);
 
-    console.log('entered connect request._id -- ' + request._id);
+    console.log('entered connect request._id -- ' + requestIp._id);
 
-    var request = Request.findOne({"_id": request._id, status: "Submitted"});
+    //update notification to Read
+    console.log('requestIp.notificationId ---- '+requestIp.notificationId);
+    if (requestIp.notificationId){
+        Notifications.update({_id: requestIp.notificationId}, { $set: {"status": "Read"}}
+            , function (error, result) {
+                console.log("update Notification to Read - result " + result + ' error ' + error);
+                if (error) {
+                    console.log("Errors !!" + error + "  Result - " + result);
+                    //TO-DO: error message()
+                    // throw new Meteor.Error("insert-failed", error.message);
+                    throw new Meteor.Error("update-failed", error);
+                }
+            });
+    }
+
+    var request = Request.findOne({"_id": requestIp._id, status: "Submitted"});
     console.log("req -- " + JSON.stringify(request));
 
     //for Aid
     //City, - Done, Aid expiry > requiredbydate
     //TODO - OFfer from toDate, Rating
     if (request) {
+
+
         var volunteers = VolunteerAid.find({ "aidId": request.aidId,
                 //"aidAddress.city": request.requestAddress.city,
                // aidExpiry: {$gt: request.requiredBy},
@@ -150,7 +167,6 @@ Meteor.methods({matchRequestVolunteer: function (request) {
 
             volunteer.city = user.profile.address.city;
         }
-
 
         var matchDtls = {};
         matchDtls.requestId = request._id;
