@@ -1,28 +1,7 @@
-Notifications = new Meteor.Collection('notifications');
-Notifications.attachSchema({
-        connectId: {
-            type: String,
-            optional :true
-        },
-        requestId: {
-            type: String
-        },
-        volunteerAidId: {
-            type: String
-        },
-        status: {
-            type: String
-        },
-        userId: {
-            type: String
-        },
-        type: {
-            type: String,
-            //same set of values as status of connect
-            allowedValues: ['Submitted','Initiated', 'Accepted','Declined','VolunteerCanceled',
-                'RequestorCanceled', 'PendingCompletion','Completed','CompletedWithRating']
-        },
-        description: {
+Ratings = new Meteor.Collection('ratings');
+
+Ratings.attachSchema({
+        count: {
             type: String
         },
         rowCreated: {
