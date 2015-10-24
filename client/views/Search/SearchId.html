@@ -1,20 +1,59 @@
 <template name = "SearchId">
-  <h1>Search User </h1>
+  <html>
+{{>include}}
+  <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+      {{>common}}
+      {{>header}}
+      {{>sAlert}}
+      <div class="content-wrapper">
+          <section class="content-header">
+              <h1>
+             Search User    </h1>
+             <section class="content">
+
+                 <div class="row">
+                     <div class="col-xs-12">
+                         <div class="box">
+
   <input type="range" min="0" max="5" value="0" step="0.5" id="userRating">
   <div class="rateit" data-rateit-backingfld="#userRating"></div>
-     <form>
-      <tr> <td> Enter User name </td> </tr>
-        <tr><td><input type="text" default="search by Username " id="Ename" /></td>
-          <td><input type="submit" class="search" value="SEARCH" /></td></tr>
+  <form method="post" id="Searchbar">
+      <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Search by Username" id="Ename" name="name">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
 
+      <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Search</button>
+      </div>
+    </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Search Result</h3>
+        </div>
+        <div class="box-body">
+            <dl class="dl-horizontal">
+              <tr><th>UserName:</th></tr>
 {{#if searchuser}}
         {{#each searchuser}}
-        <tr><td>UserName:</td>
-            <td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
+            <tr><th>UserName:</th></tr>
+          <tr><td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
             {{/each}}
             <tr> <td> <input type="button" value="Profile" class="Profile" /></td>
              <td> <input type="button" value="Request" class="Request" /></td></tr>
              {{/if}}
+           </dl>
+           </div>
+         </div>
+
 
             {{#each getUserProfile}}
             <tr><b>USER PROFILE</b></tr>
@@ -57,5 +96,9 @@
                   <tr><td>Status</td>
                     <td>{{status}}</td></tr>
                 {{/each}}
-   </form>
+
+</div>
+</div>
+ </body>
+   </html>
   </template>

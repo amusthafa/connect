@@ -17,8 +17,8 @@ Meteor.methods({
      },
       "contactPhone":info.contactPhone,
       "addedById": info.addedById,
-      "rowCreated": new Date(),
-      "rowUpdated": new Date()
+      "row_created": new Date(),
+      "row_updated": new Date()
     }, function (error, result) {
 
         console.log("info insert result error " + error);

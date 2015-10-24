@@ -57,6 +57,7 @@ userId= UserReq[key]._id;
    }
    else {
      Session.set('getUserRequest',result);
+     Session.set('getUserProfile',0);
      console.log("Requests:"+JSON.stringify(result));
        }
 });
@@ -81,6 +82,7 @@ if (Roles.userIsInRole(userId,'Admin'))
 console.log(Session.get('isAdmin'));}
 Meteor.call("SearchProfile",userId, function(error, result) {
     Session.set('getUserProfile',result);
+    Session.set('getUserRequest',0);
     console.log("Profile:"+JSON.stringify(Session.get('getUserProfile')));
     });
  }}
