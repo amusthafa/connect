@@ -1,3 +1,9 @@
+function currentDate()
+{
+var end = (new Date().toJSON().slice(0,10));
+    var endDate = new Date (end);
+    return endDate;
+}
 /**
  * Created by amusthafa on 10/14/2015.
  */
@@ -13,15 +19,21 @@ SyncedCron.add({
          //Scheduled Task 1
         //if request submitted, match available,
         // send notification to seeker, if noti not already sent or read
-        console.log(" ----------------Scheduled task 1 ---------------- ");
-        var requestList= Request.find({status : "Submitted" ,requiredBy : {$gt:new Date()}}).fetch();
 
+
+        console.log(" ----------------Scheduled task 1 ---------------- ");
+        console.log('currentDate() -- '+currentDate());
+        var requestList= Request.find({status : "Submitted" ,$or :[ {requiredBy :{$gt:currentDate()}}, {requiredBy :currentDate()}] }).fetch();
+        console.log(requestList.length);
+        //var requestList= Request.find({status : "Submitted",requiredBy :{$gt:currentDate()} }).fetch();
+  //      var requestList= Request.find({status : "Submitted" , requiredBy :{$eq : currentDate()} }).fetch();
+        console.log('requestList -- ' + JSON.stringify(requestList));
         //Chk if Connect Notification already available, type= submitted userid = seeker
         for (var i in requestList) {
 
             var request = requestList[i];
 
-            var notification = Notifications.findOne({userId : request.requestorId, status : 'Unread', type : "Submitted" });
+            var notification = Notifications.findOne({userId : request.requestorId, status : 'Unread', type : "Submitted", requestId : request._id });
             //if there is no existing notification, run match to check if match exists
            console.log('notification ' + notification);
             if (!notification){
@@ -64,7 +76,10 @@ SyncedCron.add({
         // Send noti to seeker for marking complete
         // If Request is still in Submitted status, mark Closed
         console.log(" ----------------Scheduled task 2 ---------------- ");
-        var dateRequestList= Request.find({requiredBy : {$lt: new Date()}, status : 'InProgress' }).fetch();
+
+
+
+        var dateRequestList= Request.find({requiredBy : {$lt: currentDate()}, status : 'InProgress' }).fetch();
         console.log("Scheduled task 2 ");
         for (var i in dateRequestList) {
 
@@ -72,7 +87,7 @@ SyncedCron.add({
             console.log("Scheduled task 2 request " + JSON.stringify(request));
             var connectUpdate = {status : 'PendingCompletion'}
 
-            Connect.update({_id : request._id,status :'Accepted'},
+            Connect.update({requestId : request._id,status :'Accepted'},
                 {$set:connectUpdate}, function (error, result) {
 
                 console.log("Connect update " + JSON.stringify(result));
@@ -121,10 +136,14 @@ SyncedCron.add({
         // If Request is still in Submitted status, mark Closed
         console.log(" ----------------Scheduled task 3 ---------------- ");
        var requestUpdate= {status : "Closed"};
-        Request.update({status : "Submitted" ,requiredBy : {$eq:new Date()}},
+        ///all request less than current date
+
+
+
+        Request.update({status : "Submitted" ,requiredBy : {$lt:currentDate()}},
             {$set:requestUpdate}, function (error, result) {
 
-                console.log("Request update " + JSON.stringify(result));
+                console.log("Request update after setting request to closed -- " + JSON.stringify(result));
                 if (error) {
                     console.log("Errors !!" + error + " Updated Requests as they are Submitted but reached requiredby date - " + result);
                     //TO-DO: error message()
@@ -166,7 +185,13 @@ SyncedCron.add({
                         //TO-DO: error message()
                         // throw new Meteor.Error("insert-failed", error.message);    });
                         throw new Meteor.Error("insert-failed", error);
-                    }});
+                    }
+                 else{   //send mail
+                    Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
+                        text: notificationData.description + "Thanks, Amigos"});
+                    console.log('email sent');
+                }
+                });
             }
 
         }
@@ -203,7 +228,13 @@ SyncedCron.add({
                         //TO-DO: error message()
                         // throw new Meteor.Error("insert-failed", error.message);    });
                         throw new Meteor.Error("insert-failed", error);
-                    }});
+                    }
+                    else{   //send mail
+                        Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
+                            text: notificationData.description + "Thanks, Amigos"});
+                        console.log('email sent');
+                    }
+                });
             }
 
         }

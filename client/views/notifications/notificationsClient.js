@@ -32,17 +32,6 @@ Template.notifications.events({
             notificationId: event.target.getAttribute("data-notif-id")
         };
 
-        /*    Meteor.call('getRequest', request, function(err, result) {
-         console.log(" result:", JSON.stringify(result));
-         Session.set('req', result);
-         alert(result);
-         Router.go("/manageRequest");
-         });
-
-         */
-        //call connect, update request status,
-        // get connect details for the volunteer to update the connect status to accept/decline
-
         Meteor.call('getConnectDetails', connect, function (err, result) {
             console.log(" result:", JSON.stringify(result));
             Session.set('connectDetails', result);
@@ -63,6 +52,35 @@ Template.notifications.events({
 
             Router.go("/");
         });
+
+    },
+    'click .notificationConnect' : function (event) {
+
+        event.preventDefault();
+       if (this.type == "Initiated"){
+           alert(JSON.stringify(this));
+        var connect = {}
+        connect._id =this.connectId;
+        connect.notificationId =this._id;
+         alert(JSON.stringify(connect));
+        Meteor.call('getConnectDetails', connect, function(err, result) {
+            //  alert(" result:"+ JSON.stringify(result));
+            Session.set('connectDetails', result);
+            //       alert(result);
+            Router.go("/connectUpdate");
+
+        });
+       }
+        else if (this.type=="Submitted") {
+//match
+           var request = {};
+           request._id = this.requestId;
+           Meteor.call("matchRequestVolunteer", request, function (error, result) {
+               console.log("Client : error" + error + "result - " + JSON.stringify(result));
+               Session.set("match", result);
+               Router.go('/manageRequest');
+           });
+       }
 
     }
 
