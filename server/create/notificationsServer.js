@@ -77,11 +77,11 @@ Meteor.methods(
             ).fetch();
 
             for (var i in notificationsList) {
-                var notification = notificationsList[i];
+                /*var notification = notificationsList[i];
                 var id = notification.description.split("for")[1].replace(" ", "");
                 var request = Aid.findOne({_id: id});
                 console.log("aid" + notification.description.split("for")[0] + "for " + request.aidName);
-                notification.description = notification.description.split("for")[0] + "for " + request.aidName;
+                notification.description = notification.description.split("for")[0] + "for " + request.aidName;*/
 
                 var notification = notificationsList[i];
                 console.log(notification.requestId);
