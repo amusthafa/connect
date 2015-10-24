@@ -75,13 +75,6 @@
                     </li>
 
                     <li class="treeview">
-                        <a href="{{pathFor route='aid'}}">
-                            <span>Admin - Add Aid</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
-
-                    <li class="treeview">
                         <a href="{{pathFor route='informationAdd'}}">
                             <span>Admin - Add Information </span>
                             <span class="label label-primary pull-right"></span>
@@ -123,6 +116,39 @@
                           </a>
                       </li>
                     {{/if}}
+
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='addTocontactUs'}}">
+                              <span>Add To Contact Us</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
+
+                    {{#if isInRole 'Admin'}}
+                      <li class="treeview">
+                          <a href="{{pathFor route='viewFeedbacks'}}">
+                              <span>View Feedbacks</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+                    {{/if}}
+
+                      <li class="treeview">
+                          <a href="{{pathFor route='feedback'}}">
+                              <span>Feedback</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+
+                      <li class="treeview">
+                          <a href="{{pathFor route='contactUs'}}">
+                              <span>contact Us</span>
+                              <span class="label label-primary pull-right"></span>
+                          </a>
+                      </li>
+
                 </ul>
 
 

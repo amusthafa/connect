@@ -200,3 +200,31 @@ Router.route('/manageRequest', {
         this.render('manageRequest');
     }
 });
+
+Router.route('/feedback', {
+    name: 'feedback',
+    action: function () {
+        this.render('feedback');
+    }
+});
+
+Router.route('/addTocontactUs', {
+    name: 'addTocontactUs',
+    action: function () {
+        this.render('addTocontactUs');
+    }
+});
+
+Router.route('/viewFeedbacks', {
+    name: 'viewFeedbacks',
+    action: function () {
+        this.render('viewFeedbacks');
+    }
+});
+
+Router.route('/contactUs', {
+    name: 'contactUs',
+    action: function () {
+        this.render('contactUs');
+    }
+});
