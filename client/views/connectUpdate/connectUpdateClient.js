@@ -5,6 +5,13 @@ Template.connectUpdate.helpers({
 
         return false;
     },
+    isNotEqual: function(v1, v2) {
+        if (v1 != v2){
+            return true;}
+
+        return false;
+    },
+
     connectDetails : function() {
     check();
 // var req = Session.get('req');
@@ -32,11 +39,42 @@ Template.connectUpdate.events({
         console.log('form submitted');
         //console.log('clicked add aid' + event.target.aidName.value);
         var connectUpdate = {};
-        alert( document.getElementById('status').value);
-        connectUpdate.status = document.getElementById('status').value;
+        if(document.getElementById('Declined') &&  document.getElementById('Declined').checked){
+            connectUpdate.status = document.getElementById('Declined').value;
+        }
+        else if( document.getElementById('Accepted') &&  document.getElementById('Accepted').checked){
+            connectUpdate.status = document.getElementById('Accepted').value;
+        }
+
         connectUpdate._id =  document.getElementById('connectId').value;
         connectUpdate.requestId =  document.getElementById('requestId').value;
+      //  alert('connectUpdate '+ connectUpdate);
+        Meteor.call("updateConnect", connectUpdate, function (error, result) {
+            console.log("Client : error" + error + "result - " + result);
+            Router.go("/");
+        });
 
+    }
+,
+
+    'click .cancelUpdate': function (event) {
+        event.preventDefault();
+        console.log('form submitted');
+        //console.log('clicked add aid' + event.target.aidName.value);
+        var connectUpdate = {};
+        alert(JSON.stringify(this));
+        //status to be seeker cancel or vol cancel
+        if (Meteor.user()._id ==  document.getElementById('volunteerId').value )
+        {
+            connectUpdate.status = 'VolunteerCanceled';
+        }
+        else
+        {
+            connectUpdate.status = 'RequestorCanceled';
+        }
+        connectUpdate._id =  document.getElementById('connectId').value;
+        connectUpdate.requestId =  document.getElementById('requestId').value;
+        //  alert('connectUpdate '+ connectUpdate);
         Meteor.call("updateConnect", connectUpdate, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
             Router.go("/");

@@ -49,13 +49,13 @@
                             </div>
                         </div>
                     </div>
-                    <input hidden id='requestId' value={{match.request._id}}/>
-                    <input hidden id='requestDate' value={{match.request.requiredBy}}/>
-                    <input hidden id='aidId' value={{match.request.aidId}}/>
+                    <input hidden id='requestId' value="{{match.request._id}}" />
+                    <input hidden id='requestDate' value="{{match.request.requiredBy}}"/>
+                    <input hidden id='aidId' value="{{match.request.aidId}}" />
                 </div>
 
                 {{#if isEqual match.request.status 'Submitted'}}
-
+                {{#if match.volunteerList}}
                 <section class="content-header">
                     <h1>
                         Choose a Volunteer
@@ -94,6 +94,7 @@
                         </div>
                     </div>
                 </section>
+                {{/if}}
                 {{/if}}
 
             </section>

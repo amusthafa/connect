@@ -14,9 +14,12 @@ Meteor.methods({matchRequestVolunteer: function (request) {
     //City, - Done, Aid expiry > requiredbydate
     //TODO - OFfer from toDate, Rating
     if (request) {
-        var volunteers = VolunteerAid.find({ "aidId": request.aidId, "aidAddress.city": request.requestAddress.city, aidExpiry: {$gte: request.requiredBy}
-            }
-        )
+        var volunteers = VolunteerAid.find({ "aidId": request.aidId,
+                //"aidAddress.city": request.requestAddress.city,
+                aidExpiry: {$gte: request.requiredBy},
+                  aidStart :   {$lte : request.requiredBy},
+                _id : {$ne : request.creatorId}}
+            )
             .fetch();
 
         console.log("vol -- " + JSON.stringify(volunteers));
