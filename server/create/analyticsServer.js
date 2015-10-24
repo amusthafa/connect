@@ -19,15 +19,13 @@ Meteor.methods(
             var result = Request.aggregate(pipeline);
 
             result = JSON.stringify(result);
-            console.log(result.split(":{\"year\":").join(":\"").split(",\"month\":").join("-").split(",\"day\":").join("-").split("},\"count\"").join("\",\"count\""));
             resultChanged = JSON.parse(result.split(":{\"year\":").join(":\"").split(",\"month\":").join("-").split(",\"day\":").join("-").split("},\"count\"").join("\",\"count\""));
-            console.log(resultChanged);
             var requestDetails = [];
             for (var x in resultChanged) {
                 res = resultChanged[x];
                 requestDetails.push({key: res._id, value: res.count});
             }
-            console.log(requestDetails);
+            console.log("Request Created Per Date" + JSON.stringify(requestDetails));
             return requestDetails;
         },
 
@@ -51,15 +49,17 @@ Meteor.methods(
 
             result = JSON.stringify(result);
 
-            console.log(result.split(":{\"year\":").join(":\"").split(",\"month\":").join("-").split(",\"day\":").join("-").split("},\"count\"").join("\",\"count\""));
             resultChanged = JSON.parse(result.split(":{\"year\":").join(":\"").split(",\"month\":").join("-").split(",\"day\":").join("-").split("},\"count\"").join("\",\"count\""));
-            console.log(resultChanged);
             var offerDetails = [];
             for (var x in resultChanged) {
                 res = resultChanged[x];
-                offerDetails.push({key: res._id, value: res.count});
+                year = res._id.split("-")[0];
+                month = ('0' + res._id.split("-")[1]).slice(-2);
+                date = ('0' + res._id.split("-")[2]).slice(-2);
+                finalDate = year + '-' + month + '-' + date;
+                offerDetails.push({key: finalDate, value: res.count});
             }
-            console.log(offerDetails);
+            console.log("Offer Created Per Date" + JSON.stringify(offerDetails));
             return offerDetails;
         },
 
@@ -82,14 +82,14 @@ Meteor.methods(
             var results = Request.aggregate(pipeline);
             result = JSON.stringify(results);
             resultChanged = JSON.parse(result.split(":{\"aid\"").join("").split("\"},\"").join("\",\""));
-            console.log(resultChanged);
+
             var aidDetails = [];
             for (var x in resultChanged) {
                 res = resultChanged[x];
                 var request = Aid.findOne({_id: res._id});
                 aidDetails.push({key: request.aidName, value: res.aidCount});
             }
-            console.log(aidDetails);
+            console.log("Aid Rqeuested" + JSON.stringify(aidDetails));
             return aidDetails;
         },
 
@@ -111,8 +111,16 @@ Meteor.methods(
             var results = Request.aggregate(pipeline);
             result = JSON.stringify(results);
             resultChanged = JSON.parse(result.split(":{\"month\":").join(":\"").split(",\"year\":").join("-").split("},\"count\"").join("\",\"count\""));
-            console.log("*****" + resultChanged);
-            return resultChanged;
+            var monthlyDetails = [];
+            for (var x in resultChanged) {
+                res = resultChanged[x];
+                month = ('0' + res._id.split("-")[0]).slice(-2);
+                year = res._id.split("-")[1];
+                finalDate = month + '-' + year;
+                monthlyDetails.push({key: finalDate, value: res.count});
+            }
+            console.log("Request Per Month" + JSON.stringify(monthlyDetails));
+            return monthlyDetails;
         },
 
         getAnalyticsByOffertPerMonth: function () {
@@ -132,14 +140,16 @@ Meteor.methods(
 
             var results = Offer.aggregate(pipeline);
             result = JSON.stringify(results);
-            console.log(result.split(":{\"month\":").join(":\"").split(",\"year\":").join("-").split("},\"count\"").join("\",\"count\""));
             resultChanged = JSON.parse(result.split(":{\"month\":").join(":\"").split(",\"year\":").join("-").split("},\"count\"").join("\",\"count\""));
             var monthlyDetails = [];
             for (var x in resultChanged) {
                 res = resultChanged[x];
-                monthlyDetails.push({key: res._id, value: res.count});
+                month = ('0' + res._id.split("-")[0]).slice(-2);
+                year = res._id.split("-")[1];
+                finalDate = month + '-' + year;
+                monthlyDetails.push({key: finalDate, value: res.count});
             }
-            console.log(monthlyDetails);
+            console.log("Offer Per Month" + JSON.stringify(monthlyDetails));
             return monthlyDetails;
         },
 
@@ -181,13 +191,10 @@ Meteor.methods(
                 }
                 perRegion.push({"city": res._id, "aid": aidPerRegion});
             }
-            console.log(JSON.stringify(perRegion));
-
             result = JSON.stringify(perRegion);
 
-            console.log(result.split("\"aid\":[{").join("").split("\"key\":").join("").split(",\"value\"").join("").split("},{").join(",").split("}],\"city\"").join("},{\"city\"").replace("}]}]", "}]"));
             resultChanged = JSON.parse(result.split("\"aid\":[{").join("").split("\"key\":").join("").split(",\"value\"").join("").split("},{").join(",").split("}],\"city\"").join("},{\"city\"").replace("}]}]", "}]"));
-
+            console.log("Aid Per Region" + JSON.stringify(resultChanged));
             return resultChanged;
         },
 
@@ -203,7 +210,7 @@ Meteor.methods(
                 var request = Aid.findOne({_id: aidId});
                 aid.push(request.aidName);
             }
-            console.log(aid);
+            console.log("Uniq" + aid);
             return aid;
         }
     });
