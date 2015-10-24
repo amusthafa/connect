@@ -110,6 +110,22 @@ Template.notifications.events({
                 Router.go('/manageRequest');
             });
         }
+        else if (this.type=="PendingCompletion") {
+            event.preventDefault();
+            alert(JSON.stringify(this));
+            var connect ={};
+            connect._id = this.connectId;
+            connect.notificationId =this._id;
+            connect.mode='requestorComplete';
+            alert(JSON.stringify(connect));
+            Meteor.call('getConnectDetails', connect, function(err, result) {
+                //  alert(" result:"+ JSON.stringify(result));
+                Session.set('connectDetails', result);
+                //       alert(result);
+                Router.go("/connectUpdate");
+            });
+
+        }
 
     }
 

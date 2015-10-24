@@ -13,8 +13,7 @@ Meteor.methods({
         check(req, Object);
         check(req.creatorId, String);
 
-
-        var requestList = Request.find({creatorId: req.creatorId, status :'Submitted'}).fetch();
+        var requestList = Request.find({creatorId: req.creatorId, status: { $in: ['Submitted','Closed'] } }).fetch();
         console.log("Server getListOfRequest:", JSON.stringify(requestList));
 
         var aidList = Aid.find({}).fetch();
