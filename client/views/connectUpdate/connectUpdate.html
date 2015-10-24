@@ -10,7 +10,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Connect Update
+                    Connect  -  {{connectDetails.connect.status}}
                 </h1>
             </section>
             <section class="content">
@@ -49,30 +49,66 @@
                             </div>
                         </div>
                     </div>
-                    <input hidden id='requestId' value={{connectDetails.request._id}}>
-                    <input hidden id='requestDate' value={{connectDetails.request.requiredBy}}>
-                    <input hidden id='aidId' value={{connectDetails.request.aidId}}>
-                    <input hidden id='connectId' value={{connectDetails.connect._id}}>
-                </div>
+                    <input hidden id='requestId' value="{{connectDetails.request._id}}">
+                    <input hidden id='requestDate' value="{{connectDetails.request.requiredBy}}">
+                    <input hidden id='aidId' value="{{connectDetails.request.aidId}}">
+                    <input hidden id='connectId' value="{{connectDetails.connect._id}}">
+                    <input hidden id='requestorId' value="{{connectDetails.connect.requestorId}}">
+                    <input hidden id='volunteerId' value="{{connectDetails.connect.volunteerId}}">
 
-                {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                </div>
+               {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                {{#if isEqual connectDetails.connect.loggedUser  connectDetails.connect.volunteerId}}
                 <div class="form-group">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="Accepted" id="status" value="Accepted" >
+                            <input type="radio" name="Accepted" id="Accepted" value="Accepted">
                             Accept the request
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="Declined" id="status" value="Declined">
+                            <input type="radio" name="Declined" id="Declined" value="Declined">
                             Decline the request
                         </label>
                     </div>
                 </div>
+
+                <input type="button" class="connectUpdateSubmit" value="Submit"/>
                 {{/if}}
-                <input type="button" class="connectUpdateSubmit" value="Submit" />
+                {{/if}}
             </section>
+
+            {{#if isNotEqual connectDetails.connect.status 'Initiated'}}
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Volunteer Details</h3>
+                            </div>
+                            <div class="box-body">
+                            <dl class="dl-horizontal">
+                                <dd> {{connectDetails.volunteer.name}}
+                                </dd>
+                                <dd>
+                                    {{connectDetails.volunteer.gender}}
+                                </dd>
+                                <dd>
+                                    {{connectDetails.volunteer.age}}
+                                </dd>
+                                <dd>{{connectDetails.volunteer.city}}</dd>
+                            </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               {{#if isEqual connectDetails.mode 'cancel'}}
+                <input type="button" class="cancelUpdate" value="Cancel Connect"/>
+                {{/if}}
+            </section>
+            {{/if}}
 
         </div>
 

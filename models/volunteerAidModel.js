@@ -33,6 +33,9 @@ VolunteerAid.attachSchema({
         aidId: {
             type: String
         },
+        aidStart: {
+            type: Date
+        },
         aidExpiry: {
             type: Date
         },

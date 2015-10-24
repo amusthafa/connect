@@ -37,9 +37,9 @@ Meteor.methods(
                     "country": OfferIp.country,
                     "pinCode": OfferIp.pincode,
                 },
-                "aidId": OfferIp.aid,
+            /*    "aidId": OfferIp.aid,
                 "fromDate": OfferIp.fromDate,
-                "toDate": OfferIp.toDate,
+                "toDate": OfferIp.toDate,*/
                 "comment": OfferIp.comment,
                 "row_created": new Date(),
                 "row_updated": new Date()
@@ -52,6 +52,7 @@ Meteor.methods(
                         "offerId": result,
                         "volunteerId": volunteerId,
                         "aidId": OfferIp.aid,
+                        "aidStart": OfferIp.fromDate,
                         "aidExpiry": OfferIp.toDate,
                         "aidAddress": {
                             "line1": OfferIp.line1,

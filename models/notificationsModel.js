@@ -20,7 +20,7 @@ Notifications.attachSchema({
             type: String,
             //same set of values as status of connect
             allowedValues: ['Submitted','Initiated', 'Accepted','Declined','VolunteerCanceled',
-                'SeekerCanceled', 'PendingCompletion','Completed','CompletedWithRating']
+                'RequestorCanceled', 'PendingCompletion','Completed','CompletedWithRating']
         },
         description: {
             type: String
