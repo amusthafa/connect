@@ -35,13 +35,13 @@ SyncedCron.add({
 
             var notification = Notifications.findOne({userId : request.requestorId, status : 'Unread', type : "Submitted", requestId : request._id });
             //if there is no existing notification, run match to check if match exists
-           console.log('notification ' + notification);
+           console.log('notification ---------------------------------- ' + notification);
             if (!notification){
                 var req= {_id :request._id};
                 Meteor.call('matchRequestVolunteer',req, function(err, result) {
-                    console.log("on rendered result:", JSON.stringify(result));
+                    console.log("on rendered result: ------------------------------" + JSON.stringify(result));
 
-                    if (result.volunteerList.length >0){
+                    if (result && result.volunteerList && result.volunteerList.length >0){
 
                         //Entry in notification table
 

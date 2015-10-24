@@ -16,8 +16,10 @@ Meteor.methods({matchRequestVolunteer: function (request) {
     if (request) {
         var volunteers = VolunteerAid.find({ "aidId": request.aidId,
                 //"aidAddress.city": request.requestAddress.city,
-                aidExpiry: {$gte: request.requiredBy},
-                  aidStart :   {$lte : request.requiredBy},
+               // aidExpiry: {$gt: request.requiredBy},
+                $or :[ {aidExpiry :{$gt:request.requiredBy}}, {aidExpiry :request.requiredBy}],
+              //    aidStart :   {$lt : request.requiredBy},
+                $or :[ {aidStart :{$lt:request.requiredBy}}, {aidStart :request.requiredBy}],
                 _id : {$ne : request.creatorId}}
             )
             .fetch();
