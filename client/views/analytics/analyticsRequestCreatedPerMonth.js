@@ -22,7 +22,7 @@ function requestCreatedChart() {
             "lineThickness": 2,
             "negativeLineColor": "#637bb6",
             "type": "smoothedLine",
-            "valueField": "count"
+            "valueField": "value"
         }],
         "chartCursor": {
             "categoryBalloonDateFormat": "MM-YYYY",
@@ -33,7 +33,7 @@ function requestCreatedChart() {
             "fullWidth": true
         },
         "dataDateFormat": "MM-YYYY",
-        "categoryField": "_id",
+        "categoryField": "key",
         "categoryAxis": {
             "parseDates": true,
             "minorGridAlpha": 0.1,
@@ -58,4 +58,5 @@ Template.analyticsRequestCreatedPerMonth.onRendered(function () {
         }
     });
 })
+
 

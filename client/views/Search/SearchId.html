@@ -1,61 +1,113 @@
 <template name = "SearchId">
-  <h1>Search User </h1>
-  <input type="range" min="0" max="5" value="0" step="0.5" id="userRating">
-  <div class="rateit" data-rateit-backingfld="#userRating"></div>
-     <form>
-      <tr> <td> Enter User name </td> </tr>
-        <tr><td><input type="text" default="search by Username " id="Ename" /></td>
-          <td><input type="submit" class="search" value="SEARCH" /></td></tr>
+  <html>
+{{>include}}
+  <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+      {{>common}}
+      {{>header}}
+      {{>sAlert}}
+      <div class="content-wrapper">
+          <section class="content-header">
+              <h1> Search User </h1>
+             <section class="content">
+                 <div class="row">
+                   <div class="col-md-6">
+                        <form method="post" id="Searchbar">
+                           <div class="form-group">
+                             <input type="text" class="form-control" placeholder="Search by Username" id="Ename" name="name">
+                              <button type="submit" class="search">Search</button>
+                               </div>
 
 {{#if searchuser}}
-        {{#each searchuser}}
-        <tr><td>UserName:</td>
-            <td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
-            {{/each}}
-            <tr> <td> <input type="button" value="Profile" class="Profile" /></td>
-             <td> <input type="button" value="Request" class="Request" /></td></tr>
-             {{/if}}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Search Result</h3>
+          </div>
+          <div class="box-body">
+          <dl class="dl-horizontal">
+          <tr><th>UserName:</th></tr>
+          {{#each searchuser}}
+        <div>  <tr><td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
+          <input type="range" min="0" max="5" value="0" step="0.5" id="userRating">
+            <div class="rateit" data-rateit-backingfld="#userRating"></div>
+          </div>
+          {{/each}}
+          <tr> <td> <input type="button" value="Profile" class="Profile" /></td><td>
+          </td><td> <input type="button" value="Request" class="Request" /></td></tr>
+          </dl>
+         </div>
+         </div>
+         {{/if}}
 
-            {{#each getUserProfile}}
-            <tr><b>USER PROFILE</b></tr>
-            <tr><td> Fullname : </td>
-              <td>{{profile.firstName}},{{profile.lastName}}</td></tr>
-            <tr><td>Gender:</td>
-              <td>{{profile.gender}}</td></tr>
-            <tr><td>Address:</td>
-              <td> {{profile.address.line1}} </td></tr>
+{{#if getUserProfile}}
+       <div class="box box-primary">
+       <div class="box-header with-border">
+       <h3 class="box-title">USER PROFILE:</h3>
+       </div>
+       <div class="box-body">
+        {{#each getUserProfile}}
+            <tr><td><b> Fullname : </b> </td>
+            <td>{{profile.firstName}},{{profile.lastName}}</td></tr>
+            <tr><td><b>Gender:</b></td>
+            <td>{{profile.gender}}</td></tr>
+            <tr><td><b>Address:</b></td>
+            <td> {{profile.address.line1}} </td></tr>
             <tr> <td></td><td>{{profile.address.line2}}</td></tr>
             <tr> <td></td><td>{{profile.address.city}} , {{profile.address.state}},{{profile.address.country}}-{{profile.address.pinCode}}</td></tr>
-              <tr> <td> Email:</td>
+            <tr> <td> <b>Email:</b></td>
             <td> {{#each emails}}{{address}}{{/each}} </td></tr>
             {{#if profile.share_phone}}
-            <tr><td>PhoneNumber:</td>
-              <td>{{profile.phone}}</td></tr>
-              {{/if}}
+            <tr><td><b>PhoneNumber:</b></td>
+            <td>{{profile.phone}}</td></tr>
+            {{/if}}
             {{#if isInRole 'Admin'}}
             <tr></tr>
             <tr><td><input type="submit" class="addAdmin" value="Add as Admin" /></td></tr>
             {{/if}}
-             {{/each}}
+            {{/each}}
+           </div>
+           </div>
 
+{{else}}
+      {{#if getUserRequest}}
+         <div class="box box-primary">
+         <div class="box-header with-border">
+          <h3 class="box-title">REQUEST</h3>
+          </div>
+          <div class="box-body">
              {{#each getUserRequest}}
-             <tr><b>REQUEST</b></tr>
-             <tr><td>Request Name: </td>
+              <tr><td><b>*Request Name:</b> </td>
                <td>{{request_name}}</td></tr>
-              <tr><td>Requested For:</td>
+              <tr><td><b>Requested For:</b></td>
                 <td>{{requestType}}</td></tr>
-                <tr><td>Address:</td>
+                <tr><td><b>Address:</b></td>
                 <td> {{requestAddress.line1}} </td></tr>
                 <tr> <td></td><td> {{requestAddress.line2}}</td></tr>
                 <tr> <td></td><td> {{requestAddress.city}} , {{requestAddress.state}},{{requestAddress.country}}-{{requestAddress.pinCode}}</td></tr>
-                <tr><td>Aid</td>
+                <tr><td><b>Aid</b></td>
                   <td>{{aidId}}</td></tr>
-                <tr><td>Required by</td>
+                <tr><td><b>Required by</b></td>
                   <td>{{requiredBy}}</td></tr>
-                <tr><td>Is Emergency</td>
+                <tr><td><b>Is Emergency</b></td>
                   <td>{{emergency}}</td></tr>
-                  <tr><td>Status</td>
+                  <tr><td><b>Status</b></td>
                     <td>{{status}}</td></tr>
-                {{/each}}
-   </form>
+                    <tr> </tr>
+                    {{/each}}
+                    </div>
+                    </div>
+                 {{/if}}
+{{/if}}
+</form>
+    </div>
+  </div>
+            </section>
+        </section>
+      </div>
+        </div>
+      </body>
+
+
+   </html>
   </template>

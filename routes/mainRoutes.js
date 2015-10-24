@@ -1,6 +1,6 @@
 Router.route('/', function () {
     this.render('home');
-    SEO.set({ title: 'Home - Ola Amigo!!'});
+    SEO.set({title: 'Home - Ola Amigo!!'});
 });
 
 Router.route('/Login', {
@@ -58,46 +58,46 @@ Router.route('/createRequest', {
     name: 'createRequest',
     action: function () {
         this.render('createRequest');
-  }
-  });
+    }
+});
 
 Router.route('/listOfRequests', {
     name: 'listOfRequests',
     action: function () {
         this.render('listOfRequests');
-  }
-  });
-
-  Router.route('/editRequest', {
-      name: 'editRequest',
-      action: function () {
-          this.render('editRequest');
     }
-    });
+});
 
-  Router.route('/SearchId', {
-      name: 'SearchId',
-      action: function () {
-          this.render('SearchId');
-      }
-  });
-  Router.route('/informationAdd', {
-      name: 'informationAdd',
-      action: function () {
-          this.render('informationAdd');
-      }
-  });
-  // Router.route('/SearchRequest', {
-  //     name: 'SearchRequest',
-  //     action: function () {
-  //         this.render('SearchRequest');
-  //     }
-  // });
-  // Router.route('getRequest', {
-  //   path: '/getRequest/4qAuokmjDMh2jdmkq',
-  //   template: 'getRequest',
-  //   data: function() { return Request.find({requestorId : this.params._id}).fetch(); }
-  // });
+Router.route('/editRequest', {
+    name: 'editRequest',
+    action: function () {
+        this.render('editRequest');
+    }
+});
+
+Router.route('/SearchId', {
+    name: 'SearchId',
+    action: function () {
+        this.render('SearchId');
+    }
+});
+Router.route('/informationAdd', {
+    name: 'informationAdd',
+    action: function () {
+        this.render('informationAdd');
+    }
+});
+// Router.route('/SearchRequest', {
+//     name: 'SearchRequest',
+//     action: function () {
+//         this.render('SearchRequest');
+//     }
+// });
+// Router.route('getRequest', {
+//   path: '/getRequest/4qAuokmjDMh2jdmkq',
+//   template: 'getRequest',
+//   data: function() { return Request.find({requestorId : this.params._id}).fetch(); }
+// });
 
 
 Router.route('/loadAdminAuth', {
@@ -198,6 +198,13 @@ Router.route('/manageRequest', {
     name: 'manageRequest',
     action: function () {
         this.render('manageRequest');
+    }
+});
+
+Router.route('/rating', {
+    name: 'rating',
+    action: function () {
+        this.render('rating');
     }
 });
 

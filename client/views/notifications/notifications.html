@@ -29,7 +29,7 @@
                                     {{#each notifications}}
                                         <tr data-match="{{volunteerId}}">
                                             {{#if isEqual status 'Unread'}}
-                                                <td><b><a href="#">{{description}}</a></b></td>
+                                                <td><b><a href="#" class="notificationConnect">{{description}}</a></b></td>
                                                 <td><b>{{status}}</b></td>
                                                 <td><b>{{formatDateWithTime rowCreated}}</b></td>
                                             {{else}}
