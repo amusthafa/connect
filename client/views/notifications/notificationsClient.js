@@ -20,8 +20,8 @@ Template.notifications.helpers({
 });
 
 Template.registerHelper('formatDateWithTime', function(date) {
-    console.log("format date:!!!!:", moment(date).format('MMMM DD YYYY'));
-    return moment(date).format('MMMM DD YYYY');
+    console.log("format date:!!!!:", moment(date).format('MMMM DD, YYYY'));
+    return moment(date).format('MMMM DD, YYYY');
 });
 
 
