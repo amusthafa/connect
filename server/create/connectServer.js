@@ -31,6 +31,13 @@ Meteor.methods(
         });
 //Entry in notification table
         var notiId;
+
+        var aid = Aid.findOne({_id : connect.aidId });
+        connect.aidName= aid.aidName;
+
+        var user = Meteor.users.findOne({_id: connect.volunteerId });
+        console.log('user ------------- ' + JSON.stringify(user));
+
         if (connectId) {
             var notificationData = {
                 requestorId: connect.seekerId,
@@ -40,7 +47,7 @@ Meteor.methods(
                 status: 'Unread',
                 userId: connect.volunteerId,
                 type: 'Initiated',
-                description: 'Request for ' + connect.aidId
+                description: 'Request for ' +   connect.aidName
             };
 
             notiId = Notifications.insert(notificationData, function (error, result) {
@@ -50,6 +57,15 @@ Meteor.methods(
                         //TO-DO: error message()
                         // throw new Meteor.Error("insert-failed", error.message);    });
                         throw new Meteor.Error("insert-failed", error);
+                    }
+                    else
+                    {
+                        //send mail
+                        console.log('user email -- ' + user.emails[0].address);
+                        Email.send({to:user.emails[0].address, from :'olaamigo.app@gmail.com', subject : 'OlaAmigos Request for Connect',
+                            text : notificationData.description + "Thanks, Amigos"});
+                        console.log('email sent');
+
                     }
 
                 }
@@ -118,11 +134,14 @@ Meteor.methods(
             volunteer.gender = user.profile.gender;
             ///calculate age
             var birthdate = user.profile.birthday;
+            if (birthdate){
             var cur = new Date();
             var diff = cur - birthdate;
             var age = Math.floor(diff / 31536000000);
             volunteer.age = age;
+            }
             volunteer.city = user.profile.address.city;
+
            }
             var contactDetails = {};
             contactDetails.connect = connectObj;
@@ -161,12 +180,10 @@ Meteor.methods(
                          */
 
                         var status;
-                        if (connect.status == 'Declined' || connect.status == 'VolunteerCanceled') {
+                        if (connect.status == 'Declined' || connect.status == 'VolunteerCanceled' || connect.status == 'RequestorCanceled') {
                             status = 'Submitted';
                         }
-                        else if (connect.status == 'RequestorCanceled') {
-                            status = 'Canceled';
-                        }
+
                         if (status) {
                             console.log('status - ' + status);
                             Request.update({_id: connect.requestId}, { $set: {"status": status}}

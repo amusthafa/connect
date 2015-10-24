@@ -107,6 +107,14 @@
                                                 {{#if isEqual status "Accepted"}}
                                                     <a href="#" class="cancel">Cancel</a>
                                                 {{/if}}
+                                                {{#if isEqual status "PendingCompletion"}}
+                                                {{#if isEqual requestorId loggedUser}}
+
+                                                <input type="button" class="requestorComplete" value="Complete"
+                                                       id="requestorComplete"/>
+                                                {{/if}}
+                                                {{/if}}
+
                                                 <a href="#" class="viewConnect">View</a>
                                             </td>
                                         </tr>

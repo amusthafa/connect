@@ -20,9 +20,9 @@ Template.listOfRequests.onRendered(function() {
   // if ( _.isEmpty(Session.get('req')) ) {
     var creatorId = Meteor.user()._id ;
     var request = {creatorId:creatorId};
-  // alert(JSON.stringify(request));
+   alert(JSON.stringify(request));
     console.log("list of requests: request:", JSON.stringify(request));
-   alert("list of  requests with session set:" + JSON.stringify(request));
+ //  alert("list of  requests with session set:" + JSON.stringify(request));
     check(request, Object);
     Meteor.call('getListOfRequest', request, function(err, result) {
      console.log("err" + err + "result:" + JSON.stringify(result));
@@ -59,7 +59,7 @@ Template.listOfRequests.events({
         var connect = {}
         connect._id = this._id;
         if (this.notification)
-            connect. notificationId =this.notification._id;
+            connect.notificationId =this.notification._id;
        // alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
             //  alert(" result:"+ JSON.stringify(result));
@@ -99,6 +99,20 @@ Template.listOfRequests.events({
         var connect ={};
         connect._id = this._id;
         connect.mode='viewConnect';
+        alert(JSON.stringify(connect));
+        Meteor.call('getConnectDetails', connect, function(err, result) {
+            //  alert(" result:"+ JSON.stringify(result));
+            Session.set('connectDetails', result);
+            //       alert(result);
+            Router.go("/connectUpdate");
+        });
+    },
+    'click .requestorComplete' : function (event) {
+        event.preventDefault();
+        alert(JSON.stringify(this));
+        var connect ={};
+        connect._id = this._id;
+        connect.mode='requestorComplete';
         alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
             //  alert(" result:"+ JSON.stringify(result));
