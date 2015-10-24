@@ -200,3 +200,10 @@ Router.route('/manageRequest', {
         this.render('manageRequest');
     }
 });
+
+Router.route('/rating', {
+    name: 'rating',
+    action: function () {
+        this.render('rating');
+    }
+});
