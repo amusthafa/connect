@@ -19,13 +19,17 @@ Template.forgotPass.events({
           if (err.message === 'User not found [403]') {
             console.log('This email does not exist.');
             message = 'This email does not exist.';
+            sAlert.error("This email does not exist.");
           } else {
             console.log('We are sorry but something went wrong.');
             message = 'We are sorry but something went wrong.';
+            sAlert.error("We are sorry but something went wrong.");
           }
         } else {
           console.log('Email Sent. Check your mailbox.');
           message = 'Email Sent. Check your mailbox.';
+          sAlert.success("Email Sent. Check your mailbox.")
+          sAlert.success('', configOverwrite);
         }
       });
       Router.go("/");

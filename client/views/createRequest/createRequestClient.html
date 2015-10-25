@@ -167,21 +167,21 @@
                                     <div class="form-group">
                                         <label>Request Name</label>
                                         {{#if isEditFlow}}
-                                        <input id='requestName' class="form-control" type="text"
+                                        <input required id='requestName' class="form-control" type="text"
                                             value={{getRequest.request_name}} >
                                         {{else}}
-                                        <input id='requestName' class="form-control" type="text"
+                                        <input required id='requestName' class="form-control" type="text"
                                                placeholder="Default input">
                                         {{/if}}
                                     </div>
 
                                     <div class="form-group">
                               	        <label>Aid</label>
-                              	        <select id="aid" class="form-control">
+                              	        <select required id="aid" class="form-control">
                                           {{#if isEditFlow}}
-                                            <option selected="selected">{{getRequest.aidName}}</option>
+                                            <option value="" disabled selected>{{getRequest.aidName}}</option>
                                           {{else}}
-                                            <option selected="selected">Please Select</option>
+                                            <option value="" disabled selected>Please Select</option>
                                           {{/if}}
                               	            {{#each aidList}}
                               	                <option>{{aidName}} </option>
@@ -194,9 +194,9 @@
 
                                         <div class="input-group">
                                           {{#if isEditFlow}}
-                                            <input id="requiredBy" value={{formatDate getRequest.requiredBy}}>
+                                            <input required id="requiredBy" value={{formatDate getRequest.requiredBy}}>
                                           {{else}}
-                                            <input type="date" id="requiredBy">
+                                            <input required type="date" id="requiredBy">
                                           {{/if}}
                                         </div>
                                     </div>
@@ -380,7 +380,7 @@
                                       <label>Comment</label>
                                       {{#if isEditFlow}}
                                       <textarea id='comment' class="form-control" rows="3"
-                                                value={{getRequest.comment}}></textarea>
+                                                placeholder="Enter ..."></textarea>
                                       {{else}}
                                         <textarea id='comment' class="form-control" rows="3"
                                                   placeholder="Enter ..."></textarea>

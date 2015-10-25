@@ -6,7 +6,9 @@
     <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         {{>common}}
-        {{>header}}
+        {{#if currentUser}}
+          {{>header}}
+        {{/if}}
     </div>
     </body>
     </html>
