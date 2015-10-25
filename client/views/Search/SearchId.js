@@ -66,7 +66,9 @@ userId= UserReq[key]._id;
    }}
    else {
      sAlert.error("Select a User");
-   }}
+   }
+   //session deletion
+ }
    ,
    'click .Profile': function(event){
      event.preventDefault();
@@ -96,6 +98,7 @@ Meteor.call("SearchProfile",userId, function(error, result) {
 else {
   sAlert.error("Select a User");
 }
+//session deletion
 }
  ,
        'submit form': function (event) {
