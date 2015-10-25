@@ -80,11 +80,11 @@ Template.listOfRequests.events({
     },
     'click .cancel' : function (event) {
         event.preventDefault();
-        alert(JSON.stringify(this));
+     //   alert(JSON.stringify(this));
         var connect ={};
         connect._id = this._id;
         connect.mode='cancel';
-        alert(JSON.stringify(connect));
+     //   alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
             //  alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);
@@ -95,11 +95,11 @@ Template.listOfRequests.events({
     },
     'click .viewConnect' : function (event) {
         event.preventDefault();
-        alert(JSON.stringify(this));
+     //   alert(JSON.stringify(this));
         var connect ={};
         connect._id = this._id;
         connect.mode='viewConnect';
-        alert(JSON.stringify(connect));
+    ///    alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
             //  alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);
@@ -109,11 +109,11 @@ Template.listOfRequests.events({
     },
     'click .requestorComplete' : function (event) {
         event.preventDefault();
-        alert(JSON.stringify(this));
+     //   alert(JSON.stringify(this));
         var connect ={};
         connect._id = this._id;
         connect.mode='requestorComplete';
-        alert(JSON.stringify(connect));
+     //   alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
             //  alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);
@@ -124,11 +124,11 @@ Template.listOfRequests.events({
 
     'click .volunteerComplete' : function (event) {
         event.preventDefault();
-        alert(JSON.stringify(this));
+      //  alert(JSON.stringify(this));
         var connect ={};
         connect._id = this._id;
         connect.mode='volunteerComplete';
-        alert(JSON.stringify(connect));
+      //  alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
             //  alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);

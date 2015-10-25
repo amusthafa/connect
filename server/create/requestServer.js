@@ -14,9 +14,8 @@ Meteor.methods({
         check(req.creatorId, String);
 
         var requestList = Request.find({
-            //creatorId: req.creatorId,
             $or :[ {creatorId: req.creatorId}, {requestorId: req.creatorId}],
-            status: { $in: ['Submitted','Closed'] } }).fetch();
+            status: { $in: ['Submitted','Closed','InProgress'] } }).fetch();
 
         console.log("Server getListOfRequest:", JSON.stringify(requestList));
 

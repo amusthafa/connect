@@ -20,7 +20,11 @@
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">{{connectDetails.request.request_name}}</h3>
+                                <h3 class="box-title">{{connectDetails.request.request_name}}
+                                    {{#if isEqual connectDetails.request.emergency 'Yes'}}
+                                    - Urgent Request
+                                    {{/if}}
+                                </h3>
                             </div>
                             <div class="box-body">
                                 <dl class="dl-horizontal">
@@ -58,8 +62,10 @@
                     <input hidden id='volunteerId' value="{{connectDetails.connect.volunteerId}}">
 
                 </div>
-               {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                {{#if isNotEqual connectDetails.mode  'view'}}
+                {{#if isEqual connectDetails.connect.status 'Initiated'}}
                 {{#if isEqual connectDetails.connect.loggedUser  connectDetails.connect.volunteerId}}
+
                 <div class="form-group">
                     <div class="radio">
                         <label>
@@ -76,6 +82,7 @@
                 </div>
 
                 <input type="button" class="connectUpdateSubmit" value="Submit"/>
+                {{/if}}
                 {{/if}}
                 {{/if}}
             </section>
