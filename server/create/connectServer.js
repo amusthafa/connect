@@ -32,8 +32,8 @@ Meteor.methods(
 //Entry in notification table
         var notiId;
 
-        var aid = Aid.findOne({_id : connect.aidId });
-        connect.aidName= aid.aidName;
+        var aid = Aid.findOne({_id: connect.aidId });
+        connect.aidName = aid.aidName;
 
         var user = Meteor.users.findOne({_id: connect.volunteerId });
         console.log('user ------------- ' + JSON.stringify(user));
@@ -47,7 +47,7 @@ Meteor.methods(
                 status: 'Unread',
                 userId: connect.volunteerId,
                 type: 'Initiated',
-                description: 'Request for ' +   connect.aidName
+                description: 'Request for ' + connect.aidName
             };
 
             notiId = Notifications.insert(notificationData, function (error, result) {
@@ -58,21 +58,20 @@ Meteor.methods(
                         // throw new Meteor.Error("insert-failed", error.message);    });
                         throw new Meteor.Error("insert-failed", error);
                     }
-                    else
-                    {
+                    else {
                         //send mail
                         console.log('user email -- ' + user.emails[0].address);
-                        Email.send({to:user.emails[0].address, from :'olaamigo.app@gmail.com', subject : 'OlaAmigos Request for Connect',
-                            text : notificationData.description + "Thanks, Amigos"});
+                        Email.send({to: user.emails[0].address, from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos Request for Connect',
+                            text: notificationData.description + "Thanks, Amigos"});
                         console.log('email sent');
 
                     }
 
                 }
             );
-            console.log('connect.requestId - '+ JSON.stringify(connect.requestId));
+            console.log('connect.requestId - ' + JSON.stringify(connect.requestId));
             var request = Request.findOne({ _id: connect.requestId});
-            console.log('request - '+ JSON.stringify(request));
+            console.log('request - ' + JSON.stringify(request));
             if (request.status == 'Submitted') {
                 Request.update({_id: request._id}, { $set: {"status": "InProgress"}}
                     , function (error, result) {
@@ -105,17 +104,17 @@ Meteor.methods(
             console.log("connectObj - " + connectObj);
 
             //update notification to Read
-            if (connect.notificationId){
-            Notifications.update({_id: connect.notificationId}, { $set: {"status": "Read"}}
-                , function (error, result) {
-                    console.log("update Notification to Read - result " + result + ' error ' + error);
-                    if (error) {
-                        console.log("Errors !!" + error + "  Result - " + result);
-                        //TO-DO: error message()
-                        // throw new Meteor.Error("insert-failed", error.message);
-                        throw new Meteor.Error("update-failed", error);
-                    }
-                });
+            if (connect.notificationId) {
+                Notifications.update({_id: connect.notificationId}, { $set: {"status": "Read"}}
+                    , function (error, result) {
+                        console.log("update Notification to Read - result " + result + ' error ' + error);
+                        if (error) {
+                            console.log("Errors !!" + error + "  Result - " + result);
+                            //TO-DO: error message()
+                            // throw new Meteor.Error("insert-failed", error.message);
+                            throw new Meteor.Error("update-failed", error);
+                        }
+                    });
             }
             console.log("connect.requestId - " + connectObj.requestId);
             //get request details
@@ -125,30 +124,30 @@ Meteor.methods(
             request.aidName = aid.aidName;
             console.log('request -' + JSON.stringify(request));
 
-            var volunteer={};
+            var volunteer = {};
             //get volunteer details
             var user = Meteor.users.findOne({_id: connectObj.volunteerId });
             console.log('user -- ' + JSON.stringify(user));
-           if (user){
-            volunteer.name = user.profile.firstName + " " + user.profile.lastName;
-            volunteer.gender = user.profile.gender;
-            ///calculate age
-            var birthdate = user.profile.birthday;
-            if (birthdate){
-            var cur = new Date();
-            var diff = cur - birthdate;
-            var age = Math.floor(diff / 31536000000);
-            volunteer.age = age;
-            }
-            volunteer.city = user.profile.address.city;
+            if (user) {
+                volunteer.name = user.profile.firstName + " " + user.profile.lastName;
+                volunteer.gender = user.profile.gender;
+                ///calculate age
+                var birthdate = user.profile.birthday;
+                if (birthdate) {
+                    var cur = new Date();
+                    var diff = cur - birthdate;
+                    var age = Math.floor(diff / 31536000000);
+                    volunteer.age = age;
+                }
+                volunteer.city = user.profile.address.city;
 
-           }
+            }
             var contactDetails = {};
             contactDetails.connect = connectObj;
             contactDetails.request = request;
-            contactDetails.volunteer =volunteer;
-            contactDetails.mode =connect.mode;
-            contactDetails.connect.loggedUser=Meteor.userId();
+            contactDetails.volunteer = volunteer;
+            contactDetails.mode = connect.mode;
+            contactDetails.connect.loggedUser = Meteor.userId();
             console.log('contactDetails -' + JSON.stringify(contactDetails));
 
             return contactDetails;
@@ -158,7 +157,14 @@ Meteor.methods(
             //update connect table status
             console.log('connect ' + JSON.stringify(connect));
 
-            Connect.update({_id: connect._id}, { $set: {"status": connect.status}}
+            var connectIp = {};
+            connectIp.status = connect.status;
+            if (connect.currentStatus == "Completed")
+                connectIp.requestorRating = connect.requestorRating;
+            else if (connect.currentStatus == "PendingCompletion")
+                connectIp.volunteerAidRating = connect.volunteerAidRating;
+            console.log('connectIp for update '+JSON.stringify(connectIp));
+            Connect.update({_id: connect._id}, {  $set: connectIp}
                 , function (error, result) {
                     console.log("updateConnect - result " + result + ' error ' + error);
                     if (error) {
@@ -183,7 +189,9 @@ Meteor.methods(
                         if (connect.status == 'Declined' || connect.status == 'VolunteerCanceled' || connect.status == 'RequestorCanceled') {
                             status = 'Submitted';
                         }
-
+                        else if(connect.status == 'Completed' || connect.status == 'Unsuccessful'){
+                            status = 'Closed';
+                        }
                         if (status) {
                             console.log('status - ' + status);
                             Request.update({_id: connect.requestId}, { $set: {"status": status}}

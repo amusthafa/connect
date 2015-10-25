@@ -126,6 +126,22 @@ Template.notifications.events({
             });
 
         }
+        else if (this.type=="Completed") {
+            event.preventDefault();
+            alert(JSON.stringify(this));
+            var connect ={};
+            connect._id = this.connectId;
+            connect.notificationId =this._id;
+            connect.mode='volunteerComplete';
+            alert(JSON.stringify(connect));
+            Meteor.call('getConnectDetails', connect, function(err, result) {
+                //  alert(" result:"+ JSON.stringify(result));
+                Session.set('connectDetails', result);
+                //       alert(result);
+                Router.go("/connectUpdate");
+            });
+
+        }
 
     }
 
