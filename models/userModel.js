@@ -73,7 +73,8 @@ UserProfile = new SimpleSchema({
         allowedValues: ['Active', 'Inactive']
     },
     comments: {
-        type: String
+        type: String,
+        optional:true
     },
     differentlyAbled: {
         type: String
