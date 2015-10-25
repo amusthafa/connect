@@ -191,6 +191,7 @@ Template.createRequest.events({
                 else{
                   console.log("success");
                   sAlert.success("Successfully created you request.");
+                  sAlert.success('', configOverwrite);
                   Router.go("/");
                   delete Session.keys['isOther'];
                   delete Session.keys['sCity'];
@@ -208,17 +209,26 @@ Template.createRequest.events({
             console.log("request ID being editted:", requestID);
             Meteor.call("editRequest", requestID, request, function (error, result) {
                 console.log("Client editRequest" , JSON.stringify(result));
-                if (error) {
-                console.log("error body", (error));
-                // sAlert.error(error.reason);
-                Router.go("/listOfRequests");
-              }
-              else{
-                console.log("success");
-                // sAlert.success("Successfully saved your request.");
-                Router.go("/");
-              }
 
+                if (error) {
+                  console.log("error body", (error));
+                  sAlert.error(error.reason);
+                  Router.go("/listOfRequests");
+                }
+                else{
+                  console.log("success");
+                  Router.go("/");
+                  sAlert.success("Successfully saved you request.");
+                  sAlert.success('', configOverwrite);
+
+                  delete Session.keys['isOther'];
+                  delete Session.keys['sCity'];
+                  delete Session.keys['sState'];
+                  delete Session.keys['searchResult'];
+                  delete Session.keys['cityList'];
+                  delete Session.keys['stateList'];
+                  // Object.keys('isOther','sCity','sState','searchResult','cityList','stateList','aidList').forEach(function(key){ console.log(Session.get(key)); })
+                }
             });
 
           }

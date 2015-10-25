@@ -13,64 +13,72 @@ Meteor.methods(
             }
             return request;
         },
-        createOffer: function (OfferIp) {
-            check(OfferIp, Object);
-            if (OfferIp.volunteerId === Meteor.userId()) {
-                volunteerId = OfferIp.volunteerId;
-            } else if (OfferIp.volunteerId !== Meteor.userId()) {
-                var emailId = OfferIp.requestorId.split("-")[1];
+        createOffer: function (offer) {
+            check(offer, Object);
+            if (offer.volunteerId === Meteor.userId()) {
+                volunteerId = offer.volunteerId;
+            } else if (offer.volunteerId !== Meteor.userId()) {
+                var emailId = offer.requestorId.split("-")[1];
                 id = JSON.stringify(Accounts.findUserByEmail(emailId));
                 volunteerId = id.split(":")[1].split(",")[0].replace("\"", "").replace("\"", "");
             }
             ;
 
-            Offer.insert({
-                "offerName": OfferIp.offerName,
-                "offerType": OfferIp.offerType,
-                "creatorId": OfferIp.creatorId,
+            var offerObj = {
+                "offerName": offer.offerName,
+                "offerType": offer.offerType,
+                "creatorId": offer.creatorId,
                 "volunteerId": volunteerId,
                 "offerAddress": {
-                    "line1": OfferIp.line1,
-                    "line2": OfferIp.line2,
-                    "city": OfferIp.city,
-                    "state": OfferIp.state,
-                    "country": OfferIp.country,
-                    "pinCode": OfferIp.pincode,
+                    "line1": offer.line1,
+                    "line2": offer.line2,
+                    "city": offer.city,
+                    "state": offer.state,
+                    "country": offer.country,
+                    "pinCode": offer.pincode,
                 },
-            /*    "aidId": OfferIp.aid,
-                "fromDate": OfferIp.fromDate,
-                "toDate": OfferIp.toDate,*/
-                "comment": OfferIp.comment,
+                "comment": offer.comment,
                 "row_created": new Date(),
                 "row_updated": new Date()
-            }, function (error, result) {
-
-                console.log("offer insert result error " + error);
-                console.log("offer insert result" + result);
-
-                VolunteerAid.insert({
+            };
+            Offer.insert(offerObj, function (error, result) {
+              console.log("offer insert result:" + JSON.stringify(result));
+                if (error) {
+              console.log("offer sanitizedError!!!:", error.sanitizedError);
+              throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
+          }
+          else{
+              console.log("Success insert in Offer table");
+                var volunteerAid = {
                         "offerId": result,
                         "volunteerId": volunteerId,
-                        "aidId": OfferIp.aid,
-                        "aidStart": OfferIp.fromDate,
-                        "aidExpiry": OfferIp.toDate,
+                        "aidId": offer.aid,
+                        "aidStart": offer.fromDate,
+                        "aidExpiry": offer.toDate,
                         "aidAddress": {
-                            "line1": OfferIp.line1,
-                            "line2": OfferIp.line2,
-                            "city": OfferIp.city,
-                            "state": OfferIp.state,
-                            "country": OfferIp.country,
-                            "pinCode": OfferIp.pincode,
+                            "line1": offer.line1,
+                            "line2": offer.line2,
+                            "city": offer.city,
+                            "state": offer.state,
+                            "country": offer.country,
+                            "pinCode": offer.pincode,
                         },
                         "row_created": new Date(),
                         "row_updated": new Date()
-                    }, function (error, result) {
+                    };
+                VolunteerAid.insert(volunteerAid, function (error, result) {
+                  console.log("volunteerAid insert result:" + JSON.stringify(result));
 
-                        console.log("offer insert result error " + error);
-                        console.log("offer insert result" + result);
-                    }
-                )
-            })
+                  if (error) {
+                    console.log(" volunteerAid sanitizedError!!!:", error.sanitizedError);
+                    throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
+                }else{
+                  console.log("Success insert in VolunteerAid table");
+                }
+
+                    });
+              }
+            });
 
         }
     });

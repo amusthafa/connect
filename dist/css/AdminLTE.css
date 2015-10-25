@@ -3184,6 +3184,7 @@ table.text-center th {
 .login-page,
 .register-page {
   background: #d2d6de;
+  height :700px
 }
 .login-box,
 .register-box {

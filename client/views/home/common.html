@@ -7,16 +7,6 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <ul class="sidebar-menu" id="myNavmenu" role="navigation">
-
-                    {{#if isInRole 'Admin'}}
-                        <li class="treeview">
-                            <a href="{{pathFor route='addAdmin'}}">
-                                <span>Add Users to Admin Group</span>
-                                <span class="label label-primary pull-right"></span>
-                            </a>
-                        </li>
-                    {{/if}}
-
                     <li class="treeview">
                         <a href="{{pathFor route='createRequest'}}">
                             <span>Create Request</span>

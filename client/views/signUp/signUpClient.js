@@ -54,27 +54,18 @@ Template.signUp.events({
         Session.set("isOrg","No");
         var profile = JSON.stringify(userProfile);
         Meteor.call("signUp", userProfile, function (error, result) {
-            console.log("Client : error" + error + "result - " + result);
-            if (error) {
-                console.log("error" + error);
-                alert(error);
-            }
-            // if (Meteor.user() == null) {
-            //   console.log("Sign up log in");
-            //   Meteor.loginWithPassword(userProfile.email, userProfile.password);
-            //   // Meteor.call("mailVerification", Meteor.userId() ,userProfile.email);
-            // }
-            // else {
-            //   console.log("create profile");
-            //   // console.log(Meteor.users.find({'emails.address' : userProfile.email}, {_id : 1}));
-            //   // Meteor.call("mailVerification", Meteor.users.find({'emails.address' : userProfile.email}, {_id : 1}),userProfile.email);
-            // }
 
-            /*if (error.error === "insert-failed") {
-             console.log("Please specify mandatory fields.");
-             //sAlert.error("Please specify mandatory fields.");
-             }*/
+          if (error) {
+            console.log("error body", (error));
+            sAlert.error(error.reason);
+            Router.go("/SignUp");
+          }
+          else{
+            console.log("success");
+            sAlert.success("Successfully registered.");
+            sAlert.success('', configOverwrite);
             Router.go("/");
+          }
         });
     }
 
