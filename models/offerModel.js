@@ -44,7 +44,8 @@ Offer.attachSchema({
             type: String
         },*/
         comment: {
-            type: String
+            type: String,
+            optional: true
         },
         /*fromDate: {
             type: String
@@ -78,5 +79,3 @@ Offer.attachSchema({
         }
     }
 );
-
-

@@ -73,7 +73,8 @@ UserProfile = new SimpleSchema({
         allowedValues: ['Active', 'Inactive']
     },
     comments: {
-        type: String
+        type: String,
+        optional:true
     },
     differentlyAbled: {
         type: String
@@ -87,7 +88,14 @@ UserProfile = new SimpleSchema({
         allowedValues: ['Seeker', 'Volunteer', 'Both'],
         optional: true
 
-    }
+    },
+    rating:{
+    type: Number,
+        min : 0,
+        max : 5,
+        optional: true,
+        defaultValue : 0
+}
 });
 
 User = new SimpleSchema({

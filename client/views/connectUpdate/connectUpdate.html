@@ -113,25 +113,42 @@
 
             {{#if isEqual connectDetails.mode 'requestorComplete'}}
 
-
                 <section class="content">
                     <div class="row">
                         <!-- left column -->
                         <div class="col-md-6">
                             <!-- general form elements -->
+
+
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Rate the Volunteer</h3>
+                                    <h3 class="box-title">Rate Volunteer</h3>
                                 </div>
-                                    <div class="box-body">
-                                        <span class="rateit" id="add-rating"></span>
+                                <div class="box-body">
+
+                                <div class="form-group">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="Completed" id="Completed" value="Completed">
+                                            Successful. Rate about the experience.
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="UnSuccessful" id="UnSuccessful" value="UnSuccessful">
+                                            UnSuccessful. Please rate if the connect was Unsuccessful because of problems.
+                                        </label>
+                                    </div>
+                                </div>
+
+                                        <div  style="padding:10px">
+                                            {{> starsRating id="rating" star='\\f005' class="awesome" mutable=true size='lg'}}
+                                        </div>
                                     </div>
                                     <div class="box-footer">
-                                        <button type="submit" class="rateUser">Rate</button>
+                                        <button type="submit" class="rate">Submit</button>
+                                        <input hidden id='status' value="{{connectDetails.connect.status}}">
                                     </div>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -139,11 +156,36 @@
 
             {{/if}}
 
+            {{#if isEqual connectDetails.mode 'volunteerComplete'}}
+
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
 
 
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Rate Requestor</h3>
+                            </div>
+                            <div class="box-body">
+                                Rate your experience with Requestor
+                                <div  style="padding:10px">
+                                    {{> starsRating id="rating" star='\\f005' class="awesome" mutable=true size='lg'}}
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="submit" class="rate">Submit</button>
+                                <input hidden id='status' value="{{connectDetails.connect.status}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {{/if}}
         </div>
-
-
     </div>
     </body>
     </html>

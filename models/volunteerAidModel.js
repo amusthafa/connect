@@ -42,6 +42,13 @@ VolunteerAid.attachSchema({
         aidAddress: {
             type: Address
         },
+        rating: {
+            type: Number,
+            min : 0,
+            max : 5,
+            optional: true,
+            defaultValue : 0
+        },
         rowCreated: {
             type: Date,
             denyUpdate: true,

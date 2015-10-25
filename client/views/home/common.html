@@ -1,21 +1,17 @@
 <template name="common">
     {{#if currentUser}}
-
-
         <!-- Left side column. contains the logo and sidebar -->
-        <aside  class="main-sidebar" >
+        <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <ul class="sidebar-menu" id="myNavmenu" role="navigation">
 
-                    {{#if isInRole 'Admin'}}
-                  	<li class="treeview">
-                      <a href="{{pathFor route='addAdmin'}}">
-                        <span>Add Users to Admin Group</span>
-                        <span class="label label-primary pull-right"></span>
-                      </a>
+                    <li class="treeview">
+                        <a href="{{pathFor route='createProfile'}}">
+                            <span>Create Profile</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
                     </li>
-                  	{{/if}}
 
                     <li class="treeview">
                         <a href="{{pathFor route='createRequest'}}">
@@ -39,22 +35,8 @@
                     </li>
 
                     <li class="treeview">
-                        <a href="{{pathFor route='match'}}">
-                            <span>Connect</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
-
-                    <li class="treeview">
                         <a href="{{pathFor route='notifications'}}">
                             <span>Notifications</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
-
-                    <li class="treeview">
-                        <a href="{{pathFor route='updateStatus'}}">
-                            <span>Get Request & Update Status</span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
@@ -66,20 +48,13 @@
                         </a>
                     </li>
 
-
-                    <li class="treeview">
-                        <a href="{{pathFor route='adminAuth'}}">
-                            <span>Authentication/ Blacklisting</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
-
                     <li class="treeview">
                         <a href="{{pathFor route='informationAdd'}}">
-                            <span>Admin - Add Information </span>
+                            <span>Add Information </span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
+
                     <li class="treeview">
                         <a href="{{pathFor route='informationView'}}">
                             <span>Informations </span>
@@ -87,35 +62,10 @@
                         </a>
                     </li>
 
-                  <li class="treeview">
-                    <a href="{{pathFor route='analytics'}}">
-                        <span>Analytics</span>
-                        <span class="label label-primary pull-right"></span>
-                    </a>
-                </li>
-
-                    <li class="treeview">
-                        <a href="{{pathFor route='rating'}}">
-                            <span>Rating</span>
-                            <span class="label label-primary pull-right"></span>
-                        </a>
-                    </li>
-
-
                     {{#if isInRole 'Admin'}}
                       <li class="treeview">
                           <a href="{{pathFor route='adminAuth'}}">
                               <span>Authentication/ Blacklisting</span>
-                              <span class="label label-primary pull-right"></span>
-                          </a>
-                      </li>
-                    {{/if}}
-
-
-                    {{#if isInRole 'Admin'}}
-                      <li class="treeview">
-                          <a href="{{pathFor route='aid'}}">
-                              <span>Admin - Add Aid</span>
                               <span class="label label-primary pull-right"></span>
                           </a>
                       </li>
@@ -128,59 +78,38 @@
                               <span class="label label-primary pull-right"></span>
                           </a>
                       </li>
+                      {{/if}}
+
+                    {{#if isInRole 'Admin'}}
+                        <li class="treeview">
+                            <a href="{{pathFor route='aid'}}">
+                                <span>Add Aid</span>
+                                <span class="label label-primary pull-right"></span>
+                            </a>
+                        </li>
                     {{/if}}
 
                     {{#if isInRole 'Admin'}}
-                      <li class="treeview">
-                          <a href="{{pathFor route='addTocontactUs'}}">
-                              <span>Add To Contact Us</span>
-                              <span class="label label-primary pull-right"></span>
-                          </a>
-                      </li>
+                        <li class="treeview">
+                            <a href="{{pathFor route='addTocontactUs'}}">
+                                <span>Update - Contact Us</span>
+                                <span class="label label-primary pull-right"></span>
+                            </a>
+                        </li>
                     {{/if}}
 
                     {{#if isInRole 'Admin'}}
-                      <li class="treeview">
-                          <a href="{{pathFor route='viewFeedbacks'}}">
-                              <span>View Feedbacks</span>
-                              <span class="label label-primary pull-right"></span>
-                          </a>
-                      </li>
+                        <li class="treeview">
+                            <a href="{{pathFor route='viewFeedbacks'}}">
+                                <span>View Feedbacks</span>
+                                <span class="label label-primary pull-right"></span>
+                            </a>
+                        </li>
                     {{/if}}
-
-                      <li class="treeview">
-                          <a href="{{pathFor route='feedback'}}">
-                              <span>Feedback</span>
-                              <span class="label label-primary pull-right"></span>
-                          </a>
-                      </li>
-
-                      <li class="treeview">
-                          <a href="{{pathFor route='contactUs'}}">
-                              <span>contact Us</span>
-                              <span class="label label-primary pull-right"></span>
-                          </a>
-                      </li>
-
                 </ul>
-
-
-
-                <a href="/" style="display: none"> STANDOUT?? </a>
-                <a href="/" style="display: none"> Notifications </a>
-                <a href="/" style="display: none"> Informational Details Update </a>
-                <a href="/" style="display: none"> Informational Details View </a>
-
-                <a href="/" style="display: none"> Phone, Video Call, Chat </a>
-                <a href="/" style="display: none"> Settings </a>
-                <a href="/" style="display: none"> Contact us - Raise complaint </a>
-
-
             </section>
         </aside>
     {{else}}
-
         {{>login}}
-
     {{/if}}
 </template>

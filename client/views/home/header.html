@@ -48,38 +48,65 @@
                         </ul>
                     </li>
 
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="hidden-xs">Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}
-                                    !! </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <p>
-                                    Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!!
-                                </p>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="{{pathFor route='createProfile'}}" class="btn btn-default btn-flat">Create
-                                        Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="{{pathFor route='logout'}}" class="btn btn-default btn-flat">Logout</a>
-                                </div>
-                            </li>
 
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle">
+                            <span class="hidden-xs">Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}
+                                !! </span>
+                        </a>
+                    </li>
+
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="{{pathFor route='resetPassword'}}">
+                                            <h3>
+                                                Reset Password
+                                            </h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{pathFor route='updateProfile'}}">
+                                            <h3>
+                                                Update Profile
+                                            </h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                Help
+                                            </h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{pathFor route='feedback'}}">
+                                            <h3>
+                                                Report a Problem
+                                            </h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{pathFor route='contactUs'}}">
+                                            <h3>
+                                                Contact Us
+                                            </h3>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{pathFor route='logout'}}">
+                                            <h3>
+                                                Logout
+                                            </h3>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
-
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
-
-
                 </ul>
             </div>
         </nav>

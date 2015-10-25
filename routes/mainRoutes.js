@@ -241,3 +241,18 @@ Router.route('/contactUs', {
         this.render('contactUs');
     }
 });
+
+Router.route('/resetPassword', {
+    name: 'resetPassword',
+    action: function () {
+        this.render('resetPassword');
+    }
+});
+
+Router.route('/updateProfile', {
+    name: 'updateProfile',
+    action: function () {
+        this.render('updateProfile');
+    }
+});
+

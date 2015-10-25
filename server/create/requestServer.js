@@ -13,7 +13,11 @@ Meteor.methods({
         check(req, Object);
         check(req.creatorId, String);
 
-        var requestList = Request.find({creatorId: req.creatorId, status: { $in: ['Submitted','Closed'] } }).fetch();
+        var requestList = Request.find({
+            //creatorId: req.creatorId,
+            $or :[ {creatorId: req.creatorId}, {requestorId: req.creatorId}],
+            status: { $in: ['Submitted','Closed'] } }).fetch();
+
         console.log("Server getListOfRequest:", JSON.stringify(requestList));
 
         var aidList = Aid.find({}).fetch();
@@ -70,9 +74,17 @@ Meteor.methods({
                 connect.notification = notification;
                 connect.loggedUser=Meteor.userId();
             }
-            if (connect.status == "PendingCompletion"){
+            else if (connect.status == "PendingCompletion"){
                 var notification = Notifications.findOne({connectId:connect._id, requestId : connect.requestId,
                     status : 'Unread', type : 'PendingCompletion' });
+                console.log('connect noti - ' + notification);
+                if (notification)
+                    connect.notification = notification;
+                connect.loggedUser=Meteor.userId();
+            }
+            else if (connect.status == "Completed"){
+                var notification = Notifications.findOne({connectId:connect._id, requestId : connect.requestId,
+                    status : 'Unread', type : 'Completed' });
                 console.log('connect noti - ' + notification);
                 if (notification)
                     connect.notification = notification;

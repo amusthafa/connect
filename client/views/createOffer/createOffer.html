@@ -6,13 +6,10 @@
     <div class="wrapper">
         {{>header}}
         {{>common}}
+        {{>sAlert}}
 
         <div class="content-wrapper">
-            <section class="content-header">
-                <h1>
-                    Volunteer..
-                </h1>
-            </section>
+
             <section class="content">
                 <div class="row">
                     <!-- left column -->
@@ -65,14 +62,14 @@
 
                                     <div class="form-group">
                                         <label>Offer Name</label>
-                                        <input id='offerName' class="form-control" type="text"
+                                        <input id='offerName' class="form-control" required="required" type="text"
                                                placeholder="Default input">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Aid</label>
-                                        <select id="Aid" class="form-control">
-                                            <option selected="selected">Please Select</option>
+                                        <select required id="Aid" class="form-control">
+                                            <option value="" disabled selected>Please Select</option>
                                             {{#each aidList}}
                                                 <option value="{{_id}}">{{aidName}} </option>
                                             {{/each}}
@@ -83,7 +80,7 @@
                                         <label>From Date</label>
 
                                         <div class="input-group">
-                                            <input type="date" id="fromDate">
+                                            <input type="date" required="required" id="fromDate">
                                         </div>
                                     </div>
 
@@ -91,7 +88,7 @@
                                         <label>To Date</label>
 
                                         <div class="input-group">
-                                            <input type="date" id="toDate">
+                                            <input type="date" required="required" id="toDate">
                                         </div>
                                     </div>
 
@@ -159,7 +156,7 @@
 
                                     <div class="form-group">
                                         <label>City</label>
-                                        <select class="form-control" id="scity-select">
+                                        <select  class="form-control" id="scity-select">
                                             <option selected="selected">Please Select</option>
                                             {{#each cityList}}
                                                 <option value="{{this}}">{{this}}</option>

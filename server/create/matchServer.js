@@ -55,7 +55,7 @@ Meteor.methods({matchRequestVolunteer: function (requestIp) {
         // check if volunteer is active or inactive
         //check if he is authentic
         var users = Meteor.users.find({_id: { $in: volunteerArr }, "profile.availabilityStatus": "Active",
-            "profile.status": "Authentic"  })
+            "profile.status": { $in: ["Authentic", "Warned"] }  })
             .fetch();
         console.log("User match -- " + JSON.stringify(users));
 
