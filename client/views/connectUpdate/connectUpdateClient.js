@@ -24,8 +24,8 @@ return (Session.get('connectDetails'));
 
 
 Template.connectUpdate.onRendered(function() {
-    alert('oonrednder');
-    alert($('.rateit'));
+    //alert('oonrednder');
+    //alert($('.rateit'));
     $('.rateit').rateit();
     $(".rateit").on('rated', function (event, value) {
         console.log('Rating:' + value)
@@ -62,7 +62,7 @@ Template.connectUpdate.events({
         console.log('form submitted');
         //console.log('clicked add aid' + event.target.aidName.value);
         var connectUpdate = {};
-        alert(JSON.stringify(this));
+       // alert(JSON.stringify(this));
         //status to be seeker cancel or vol cancel
         if (Meteor.user()._id ==  document.getElementById('volunteerId').value )
         {
@@ -105,7 +105,7 @@ Template.connectUpdate.events({
         if ($('#rating')){
         var rating = $('#rating').data('userrating');}
         //if status Pending completion , then vovl aid rating
-        alert($('#status'));
+    //    alert($('#status'));
         if ($('#status').val() == "PendingCompletion" ){
             connectUpdate.volunteerAidRating = rating;
             }
@@ -115,7 +115,7 @@ Template.connectUpdate.events({
             connectUpdate.requestorRating = rating;
         }
 
-        alert('connectUpdate'+JSON.stringify(connectUpdate));
+    //    alert('connectUpdate'+JSON.stringify(connectUpdate));
         //seeker
 
         Meteor.call("updateConnect", connectUpdate, function (error, result) {

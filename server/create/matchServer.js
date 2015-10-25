@@ -148,7 +148,8 @@ Meteor.methods({matchRequestVolunteer: function (requestIp) {
             request.aidName = aid.aidName;
         }
         //Update volunteer list with volunteer details from profile
-
+        var reqCityList = [];
+        var otherCityList = [];
 
         for (var i in finalVolunteerList) {
             var volunteer = finalVolunteerList[i];
@@ -160,19 +161,38 @@ Meteor.methods({matchRequestVolunteer: function (requestIp) {
 
             ///calculate age
             var birthdate = user.profile.birthday;
+            if (birthdate){
             var cur = new Date();
             var diff = cur - birthdate;
             var age = Math.floor(diff / 31536000000);
             volunteer.age = age;
+            }
+            //volunteer.city = user.profile.address.city;
+            volunteer.city = volunteer.aidAddress.city;
 
-            volunteer.city = user.profile.address.city;
+            if (request.requestAddress.city ==  volunteer.city){
+                reqCityList.push(volunteer);
+            }
+            else
+            {
+                otherCityList.push(volunteer);
+            }
         }
+
+        var sortedCityArr=  sortByRating (reqCityList);
+        console.log("sortedCityArr - "+JSON.stringify(sortedCityArr));
+        var sortedOtherCityArr=  sortByRating (otherCityList);
+        console.log("sortedOtherCityArr - "+JSON.stringify(sortedOtherCityArr));
+
+        var sortedArr=sortedCityArr.concat(sortedOtherCityArr);
+        console.log("sortedArr - "+JSON.stringify(sortedArr));
 
         var matchDtls = {};
         matchDtls.requestId = request._id;
         matchDtls.requiredBy = request.requiredBy;
         matchDtls.request = request;
-        matchDtls.volunteerList = finalVolunteerList;
+      //  matchDtls.volunteerList = finalVolunteerList;
+        matchDtls.volunteerList = sortedArr;
         check(matchDtls, Object);
 
         console.log('matchDtls -- ' + JSON.stringify(matchDtls));
@@ -181,3 +201,11 @@ Meteor.methods({matchRequestVolunteer: function (requestIp) {
 
 }})
 ;
+
+function sortByRating(volunteerArr ){
+    var byRating = volunteerArr.slice(0);
+    byRating.sort(function(a,b) {
+        return b.rating - a.rating;
+    });
+return byRating;
+}

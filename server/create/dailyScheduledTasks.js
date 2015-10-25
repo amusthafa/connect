@@ -11,7 +11,7 @@ SyncedCron.add({
     name: 'Daily Scheduled task for Connect',
     schedule: function(parser) {
         // parser is a later.parse object
-        return parser.text('every 2 minutes');
+        return parser.text('every 1 hours');
     },
     job: function() {
         console.log("=================Daily Scheduled job start=================");
