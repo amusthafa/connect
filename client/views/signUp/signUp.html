@@ -5,14 +5,16 @@
   {{>include}}
   <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
+    {{#if currentUser}}
+        {{>common}}
+    {{/if}}
     {{>header}}
-    {{>common}}
     {{>sAlert}}
 
     <div class="content-wrapper">
       <section class="content-header">
           <h1>
-              Register..
+              Register New User
           </h1>
       </section>
       <section class="content">

@@ -62,11 +62,10 @@ Template.signUp.events({
           }
           else{
             console.log("success");
-            sAlert.success("Successfully registered.");
+            sAlert.success("Verification mail has been sent. Please confirm to activate your account!");
             sAlert.success('', configOverwrite);
-            Router.go("/");
           }
         });
+        Router.go("/");
     }
-
 });

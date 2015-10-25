@@ -74,7 +74,6 @@ Template.createOffer.events({
         event.preventDefault();
         var createOffer = {};
 
-
         if (event.target.userType.value === "Self") {
             createOffer.offerType = "Self";
             createOffer.creatorId = Meteor.userId();
@@ -106,7 +105,6 @@ Template.createOffer.events({
         createOffer.fromDate = event.target.fromDate.value;
         createOffer.toDate = event.target.toDate.value;
         createOffer.comment = event.target.comment.value;
-        // Meteor.call("createOffer", createOffer);
         Meteor.call("createOffer", createOffer, function (error, result) {
             console.log("Client save offer result", JSON.stringify(result));
             console.log("Client save offer error", JSON.stringify(error));
@@ -118,22 +116,15 @@ Template.createOffer.events({
             }
             else{
               console.log("success");
-              sAlert.success("Successfully created you offer.");
+              sAlert.success("Successfully created your offer.");
               sAlert.success('', configOverwrite);
-              Router.go("/");
-              delete Session.keys['isOther'];
-              delete Session.keys['sCity'];
-              delete Session.keys['sState'];
-              delete Session.keys['searchResult'];
-              delete Session.keys['cityList'];
-              delete Session.keys['stateList'];
-              // Object.keys('isOther','sCity','sState','searchResult','cityList','stateList','aidList').forEach(function(key){ console.log(Session.get(key)); })
             }
         });
+        delete Session.keys['isOther'];
+        delete Session.keys['searchResult'];
+        Router.go("/");
     }
-
-})
-;
+});
 
 Template.createOffer.onRendered(function () {
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {

@@ -8,13 +8,8 @@
         {{>common}}
         {{>sAlert}}
 
-
         <div class="content-wrapper">
-            <section class="content-header">
-                <h1>
-                    Volunteer..
-                </h1>
-            </section>
+
             <section class="content">
                 <div class="row">
                     <!-- left column -->
@@ -161,8 +156,8 @@
 
                                     <div class="form-group">
                                         <label>City</label>
-                                        <select required class="form-control" id="scity-select">
-                                            <option value="" disabled selected>Please Select</option>
+                                        <select  class="form-control" id="scity-select">
+                                            <option selected="selected">Please Select</option>
                                             {{#each cityList}}
                                                 <option value="{{this}}">{{this}}</option>
                                             {{/each}}
@@ -172,8 +167,8 @@
 
                                     <div class="form-group">
                                         <label>State</label>
-                                        <select required class="form-control" id="sstate-select">
-                                            <option value="" disabled selected>Please Select</option>
+                                        <select class="form-control" id="sstate-select">
+                                            <option selected="selected">Please Select</option>
                                             {{#each stateList}}
                                                 <option value="{{this}}">{{this}}</option>
                                             {{/each}}

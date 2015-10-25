@@ -14,15 +14,20 @@ Template.login.events({
         credentials.email = event.target.mailId.value;
         credentials.password = event.target.password.value;
         Meteor.loginWithPassword(credentials.email, credentials.password, function(error) {
-          if (error != null) {
-            console.log("login result" + error.reason);
-            alert("Email id or password is wrong");
-          }
-          else {
-            console.log("Success");
-            Router.go("/");
-          }
+            if (error) {
+              console.log("error body", (error));
+              sAlert.error("Email id or password is wrong");
+              Router.go("/");
+            }
+            else{
+              console.log("success");
+              sAlert.success("Successfully logged in.");
+              sAlert.success('', configOverwrite);
+
+            }
+
         });
+        Router.go("/");
 
         //
         //

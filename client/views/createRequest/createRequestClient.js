@@ -190,18 +190,13 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                  sAlert.success("Successfully created you request.");
+                  sAlert.success("Successfully created you request!");
                   sAlert.success('', configOverwrite);
-                  Router.go("/");
-                  delete Session.keys['isOther'];
-                  delete Session.keys['sCity'];
-                  delete Session.keys['sState'];
-                  delete Session.keys['searchResult'];
-                  delete Session.keys['cityList'];
-                  delete Session.keys['stateList'];
-                  // Object.keys('isOther','sCity','sState','searchResult','cityList','stateList','aidList').forEach(function(key){ console.log(Session.get(key)); })
                 }
             });
+            delete Session.keys['isOther'];
+            delete Session.keys['searchResult'];
+            Router.go("/");
           }
           else{
             console.log("EDIT REQUEST:" , request);
@@ -217,20 +212,13 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                  Router.go("/");
-                  sAlert.success("Successfully saved you request.");
+                  sAlert.success("Successfully saved you request!");
                   sAlert.success('', configOverwrite);
-
-                  delete Session.keys['isOther'];
-                  delete Session.keys['sCity'];
-                  delete Session.keys['sState'];
-                  delete Session.keys['searchResult'];
-                  delete Session.keys['cityList'];
-                  delete Session.keys['stateList'];
-                  // Object.keys('isOther','sCity','sState','searchResult','cityList','stateList','aidList').forEach(function(key){ console.log(Session.get(key)); })
                 }
             });
-
+              delete Session.keys['isOther'];
+              delete Session.keys['searchResult'];
+            Router.go("/");
           }
     }
 });
