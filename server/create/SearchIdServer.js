@@ -23,7 +23,6 @@ Meteor.methods({
        var req = requestData[i];
        console.log('req:'+JSON.stringify(req));
        var aid = Aid.findOne({_id: req.aidId});
-       req.aidName = aid.aidName;
        requestData[i].aidName=aid.aidName;
        }
     console.log('req:'+JSON.stringify(requestData));   

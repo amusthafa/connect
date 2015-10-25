@@ -7,13 +7,17 @@ Template.informationView.helpers({
   } ,
 infoView: function () {
   return (Session.get('infoView'));
+},
+Stype: function() {
+  return (Session.get("sType"));
+},
+isEqual: function(v1, v2) {
+    if (v1 === v2){
+        return true;}
+
+    return false;
 }
-
 });
-
-// Template.informationView.onRendered(function () {
-//   console.log("Session.get('typeList'):",Session.get('typeList') );
-// });
 
 Template.informationView.events({
  "change #stype-select": function (event, template) {
@@ -23,5 +27,24 @@ Template.informationView.events({
       Meteor.call("infoView",type, function(error, result){
       Session.set("infoView",result);
   });
+},
+"change #isVerified": function(event, template) {
+  var changeId=event.currentTarget.name;
+  console.log("id is"+ changeId);
+    if($(event.currentTarget).val() == "Yes")
+    {
+      Meteor.call("infoUpdate",changeId);
+      }
+
+  },
+  'click .Verify': function (event) {
+      event.preventDefault();
+      console.log("varify button");
+      var Ftype =Session.get('sType');
+      //
+      Meteor.call("infoView",Ftype, function(error, result){
+      Session.set("infoView",result);
+  });
 }
+
 });

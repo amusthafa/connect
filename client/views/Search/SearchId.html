@@ -36,9 +36,15 @@
           {{/each}}
         </tbody>
       </table>
-          <!-- <div class="active tab-pane" id="activity">Activity </div> -->
-          <tr> <td> <input type="button" value="Profile" class="Profile" /></td><td>
-          </td><td> <input type="button" value="Request" class="Request" /></td></tr>
+
+          <tr>
+            <div>
+          <td><input type="button" value="Profile" class="Profile" /></td>
+          {{#if isInRole 'Admin'}}
+          <td> <input type="button" value="Request" class="Request" /></td>
+        {{/if}}
+        </div>
+        </tr>
            </div>
          </div>
          {{/if}}
@@ -64,10 +70,10 @@
             <tr><td><b>PhoneNumber:</b></td>
             <td>{{profile.phone}}</td></tr>
             {{/if}}
-            {{#if isInRole 'Admin'}}
+            <!-- {{#if isInRole 'Admin'}} -->
             <tr></tr>
             <tr><td><input type="submit" class="addAdmin" value="Add as Admin" /></td></tr>
-            {{/if}}
+            <!-- {{/if}} -->
             {{/each}}
            </div>
            </div>

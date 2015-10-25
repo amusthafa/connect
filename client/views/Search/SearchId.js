@@ -39,8 +39,7 @@ Template.SearchId.events({
     event.preventDefault();
     console.log("clicked request");
     var UserReq = Session.get('searchResult');
- var UserReq = Session.get('searchResult');
- if($('input[name=SelectUser]:radio:checked').val())
+  if($('input[name=SelectUser]:radio:checked').val())
  {
 for(var key in UserReq)
 {
