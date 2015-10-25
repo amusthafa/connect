@@ -87,6 +87,12 @@ Router.route('/informationAdd', {
         this.render('informationAdd');
     }
 });
+Router.route('/informationView', {
+    name: 'informationView',
+    action: function () {
+        this.render('informationView');
+    }
+});
 // Router.route('/SearchRequest', {
 //     name: 'SearchRequest',
 //     action: function () {
@@ -235,3 +241,18 @@ Router.route('/contactUs', {
         this.render('contactUs');
     }
 });
+
+Router.route('/resetPassword', {
+    name: 'resetPassword',
+    action: function () {
+        this.render('resetPassword');
+    }
+});
+
+Router.route('/updateProfile', {
+    name: 'updateProfile',
+    action: function () {
+        this.render('updateProfile');
+    }
+});
+

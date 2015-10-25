@@ -19,6 +19,14 @@ Meteor.methods({
    console.log(count_value);
    requestData=[]
    requestData=Request.find({requestorId:id}).fetch();
+   for (var i in requestData ) {
+       var req = requestData[i];
+       console.log('req:'+JSON.stringify(req));
+       var aid = Aid.findOne({_id: req.aidId});
+       req.aidName = aid.aidName;
+       requestData[i].aidName=aid.aidName;
+       }
+    console.log('req:'+JSON.stringify(requestData));   
    return requestData;
  },
  "SearchProfile" : function(id) {

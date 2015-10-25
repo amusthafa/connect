@@ -65,7 +65,7 @@ Request.attachSchema({
         //To-DO : To update the list of statuses
         status: {
             type: String,
-            allowedValues: ["Submitted","InProgress","Closed","Canceled", "Deleted"]
+            allowedValues: ["Submitted","InProgress","Closed","Deleted"]
         },
 
         rowCreated: {
