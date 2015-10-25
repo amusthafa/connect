@@ -87,6 +87,12 @@ Router.route('/informationAdd', {
         this.render('informationAdd');
     }
 });
+Router.route('/informationView', {
+    name: 'informationView',
+    action: function () {
+        this.render('informationView');
+    }
+});
 // Router.route('/SearchRequest', {
 //     name: 'SearchRequest',
 //     action: function () {

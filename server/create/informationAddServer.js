@@ -16,11 +16,9 @@ Meteor.methods({
        "pinCode": info.pincode,
      },
       "contactPhone":info.contactPhone,
-      "addedById": info.addedById,
-      "row_created": new Date(),
-      "row_updated": new Date()
+      "addedById": info.addedById      // "row_created": new Date(),
+      // "row_updated": new Date()
     }, function (error, result) {
-
         console.log("info insert result error " + error);
         console.log("info insert result" + result);
       })
