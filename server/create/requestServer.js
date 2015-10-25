@@ -70,9 +70,17 @@ Meteor.methods({
                 connect.notification = notification;
                 connect.loggedUser=Meteor.userId();
             }
-            if (connect.status == "PendingCompletion"){
+            else if (connect.status == "PendingCompletion"){
                 var notification = Notifications.findOne({connectId:connect._id, requestId : connect.requestId,
                     status : 'Unread', type : 'PendingCompletion' });
+                console.log('connect noti - ' + notification);
+                if (notification)
+                    connect.notification = notification;
+                connect.loggedUser=Meteor.userId();
+            }
+            else if (connect.status == "Completed"){
+                var notification = Notifications.findOne({connectId:connect._id, requestId : connect.requestId,
+                    status : 'Unread', type : 'Completed' });
                 console.log('connect noti - ' + notification);
                 if (notification)
                     connect.notification = notification;

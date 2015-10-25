@@ -114,6 +114,14 @@
                                                        id="requestorComplete"/>
                                                 {{/if}}
                                                 {{/if}}
+                                                {{#if isEqual status "Completed"}}
+                                                {{#if isEqual volunteerId loggedUser}}
+                                                <input type="button" class="volunteerComplete" value="Rate"
+                                                       id="Rate"/>
+                                                {{/if}}
+                                                {{/if}}
+
+
 
                                                 <a href="#" class="viewConnect">View</a>
                                             </td>

@@ -20,7 +20,7 @@ Template.listOfRequests.onRendered(function() {
   // if ( _.isEmpty(Session.get('req')) ) {
     var creatorId = Meteor.user()._id ;
     var request = {creatorId:creatorId};
-   alert(JSON.stringify(request));
+ //  alert(JSON.stringify(request));
     console.log("list of requests: request:", JSON.stringify(request));
  //  alert("list of  requests with session set:" + JSON.stringify(request));
     check(request, Object);
@@ -122,9 +122,24 @@ Template.listOfRequests.events({
         });
     },
 
+    'click .volunteerComplete' : function (event) {
+        event.preventDefault();
+        alert(JSON.stringify(this));
+        var connect ={};
+        connect._id = this._id;
+        connect.mode='volunteerComplete';
+        alert(JSON.stringify(connect));
+        Meteor.call('getConnectDetails', connect, function(err, result) {
+            //  alert(" result:"+ JSON.stringify(result));
+            Session.set('connectDetails', result);
+            //       alert(result);
+            Router.go("/connectUpdate");
+        });
+    },
 
 
-  'click .delete': function(event){
+
+    'click .delete': function(event){
       event.preventDefault();
       console.log("DELETE REQUEST!!!");
       var requestId = this._id;

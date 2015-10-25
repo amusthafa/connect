@@ -113,7 +113,7 @@ Template.manageRequest.events({
 
         var connect={};
 
-        connect.volunteerAidId = this.aidId;///button.getAttribute('data-aidId');
+        connect.volunteerAidId = this._id;///button.getAttribute('data-aidId');
         connect.volunteerId = this.volunteerId;//button.getAttribute('data-volunteerId');
 
         connect.requestId = document.getElementById('requestId').value;
