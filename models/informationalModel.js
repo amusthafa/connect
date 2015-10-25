@@ -3,22 +3,28 @@ Information = new Meteor.Collection('information');
 
 Address = new SimpleSchema({
     line1: {
-        type: String
+        type: String,
+        optional:true
     },
     line2: {
-        type: String
+        type: String,
+        optional:true
     },
     city: {
-        type: String
+        type: String,
+        optional:true
     },
     state: {
-        type: String
+        type: String,
+        optional:true
     },
     country: {
-        type: String
+        type: String,
+        optional:true
     },
     pinCode: {
-        type: String
+        type: String,
+        optional:true
     }
 });
 
@@ -44,10 +50,15 @@ Information.attachSchema({
             type:Number,
           optional:true
         },
+
         addedById: {
               type: String
           },
 
+        verificationStatus:{
+          type :String,
+          allowedValues :['Yes','No']
+        },
         rowCreated: {
             type: Date,
             denyUpdate: true,

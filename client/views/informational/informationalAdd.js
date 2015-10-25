@@ -47,6 +47,11 @@ Template.informationAdd.events({
       info.pincode = event.target.s_pincode.value;
       info.contactPhone=event.target.infoPhone.value;
       info.addedById=Meteor.userId();
+      if (Roles.userIsInRole(Meteor.userId(),'Admin'))
+      info.verificationStatus=event.target.isVerified.value;
+      else {
+        info.verificationStatus='No';
+      }
       console.log("information"+JSON.stringify(info));
       Meteor.call("AddInfo",info);
 }

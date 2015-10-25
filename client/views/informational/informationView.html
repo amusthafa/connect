@@ -36,24 +36,68 @@
   {{#if infoView}}
   <div class="box box-primary">
   <div class="box-header with-border">
-   <h3 class="box-title">REQUEST</h3>
+   <h3 class="box-title"> {{Stype}} -Informations</h3>
    </div>
    <div class="box-body table-responsive no-padding">
      <table class="table table-hover">
          <tbody>
            <tr><th>Title</th>
                <th>Description</th>
-                <th>Contact Number</th></tr>
-
-  {{#each infoView}}
+                <th>Contact Number</th>
+                <th>Contact Address</th>
+                </tr>
+    {{#each infoView}}
+    {{#if isEqual verificationStatus "Yes"}}
   <tr><td>{{infoTitle}}</td>
     <td>{{informationDescription}}</td>
-    <td>{{contactPhone}}</td></tr>
-  {{/each}}
+    <td>{{contactPhone}}</td>
+    {{#if line1}}<td>{{line1}},{{line2}},{{city}}</td>{{/if}}</tr>
+    {{/if}}
+    {{/each}}
 </tbody>
 </table>
 </div>
 </div>
+{{/if}}
+
+
+{{#if infoView}}
+{{#if isInRole 'Admin'}}
+<div class="box box-primary">
+<div class="box-header with-border">
+ <h3 class="box-title">{{Stype}} -Informations Not Verified</h3>
+ </div>
+ <div class="box-body table-responsive no-padding">
+   <table class="table table-hover">
+       <tbody>
+         <tr><th>Title</th>
+             <th>Description</th>
+              <th>Contact Number</th>
+              <th>Verification Status</th></tr>
+
+{{#each infoView}}
+{{#if isEqual verificationStatus "No"}}
+<tr><td>{{infoTitle}}</td>
+  <td>{{informationDescription}}</td>
+  <td>{{contactPhone}}</td>
+  <td>   <div class="form-group">
+      <label>Is Verified: </label>
+        <select name= {{_id}} required id="isVerified" class="form-control">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+    </div> </td>
+</tr>
+{{/if}}
+{{/each}}
+</tbody>
+</table>
+<div class="box-footer">
+    <button type="submit" class="Verify">Verify</button>
+</div>
+</div>
+</div>
+{{/if}}
 {{/if}}
 </div>
 </div>

@@ -24,12 +24,12 @@
                                 <div class="box-body">
                                   <div class="form-group">
                                       <label>Title:</label>
-                                      <input id='infoTitle' class="form-control" type="text">
+                                      <input id='infoTitle' required class="form-control" type="text">
                                    </div>
                                    <div class="form-group">
                                        <label>Information Type:</label>
-                                       <select class="form-control" id="stype-select">
-                                           <option selected="selected">Please Select</option>
+                                       <select class="form-control" required id="stype-select">
+                                           <option value="" disabled selected> Please Select</option>
                                            {{#each typeList}}
                                                <option value="{{this}}">{{this}}</option>
                                            {{/each}}
@@ -37,7 +37,7 @@
                                    </div>
                                    <div class="form-group">
                                        <label>Description:</label>
-                                       <textarea id='infoDescription' class="form-control" rows="5"
+                                       <textarea id='infoDescription' required class="form-control" rows="5"
                                                  placeholder="Enter ..."></textarea>
                                        <!-- <input id='infoDescription' maxlength="1000" rows="5" class="form-control" type="text"> -->
                                     </div>
@@ -78,7 +78,7 @@
 
                                     <div class="form-group">
                                         <label>Country</label>
-                                        <input type="text" class="form-control" id='s_country' value="INDIA" disabled>
+                                        <input type="text" required class="form-control" id='s_country' value="INDIA" disabled>
                                     </div>
 
                                     <div class="form-group">
@@ -89,7 +89,17 @@
                                         <label>Contact Number:</label>
                                         <input id='infoPhone' pattern=".{10,}" maxlength="10" class="form-control" type="tel">
                                      </div>
-                                    </div>
+                                     {{#if isInRole 'Admin'}}
+                                       <div class="form-group">
+                                        <label>Is Verified: </label>
+                                        <select name="isVerified" required id="isVerified" class="form-control">
+                                          <option value="No">No</option>
+                                          <option value="Yes">Yes</option>
+                                        </select>
+                                      </div>
+                                      {{/if}}
+
+                                      </div>
                                   <div class="box-footer">
                                       <button type="submit" class="Addinfo">ADD</button>
                                   </div>
