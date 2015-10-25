@@ -1,11 +1,12 @@
 <template name="connectUpdate">
     <html>
     {{>include}}
+
     <body class="hold-transition skin-blue sidebar-mini">
 
     <div class="wrapper">
-        {{>common}}
-        {{>header}}
+     {{>common}}
+     {{>header}}
         {{>sAlert}}
         <div class="content-wrapper">
             <section class="content-header">
@@ -112,8 +113,30 @@
 
             {{#if isEqual connectDetails.mode 'requestorComplete'}}
 
-            rating details
-            <input type="button" class="ratingRequestor" value="Submit"/>
+
+                <section class="content">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-6">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Rate the Volunteer</h3>
+                                </div>
+                                    <div class="box-body">
+                                        <span class="rateit" id="add-rating"></span>
+                                    </div>
+                                    <div class="box-footer">
+                                        <button type="submit" class="rateUser">Rate</button>
+                                    </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             {{/if}}
 
 

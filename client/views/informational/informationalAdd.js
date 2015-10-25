@@ -11,6 +11,7 @@ Template.informationAdd.helpers ({
     return (Session.get('stateList'));
   },
   typeList: function() {
+    console.log("Session.get('typeList')",Session.get('typeList') );
     return (Session.get('typeList'));
   }
 

@@ -97,18 +97,20 @@ SyncedCron.add({
                     // throw new Meteor.Error("insert-failed", error.message);
                     throw new Meteor.Error("update-failed", error);
                 }
-                    else
+                /*    else
                 {
+                    var connectforNoti = Connect.findOne({requestId : request._id,status :'PendingCompletion'});
                     //send notification to seeker for marking complete
                     //Entry in notification table
+                    console.log('request -- ' + JSON.stringify(request));
                     var notification = Notifications.findOne({ type : 'PendingCompletion',
                         status: 'Unread', requestId: request._id});
-
+                    console.log('notification -- ' + JSON.stringify(notification));
                     if (!notification) {
                         //Entry in notification table
                         var notificationData = {
-                            //  requestorId: request.requestorId,
-                            //  connectId: ,
+                              requestorId: connectforNoti.requestorId,
+                              connectId: connectforNoti._id,
                             requestId: request._id,
                             volunteerAidId: request.aidId,//???
                             status: 'Unread',
@@ -116,6 +118,8 @@ SyncedCron.add({
                             type: 'PendingCompletion',
                             description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
                         };
+
+                        console.log('notification innsertion !!!!!!!!!!!!!!!!!!!!!!!!!!! '+JSON.stringify(notificationData));
                         Notifications.insert(notificationData, function (error, result) {
                             console.log("notification id - " + result);
                             if (error) {
@@ -126,7 +130,7 @@ SyncedCron.add({
                             }
                         });
                     }
-                }
+                }*/
             });
 
 
@@ -161,15 +165,16 @@ SyncedCron.add({
 
         for (var i in pcConnectList) {
         var connect = pcConnectList[i];
+            console.log('connect -- ' +JSON.stringify(connect));
             //searching for seeker noti
             var notification = Notifications.findOne({ type : 'PendingCompletion',
                 status: 'Unread', requestId: connect.requestId});
-
+            console.log('notification -- ' +JSON.stringify( notification));
             if (!notification){
                 //Entry in notification table
 
                 var notificationData = {
-                  //  requestorId: connect.requestorId,
+                   // requestorId: connect.requestorId,
                     connectId:connect._id ,
                     requestId: connect.requestId,
                     volunteerAidId: connect.volunteerAidId,
@@ -178,6 +183,7 @@ SyncedCron.add({
                     type: 'PendingCompletion',
                     description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
                 };
+                console.log('notification innsertion ------------------------------- '+JSON.stringify(notificationData));
                 Notifications.insert(notificationData, function (error, result) {
                     console.log("notification id - " + result);
                     if (error) {
