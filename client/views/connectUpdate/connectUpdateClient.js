@@ -22,14 +22,14 @@ return (Session.get('connectDetails'));
 
 });
 
+
 Template.connectUpdate.onRendered(function() {
-  /*  if ( _.isEmpty(Session.get('req')) ) {
-        console.log("Meteor.user", Meteor.user()._id );
-        Meteor.call('getRequest', function(err, result) {
-            console.log("on rendered result:", JSON.stringify(result));
-            Session.set('req', result);
-        });
-    }*/
+    alert('oonrednder');
+    alert($('.rateit'));
+    $('.rateit').rateit();
+    $(".rateit").on('rated', function (event, value) {
+        console.log('Rating:' + value)
+    });
 });
 
 Template.connectUpdate.events({
