@@ -22,8 +22,9 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">{{connectDetails.request.request_name}}
                                     {{#if isEqual connectDetails.request.emergency 'Yes'}}
-                                    - Urgent Request
+                                    <img src="../images/important.png" width="110" height="90">
                                     {{/if}}
+
                                 </h3>
                             </div>
                             <div class="box-body">
@@ -31,7 +32,7 @@
                                     <dt>Requesting for</dt>
                                     <dd> {{connectDetails.request.aidName}}</dd>
                                     <dt>On</dt>
-                                    <dd> {{connectDetails.request.requiredBy}}</dd>
+                                    <dd>{{formatDate connectDetails.request.requiredBy}} </dd>
                                     <dt>At</dt>
                                     <dd>
                                         {{#if connectDetails.request.requestAddress.line1}}
