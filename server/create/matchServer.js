@@ -201,6 +201,7 @@ Meteor.methods({matchRequestVolunteer: function (requestIp) {
 
 }})
 ;
+/*
 
 function sortByRating(volunteerArr ){
     var byRating = volunteerArr.slice(0);
@@ -208,4 +209,15 @@ function sortByRating(volunteerArr ){
         return b.rating - a.rating;
     });
 return byRating;
-}
+}*/
+
+function sortByRating(volunteerArr ) {
+  var sortedList=  volunteerArr.sort(function (x, y) {
+        var n = y.connectCount - x.connectCount;
+        if (n != 0) {
+            return n;
+        }
+        return y.rating - x.rating;
+    })
+return sortedList;
+};
