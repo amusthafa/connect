@@ -10,6 +10,13 @@ Template.manageRequest.helpers({
         return false;
     },
 
+    isNotEqual: function(v1, v2) {
+        if (v1 != v2){
+            return true;}
+
+        return false;
+    },
+
     'match': function (event) {
         return ( Session.get("match"));
     },

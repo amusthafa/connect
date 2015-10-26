@@ -78,7 +78,11 @@
                                         </tr>
                                         {{#each match.volunteerList}}
                                         <tr>
-                                            <td>{{name}}, {{gender}}, {{age}} yrs, {{city}},{{> starsRating rating=rating size='sm'}}</td>
+                                            <td>{{name}}, {{gender}}, {{age}} yrs, {{city}},
+                                                {{#if isNotEqual connectCount 0}}
+                                                {{connectCount}} connects,
+                                                {{/if}}
+                                                {{> starsRating rating=rating size='sm'}}</td>
                                             <td>
                                                 <input type="button" class="connect" value="Connect"
                                                        index={{index}}
