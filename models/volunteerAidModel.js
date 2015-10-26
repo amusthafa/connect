@@ -49,6 +49,11 @@ VolunteerAid.attachSchema({
             optional: true,
             defaultValue : 0
         },
+        connectCount: {
+            type: Number,
+            optional: true,
+            defaultValue : 0
+        },
         rowCreated: {
             type: Date,
             denyUpdate: true,
