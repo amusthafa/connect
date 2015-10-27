@@ -1,0 +1,130 @@
+<template name = "SearchId">
+<html>
+{{>include}}
+  <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+      {{>common}}
+      {{>header}}
+      {{>sAlert}}
+      <div class="content-wrapper">
+          <section class="content-header">
+              <h1> Search User </h1>
+             <section class="content">
+                 <div class="row">
+                   <div class="col-md-6">
+                     <form method="post" id="Searchbar">
+                           <div class="form-group">
+                            <span class="glyphicon glyphicon-search form-control"> <input type="text" placeholder="Search by Username" id="Ename" name="name">
+                              <button type="submit" class="search">Search</button></span>
+                               </div>
+
+
+{{#if searchuser}}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Search Result</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+          {{#each searchuser}}
+        <div>  <tr><td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
+          <!-- <input type="range" min="0" max="5" value="0" step="0.5" id="userRating">
+            <div class="rateit" data-rateit-backingfld="#userRating"></div> -->
+          </div>
+          {{/each}}
+        </tbody>
+      </table>
+
+          <tr>
+            <div>
+          <td><input type="button" value="Profile" class="Profile" /></td>
+          {{#if isInRole 'Admin'}}
+          <td> <input type="button" value="Request" class="Request" /></td>
+        {{/if}}
+        </div>
+        </tr>
+           </div>
+         </div>
+         {{/if}}
+
+{{#if getUserProfile}}
+       <div class="box box-primary">
+       <div class="box-header with-border">
+       <h3 class="box-title">USER PROFILE:</h3>
+       </div>
+       <div class="box-body">
+        {{#each getUserProfile}}
+            <tr><td><b> Fullname: </b> </td>
+            <td>{{profile.firstName}},{{profile.lastName}}</td></tr>
+            <tr><td><b>Gender:</b></td>
+            <td>{{profile.gender}}</td></tr>
+            <tr><td><b>Address:</b></td>
+            <td> {{profile.address.line1}} </td></tr>
+            <tr> <td></td><td>{{profile.address.line2}}</td></tr>
+            <tr> <td></td><td>{{profile.address.city}} , {{profile.address.state}},{{profile.address.country}}-{{profile.address.pinCode}}</td></tr>
+            <tr> <td> <b>Email:</b></td>
+            <td> {{#each emails}}{{address}}{{/each}} </td></tr>
+            {{#if profile.share_phone}}
+            <tr><td><b>PhoneNumber:</b></td>
+            <td>{{profile.phone}}</td></tr>
+            {{/if}}
+            <!-- {{#if isInRole 'Admin'}} -->
+            <tr></tr>
+            {{#if isInRole 'Admin'}}
+            <tr><td><input type="submit" class="addAdmin" value="Add as Admin" /></td></tr>
+            {{/if}}
+            {{/each}}
+           </div>
+           </div>
+
+{{else}}
+      {{#if getUserRequest}}
+         <div class="box box-primary">
+         <div class="box-header with-border">
+          <h3 class="box-title">REQUEST</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+
+              <tr>
+                <th>Request Name</th>
+                <th>Requested For</th>
+                <th>Requested At</th>
+                <th>Aid</th>
+                <th>Required by</th>
+                <th>Is Emergency</th>
+                <th>status</th>
+              </tr>
+
+             {{#each getUserRequest}}
+              <tr>
+               <td>{{request_name}}</td>
+               <td>{{requestType}}</td>
+               <td> {{requestAddress.city}} </td>
+                <td>{{aidName}}</td>
+                <td>{{requiredBy}}</td>
+                <td>{{emergency}}</td>
+                <td>{{status}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+                    </div>
+                    </div>
+                 {{/if}}
+{{/if}}
+</form>
+</div>
+    </div>
+            </section>
+        </section>
+      </div>
+        </div>
+      </body>
+
+
+   </html>
+  </template>

@@ -71,6 +71,15 @@
                       </li>
                     {{/if}}
 
+                 <!--   {{#if isInRole 'Admin'}}-->
+                    <li class="treeview">
+                        <a href="{{pathFor route='manualConnect'}}">
+                            <i class="fa fa-check"></i>  <span>Manual Connect</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+                 <!--   {{/if}}-->
+
                     {{#if isInRole 'Admin'}}
                       <li class="treeview">
                           <a href="{{pathFor route='analytics'}}">
