@@ -4,7 +4,14 @@ Template.manageRequest.helpers({
 
     isEqual: function(v1, v2) {
         if (v1 === v2){
-            alert(v1);
+        //    alert(v1);
+            return true;}
+
+        return false;
+    },
+
+    isNotEqual: function(v1, v2) {
+        if (v1 != v2){
             return true;}
 
         return false;
@@ -113,21 +120,26 @@ Template.manageRequest.events({
 
         var connect={};
 
-        connect.volunteerAidId = this._id;///button.getAttribute('data-aidId');
-        connect.volunteerId = this.volunteerId;//button.getAttribute('data-volunteerId');
+        connect.volunteerAidId = this._id;
+        connect.volunteerId = this.volunteerId;
 
         connect.requestId = document.getElementById('requestId').value;
         connect.requestDate = document.getElementById('requestDate').value;
         connect.seekerId=Meteor.userId();
         connect.aidId = document.getElementById('aidId').value;
         connect.connectedBy= 'User';
-        alert('connect - '+JSON.stringify(connect));
+      //  alert('connect - '+JSON.stringify(connect));
         check(connect,Object);
         Meteor.call("connect",connect, function (error, result) {
-            alert('connect - ' + result);
+          //  alert('connect - ' + result);
             Router.go("/");
-            alert('error - ' + error);
+          //  alert('error - ' + error);
 
         });
     }
+});
+
+Template.registerHelper('formatDate', function(date) {
+    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
+    return moment(date).format('MM-DD-YYYY');
 });

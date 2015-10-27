@@ -20,14 +20,19 @@
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">{{connectDetails.request.request_name}}</h3>
+                                <h3 class="box-title">{{connectDetails.request.request_name}}
+                                    {{#if isEqual connectDetails.request.emergency 'Yes'}}
+                                    <img src="../images/important.png" width="110" height="90">
+                                    {{/if}}
+
+                                </h3>
                             </div>
                             <div class="box-body">
                                 <dl class="dl-horizontal">
                                     <dt>Requesting for</dt>
                                     <dd> {{connectDetails.request.aidName}}</dd>
                                     <dt>On</dt>
-                                    <dd> {{connectDetails.request.requiredBy}}</dd>
+                                    <dd>{{formatDate connectDetails.request.requiredBy}} </dd>
                                     <dt>At</dt>
                                     <dd>
                                         {{#if connectDetails.request.requestAddress.line1}}
@@ -58,8 +63,10 @@
                     <input hidden id='volunteerId' value="{{connectDetails.connect.volunteerId}}">
 
                 </div>
-               {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                {{#if isNotEqual connectDetails.mode  'view'}}
+                {{#if isEqual connectDetails.connect.status 'Initiated'}}
                 {{#if isEqual connectDetails.connect.loggedUser  connectDetails.connect.volunteerId}}
+
                 <div class="form-group">
                     <div class="radio">
                         <label>
@@ -76,6 +83,7 @@
                 </div>
 
                 <input type="button" class="connectUpdateSubmit" value="Submit"/>
+                {{/if}}
                 {{/if}}
                 {{/if}}
             </section>

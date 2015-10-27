@@ -19,14 +19,17 @@
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">{{match.request.request_name}}</h3>
+                                <h3 class="box-title">{{match.request.request_name}}
+                                    {{#if isEqual match.request.emergency 'Yes'}}
+                                    <img src="../../client/images/important.png" width="25" height="25">
+                                    {{/if}}</h3>
                             </div>
                             <div class="box-body">
                                 <dl class="dl-horizontal">
                                     <dt>Requesting for</dt>
-                                    <dd> {{match.request.requestType}} for {{match.request.aidName}}</dd>
+                                    <dd> {{match.request.aidName}}</dd>
                                     <dt>On</dt>
-                                    <dd> {{match.request.requiredBy}}</dd>
+                                    <dd>{{formatDate match.request.requiredBy}} </dd>
                                     <dt>At</dt>
                                     <dd>
                                         {{#if match.request.requestAddress.line1}}
@@ -69,15 +72,17 @@
                             <div class="box box-primary">
                                 <div class="box-body table-responsive no-padding">
                                     <table class="table table-hover">
+                                        <tbody>
                                         <tr>
                                             <th></th>
                                         </tr>
-
                                         {{#each match.volunteerList}}
-
-
                                         <tr>
-                                            <td>{{name}}, {{gender}}, {{age}}, {{city}}</td>
+                                            <td>{{name}}, {{gender}}, {{age}} yrs, {{city}},
+                                                {{#if isNotEqual connectCount 0}}
+                                                {{connectCount}} connects,
+                                                {{/if}}
+                                                {{> starsRating rating=rating size='sm'}}</td>
                                             <td>
                                                 <input type="button" class="connect" value="Connect"
                                                        index={{index}}
@@ -86,8 +91,8 @@
                                                         />
                                             </td>
                                         </tr>
-
                                         {{/each}}
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

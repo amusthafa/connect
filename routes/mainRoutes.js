@@ -256,3 +256,10 @@ Router.route('/updateProfile', {
     }
 });
 
+
+Router.route('/manualConnect', {
+    name: 'manualConnect',
+    action: function () {
+        this.render('manualConnect');
+    }
+});

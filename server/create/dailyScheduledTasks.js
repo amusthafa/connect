@@ -11,12 +11,12 @@ SyncedCron.add({
     name: 'Daily Scheduled task for Connect',
     schedule: function(parser) {
         // parser is a later.parse object
-        return parser.text('every 2 minutes');
+        return parser.text('every 1 hours');
     },
     job: function() {
         console.log("=================Daily Scheduled job start=================");
 
-        //Scheduled Task 6
+        //Scheduled Task 1
         //Average the volunteer aid, requestor rating
 
         console.log(" ----------------Daily Scheduled task 1 ---------------- ");
@@ -133,6 +133,42 @@ SyncedCron.add({
                     }
                 });
         }
+
+        console.log(" ----------------Daily Scheduled task 2 ---------------- ");
+        //count number of completed connects in for volunteer and update that count in volaid table
+
+        var pipeline =
+                [
+                    {$match: {status: "Completed"}},
+                    {
+                        $group: {
+                            _id:  "$volunteerAidId",
+                            count: {$sum: 1}
+                        }
+                    }
+                ]
+            ;
+        var volunteerConnectRatings = Connect.aggregate(pipeline);
+
+        console.log(JSON.stringify(volunteerConnectRatings));
+
+        for (var i in volunteerConnectRatings)
+        {
+            var vol=volunteerConnectRatings[i];
+
+            VolunteerAid.update({_id:vol._id}, { $set :{"connectCount" : vol.count}}
+                , function (error, result) {
+                    console.log("Volunteer aid connect rating " + result + ' error ' + error );
+                    if (error) {
+                        console.log("Errors !!" + error + "  Result - " + result);
+                        //TO-DO: error message()
+                        // throw new Meteor.Error("insert-failed", error.message);
+                        throw new Meteor.Error("update-failed", error);
+                    }
+                });
+
+        }
+
 
         console.log("=================Daily Scheduled job end=================");
         return true;

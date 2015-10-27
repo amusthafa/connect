@@ -15,7 +15,7 @@
 
                     <li class="treeview">
                         <a href="{{pathFor route='createRequest'}}">
-                            <span>Create Request</span>
+                            <i class="fa fa-edit"></i><span>Create Request</span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
@@ -29,35 +29,35 @@
 
                     <li class="treeview">
                         <a href="{{pathFor route='listOfRequests'}}">
-                            <span>Manage Requests </span>
+                            <i class="fa fa-adjust"></i><span>Manage Requests </span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
 
                     <li class="treeview">
                         <a href="{{pathFor route='notifications'}}">
-                            <span>Notifications</span>
+                            <i class="fa  fa-bell"></i><span>Notifications</span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
 
                     <li class="treeview">
                         <a href="{{pathFor route='SearchId'}}">
-                            <span>Search People</span>
+                              <i class="fa fa-search"></i><span>Search People</span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
 
                     <li class="treeview">
                         <a href="{{pathFor route='informationAdd'}}">
-                            <span>Add Information </span>
+                          <i class="fa fa-plus"></i> <span>Add Information </span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
 
                     <li class="treeview">
                         <a href="{{pathFor route='informationView'}}">
-                            <span>Informations </span>
+                            <i class="fa fa-bullhorn"></i><span>Informations </span>
                             <span class="label label-primary pull-right"></span>
                         </a>
                     </li>
@@ -65,16 +65,25 @@
                     {{#if isInRole 'Admin'}}
                       <li class="treeview">
                           <a href="{{pathFor route='adminAuth'}}">
-                              <span>Authentication/ Blacklisting</span>
+                            <i class="fa fa-check"></i> <span>Authentication/ Blacklisting</span>
                               <span class="label label-primary pull-right"></span>
                           </a>
                       </li>
                     {{/if}}
 
+                 <!--   {{#if isInRole 'Admin'}}-->
+                    <li class="treeview">
+                        <a href="{{pathFor route='manualConnect'}}">
+                            <i class="fa fa-check"></i>  <span>Manual Connect</span>
+                            <span class="label label-primary pull-right"></span>
+                        </a>
+                    </li>
+                 <!--   {{/if}}-->
+
                     {{#if isInRole 'Admin'}}
                       <li class="treeview">
                           <a href="{{pathFor route='analytics'}}">
-                              <span>Analytics</span>
+                            <i class="fa fa-bar-chart"></i>  <span>Analytics</span>
                               <span class="label label-primary pull-right"></span>
                           </a>
                       </li>
@@ -83,7 +92,7 @@
                     {{#if isInRole 'Admin'}}
                         <li class="treeview">
                             <a href="{{pathFor route='aid'}}">
-                                <span>Add Aid</span>
+                                <i class="fa fa-plus"></i><span>Add Aid</span>
                                 <span class="label label-primary pull-right"></span>
                             </a>
                         </li>
@@ -92,7 +101,7 @@
                     {{#if isInRole 'Admin'}}
                         <li class="treeview">
                             <a href="{{pathFor route='addTocontactUs'}}">
-                                <span>Update - Contact Us</span>
+                                <i class="fa  fa-phone"></i><span>Update - Contact Us</span>
                                 <span class="label label-primary pull-right"></span>
                             </a>
                         </li>
@@ -101,7 +110,7 @@
                     {{#if isInRole 'Admin'}}
                         <li class="treeview">
                             <a href="{{pathFor route='viewFeedbacks'}}">
-                                <span>View Feedbacks</span>
+                                <i class="fa fa-paste"></i><span>View Feedbacks</span>
                                 <span class="label label-primary pull-right"></span>
                             </a>
                         </li>
