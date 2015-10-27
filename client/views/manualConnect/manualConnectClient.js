@@ -5,6 +5,18 @@ Template.manualConnect.helpers ({
     'SearchUserforManual': function () {
         //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
         return (Session.get('SearchUserforManual'));
+    },
+    'getUserProfileforManual': function () {
+        //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
+        return (Session.get('getUserProfileforManual'));
+    },
+    'getUserRequestforManual': function () {
+        //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
+        return (Session.get('getUserRequestforManual'));
+    },
+    'selectedRequestManual': function () {
+        //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
+        return (Session.get('selectedRequestManual'));
     }
 });
 
@@ -45,8 +57,8 @@ Template.manualConnect.events({
                 }
                 else {
                     alert('result' +result);
-                    Session.set('getUserRequest', result);
-                    Session.set('getUserProfile', 0);
+                    Session.set('getUserRequestforManual', result);
+                    Session.set('getUserProfileforManual', 0);
                     console.log("Requests:" + JSON.stringify(result));
                 }
             });
@@ -57,12 +69,21 @@ Template.manualConnect.events({
         console.log("Clicked Profile");
 
                 Meteor.call("SearchProfile", this._id, function(error, result) {
-                    Session.set('getUserProfile',result);
-                    Session.set('getUserRequest',0);
+                    Session.set('getUserProfileforManual',result);
+                    Session.set('getUserRequestforManual',0);
                     alert('result' +result);
                 });
 
-    }
+    },
+
+        'click .requestManualConnect': function(event){
+    event.preventDefault();
+    console.log("requestManualConnect");
+            var selectedRequestMC=(this);
+            Session.set('selectedRequestManual',selectedRequestMC);
+
+}
+
 });
 
 
@@ -85,60 +106,3 @@ Template.manualConnect.events({
 
 
 
-
-
-
-
-
-
-
-
-
-
-        //          var userdetail ='<table border=2 >';
-        //          for(var key in result)
-        //          {
-        //            userdetail += '<tr>';
-        //            for(var field in result[key]){
-        //              if (typeof result[key][field] == 'object') {
-        //                if (field.match("profile")) {
-        //                  var temp = {};
-        //                  temp = result[key].profile;
-        //                  for (var k in temp) {
-        //                    console.log("My test: " + k);
-        //                    if (k.match("firstName") || k.match("lastName") || k.match("gender") || k.match("organisation") || k.match("occupation") )
-        //                    {
-        //                           userdetail += '<td>'+'<b>'+ k.toUpperCase() +'</b>'+ '</td>' ;
-        //                          userdetail += '<td>'+temp[k] +'</br>'+'</td>';
-        //                          userdetail += '</td></tr>';
-        //                        //(k.match("sharePhone") and temp[k]='yes')
-        //                      }
-        //
-        //                    if (typeof temp[k] == 'object') {
-        //                      if (k.match("address")) {
-        //                        var temp2 = {};
-        //                        temp2 = temp[k];
-        //                        userdetail += '<td><b>'+ k.toUpperCase() +'</b></td><td>';
-        //                          for (var l in temp2) {
-        //                          if (l.match("primary"))
-        //                           continue;
-        //                           userdetail += temp[k][l] +' ';
-        //                           }
-        //                           userdetail += '</td></tr>';
-        //                       }
-        //                     }
-        //                  else {
-        //                   continue;
-        //                 }
-        //               }}} else {
-        //                 continue;
-        //               }
-        //             }
-        //             userdetail += '</td></tr>';
-        //             //userdetail += "Name  :"+result[key].firstName + result[key].lastName +"<br>"+ "gender:" +result[key].gender+"<br>";
-        //           }
-        //           userdetail += '</table>';
-        //           document.getElementById("SearchResult").innerHTML = userdetail;
-        //         }
-        //
-        // });
