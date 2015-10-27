@@ -32,9 +32,37 @@ Template.manualConnect.events({
         else
             sAlert.error("Please enter a name to search");
 
+    },
+    'click .requestforManual': function(event) {
+        event.preventDefault();
+        console.log("clicked request");
+        var UserReq = Session.get('searchResult');
+
+      // alert (JSON.stringify(this));
+            Meteor.call("SearchRequest", this._id, function (error, result) {
+                if (result == 0) {
+                    sAlert.error("No Request found for this User");
+                }
+                else {
+                    alert('result' +result);
+                    Session.set('getUserRequest', result);
+                    Session.set('getUserProfile', 0);
+                    console.log("Requests:" + JSON.stringify(result));
+                }
+            });
+
+    },
+    'click .profileforManual': function(event){
+        event.preventDefault();
+        console.log("Clicked Profile");
+
+                Meteor.call("SearchProfile", this._id, function(error, result) {
+                    Session.set('getUserProfile',result);
+                    Session.set('getUserRequest',0);
+                    alert('result' +result);
+                });
+
     }
-
-
 });
 
 
