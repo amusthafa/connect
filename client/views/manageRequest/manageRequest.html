@@ -21,7 +21,7 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title">{{match.request.request_name}}
                                     {{#if isEqual match.request.emergency 'Yes'}}
-                                    <img src="../../client/images/important.png" width="25" height="25">
+                                    <img src="/images/important.png" width="25" height="25">
                                     {{/if}}</h3>
                             </div>
                             <div class="box-body">
@@ -84,11 +84,7 @@
                                                 {{/if}}
                                                 {{> starsRating rating=rating size='sm'}}</td>
                                             <td>
-                                                <input type="button" class="connect" value="Connect"
-                                                       index={{index}}
-                                                       data-volunteerId={{_id}} data-volunteerAidId={{volunteerAidId}}
-                                                       data-aidId={{aidId}}
-                                                        />
+                                                <input type="button" class="connect" value="Connect"/>
                                             </td>
                                         </tr>
                                         {{/each}}

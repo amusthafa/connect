@@ -19,6 +19,7 @@ Template.listOfRequests.helpers({getRequestList : function() {
 Template.listOfRequests.onRendered(function() {
   // if ( _.isEmpty(Session.get('req')) ) {
     var creatorId = Meteor.user()._id ;
+   // var creatorId = this.userId ;
     var request = {creatorId:creatorId};
  //  alert(JSON.stringify(request));
     console.log("list of requests: request:", JSON.stringify(request));
@@ -49,6 +50,21 @@ Template.listOfRequests.events({
         Meteor.call("matchRequestVolunteer", request, function (error, result) {
             console.log("Client : error" + error + "result - " + JSON.stringify(result));
             Session.set("match",result);
+            Router.go('/manageRequest');
+        });
+    },
+    'click .view' : function (event) {
+        event.preventDefault();
+       // alert(this);
+        var request = {};
+        request.requestId = this._id;
+        Meteor.call("getRequest", request, function (error, result) {
+            console.log("Client : error" + error + "result - " + JSON.stringify(result));
+
+            var match={};
+            match.request=result;
+            Session.set("match",match);
+            alert(JSON.stringify( match.request));
             Router.go('/manageRequest');
         });
     },
