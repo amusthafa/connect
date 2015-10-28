@@ -90,9 +90,8 @@
                   {{/if}}
                   <!-- {{#if isInRole 'Admin'}} -->
                   <tr></tr>
-                  {{#if isInRole 'Admin'}}
-                  <tr><td><input type="submit" class="addAdmin" value="Add as Admin" /></td></tr>
-                  {{/if}}
+
+                  <tr><td><a href="#" class="volunteerManualConnect">Choose Volunteer</a></td></tr>
                   {{/each}}
               </div>
           </div>
@@ -138,41 +137,106 @@
 {{#if selectedRequestManual}}
           <div class="box box-primary">
               <div class="box-header with-border">
-                  <h3 class="box-title">{{request_name}}
+                  <h3 class="box-title">{{selectedRequestManual.request_name}}
                       </h3>
               </div>
               <div class="box-body">
                   <dl class="dl-horizontal">
                       <dt>Requesting for</dt>
-                      <!--<dd> {{match.request.aidName}}</dd>
+                      <dd> {{selectedRequestManual.aidName}}</dd>
                       <dt>On</dt>
-                      <dd>{{formatDate match.request.requiredBy}} </dd>
+                      <dd>{{formatDate selectedRequestManual.requiredBy}} </dd>
                       <dt>At</dt>
                       <dd>
-                          {{#if match.request.requestAddress.line1}}
-                          {{match.request.requestAddress.line1}},
+                          {{#if selectedRequestManual.requestAddress.line1}}
+                          {{selectedRequestManual.requestAddress.line1}},
                           {{/if}}
-                          {{#if match.request.requestAddress.line2}}
-                          {{match.request.requestAddress.line2}},
+                          {{#if selectedRequestManual.requestAddress.line2}}
+                          {{selectedRequestManual.requestAddress.line2}},
                           {{/if}}
-                          {{#if match.request.requestAddress.city}}
-                          {{match.request.requestAddress.city}},
+                          {{#if selectedRequestManual.requestAddress.city}}
+                          {{selectedRequestManual.requestAddress.city}},
                           {{/if}}
-                          {{#if match.request.requestAddress.country}}
-                          {{match.request.requestAddress.country}},
+                          {{#if selectedRequestManual.requestAddress.country}}
+                          {{selectedRequestManual.requestAddress.country}},
                           {{/if}}
-                          {{#if match.request.requestAddress.pinCode}}
-                          {{match.request.requestAddress.pinCode}}.
+                          {{#if selectedRequestManual.requestAddress.pinCode}}
+                          {{selectedRequestManual.requestAddress.pinCode}}.
                           {{/if}}
-                      </dd>-->
+                      </dd>
                   </dl>
               </div>
           </div>
 
           {{/if}}
 
+     {{#if volunteerManualConnect}}
+     <section class="content-header">
+         <h1>
+             Selected Volunteer
+         </h1>
+     </section>
 
-    </section>
+     <section class="content">
+
+         <div class="row">
+             <div class="col-md-6">
+                 <div class="box box-primary">
+                     <div class="box-body table-responsive no-padding">
+                         <table class="table table-hover">
+                             <tbody>
+                             <tr>
+                                 <th></th>
+                             </tr>
+                             <tr>
+                                 <td>{{volunteerManualConnect.profile.firstName}},{{volunteerManualConnect.profile.lastName}}, {{volunteerManualConnect.profile.gender}}, {{volunteerManualConnect.profile.address.city}}
+                                 </td>
+                             </tr>
+
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+     {{/if}}
+
+     <section class="content-header">
+         <h1>
+             Manually Connect Users
+         </h1>
+     </section>
+
+     <section class="content">
+
+         <div class="row">
+             <div class="col-md-6">
+                 <div class="box box-primary">
+                     <div class="box-body table-responsive no-padding">
+                         <table class="table table-hover">
+                             <tbody>
+                             <tr>
+                                 <th></th>
+                             </tr>
+                             <tr>
+                                 <td>
+                                     <input type="button" class="manualConnect" value="Connect"
+                                             />
+                                 </td>
+                             </tr>
+
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+
+
+      </section>
       </div>
     </div>
   </body>
