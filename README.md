@@ -1,6 +1,6 @@
-# meteor-boilerplate
+# olaamigos - find a friend, lend a hand
 
-This boilerplate is here to give you a starting point for your meteor projects, with a console tool to ease up some tasks. Essential atmosphere packages are included to give you features like routing and collection schemas out-of-the-box.  
+This web application is here to help bring people together with common needs. for your meteor projects, with a console tool to ease up some tasks. Essential atmosphere packages are included to give you features like routing and collection schemas out-of-the-box.
 
 <!-- toc -->
 

@@ -17,7 +17,19 @@ Template.manualConnect.helpers ({
     'selectedRequestManual': function () {
         //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
         return (Session.get('selectedRequestManual'));
+    },
+    'volunteerManualConnect': function () {
+        //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
+        return (Session.get('volunteerManualConnect'));
+    },
+    isNotEqual: function(v1, v2) {
+        if (v1 != v2){
+            return true;}
+
+        return false;
     }
+
+
 });
 
 Template.manualConnect.events({
@@ -79,11 +91,49 @@ Template.manualConnect.events({
         'click .requestManualConnect': function(event){
     event.preventDefault();
     console.log("requestManualConnect");
+            alert(JSON.stringify(this));
             var selectedRequestMC=(this);
             Session.set('selectedRequestManual',selectedRequestMC);
 
-}
+},
 
+    'click .volunteerManualConnect': function(event){
+        event.preventDefault();
+        console.log("volunteerManualConnect");
+        alert(JSON.stringify(this));
+        var selectedVolMC=(this);
+        Session.set('volunteerManualConnect',selectedVolMC);
+
+    },
+
+
+    'click .manualConnect': function(event)
+{
+    var connect={};
+
+    connect.volunteerAidId = 'Manual';
+    var volunteerManualConnect =Session.get('volunteerManualConnect');
+    var selectedRequestManual =Session.get('selectedRequestManual');
+    connect.volunteerId = volunteerManualConnect._id;
+    connect.requestId =selectedRequestManual._id;
+    connect.requestDate =selectedRequestManual.requiredBy;
+    //connect.requestId = document.getElementById('requestId').value;
+    //connect.requestDate = document.getElementById('requestDate').value;
+    connect.seekerId=selectedRequestManual.requestorId;
+    connect.aidId = selectedRequestManual.aidId
+    //connect.aidId = document.getElementById('aidId').value;
+    connect.connectedBy= 'Admin';
+      alert('connect - '+JSON.stringify(connect));
+
+    Meteor.call("connect",connect, function (error, result) {
+        //  alert('connect - ' + result);
+        Router.go("/");
+        //  alert('error - ' + error);
+
+    });
+
+
+}
 });
 
 
