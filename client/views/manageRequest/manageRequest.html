@@ -10,7 +10,12 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
+                    {{#if isNotEqual match.mode 'view'}}
                     Connect
+                    {{/if}}
+                    {{#if isEqual match.mode 'view'}}
+                    Request
+                    {{/if}}
                 </h1>
             </section>
             <section class="content">
@@ -49,9 +54,14 @@
                                         {{/if}}
                                     </dd>
                                 </dl>
+                                {{#if isEqual match.mode 'view'}}
+                                <input type="button" class="edit" value="Edit" id="edit"/>
+                                <input type="button" class="delete" value="Delete" id="delete"/>
+                                {{/if}}
                             </div>
                         </div>
                     </div>
+
                     <input hidden id='requestId' value="{{match.request._id}}" />
                     <input hidden id='requestDate' value="{{match.request.requiredBy}}"/>
                     <input hidden id='aidId' value="{{match.request.aidId}}" />

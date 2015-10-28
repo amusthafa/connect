@@ -33,16 +33,6 @@ Template.listOfRequests.onRendered(function() {
 });
 Template.listOfRequests.events({
 
-  'submit form': function (event) {
-    event.preventDefault();
-
-    var requestId = document.getElementById('reqID').value;
-    console.log("requestId in edit request:", requestId);
-    var requestId = document.getElementById('reqID').value;
-    console.log("requestId: ", requestId);
-    Session.set('requestId',requestId);
-    Router.go("/editRequest");
-  },
     'click .match' : function (event) {
         event.preventDefault();
        var request = {};
@@ -63,8 +53,9 @@ Template.listOfRequests.events({
 
             var match={};
             match.request=result;
+            match.mode='view';
             Session.set("match",match);
-            alert(JSON.stringify( match.request));
+            //alert(JSON.stringify( match.request));
             Router.go('/manageRequest');
         });
     },
@@ -87,13 +78,6 @@ Template.listOfRequests.events({
     },
 
 
-    'click .edit' : function (event) {
-        event.preventDefault();
-        requestId = this._id;
-        console.log("requestId in edit request:", requestId);
-        Session.set('requestId',requestId);
-        Router.go("/createRequest");
-    },
     'click .cancel' : function (event) {
         event.preventDefault();
      //   alert(JSON.stringify(this));
