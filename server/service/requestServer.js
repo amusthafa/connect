@@ -194,34 +194,17 @@ Meteor.methods({
         return requestDb;
     },
 
-    deleteRequest: function (requestID) {
-        // console.log("inside method cresteREquwst");
-        console.log("server delete request -- ", requestID);
-        //TO-DO: remove check()
-        check(requestID, String);
-
-
-        Request.remove({_id: requestID}, function (error, result) {
-
-            console.log("Request deleted!");
-            if (error) {
-                console.log("Errors !!" + error + "  Result - " + result);
-                //TO-DO: error message()
-                // throw new Meteor.Error("insert-failed", error.message);
-                throw new Meteor.Error("insert-failed", error);
-            }
-        });
-    },
-
     updateStatus: function (request) {
+        check(request,Object);
         Request.update({_id: request._id}, { $set: {"status": request.status}}
             , function (error, result) {
                 console.log("result " + result + ' error ' + error);
                 if (error) {
-                    console.log("Errors !!" + error + "  Result - " + result);
-                    //TO-DO: error message()
-                    // throw new Meteor.Error("insert-failed", error.message);
-                    throw new Meteor.Error("update-failed", error);
+                    console.log("sanitizedError!!!:", error.sanitizedError);
+                    throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
+                }
+                else {
+                    return result;
                 }
             });
     },

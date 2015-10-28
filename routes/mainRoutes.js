@@ -61,6 +61,7 @@ Router.route('/createRequest', {
     }
 });
 
+
 Router.route('/listOfRequests', {
     name: 'listOfRequests',
     action: function () {
@@ -71,7 +72,7 @@ Router.route('/listOfRequests', {
 Router.route('/editRequest', {
     name: 'editRequest',
     action: function () {
-        this.render('editRequest');
+        this.render('createRequest');
     }
 });
 

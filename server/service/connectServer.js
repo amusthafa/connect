@@ -12,10 +12,16 @@ Meteor.methods(
             volunteerAidId: connect.volunteerAidId,
             volunteerId: connect.volunteerId,
             aidId: connect.aidId,
-            status: 'Initiated',
+
             connectedBy: connect.connectedBy,
             requestedBy: connect.requestDate
         };
+
+        if ( connect.connectedBy == 'User')
+        connectData.status= 'Initiated'
+        else if ( connect.connectedBy == 'Admin')
+            connectData.status= 'Accepted';
+
 //tx.start('insert connect');
         check(connectData, Object);
 
@@ -38,6 +44,9 @@ Meteor.methods(
         var user = Meteor.users.findOne({_id: connect.volunteerId });
         console.log('user ------------- ' + JSON.stringify(user));
 
+
+        //Noti start
+        if ( connect.connectedBy == 'User'){
         if (connectId) {
             var notificationData = {
                 requestorId: connect.seekerId,
@@ -69,6 +78,73 @@ Meteor.methods(
 
                 }
             );
+
+        }}
+            else if ( connect.connectedBy == 'Admin')
+        {
+            //send noti to both thhat connection established
+            if (connectId) {
+                var notificationData = {
+                    requestorId: connect.seekerId,
+                    connectId: connectId,
+                    requestId: connect.requestId,
+                    volunteerAidId: connect.volunteerAidId,
+                    status: 'Unread',
+                    userId: connect.volunteerId,
+                    type: 'Accepted',
+                    description: 'A Connection is setup by Ola Amigos Admin for you. Please login to see the connection details.'
+                };
+
+                notiId = Notifications.insert(notificationData, function (error, result) {
+                        console.log("notification id - " + result);
+                        if (error) {
+                            console.log("Errors !!" + error + "  Result - " + result);
+                            //TO-DO: error message()
+                            // throw new Meteor.Error("insert-failed", error.message);    });
+                            throw new Meteor.Error("insert-failed", error);
+                        }
+                        else {
+                            //send mail
+                            console.log('user email -- ' + user.emails[0].address);
+                            Email.send({to: user.emails[0].address, from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos Connection for you',
+                                text: notificationData.description + "Thanks, Amigos"});
+                            console.log('email sent');
+
+                        }
+
+                });
+
+                    //send noti for requestor
+
+                    notificationData.userId = connect.seekerId ;
+
+                var seeker = Meteor.users.findOne({_id: connect.seekerId });
+                console.log('user ------------- ' + JSON.stringify(user));
+
+
+
+                notiId = Notifications.insert(notificationData, function (error, result) {
+                        console.log("notification id - " + result);
+                        if (error) {
+                            console.log("Errors !!" + error + "  Result - " + result);
+                            //TO-DO: error message()
+                            // throw new Meteor.Error("insert-failed", error.message);    });
+                            throw new Meteor.Error("insert-failed", error);
+                        }
+                        else {
+                            //send mail
+                            console.log('user email -- ' + seeker.emails[0].address);
+                            Email.send({to: seeker.emails[0].address, from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos Connection for you',
+                                text: notificationData.description + "Thanks, Amigos"});
+                            console.log('email sent');
+
+                        }
+
+                    }
+                );
+
+        }
+            ///Noti end
             console.log('connect.requestId - ' + JSON.stringify(connect.requestId));
             var request = Request.findOne({ _id: connect.requestId});
             console.log('request - ' + JSON.stringify(request));
@@ -93,9 +169,9 @@ Meteor.methods(
 
                     });
             }
-
-
         }
+
+
     },
         getConnectDetails: function (connect) {
             check(connect, Object);
