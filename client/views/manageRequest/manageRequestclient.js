@@ -78,42 +78,36 @@ Template.registerHelper('formatDate', function(date) {
 
 Template.manageRequest.events({
 
-    'submit form': function (event) {
+    'click .edit' : function (event) {
+        event.preventDefault();
+        requestId = $('#requestId').val();
+        console.log("requestId in edit request:", requestId);
+        Session.set('requestId',requestId);
+        Router.go("/editRequest");
+    },
 
-        var requestID = event.target._id.value;
-        console.log("EDIT REQ!! requestID:", requestID);
-        var request = {};
-        request.requestName =  event.target.requestName.value;
-        request.requestType =  event.target.requestType.value;
-        request.creatorId =  event.target.creatorId.value;
-        request.requestorId =  event.target.requestorId.value;
-        request.aidId = event.target.aidId.value;
-        request.requiredBy =  event.target.requiredBy.value;
-        request.emergency =  event.target.emergency.value;
-        request.status =  event.target.status.value;
-        request.line1 = event.target.p_line1.value;
-        request.line2 = event.target.p_line2.value;
-        request.city = Session.get("sCity");
-        request.state = Session.get("sState");
-        request.country = event.target.p_country.value;
-        request.pincode = event.target.p_pincode.value;
-        var requestJson = JSON.stringify(request);
-        console.log("REQUEST:" , requestJson);
+    'click .delete' : function (event) {
 
-        Meteor.call("editRequest", requestID, request, function (error, result) {
-            console.log("Client editRequest" , JSON.stringify(result));
+        var request = {}
+        request._id = this._id;
+
+        Meteor.call('updateStatus', request, function(error, result) {
             if (error) {
                 console.log("error body", (error));
-                // sAlert.error(error.reason);
-                Router.go("/editRequest");
+                sAlert.error(error.reason);
+               // Router.go("/manageRequest");
             }
             else{
                 console.log("success");
-                // sAlert.success("Successfully saved your request.");
-                Router.go("/");
+                sAlert.success("Successfully deleted your request!");
+                sAlert.success('', configOverwrite);
+
             }
 
+
         });
+        Router.go("/");
+
     },
     'click .connect' : function (event) {
         event.preventDefault();

@@ -190,7 +190,7 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                  sAlert.success("Successfully created you request!");
+                  sAlert.success("Successfully created your request!");
                   sAlert.success('', configOverwrite);
                 }
             });
