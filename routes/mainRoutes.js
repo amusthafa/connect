@@ -252,7 +252,7 @@ Router.route('/resetPassword', {
 Router.route('/updateProfile', {
     name: 'updateProfile',
     action: function () {
-        this.render('updateProfile');
+        this.render('signUp');
     }
 });
 
