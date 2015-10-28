@@ -28,6 +28,7 @@
                                     {{#if isEqual match.request.emergency 'Yes'}}
                                     <img src="/images/important.png" width="25" height="25">
                                     {{/if}}</h3>
+                                <span class="label label-success">{{match.request.status}}</span>
                             </div>
                             <div class="box-body">
                                 <dl class="dl-horizontal">
@@ -55,8 +56,10 @@
                                     </dd>
                                 </dl>
                                 {{#if isEqual match.mode 'view'}}
+                                {{#if isEqual match.request.status 'Submitted'}}
                                 <input type="button" class="edit" value="Edit" id="edit"/>
                                 <input type="button" class="delete" value="Delete" id="delete"/>
+                                {{/if}}
                                 {{/if}}
                             </div>
                         </div>

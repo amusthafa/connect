@@ -1,6 +1,6 @@
 Router.route('/', function () {
     this.render('home');
-    SEO.set({title: 'Home - Ola Amigo!!'});
+    SEO.set({title: 'Home - Ola Amigos!!'});
 });
 
 Router.route('/Login', {

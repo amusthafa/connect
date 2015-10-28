@@ -44,9 +44,10 @@
                                             <td><a href="#" class="view">{{request_name}}</a></td>
                                            <!--     <td>{{aidName}}</td>
                                                 <td>{{formatDate requiredBy}}</td>
-                                                <td><span class="label label-success">{{status}}</span></td>
-                                           -->     <td>
-                                                {{#if isEqual status 'Submitted'}}
+                                           -->
+                                            <td><span class="label label-success">{{status}}</span></td>
+                                            <!--        <td>-->
+                                                   {{#if isEqual status 'Submitted'}}
                                                 <input type="button" class="match" value="Match" id="Match"/>
                                           <!--      <a href="#" class="edit">Edit</a>
                                                 <a href="#" class="delete">Delete</a>
@@ -55,7 +56,7 @@
 
                                                 <!--                                            <a href="#" class="cancel">Cancel</a>-->
                                                 <input type="hidden" id="requestId" value="{{_id}}"/>
-                                            </td>
+                                            <!--</td>-->
                                         </tr>
 
                                     {{/each}}
