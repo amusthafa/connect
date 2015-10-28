@@ -226,7 +226,7 @@ SyncedCron.add({
                     status: 'Unread',
                     userId: connect.volunteerId,
                     type: 'Completed',
-                    description: 'How was your experience for ' + request.request_name + '. Can you rate the Seeker for us.'
+                    description: 'How was your experience for ' + request.request_name + '. Can you rate the Requestor for us.'
                 };
                 Notifications.insert(notificationData, function (error, result) {
                     console.log("notification id - " + result);

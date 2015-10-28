@@ -99,9 +99,9 @@ Template.listOfRequests.events({
         var connect ={};
         connect._id = this._id;
         connect.mode='viewConnect';
-    ///    alert(JSON.stringify(connect));
+    //   alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
-            //  alert(" result:"+ JSON.stringify(result));
+              alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);
             //       alert(result);
             Router.go("/connectUpdate");
@@ -165,4 +165,8 @@ Template.listOfRequests.events({
 Template.registerHelper('formatDate', function(date) {
     console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
     return moment(date).format('MM-DD-YYYY');
+});
+Template.registerHelper('subString', function(passedString) {
+    var name  = passedString.substring(0,15); //same as truncate.
+    return new Spacebars.SafeString(name)
 });

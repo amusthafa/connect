@@ -40,12 +40,9 @@ Request.attachSchema({
         requestAddress: {
             type: Address
         },
-
-        //TO-DO: should the whole aid object be here??
         aidId: {
             type: String
         },
-
         comment: {
             type: String,
             optional: true

@@ -20,9 +20,9 @@
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">{{connectDetails.request.request_name}}
+                                <h3 class="box-title"> <span class="word-wrap">{{connectDetails.request.request_name}}</span>
                                     {{#if isEqual connectDetails.request.emergency 'Yes'}}
-                                    <img src="../images/important.png" width="110" height="90">
+                                    <img src="../images/important.png"  width="25" height="25">
                                     {{/if}}
 
                                 </h3>
@@ -50,6 +50,12 @@
                                         {{#if connectDetails.request.requestAddress.pinCode}}
                                         {{connectDetails.request.requestAddress.pinCode}}.
                                         {{/if}}
+                                    </dd>
+                                    <dt>Contact number</dt>
+                                    <dd>{{connectDetails.request.number}}</dd>
+
+                                    <dt>Comments</dt>
+                                    <dd>{{connectDetails.request.comment}}
                                     </dd>
                                 </dl>
                             </div>
@@ -88,7 +94,7 @@
                 {{/if}}
             </section>
 
-            {{#if isNotEqual connectDetails.connect.status 'Initiated'}}
+           <!-- {{#if isNotEqual connectDetails.connect.status 'Initiated'}}-->
             <section class="content">
                 <div class="row">
                     <div class="col-md-6">
@@ -99,15 +105,20 @@
                             </div>
                             <div class="box-body">
                             <dl class="dl-horizontal">
+                                <dt>Name</dt>
                                 <dd> {{connectDetails.volunteer.name}}
                                 </dd>
+
                                 <dd>
                                     {{connectDetails.volunteer.gender}}
                                 </dd>
                                 <dd>
-                                    {{connectDetails.volunteer.age}}
+                                    {{connectDetails.volunteer.age}} yrs
                                 </dd>
                                 <dd>{{connectDetails.volunteer.city}}</dd>
+
+                                <dd> {{connectDetails.volunteer.number}}</dd>
+
                             </dl>
                             </div>
                         </div>
@@ -117,7 +128,7 @@
                 <input type="button" class="cancelUpdate" value="Cancel Connect"/>
                 {{/if}}
             </section>
-            {{/if}}
+         <!--   {{/if}}-->
 
             {{#if isEqual connectDetails.mode 'requestorComplete'}}
 

@@ -25,39 +25,55 @@
                                 <table class="table table-hover">
 
                                     <tbody>
-<!--
-                                    <tr>
-                                        <th>Request</th>
--->
-<!--
-                                        <th>Aid</th>
-                                        <th>Required By</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                        </tr>
--->
+                                    <!--
+                                                                        <tr>
+                                                                            <th>Request</th>
+                                    -->
+                                    <!--
+                                                                            <th>Aid</th>
+                                                                            <th>Required By</th>
+                                                                            <th>Status</th>
+                                                                            <th>Actions</th>
+                                                                            </tr>
+                                    -->
 
 
                                     {{#each getRequestList.request}}
-                                        <tr>
+                                    <tr>
 
-                                            <td><a href="#" class="view">{{request_name}}</a></td>
-                                           <!--     <td>{{aidName}}</td>
-                                                <td>{{formatDate requiredBy}}</td>
-                                           -->
-                                            <td><span class="label label-success">{{status}}</span></td>
-                                            <!--        <td>-->
-                                                   {{#if isEqual status 'Submitted'}}
-                                                <input type="button" class="match" value="Match" id="Match"/>
-                                          <!--      <a href="#" class="edit">Edit</a>
-                                                <a href="#" class="delete">Delete</a>
-                                          -->      {{/if}}
-                                               <!-- <a href="#" class="view">View</a>-->
+                                        <td>
+                                            <a href="#" class="view">{{subString request_name}}</a>
 
-                                                <!--                                            <a href="#" class="cancel">Cancel</a>-->
-                                                <input type="hidden" id="requestId" value="{{_id}}"/>
-                                            <!--</td>-->
-                                        </tr>
+                                            <!-- -->
+                                            <br>
+
+                                            <div>
+                                                <div class="text-left">
+                                                    {{formatDate requiredBy}}
+                                                </div>
+                                                <div class="text-right">
+
+                                                    <span class="label label-success">{{status}}</span>
+                                                    {{#if isEqual status 'Submitted'}}
+                                                    <input type="button" class="match" value="Match" id="Match"/>
+                                                    <!--      <a href="#" class="edit">Edit</a>
+                                                          <a href="#" class="delete">Delete</a>
+                                                    -->      {{/if}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!--     <td>{{aidName}}</td>
+                                             <td>{{formatDate requiredBy}}</td>
+                                        -->
+                                        <td></td>
+                                        <!--        <td>-->
+
+                                        <!-- <a href="#" class="view">View</a>-->
+
+                                        <!--                                            <a href="#" class="cancel">Cancel</a>-->
+                                        <input type="hidden" id="requestId" value="{{_id}}"/>
+                                        <!--</td>-->
+                                    </tr>
 
                                     {{/each}}
                                     </tbody>
@@ -87,7 +103,7 @@
                             <div class="box-body table-responsive no-padding">
                                 <table class="table table-hover">
                                     <tbody>
-                                    <tr>
+                                    <!--<tr>
                                         <th>Request Name</th>
                                         <th>Aid</th>
                                         <th>Requestor</th>
@@ -96,45 +112,82 @@
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
-
+-->
                                     {{#each getRequestList.connect}}
-                                        <tr>
+                                    <tr>
 
-                                            <td>{{requestName}}</td>
-                                            <td>{{aidName}}</td>
-                                            <td>{{requestorName}}</td>
-                                            <td>{{volunteerName}}</td>
-                                            <td>{{formatDate requestedBy}}</td>
-                                            <td><span class="label label-success">{{status}}</span></td>
-                                            <td>
-                                                {{#if isEqual status "Initiated"}}
+                                        <td> <a href="#" class="viewConnect">{{ subString requestName}} </a>
+                                        <br>
+                                            <div>
+                                                <div class="text-left">
+                                                    {{formatDate requestedBy}}
+                                                </div>
+                                                <div class="text-right">
+
+                                                    <span class="label label-success">{{status}}</span>
+                                                    {{#if isEqual status "Initiated"}}
                                                     {{#if isEqual volunteerId loggedUser}}
-                                                        <input type="button" class="respond" value="Respond"
-                                                               id="Respond"/>
+                                                    <input type="button" class="respond" value="Respond"
+                                                           id="Respond"/>
                                                     {{/if}}
-                                                {{/if}}
-                                                {{#if isEqual status "Accepted"}}
+                                                    {{/if}}
+                                                    {{#if isEqual status "Accepted"}}
                                                     <a href="#" class="cancel">Cancel</a>
-                                                {{/if}}
-                                                {{#if isEqual status "PendingCompletion"}}
-                                                {{#if isEqual requestorId loggedUser}}
+                                                    {{/if}}
+                                                    {{#if isEqual status "PendingCompletion"}}
+                                                    {{#if isEqual requestorId loggedUser}}
 
-                                                <input type="button" class="requestorComplete" value="Complete"
-                                                       id="requestorComplete"/>
-                                                {{/if}}
-                                                {{/if}}
-                                                {{#if isEqual status "Completed"}}
-                                                {{#if isEqual volunteerId loggedUser}}
-                                                <input type="button" class="volunteerComplete" value="Rate"
-                                                       id="Rate"/>
-                                                {{/if}}
-                                                {{/if}}
+                                                    <input type="button" class="requestorComplete" value="Complete"
+                                                           id="requestorComplete"/>
+                                                    {{/if}}
+                                                    {{/if}}
+                                                    {{#if isEqual status "Completed"}}
+                                                    {{#if isEqual volunteerId loggedUser}}
+                                                    <input type="button" class="volunteerComplete" value="Rate"
+                                                           id="Rate"/>
+                                                    {{/if}}
+                                                    {{/if}}
+                                                </div>
+                                            </div>
+
+                                        </td>
+<!--
+                                        <td>{{aidName}}</td>
+                                        <td>{{requestorName}}</td>
+                                        <td>{{volunteerName}}</td>
+                                        <td>{{formatDate requestedBy}}</td>
+-->
+<!--
+                                        <td><span class="label label-success">{{status}}</span></td>
+                                        <td>
+                                            {{#if isEqual status "Initiated"}}
+                                            {{#if isEqual volunteerId loggedUser}}
+                                            <input type="button" class="respond" value="Respond"
+                                                   id="Respond"/>
+                                            {{/if}}
+                                            {{/if}}
+                                            {{#if isEqual status "Accepted"}}
+                                            <a href="#" class="cancel">Cancel</a>
+                                            {{/if}}
+                                            {{#if isEqual status "PendingCompletion"}}
+                                            {{#if isEqual requestorId loggedUser}}
+
+                                            <input type="button" class="requestorComplete" value="Complete"
+                                                   id="requestorComplete"/>
+                                            {{/if}}
+                                            {{/if}}
+                                            {{#if isEqual status "Completed"}}
+                                            {{#if isEqual volunteerId loggedUser}}
+                                            <input type="button" class="volunteerComplete" value="Rate"
+                                                   id="Rate"/>
+                                            {{/if}}
+                                            {{/if}}
 
 
-
-                                                <a href="#" class="viewConnect">View</a>
-                                            </td>
-                                        </tr>
+                                            <a href="#" class="viewConnect">View</a>
+                                        </td>
+-->
+                                    </tr>
 
                                     {{/each}}
                                     </tbody>

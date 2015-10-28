@@ -1,5 +1,3 @@
-
-
 Template.manageRequest.helpers({
 
     isEqual: function(v1, v2) {

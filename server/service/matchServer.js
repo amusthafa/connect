@@ -147,6 +147,10 @@ Meteor.methods({matchRequestVolunteer: function (requestIp) {
             var aid = Aid.findOne({_id: request.aidId});
             request.aidName = aid.aidName;
         }
+        var userRequestor =  Meteor.users.findOne({_id: request.requestorId });
+        request.requestorName= userRequestor.profile.firstName + " " + userRequestor.profile.lastName;
+        request.number= userRequestor.profile.phone;
+
         //Update volunteer list with volunteer details from profile
         var reqCityList = [];
         var otherCityList = [];

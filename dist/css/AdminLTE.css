@@ -4727,4 +4727,16 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal!important;
   }
+
+}
+.text-right
+{   text-align:right}
+.text-left
+{   text-align:left}
+.word-wrap {
+    white-space: pre-wrap;      /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    word-wrap: break-word;      /* IE */
+    word-break: break-all;
 }

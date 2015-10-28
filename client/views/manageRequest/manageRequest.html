@@ -24,14 +24,19 @@
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">{{match.request.request_name}}
+                                <h3 class="box-title"> <span class="word-wrap">{{match.request.request_name}}</span>
                                     {{#if isEqual match.request.emergency 'Yes'}}
                                     <img src="/images/important.png" width="25" height="25">
                                     {{/if}}</h3>
+                                <br>
+                                <div class="text-right">
                                 <span class="label label-success">{{match.request.status}}</span>
+                                    </div>
                             </div>
                             <div class="box-body">
                                 <dl class="dl-horizontal">
+                                    <dt>Requestor</dt>
+                                    <dd> {{match.request.requestorName}}</dd>
                                     <dt>Requesting for</dt>
                                     <dd> {{match.request.aidName}}</dd>
                                     <dt>On</dt>
@@ -53,6 +58,12 @@
                                         {{#if match.request.requestAddress.pinCode}}
                                         {{match.request.requestAddress.pinCode}}.
                                         {{/if}}
+                                    </dd>
+                                    <dt>Contact number</dt>
+                                    <dd>{{match.request.number}}</dd>
+
+                                    <dt>Comments</dt>
+                                    <dd>{{match.request.comment}}
                                     </dd>
                                 </dl>
                                 {{#if isEqual match.mode 'view'}}
