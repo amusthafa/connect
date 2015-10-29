@@ -70,8 +70,8 @@ Template.manageRequest.onRendered(function() {
 
 
 Template.registerHelper('formatDate', function(date) {
-    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
-    return moment(date).format('MM-DD-YYYY');
+    console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
+    return moment(date).format('DD-MM-YYYY');
 });
 
 Template.manageRequest.events({
@@ -132,6 +132,6 @@ Template.manageRequest.events({
 });
 
 Template.registerHelper('formatDate', function(date) {
-    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
-    return moment(date).format('MM-DD-YYYY');
+    console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
+    return moment(date).format('DD-MM-YYYY');
 });
