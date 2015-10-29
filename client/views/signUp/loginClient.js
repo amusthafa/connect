@@ -21,10 +21,11 @@ Template.login.events({
             }
             else{
               console.log("success");
+                Router.go("/home");
             }
 
         });
-        Router.go("/");
+
 
         //
         //
