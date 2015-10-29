@@ -54,7 +54,9 @@ body {
  * Content Wrapper - contains the main content
  * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
-.content-wrapper,
+.content-wrapper{
+  background: url('images/background/flower.jpg');
+  },
 .right-side,
 .main-footer {
   -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -126,6 +128,7 @@ body {
     padding-top: 100px;
   }
 }
+
 .fixed.layout-boxed .wrapper {
   max-width: 100%;
 }
