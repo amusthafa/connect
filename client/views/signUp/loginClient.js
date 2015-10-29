@@ -21,9 +21,6 @@ Template.login.events({
             }
             else{
               console.log("success");
-              sAlert.success("Successfully logged in.");
-              sAlert.success('', configOverwrite);
-
             }
 
         });

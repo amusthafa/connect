@@ -4740,3 +4740,9 @@ table.text-center th {
     word-wrap: break-word;      /* IE */
     word-break: break-all;
 }
+.scroll-table-height {
+    min-height: 300px;
+    height: 400px;
+    overflow: scroll;
+
+}
