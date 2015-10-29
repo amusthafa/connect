@@ -18,7 +18,7 @@ Meteor.methods(
         };
 
         if ( connect.connectedBy == 'User')
-        connectData.status= 'Initiated'
+            connectData.status= 'Initiated'
         else if ( connect.connectedBy == 'Admin')
             connectData.status= 'Accepted';
 
@@ -139,40 +139,40 @@ Meteor.methods(
                             console.log('email sent');
 
                         }
-
+                        ///Noti end
                     }
                 );
 
         }
-            ///Noti end
-            console.log('connect.requestId - ' + JSON.stringify(connect.requestId));
-            var request = Request.findOne({ _id: connect.requestId});
-            console.log('request - ' + JSON.stringify(request));
-            if (request.status == 'Submitted') {
-                Request.update({_id: request._id}, { $set: {"status": "InProgress"}}
-                    , function (error, result) {
-                        console.log("result " + result + ' error ' + error);
-                        if (error) {
-                            console.log("Errors !!" + error + "  Result - " + result);
-                            //TO-DO: error message()
-                            // throw new Meteor.Error("insert-failed", error.message);
-                            throw new Meteor.Error("update-failed", error);
-                        }
-                        else {
 
-                            console.log('connectId - ' + connectId);
-                            console.log('notiId - ' + notiId);
-                            console.log('reqUpdate - ' + result);
-                            //if request status is not updated, then revert all other statuses
-
-                        }
-
-                    });
-            }
         }
 
+        console.log('connect.requestId - ' + JSON.stringify(connect.requestId));
+        var request = Request.findOne({ _id: connect.requestId});
+        console.log('request - ' + JSON.stringify(request));
+        if (request.status == 'Submitted') {
+            Request.update({_id: request._id}, { $set: {"status": "InProgress"}}
+                , function (error, result) {
+                    console.log("result " + result + ' error ' + error);
+                    if (error) {
+                        console.log("Errors !!" + error + "  Result - " + result);
+                        //TO-DO: error message()
+                        // throw new Meteor.Error("insert-failed", error.message);
+                        throw new Meteor.Error("update-failed", error);
+                    }
+                    else {
 
-    },
+                        console.log('connectId - ' + connectId);
+                        console.log('notiId - ' + notiId);
+                        console.log('reqUpdate - ' + result);
+                        //if request status is not updated, then revert all other statuses
+
+                    }
+
+                });
+        }
+
+    }   ,
         getConnectDetails: function (connect) {
             check(connect, Object);
             //update connect table status

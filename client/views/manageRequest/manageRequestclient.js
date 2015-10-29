@@ -120,12 +120,12 @@ Template.manageRequest.events({
         connect.seekerId=Meteor.userId();
         connect.aidId = document.getElementById('aidId').value;
         connect.connectedBy= 'User';
-      //  alert('connect - '+JSON.stringify(connect));
-        check(connect,Object);
+     //   alert('connect - '+JSON.stringify(connect));
+      //  check(connect,Object);
         Meteor.call("connect",connect, function (error, result) {
-          //  alert('connect - ' + result);
+         //   alert('connect - ' + result);
             Router.go("/");
-          //  alert('error - ' + error);
+           // alert('error - ' + error);
 
         });
     }
