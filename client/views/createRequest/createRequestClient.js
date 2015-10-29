@@ -53,6 +53,12 @@ Template.createRequest.helpers({
     }
 });
 
+Template.createRequest.onDestroyed(function () {
+
+    delete Session.keys['isCreate'];
+    delete Session.keys['requestId'];
+});
+
 Template.createRequest.onRendered(function () {
     // Session.get('request');
     var requestId = Session.get('requestId');

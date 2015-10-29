@@ -10,9 +10,16 @@ Template.resetPassword.events({
         console.log(currentPassword);
         Accounts.changePassword(currentPassword, password, function(error) {
             if (error) {
-                message = 'There was an issue: ' + error.reason;
+                // message = 'There was an issue: ' + error.reason;
+                sAlert.error("There was an issue"+ error.reason);
+                // alert(message);
+
             } else {
-                message = 'You reset your password!'
+                // message = 'You reset your password!'
+                // alert("success");
+                sAlert.success("Password is reset successfully.");
+                // sAlert.success('', configOverwrite);
+                Router.go("/");
             }
         });
     }

@@ -200,7 +200,14 @@ Meteor.methods(
             request.aidName = aid.aidName;
             console.log('request -' + JSON.stringify(request));
 
-            var volunteer = {};
+        /*    var request =Meteor.call('getRequest',connectObj, function(err, result) {
+                console.log("on rendered result: ------------------------------" + JSON.stringify(result));
+                if (!err)
+                return result;
+            });
+        */    console.log('request ----------------' + JSON.stringify(request));
+
+                    var volunteer = {};
             //get volunteer details
             var user = Meteor.users.findOne({_id: connectObj.volunteerId });
             console.log('user -- ' + JSON.stringify(user));
@@ -216,7 +223,7 @@ Meteor.methods(
                     volunteer.age = age;
                 }
                 volunteer.city = user.profile.address.city;
-
+                volunteer.number=user.profile.phone;
             }
             var contactDetails = {};
             contactDetails.connect = connectObj;

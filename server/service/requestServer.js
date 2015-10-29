@@ -6,6 +6,12 @@ Meteor.methods({
         var aid = Aid.findOne({_id: request.aidId});
         request.aidName = aid.aidName;
         console.log("Server getRequest:", JSON.stringify(request));
+
+        //retrieve contact number
+        var userRequestor =  Meteor.users.findOne({_id: request.requestorId });
+        request.requestorName= userRequestor.profile.firstName + " " + userRequestor.profile.lastName;
+        request.number= userRequestor.profile.phone;
+
         return request;
     },
 

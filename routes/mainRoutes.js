@@ -1,9 +1,9 @@
-Router.route('/', function () {
+Router.route('/home', function () {
     this.render('home');
-    SEO.set({title: 'Home - Ola Amigo!!'});
+    SEO.set({title: 'Home - Ola Amigos!!'});
 });
 
-Router.route('/Login', {
+Router.route('/', {
     name: 'login',
     action: function () {
         this.render('login');
@@ -17,11 +17,11 @@ Router.route('/ForgotPassword', {
     }
 });
 
-Router.route('/Logout', {
+Router.route('/logout', {
     name: 'logout',
     onBeforeAction: Meteor.logout,
     action: function () {
-        this.render('home');
+        this.render('login');
     }
 });
 
@@ -253,7 +253,7 @@ Router.route('/resetPassword', {
 Router.route('/updateProfile', {
     name: 'updateProfile',
     action: function () {
-        this.render('updateProfile');
+        this.render('signUp');
     }
 });
 
