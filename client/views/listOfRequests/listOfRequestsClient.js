@@ -101,7 +101,7 @@ Template.listOfRequests.events({
         connect.mode='viewConnect';
     //   alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
-              alert(" result:"+ JSON.stringify(result));
+        //      alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);
             //       alert(result);
             Router.go("/connectUpdate");
