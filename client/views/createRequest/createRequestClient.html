@@ -1,7 +1,5 @@
 <template name="createRequest">
-    <html>
     {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
         {{>common}}
@@ -34,13 +32,13 @@
                                       {{#if isEditFlow}}
                                         {{#if isOtherChecked}}
                                           <div class="radio">
-                                              <label>
+                                              <label for="requestType Self">
                                                   <input type="radio" name="requestType" id="requestType" value="Self" >
                                                   Self
                                               </label>
                                           </div>
                                           <div class="radio">
-                                              <label>
+                                              <label for="requestType Other">
                                                   <input type="radio" name="requestType" id="requestType" value="Other" checked> Other
                                               </label>
                                           </div>
@@ -369,6 +367,4 @@
             </section>
         </div>
     </div>
-    </body>
-    </html>
 </template>

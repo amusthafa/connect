@@ -17,11 +17,11 @@ Template.login.events({
             if (error) {
               console.log("error body", (error));
               sAlert.error("Email id or password is wrong");
-              Router.go("/");
+              Router.go("/login");
             }
             else{
               console.log("success");
-                Router.go("/home");
+                Router.go("/");
             }
 
         });

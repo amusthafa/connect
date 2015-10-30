@@ -187,7 +187,7 @@ Template.createRequest.events({
             console.log("CREATE REQUEST:" , requestJson);
 
             Meteor.call("saveRequest", request, function (error, result) {
-                console.log("Client save request", JSON.stringify(result));
+             //   alert("Client save request"+ JSON.stringify(result));
 
                 if (error) {
                   console.log("error body", (error));
@@ -196,13 +196,42 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                  sAlert.success("Successfully created your request!");
-                  sAlert.success('', configOverwrite);
+                    var succMsg="Successfully created your request.";
+
+                    var req ={};
+                    req._id= result;
+
+                    Meteor.call('matchRequestVolunteer',req, function(err, result) {
+                        console.log("on rendered result: ------------------------------" + JSON.stringify(result));
+
+                        if (result && result.volunteerList && result.volunteerList.length >0){
+                            succMsg =succMsg+  "There are volunteer matches !! ";
+                            Session.set("match",result);
+                            Router.go('/manageRequest');
+                            sAlert.success(succMsg);
+                            sAlert.success('', configOverwrite);
+                        }
+                        else
+                        {
+                            succMsg =succMsg+  "We are looking out for volunteer matches !! ";
+                            sAlert.success(succMsg);
+                            sAlert.success('', configOverwrite);
+
+                        }
+                    });
+
                 }
             });
             delete Session.keys['isOther'];
             delete Session.keys['searchResult'];
-            Router.go("/");
+
+          //call match and direct to that page
+
+
+
+          //  Router.go("/");
+
+
           }
           else{
             console.log("EDIT REQUEST:" , request);

@@ -19,9 +19,16 @@ Meteor.methods({
         check(req, Object);
         check(req.creatorId, String);
 
-        var requestList = Request.find({
-            $or :[ {creatorId: req.creatorId}, {requestorId: req.creatorId}],
-            status: { $in: ['Submitted','Closed','InProgress'] } }).fetch();
+        var requestList = Request.find(
+        {
+            $query: {
+                $or :[ {creatorId: req.creatorId}, {requestorId: req.creatorId}],
+                    status: { $in: ['Submitted','Closed','InProgress']
+                }},
+            $orderby: { rowCreated: -1}
+
+        }).fetch();
+
 
         console.log("Server getListOfRequest:", JSON.stringify(requestList));
 
@@ -146,7 +153,7 @@ Meteor.methods({
 
         console.log("request in server:", JSON.stringify(request));
 
-        Request.insert(requestDb, function (error, result) {
+        var requestReturn = Request.insert(requestDb, function (error, result) {
 
             console.log("Request insert " + JSON.stringify(result));
             if (error) {
@@ -154,9 +161,12 @@ Meteor.methods({
                 throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
             }
             else {
-                return requestDb;
+               /* requestDb._id=result;
+                return requestDb;*/
             }
         });
+        console.log('req - '+(requestReturn));
+        return requestReturn;
     },
 
     editRequest: function (requestID, request) {

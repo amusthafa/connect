@@ -1,9 +1,9 @@
-Router.route('/home', function () {
+Router.route('/', function () {
     this.render('home');
     SEO.set({title: 'Home - Ola Amigos!!'});
 });
 
-Router.route('/', {
+Router.route('/login', {
     name: 'login',
     action: function () {
         this.render('login');
