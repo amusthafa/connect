@@ -33,6 +33,7 @@ Meteor.methods(
                 console.log(notification.requestId);
                 var request = Request.findOne({_id: notification.requestId});
               //  console.log(request.request_name);
+                    if (request)
                 notification.requestName = request.request_name;}
             }
             console.log('notificationsList  ' + JSON.stringify(notificationsList));
