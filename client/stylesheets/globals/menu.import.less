@@ -1,0 +1,33 @@
+#menu {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+
+  a {
+    box-shadow: rgba(255,255,255,.15) 0 1px 0 0;
+    display: block;
+    line-height: 1.6em;
+    padding: .75em 2.5em;
+    position: relative;
+  }
+
+  span {
+    margin: 0em;
+    padding: .4em;
+  }
+
+  a:link, a:visited {
+    color: @color-empty;
+  }
+
+  a:hover {
+    .transition( all 300ms ease-out );
+    background-color: @color-ancillary;
+  }
+
+
+
+
+}
+

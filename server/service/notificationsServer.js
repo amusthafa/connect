@@ -29,10 +29,11 @@ Meteor.methods(
                  notification.description = notification.description.split("for")[0] + "for " + request.aidName;*/
 
                 var notification = notificationsList[i];
+                if (notification){
                 console.log(notification.requestId);
                 var request = Request.findOne({_id: notification.requestId});
-                console.log(request.request_name);
-                notification.requestName = request.request_name;
+              //  console.log(request.request_name);
+                notification.requestName = request.request_name;}
             }
             console.log('notificationsList  ' + JSON.stringify(notificationsList));
 
