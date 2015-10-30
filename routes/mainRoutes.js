@@ -19,13 +19,17 @@ Router.route('/ForgotPassword', {
 
 Router.route('/logout', {
     name: 'logout',
-    onBeforeAction: Meteor.logout,
+    // onBeforeAction: Meteor.logout,
+    onBeforeAction: function () {
+        Meteor.logout();
+        this.next();
+    },
     action: function () {
         this.render('login');
     }
 });
 
-Router.route('/SignUp', {
+Router.route('/SignUp/0', {
     name: 'signUp',
     action: function () {
         this.render('signUp');
@@ -39,7 +43,7 @@ Router.route('/AddAdmin', {
     }
 });
 
-Router.route('/CreateProfile', {
+Router.route('/CreateProfile/0', {
     name: 'createProfile',
     action: function () {
         this.render('signUp');
@@ -250,8 +254,11 @@ Router.route('/resetPassword', {
     }
 });
 
-Router.route('/updateProfile', {
+Router.route('/updateProfile/:id', {
     name: 'updateProfile',
+    data: function(){
+        var id = this.params.id;
+    },
     action: function () {
         this.render('signUp');
     }
