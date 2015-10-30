@@ -19,7 +19,6 @@ Router.route('/ForgotPassword', {
 
 Router.route('/logout', {
     name: 'logout',
-    // onBeforeAction: Meteor.logout,
     onBeforeAction: function () {
         Meteor.logout();
         this.next();
@@ -257,7 +256,7 @@ Router.route('/resetPassword', {
 Router.route('/updateProfile/:id', {
     name: 'updateProfile',
     data: function(){
-        var id = this.params.id;
+        console.log(this.params.id);
     },
     action: function () {
         this.render('signUp');

@@ -1,6 +1,6 @@
 Session.setDefault("isOrg", "No");
-// Session.setDefault("isUpdateFlow", "No");
-Session.set("isUpdateFlow", Router.current().params.id);
+// Session.setDefault("isUpdateFlow", true);
+// Session.set("isUpdateFlow", Router.current().params.id);
 
 Template.signUp.helpers({
     'isOrganisation': function (event) {
@@ -49,6 +49,9 @@ Template.signUp.events({
         Session.set("isOrg", event.currentTarget.value);
         console.log(Session.get("isOrg"));
     },
+    'click #Cancel' : function(event) {
+      Router.go("/");
+    },
     'submit form': function (event) {
         event.preventDefault();
         console.log('form submitted');
@@ -68,9 +71,10 @@ Template.signUp.events({
           userProfile.diffAbled = event.target.diffAbled.value;
           userProfile.occupation = event.target.occupation.value;
           userProfile.role = event.target.role.value;
-          if (event.target.organisation.value == "Yes")
+          if (event.target.organisation.value == "Yes") {
               userProfile.orgFlag = true;
               console.log(userProfile.orgFlag);
+          }
           else
               userProfile.orgFlag = false;
           if (userProfile.orgFlag)
@@ -79,10 +83,11 @@ Template.signUp.events({
               userProfile.organisationName = "";
           userProfile.comments = event.target.comments.value;
           Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.mobileNo": userProfile.mobileNo, "profile.sharePhone" : userProfile.shareNo, "profile.address.line1" : userProfile.addr1, "profile.address.line2" : userProfile.addr2, "profile.address.city" : userProfile.city,
-              "profile.address.state" : userProfile.state, "profile.pinCode." : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.organizationFlag " : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
+              "profile.address.state" : userProfile.state, "profile.pinCode." : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.organizationFlag" : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
           sAlert.success("Profile updated successfully!!");
         }
         else{
+          console.log("Insert");
         var userProfile = {};
         userProfile.firstName = event.target.firstName.value;
         userProfile.lastName = event.target.lastName.value;
