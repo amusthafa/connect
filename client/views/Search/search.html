@@ -14,8 +14,10 @@
                    <div class="col-md-6">
                      <form method="post" id="Searchbar">
                            <div class="form-group">
-                            <span class="glyphicon glyphicon-search form-control"> <input type="text" placeholder="Search by Username" id="Ename" name="name">
-                              <button type="submit" class="search">Search</button></span>
+                            <!-- <span class="glyphicon glyphicon-search form-control">  -->
+                              <input type="text" placeholder="Search by Username" id="Ename" name="name">
+                               <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i></button>
+                              <!-- <button type="submit" class="search">Search</button></span> -->
                                </div>
 
 
@@ -29,22 +31,26 @@
             <table class="table table-hover">
                 <tbody>
           {{#each searchuser}}
-        <div>  <tr><td> <label><input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> {{profile.firstName}},{{profile.lastName}} </label></td></tr>
+        <div>  <tr><td> <label>
+          <!-- <input id="SelectUser" type="radio" value= "{{_id}}" name="SelectUser" /> -->
+           {{profile.firstName}},{{profile.lastName}} </label></td></tr>
           <!-- <input type="range" min="0" max="5" value="0" step="0.5" id="userRating">
             <div class="rateit" data-rateit-backingfld="#userRating"></div> -->
           </div>
-          {{/each}}
-        </tbody>
-      </table>
 
           <tr>
             <div>
-          <td><input type="button" value="Profile" class="Profile" /></td>
+             <td> <a href="#" class="Profile">Profile</a></td>
+          <!-- <td><input type="button" value="Profile" class="Profile" /></td> -->
           {{#if isInRole 'Admin'}}
-          <td> <input type="button" value="Request" class="Request" /></td>
+             <td> <a href="#" class="Profile">Profile</a></td>
         {{/if}}
         </div>
         </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
            </div>
          </div>
          {{/if}}
