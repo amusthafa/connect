@@ -124,10 +124,21 @@ Template.manageRequest.events({
       //  check(connect,Object);
         Meteor.call("connect",connect, function (error, result) {
          //   alert('connect - ' + result);
-            Router.go("/");
-           // alert('error - ' + error);
+            if (error) {
+                console.log("error body", (error));
+                sAlert.error(error.reason);
+                // Router.go("/manageRequest");
+            }
+            else{
+                console.log("success");
+                sAlert.success("Connect was successful!");
+                sAlert.success('', configOverwrite);
+
+            }
+
 
         });
+        Router.go("/");
     }
 });
 

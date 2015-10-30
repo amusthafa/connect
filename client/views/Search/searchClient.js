@@ -39,19 +39,19 @@ Template.SearchId.events({
     event.preventDefault();
     console.log("clicked request");
     var UserReq = Session.get('searchResult');
-  if($('input[name=SelectUser]:radio:checked').val())
- {
-for(var key in UserReq)
-{
- id_user=UserReq[key]._id;
-if($('input[name=SelectUser]:radio:checked').val() === id_user)
-{
-Session.set('userId',UserReq[key]._id);
-userId= UserReq[key]._id;
-}
- else continue;
- console.log(userId);
- Meteor.call("SearchRequest",userId, function(error, result) {
+  // if($('input[name=SelectUser]:radio:checked').val())
+  // {
+// for(var key in UserReq)
+// {
+//  id_user=UserReq[key]._id;
+// if($('input[name=SelectUser]:radio:checked').val() === id_user)
+// {
+// Session.set('userId',UserReq[key]._id);
+// userId= UserReq[key]._id;
+// }
+//  else continue;
+//  console.log(userId);}}
+ Meteor.call("SearchRequest",this._id, function(error, result) {
    if (result == 0)
    {
      sAlert.error("No Request found for this User");
@@ -62,42 +62,33 @@ userId= UserReq[key]._id;
      console.log("Requests:"+JSON.stringify(result));
        }
 });
-   }}
-   else {
-     sAlert.error("Select a User");
-   }
-   //session deletion
- }
+}
    ,
    'click .Profile': function(event){
      event.preventDefault();
  console.log("Clicked Profile");
  var UserReq = Session.get('searchResult');
- if($('input[name=SelectUser]:radio:checked').val())
- {
-for(var key in UserReq)
-{
-id_user=UserReq[key]._id;
-if($('input[name=SelectUser]:radio:checked').val() === id_user)
-{
-Session.set('userId',UserReq[key]._id);
-userId= UserReq[key]._id;
-}
-else continue;
+  userId=this._id;
+//  if($('input[name=SelectUser]:radio:checked').val())
+//  {
+// for(var key in UserReq)
+// {
+// id_user=UserReq[key]._id;
+// if($('input[name=SelectUser]:radio:checked').val() === id_user)
+// {
+// Session.set('userId',UserReq[key]._id);
+// userId= UserReq[key]._id;
+// }
+// else continue;}}
 if (Roles.userIsInRole(userId,'Admin'))
 { console.log("is admin : " + userId);
   Session.set('isAdmin','true');
 console.log(Session.get('isAdmin'));}
-Meteor.call("SearchProfile",userId, function(error, result) {
+Meteor.call("SearchProfile",this._id, function(error, result) {
     Session.set('getUserProfile',result);
     Session.set('getUserRequest',0);
     });
- }}
 
-else {
-  sAlert.error("Select a User");
-}
-//session deletion
 }
  ,
        'submit form': function (event) {
