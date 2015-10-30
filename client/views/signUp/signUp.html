@@ -15,7 +15,7 @@
             <section class="content-header">
                 {{#if isUpdateFlow}}
                     <h1>
-
+                        Update Profile
                     </h1>
                 {{else}}
                     <h1>
@@ -411,15 +411,12 @@
                                 <div class="box-footer">
                                     {{#if isUpdateFlow}}
                                         <div class=".btn.bg-purple">
-                                            <button type="reset" class="btn btn-primary" value="Reset">Reset
-                                            </button>
-                                            <button type="submit" class="btn btn-primary" value="SignUp">Sign Up
-                                            </button>
+                                            <button type="button" onclick="clicked='Cancel'" class="btn btn-primary" value="Reset">Cancel</button>
+                                            <button type="submit" onclick="clicked='Update'" class="btn btn-primary" value="Update">Update</button>
                                         </div>
                                     {{else}}
                                         <div class=".btn.bg-purple">
-                                            <button type="update" class="btn btn-primary" value="Update">Update
-                                            </button>
+                                            <button type="submit" onclick="clicked='SignUp'" class="btn btn-primary" value="SignUp">Sign Up</button>
                                         </div>
                                     {{/if}}
                                 </div>

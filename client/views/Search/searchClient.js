@@ -62,10 +62,6 @@ Template.SearchId.events({
      console.log("Requests:"+JSON.stringify(result));
        }
 });
-
-  //  else {
-  //    sAlert.error("Select a User");
-  //  }
 }
    ,
    'click .Profile': function(event){
@@ -93,10 +89,6 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
     Session.set('getUserRequest',0);
     });
 
-//
-// else {
-//   sAlert.error("Select a User");
-// }
 }
  ,
        'submit form': function (event) {

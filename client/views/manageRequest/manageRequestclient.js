@@ -70,8 +70,8 @@ Template.manageRequest.onRendered(function() {
 
 
 Template.registerHelper('formatDate', function(date) {
-    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
-    return moment(date).format('MM-DD-YYYY');
+    console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
+    return moment(date).format('DD-MM-YYYY');
 });
 
 Template.manageRequest.events({
@@ -120,18 +120,18 @@ Template.manageRequest.events({
         connect.seekerId=Meteor.userId();
         connect.aidId = document.getElementById('aidId').value;
         connect.connectedBy= 'User';
-      //  alert('connect - '+JSON.stringify(connect));
-        check(connect,Object);
+     //   alert('connect - '+JSON.stringify(connect));
+      //  check(connect,Object);
         Meteor.call("connect",connect, function (error, result) {
-          //  alert('connect - ' + result);
+         //   alert('connect - ' + result);
             Router.go("/");
-          //  alert('error - ' + error);
+           // alert('error - ' + error);
 
         });
     }
 });
 
 Template.registerHelper('formatDate', function(date) {
-    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
-    return moment(date).format('MM-DD-YYYY');
+    console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
+    return moment(date).format('DD-MM-YYYY');
 });

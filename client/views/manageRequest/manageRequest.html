@@ -63,8 +63,8 @@
                                     <dd>{{match.request.number}}</dd>
 
                                     <dt>Comments</dt>
-                                    <dd>{{match.request.comment}}
-                                    </dd>
+
+                                    <dd><span class="word-wrap">{{match.request.comment}} </span></dd>
                                 </dl>
                                 {{#if isEqual match.mode 'view'}}
                                 {{#if isEqual match.request.status 'Submitted'}}

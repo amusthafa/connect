@@ -1,5 +1,6 @@
 Session.setDefault("isOrg", "No");
-Session.setDefault("isUpdateFlow", "No");
+// Session.setDefault("isUpdateFlow", "No");
+Session.set("isUpdateFlow", Router.current().params.id);
 
 Template.signUp.helpers({
     'isOrganisation': function (event) {
@@ -13,7 +14,7 @@ Template.signUp.helpers({
         return (Session.get('stateList'));
     },
     'isUpdateFlow': function (event) {
-        Session.set("isUpdateFlow", "Yes");
+        Session.set("isUpdateFlow", Router.current().params.id);
         console.log(Session.get("isUpdateFlow"));
         return (Session.get("isUpdateFlow"));
     },
@@ -51,6 +52,37 @@ Template.signUp.events({
     'submit form': function (event) {
         event.preventDefault();
         console.log('form submitted');
+        if(Router.current().params.id) {
+          console.log("Update");
+          var userProfile = {};
+          userProfile.mobileNo = event.target.mobileNo.value;
+          if (event.target.shareNo.value == "Yes")
+              userProfile.shareNo = true;
+          else
+              userProfile.shareNo = false;
+          userProfile.addr1 = event.target.addr1.value;
+          userProfile.addr2 = event.target.addr2.value;
+          userProfile.city = event.target.city.value;
+          userProfile.state = event.target.state.value;
+          userProfile.pincode = event.target.pincode.value;
+          userProfile.diffAbled = event.target.diffAbled.value;
+          userProfile.occupation = event.target.occupation.value;
+          userProfile.role = event.target.role.value;
+          if (event.target.organisation.value == "Yes")
+              userProfile.orgFlag = true;
+              console.log(userProfile.orgFlag);
+          else
+              userProfile.orgFlag = false;
+          if (userProfile.orgFlag)
+              userProfile.organisationName = event.target.organisationName.value;
+          else
+              userProfile.organisationName = "";
+          userProfile.comments = event.target.comments.value;
+          Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.mobileNo": userProfile.mobileNo, "profile.sharePhone" : userProfile.shareNo, "profile.address.line1" : userProfile.addr1, "profile.address.line2" : userProfile.addr2, "profile.address.city" : userProfile.city,
+              "profile.address.state" : userProfile.state, "profile.pinCode." : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.organizationFlag " : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
+          sAlert.success("Profile updated successfully!!");
+        }
+        else{
         var userProfile = {};
         userProfile.firstName = event.target.firstName.value;
         userProfile.lastName = event.target.lastName.value;
@@ -93,9 +125,11 @@ Template.signUp.events({
             else {
                 console.log("success");
                 sAlert.success("Verification mail has been sent. Please confirm to activate your account!");
-                sAlert.success('', configOverwrite);
+                // sAlert.success('', configOverwrite);
             }
         });
         Router.go("/");
+      }
+
     }
 });

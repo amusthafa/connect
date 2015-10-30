@@ -101,7 +101,7 @@ Template.listOfRequests.events({
         connect.mode='viewConnect';
     //   alert(JSON.stringify(connect));
         Meteor.call('getConnectDetails', connect, function(err, result) {
-              alert(" result:"+ JSON.stringify(result));
+        //      alert(" result:"+ JSON.stringify(result));
             Session.set('connectDetails', result);
             //       alert(result);
             Router.go("/connectUpdate");
@@ -163,8 +163,8 @@ Template.listOfRequests.events({
 });
 
 Template.registerHelper('formatDate', function(date) {
-    console.log("format date:!!!!:", moment(date).format('MM-DD-YYYY'));
-    return moment(date).format('MM-DD-YYYY');
+    console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
+    return moment(date).format('DD-MM-YYYY');
 });
 Template.registerHelper('subString', function(passedString) {
     var name  = passedString.substring(0,15); //same as truncate.
