@@ -131,7 +131,7 @@ Template.manageRequest.events({
             }
             else{
                 console.log("success");
-                sAlert.success("Connect was successful!");
+                sAlert.success("Connect request is initiated. Volunteer is notified!");
                 sAlert.success('', configOverwrite);
 
             }

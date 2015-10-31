@@ -182,7 +182,8 @@ SyncedCron.add({
                     status: 'Unread',
                     userId: connect.requestorId,
                     type: 'PendingCompletion',
-                    description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
+                    //description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
+                    description:'How did '+ request.request_name + ' go? Please update us about your experience.'
                 };
                 console.log('notification innsertion ------------------------------- '+JSON.stringify(notificationData));
                 Notifications.insert(notificationData, function (error, result) {
@@ -195,7 +196,7 @@ SyncedCron.add({
                     }
                  else{   //send mail
                     Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
-                        text: notificationData.description + "Thanks, Amigos"});
+                        text: notificationData.description + " Thanks, Amigos"});
                     console.log('email sent');
                 }
                 });
