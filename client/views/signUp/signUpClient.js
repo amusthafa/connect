@@ -125,7 +125,7 @@ Template.signUp.events({
             if (error) {
                 console.log("error body", (error));
                 sAlert.error(error.reason);
-                Router.go("/SignUp");
+                Router.go("/SignUp/0");
             }
             else {
                 console.log("success");
