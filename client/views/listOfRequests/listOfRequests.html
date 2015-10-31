@@ -54,7 +54,7 @@
 
                                                     <span class="label label-success">{{status}}</span>
                                                     {{#if isEqual status 'Submitted'}}
-                                                    <input type="button" class="match" value="Match" id="Match"/>
+                                                    <input type="button" class="match btn btn-primary" value="Match" id="Match"/>
                                                     <!--      <a href="#" class="edit">Edit</a>
                                                           <a href="#" class="delete">Delete</a>
                                                     -->      {{/if}}
@@ -126,7 +126,7 @@
                                                     <span class="label label-success">{{status}}</span>
                                                     {{#if isEqual status "Initiated"}}
                                                     {{#if isEqual volunteerId loggedUser}}
-                                                    <input type="button" class="respond" value="Respond"
+                                                    <input type="button" class="respond btn btn-primary" value="Respond"
                                                            id="Respond"/>
                                                     {{/if}}
                                                     {{/if}}
@@ -136,13 +136,13 @@
                                                     {{#if isEqual status "PendingCompletion"}}
                                                     {{#if isEqual requestorId loggedUser}}
 
-                                                    <input type="button" class="requestorComplete" value="Complete"
+                                                    <input type="button" class="requestorComplete btn btn-primary" value="Complete"
                                                            id="requestorComplete"/>
                                                     {{/if}}
                                                     {{/if}}
                                                     {{#if isEqual status "Completed"}}
                                                     {{#if isEqual volunteerId loggedUser}}
-                                                    <input type="button" class="volunteerComplete" value="Rate"
+                                                    <input type="button" class="volunteerComplete btn btn-primary" value="Rate"
                                                            id="Rate"/>
                                                     {{/if}}
                                                     {{/if}}

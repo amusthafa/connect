@@ -53,7 +53,19 @@ Template.informationAdd.events({
         info.verificationStatus='No';
       }
       console.log("information"+JSON.stringify(info));
-      Meteor.call("AddInfo",info);
+      Meteor.call("AddInfo",info,function (error, result){
+        if (error) {
+          console.log("error body", (error));
+          sAlert.error(error.reason);
+          Router.go("/createRequest");
+        }
+        else{
+          console.log("success");
+            sAlert.success("Successfully added the Information")
+
+      }
+
+    });
 }
 
 });

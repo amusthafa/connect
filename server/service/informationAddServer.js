@@ -3,7 +3,7 @@ Meteor.methods({
   'AddInfo' : function(info){
     check(info,Object);
 
-    Information.insert({
+  var infoDb = Information.insert({
       "infoTitle":info.infoTitle,
       "infoType": info.infoType,
       "informationDescription":info.informationDescription,
@@ -24,5 +24,6 @@ Meteor.methods({
         console.log("info insert result error " + error);
         console.log("info insert result" + result);
       })
+      return infoDb;
      }
   });

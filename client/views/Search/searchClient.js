@@ -39,18 +39,6 @@ Template.SearchId.events({
     event.preventDefault();
     console.log("clicked request");
     var UserReq = Session.get('searchResult');
-  // if($('input[name=SelectUser]:radio:checked').val())
-  // {
-// for(var key in UserReq)
-// {
-//  id_user=UserReq[key]._id;
-// if($('input[name=SelectUser]:radio:checked').val() === id_user)
-// {
-// Session.set('userId',UserReq[key]._id);
-// userId= UserReq[key]._id;
-// }
-//  else continue;
-//  console.log(userId);}}
  Meteor.call("SearchRequest",this._id, function(error, result) {
    if (result == 0)
    {
@@ -69,17 +57,6 @@ Template.SearchId.events({
  console.log("Clicked Profile");
  var UserReq = Session.get('searchResult');
   userId=this._id;
-//  if($('input[name=SelectUser]:radio:checked').val())
-//  {
-// for(var key in UserReq)
-// {
-// id_user=UserReq[key]._id;
-// if($('input[name=SelectUser]:radio:checked').val() === id_user)
-// {
-// Session.set('userId',UserReq[key]._id);
-// userId= UserReq[key]._id;
-// }
-// else continue;}}
 if (Roles.userIsInRole(userId,'Admin'))
 { console.log("is admin : " + userId);
   Session.set('isAdmin','true');
@@ -118,10 +95,7 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
        });
 
 
-// Template.SearchRequest.onRendered(function(){
-//
-//
-// });
+
 
 
 
