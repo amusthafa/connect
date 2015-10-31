@@ -52,7 +52,6 @@ Template.feedback.events({
 
 Template.viewFeedbacks.onRendered(function () {
     Meteor.call('getAllFeedbacks', function (err, result) {
-      alert("!");
         console.log("on rendered : getAllFeedbacks:", JSON.stringify(result));
         Session.set("getAllFeedbacks", result);
     });

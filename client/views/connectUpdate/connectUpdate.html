@@ -8,7 +8,7 @@
         {{>common}}
         {{>header}}
         {{>sAlert}}
-        <div class="content-wrapper">
+        <div class="content-wrapper image">
             <section class="content-header">
                 <h1>
                     Connect -  {{connectDetails.connect.status}}
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
 
-                            <input type="button" class="connectUpdateSubmit" value="Submit"/>
+                            <input type="button" class="connectUpdateSubmit btn btn-primary" value="Submit"/>
                         {{/if}}
                     {{/if}}
                 {{/if}}
@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="Completed" id="UnSuccessful"
+                                                <input type="radio" name="UnSuccessful" id="UnSuccessful"
                                                        value="UnSuccessful">
                                                 UnSuccessful. Please rate if the connect was Unsuccessful because of
                                                 problems.
@@ -163,13 +163,12 @@
                                         </div>
                                     </div>
 
-
                                     <div style="padding:10px">
                                         {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
                                     </div>
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="rate">Submit</button>
+                                    <button type="submit" class="rate btn btn-primary">Submit</button>
                                     <input hidden id='status' value="{{connectDetails.connect.status}}">
                                 </div>
                             </div>
@@ -199,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="rate">Submit</button>
+                                    <button type="submit" class="rate btn btn-primary">Submit</button>
                                     <input hidden id='status' value="{{connectDetails.connect.status}}">
                                 </div>
                             </div>
@@ -212,4 +211,3 @@
     </div>
     </body>
 </template>
-

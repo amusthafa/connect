@@ -55,11 +55,14 @@ body {
  * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
 .content-wrapper{
-
+  /*background: url('images/background/flower.jpg');
+  background-repeat: no-repeat;*/
+  /*width: 5400px;*/
+  /*height: 2000px;*/
   }
-/*.content-container{
+.image{
   background: url('images/background/flower.jpg')
-}*/
+}
 .right-side,
 .main-footer {
   -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
