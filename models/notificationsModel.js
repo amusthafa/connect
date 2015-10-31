@@ -8,6 +8,7 @@ Notifications.attachSchema({
             type: String
         },
         volunteerAidId: {
+            optional :true,
             type: String
         },
         status: {

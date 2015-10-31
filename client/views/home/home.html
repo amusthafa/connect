@@ -8,70 +8,195 @@
     <div class="wrapper">
         {{>common}}
         {{#if currentUser}}
-          {{>header}}
+            {{>header}}
 
-        <div class="content-wrapper image">
-        <!-- Content Header (Page header) -->
-          <section class="content-header">
-          </section><!--
-          <section class="content">
-          &lt;!&ndash;  <h2 class="page-header">Bootstrap Accordion & Carousel</h2>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="box box-solid">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Carousel</h3>
-                  </div>
-                  &lt;!&ndash; /.box-header &ndash;&gt;
-                  <div class="box-body">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                      <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                      </ol>
-                      <div class="carousel-inner">
-                        <div class="item active">
-                          &lt;!&ndash; <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide"> &ndash;&gt;
-                          <p>One</p>
-                          <div class="carousel-caption">
-                            First Slide
-                          </div>
+            <div class="content-wrapper image">
+                <!-- Content Header (Page header) -->
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Calendar</h3>
+                                </div>
+
+                                <div class="box-header with-border">
+                                    <div class="calendar">
+                                        {{> fullcalendar
+                                        class="mainCalendar"
+                                        defaultView='month'
+                                        height="50%"
+                                        width="50%"
+                                        events=events
+                                        eventClick=onEventClicked
+                                        }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="item">
-                          &lt;!&ndash; <img src="http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide"> &ndash;&gt;
-                          <p>Two</p>
-                          <div class="carousel-caption">
-                            Second Slide
-                          </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Highlights</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="bg-gray-active color-palette">
+                                            <div id="carousel-example-generic" class="carousel slide"
+                                                 data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carousel-example-generic" data-slide-to="0"
+                                                        class="active"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="1"
+                                                        class=""></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="2"
+                                                        class=""></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="3"
+                                                        class=""></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="4"
+                                                        class=""></li>
+                                                </ol>
+                                                <div class="carousel-inner">
+                                                    <div class="item active">
+                                                        <br>
+                                                        <br>
+
+                                                        <p align="center" class="lead">Welcome to OlaAmigos</p>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+
+                                                        <div class="carousel-caption">
+                                                            First Slide
+                                                        </div>
+                                                    </div>
+                                                    {{#if getDocInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Doctor/Hospital Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getDocInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Doctor/Hospital Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getAilInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Ailments Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getAilInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Ailments Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getEduInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Education Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getEduInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Educational Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getJobInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Job Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getJobInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Job Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getRightsInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Rights Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getRightsInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Rights Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                </div>
+                                                <a class="left carousel-control" href="#carousel-example-generic"
+                                                   data-slide="prev">
+                                                    <span class="fa fa-angle-left"></span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-example-generic"
+                                                   data-slide="next">
+                                                    <span class="fa fa-angle-right"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="item">
-                          &lt;!&ndash; <img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide"> &ndash;&gt;
-                          <p>Three</p>
-                          <div class="carousel-caption">
-                            Third Slide
-                          </div>
-                        </div>
-                      </div>
-                      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                        <span class="fa fa-angle-left"></span>
-                      </a>
-                      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                        <span class="fa fa-angle-right"></span>
-                      </a>
                     </div>
-                  </div>
-                  &lt;!&ndash; /.box-body &ndash;&gt;
-                </div>
-                &lt;!&ndash; /.box &ndash;&gt;
-              </div>
-          &ndash;&gt;    &lt;!&ndash; /.col &ndash;&gt;
+                </section>
             </div>
-            &lt;!&ndash; /.row &ndash;&gt;
-            &lt;!&ndash; END ACCORDION & CAROUSEL&ndash;&gt;
-
-          </section>-->
-        </div>
         {{/if}}
     </div>
     </body>
