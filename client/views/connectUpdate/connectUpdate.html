@@ -1,13 +1,14 @@
 <template name="connectUpdate">
 
-    {{>include}}
+{{>include}}
+<body class="hold-transition skin-blue sidebar-mini">
 
 
-    <div class="wrapper  padding-top">
+    <div class="wrapper">
      {{>common}}
      {{>header}}
         {{>sAlert}}
-        <div class="content-wrapper">
+        <div class="content-wrapper image">
             <section class="content-header">
                 <h1>
                     Connect  -  {{connectDetails.connect.status}}
@@ -160,7 +161,7 @@
                                 </div>
 
                                         <div  style="padding:10px">
-                                            {{> starsRating id="rating" star='\\f005' class="awesome" mutable=true size='lg'}}
+                                            {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
                                         </div>
                                     </div>
                                     <div class="box-footer">
@@ -205,5 +206,5 @@
             {{/if}}
         </div>
     </div>
-
+</body>
 </template>

@@ -13,30 +13,22 @@ Template.aid.events({
         var aid = {};
         aid.aid_name = event.target.aidName.value;
 
-        // var aidJson = JSON.stringify(aid);
-        // alert('client ' + paramsJson);
-        //Router.go("/addAid",{query : 1});
-
-
         Meteor.call("addAid", aid, function (error, result) {
-            console.log("Client : error" + error + "result - " + result);
-          /*  if (error) {
-                console.log("error" + error);
-            }*/
-         //   console.log("routing to home");
-        //    else
-         //       Router.go("/");
+          console.log("Admin Add Aid" , JSON.stringify(result));
 
-            /*if (error.error === "insert-failed") {
-             console.log("Please specify mandatory fields.");
-             //sAlert.error("Please specify mandatory fields.");
-             }*/
-            //
-           // alert('routing to home');
-            Router.go("/");
+          if (error) {
+            console.log("error body", (error));
+            sAlert.error(error.reason);
+            Router.go("/loadAid");
+          }
+          else{
+            console.log("success");
+            sAlert.success("Aid Added Successfully!");
+            sAlert.success('', configOverwrite);
+          }
+
         });
-
+        Router.go("/");
     }
 
 });
-

@@ -1,14 +1,15 @@
 <template name="listOfRequests">
 
-    {{>include}}
-    <div class="wrapper padding-top">
+{{>include}}
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
     {{>common}}
         {{>header}}
         {{>sAlert}}
 
 
-        <div class="content-wrapper">
+        <div class="content-wrapper image">
             <section class="content-header">
                 <h1>
                     Manage Requests
@@ -85,9 +86,6 @@
                 </div>
             </section>
 
-        </div>
-
-        <div class="content-wrapper">
             <section class="content-header">
                 <h1>
                     Manage Connections
@@ -203,4 +201,5 @@
 
 
     </div>
+</body>
 </template>

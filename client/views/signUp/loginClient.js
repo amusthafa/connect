@@ -13,17 +13,26 @@ Template.login.events({
         var credentials = {};
         credentials.email = event.target.mailId.value;
         credentials.password = event.target.password.value;
+        Meteor.call("loginVerify", credentials, function (error, result) {
         Meteor.loginWithPassword(credentials.email, credentials.password, function(error) {
-            if (error) {
+          if(error) {
+            if (error.error === 902) {
+              console.log(error);
+              console.log("Email not verified");
+              sAlert.error("Email id is not verified. Kindly check your mail and verify the account");
+              Router.go("/login");
+            }
+            else if (error) {
               console.log("error body", (error));
               sAlert.error("Email id or password is wrong");
               Router.go("/login");
             }
+          }
             else{
               console.log("success");
                 Router.go("/");
             }
-
+        });
         });
 
 

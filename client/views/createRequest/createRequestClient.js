@@ -219,6 +219,7 @@ Template.createRequest.events({
 
                         }
                     });
+                    Router.go("/");
 
                 }
             });
@@ -251,9 +252,10 @@ Template.createRequest.events({
                   sAlert.success('', configOverwrite);
                 }
             });
+              Router.go("/");
               delete Session.keys['isOther'];
               delete Session.keys['searchResult'];
-            Router.go("/");
+
           }
     }
 });

@@ -11,18 +11,7 @@
         {{>header}}
         {{>sAlert}}
 
-        <div class="content-wrapper">
-            <section class="content-header">
-                {{#if isUpdateFlow}}
-                    <h1>
-                        Update Profile
-                    </h1>
-                {{else}}
-                    <h1>
-                        Register New User
-                    </h1>
-                {{/if}}
-            </section>
+        <div class="content-wrapper image">
             <section class="content">
                 <div class="row">
                     <div class="col-md-6">
@@ -243,8 +232,7 @@
 
                                         <div class="form-group">
                                             <label>Comments : </label>
-                  <textarea required name="comments" id="comments" class="form-control" rows="4"
-                            placeholder="Enter ...">
+                  <textarea required name="comments" id="comments" class="form-control" rows="4">
                   </textarea>
                                         </div>
                                     {{else}}
@@ -402,8 +390,7 @@
                                         {{/if}}
                                         <div class="form-group">
                                             <label>Comments : </label>
-                  <textarea name="comments" id="comments" class="form-control" rows="4"
-                            placeholder="Enter ...">
+                  <textarea name="comments" id="comments" class="form-control" rows="4">
                   </textarea>
                                         </div>
                                     {{/if}}

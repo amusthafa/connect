@@ -1,11 +1,12 @@
 <template name="manageRequest">
     {{>include}}
-    <div class="wrapper  padding-top">
-        {{>common}}
+    <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+            {{>common}}
         {{>header}}
         {{>sAlert}}
 
-        <div class="content-wrapper">
+        <div class="content-wrapper image">
             <section class="content-header">
                 <h1>
                     {{#if isNotEqual match.mode 'view'}}
@@ -127,6 +128,5 @@
 
     </div>
 
-
+</body>
 </template>
-
