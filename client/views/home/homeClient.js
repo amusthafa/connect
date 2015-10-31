@@ -86,3 +86,4 @@ Template.home.helpers({
         };
     },
 });
+

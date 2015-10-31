@@ -27,6 +27,12 @@ Template.manualConnect.helpers ({
             return true;}
 
         return false;
+    },
+    isEqual: function(v1, v2) {
+        if (v1 === v2){
+            return true;}
+
+        return false;
     }
 
 
@@ -42,15 +48,16 @@ Template.manualConnect.events({
         Session.set('getUserRequest',0);
         Session.set('searchResult',0);
         EnteredName = $('#Ename').val();
-
+        alert('EnteredName- '+JSON.stringify(EnteredName));
         if(EnteredName) {
             Meteor.call("SearchUser",EnteredName, function(error, result) {
+    //            alert('result- '+JSON.stringify(result));
                 if (result == 0) {
                     sAlert.error("No Result Found !")
                 }
                 else
                     Session.set('SearchUserforManual',result);
-                alert('result- '+JSON.stringify(result));
+      //          alert('result- '+JSON.stringify(result));
             });
         }
         else
@@ -68,7 +75,7 @@ Template.manualConnect.events({
                     sAlert.error("No Request found for this User");
                 }
                 else {
-                    alert('result' +result);
+                  //  alert('result' +result);
                     Session.set('getUserRequestforManual', result);
                     Session.set('getUserProfileforManual', 0);
                     console.log("Requests:" + JSON.stringify(result));
@@ -83,7 +90,7 @@ Template.manualConnect.events({
                 Meteor.call("SearchProfile", this._id, function(error, result) {
                     Session.set('getUserProfileforManual',result);
                     Session.set('getUserRequestforManual',0);
-                    alert('result' +result);
+                 //   alert('result' +result);
                 });
 
     },
@@ -91,7 +98,7 @@ Template.manualConnect.events({
         'click .requestManualConnect': function(event){
     event.preventDefault();
     console.log("requestManualConnect");
-            alert(JSON.stringify(this));
+        //    alert(JSON.stringify(this));
             var selectedRequestMC=(this);
             Session.set('selectedRequestManual',selectedRequestMC);
 
@@ -100,7 +107,7 @@ Template.manualConnect.events({
     'click .volunteerManualConnect': function(event){
         event.preventDefault();
         console.log("volunteerManualConnect");
-        alert(JSON.stringify(this));
+     //   alert(JSON.stringify(this));
         var selectedVolMC=(this);
         Session.set('volunteerManualConnect',selectedVolMC);
 
@@ -123,7 +130,7 @@ Template.manualConnect.events({
     connect.aidId = selectedRequestManual.aidId
     //connect.aidId = document.getElementById('aidId').value;
     connect.connectedBy= 'Admin';
-      alert('connect - '+JSON.stringify(connect));
+   //   alert('connect - '+JSON.stringify(connect));
 
     Meteor.call("connect",connect, function (error, result) {
         //  alert('connect - ' + result);
@@ -136,6 +143,10 @@ Template.manualConnect.events({
 }
 });
 
+Template.registerHelper('formatDate', function(date) {
+    console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
+    return moment(date).format('DD-MM-YYYY');
+});
 
 
 
