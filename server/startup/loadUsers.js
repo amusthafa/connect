@@ -8,12 +8,12 @@
 //
 Meteor.startup(function () {
   process.env.MAIL_URL='smtp://olaamigo.app%40gmail.com:123456xyz@smtp.gmail.com:465/';
-  if (!Meteor.users.findOne({username: 'admin'})) {
+  if (!Meteor.users.findOne({'emails.0.address': 'olaamigo.app@gmail.com'})) {
       id = Accounts.createUser({
       email: 'olaamigo.app@gmail.com',
       password: 'admin',
       profile : {
-        "firstName": 'OlaAmingos',
+        "firstName": 'OlaAmigos',
         "lastName": 'Admin',
         "birthday": '',
         "gender": 'Female',
@@ -36,11 +36,12 @@ Meteor.startup(function () {
         "appRole": "Both"
       }
     });
-  }
+
   Roles.addUsersToRoles( id, ['Admin']);
   Accounts.sendVerificationEmail(id, 'olaamigo.app@gmail.com', function(err){
   if (err) {
     console.log('We are sorry but something went wrong.');
   }
   });
+}
 });
