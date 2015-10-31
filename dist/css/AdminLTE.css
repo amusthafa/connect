@@ -55,8 +55,8 @@ body {
  * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
  */
 .content-wrapper{
-  background: url('images/background/flower.jpg');
-  },
+  background: url('images/background/flower.jpg')
+  }
 .right-side,
 .main-footer {
   -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -4749,3 +4749,10 @@ table.text-center th {
     overflow: scroll;
 
 }
+
+.padding-top
+{
+    padding-top:50px
+}
+.menu-header
+{font-weight: bold;text-align:center;font-size:12pt}
