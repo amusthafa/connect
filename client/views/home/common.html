@@ -28,6 +28,24 @@
                                 </a>
                             </li>
 
+                            {{#if isInRole 'Admin'}}
+                            <li class="treeview">
+                                <a href="{{pathFor route='adminAuth'}}">
+                                    <i class="fa fa-check"></i> <span>Authentication/ Blacklisting</span>
+                                    <span class="label label-primary pull-right"></span>
+                                </a>
+                            </li>
+                            {{/if}}
+
+                            <!--   {{#if isInRole 'Admin'}}-->
+                            <li class="treeview">
+                                <a href="{{pathFor route='manualConnect'}}">
+                                    <i class="fa fa-check"></i>  <span>Manual Connect</span>
+                                    <span class="label label-primary pull-right"></span>
+                                </a>
+                            </li>
+                            <!--   {{/if}}-->
+
                             <li class="treeview">
                                 <a href="{{pathFor route='createRequest'}}">
                                     <i class="fa fa-edit"></i><span>Create Request</span>
@@ -56,9 +74,10 @@
                                 </a>
                             </li>
 
+
                             <li class="treeview">
                                 <a href="{{pathFor route='createProfile'}}">
-                                    <span>Create Profile</span><i class="fa fa-edit"></i>>
+                                    <i class="fa fa-edit"></i><span>Create Profile</span>
                                     <span class="label label-primary pull-right"></span>
                                 </a>
                             </li>
@@ -84,23 +103,6 @@
                                 </a>
                             </li>
 
-                            {{#if isInRole 'Admin'}}
-                            <li class="treeview">
-                                <a href="{{pathFor route='adminAuth'}}">
-                                    <i class="fa fa-check"></i> <span>Authentication/ Blacklisting</span>
-                                    <span class="label label-primary pull-right"></span>
-                                </a>
-                            </li>
-                            {{/if}}
-
-                            <!--   {{#if isInRole 'Admin'}}-->
-                            <li class="treeview">
-                                <a href="{{pathFor route='manualConnect'}}">
-                                    <i class="fa fa-check"></i>  <span>Manual Connect</span>
-                                    <span class="label label-primary pull-right"></span>
-                                </a>
-                            </li>
-                            <!--   {{/if}}-->
 
                             {{#if isInRole 'Admin'}}
                             <li class="treeview">
