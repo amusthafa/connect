@@ -33,13 +33,16 @@ Meteor.methods({
       }
       // "roles": "User"
     });
-    Accounts.sendVerificationEmail(userID, userProfile.email, function(err){
-    if (err) {
-      console.log('We are sorry but something went wrong.');
-    }
-    else {
-      console.log('Email Sent. Check your mailbox.');
-    }
+    Accounts.sendVerificationEmail(userID, userProfile.email, function(error, result){
+      console.log("Signup insert " + JSON.stringify(result));
+      if (error) {
+          console.log("sanitizedError!!!:", error.sanitizedError);
+          throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
+      }
+      else {
+         /* requestDb._id=result;
+          return requestDb;*/
+      }
     });
     Roles.addUsersToRoles( userID, ['User']);
   }

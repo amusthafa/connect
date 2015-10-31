@@ -38,6 +38,13 @@ Template.signUp.onRendered(function () {
     });
 });
 
+Template.signUp.onDestroyed(function () {
+
+    delete Session.keys['userDetails'];
+    // delete Session.keys['searchUser'];
+});
+
+
 Template.registerHelper('formatDateProfile', function (date) {
     console.log("format date:!!!!:", moment(date).format('MM/DD/YYYY'));
     return moment(date).format('YYYY-MM-DD');
@@ -125,11 +132,11 @@ Template.signUp.events({
             if (error) {
                 console.log("error body", (error));
                 sAlert.error(error.reason);
-                Router.go("/SignUp");
+                Router.go("/SignUp/0");
             }
             else {
                 console.log("success");
-                sAlert.success("Verification mail has been sent. Please confirm to activate your account!");
+                sAlert.success("Verification mail has been sent to the user. Please confirm to activate your account!");
                 // sAlert.success('', configOverwrite);
             }
         });
