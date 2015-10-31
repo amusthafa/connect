@@ -1,247 +1,305 @@
-<template name = "manualConnect">
+<template name="manualConnect">
 {{>include}}
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-      {{>common}}
-        {{>header}}
-        {{>sAlert}}
+<div class="wrapper">
+{{>common}}
+{{>header}}
+{{>sAlert}}
 
-  <!-- new code -->
-  <div class="content-wrapper">
-      <section class="content-header">
-          <h1>
-              Connect
-          </h1>
-      </section>
-      <section class="content">
-     <div class="row">
-              <div class="col-md-6">
-                  <div class="box box-primary">
-                      <div class="box-header with-border">
-                      Search User
-                      </div>
-                      <div class="box-body">
+<!-- new code -->
+<div class="content-wrapper">
+<section class="content-header">
+    <h1>
+        Manual Connect
+    </h1>
+</section>
+<section class="content">
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
 
+            <div class="form-group">
 
-                            <span class="glyphicon glyphicon-search form-control"> <input type="text" placeholder="Search by Username" id="Ename" name="name">
-                             <input type="button" class="searchUserforManual" value="searchUserforManual" id="searchUserforManual"/></span>
-                      </div>
-                  </div>
-              </div>
-              <input hidden id='requestId' value="{{match.request._id}}" />
-              <input hidden id='requestDate' value="{{match.request.requiredBy}}"/>
-              <input hidden id='aidId' value="{{match.request.aidId}}" />
-     </div>
-          {{#if SearchUserforManual}}
+                <label>Search User</label>
+                <input type="text" required="required" class="form-control"
+                       id="Ename" name="name" placeholder="Enter Name"
+                        >
+            </div>
+            <div class="form-group">
+                <input type="button" class="searchUserforManual" value="Search" id="searchUserforManual"/>
+            </div>
 
-          <div class="box box-primary">
-              <div class="box-header with-border">
-                  <h3 class="box-title">Search Result</h3>
-              </div>
-
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="box box-primary">
-
-              <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                      <tbody>
-                      {{#each SearchUserforManual}}
-                      <div>  <tr><td>
-                          {{profile.firstName}},{{profile.lastName}}
-
-                      </td>
-                      <td> <a href="#" class="profileforManual">Profile</a> <a href="#" class="requestforManual">Request</a></td></tr>
-                          <!-- <input type="range" min="0" max="5" value="0" step="0.5" id="userRating">
-                            <div class="rateit" data-rateit-backingfld="#userRating"></div> -->
-                      </div>
-                      {{/each}}
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-                  </div>
-              </div>
-          </div>
-          {{/if}}
-
-
-          {{#if getUserProfileforManual}}
-          <div class="box box-primary">
-              <div class="box-header with-border">
-                  <h3 class="box-title">USER PROFILE:</h3>
-              </div>
-              <div class="box-body">
-                  {{#each getUserProfileforManual}}
-                  <tr><td><b> Fullname: </b> </td>
-                      <td>{{profile.firstName}},{{profile.lastName}}</td></tr>
-                  <tr><td><b>Gender:</b></td>
-                      <td>{{profile.gender}}</td></tr>
-                  <tr><td><b>Address:</b></td>
-                      <td> {{profile.address.line1}} </td></tr>
-                  <tr> <td></td><td>{{profile.address.line2}}</td></tr>
-                  <tr> <td></td><td>{{profile.address.city}} , {{profile.address.state}},{{profile.address.country}}-{{profile.address.pinCode}}</td></tr>
-                  <tr> <td> <b>Email:</b></td>
-                      <td> {{#each emails}}{{address}}{{/each}} </td></tr>
-                  {{#if profile.share_phone}}
-                  <tr><td><b>PhoneNumber:</b></td>
-                      <td>{{profile.phone}}</td></tr>
-                  {{/if}}
-                  <!-- {{#if isInRole 'Admin'}} -->
-                  <tr></tr>
-
-                  <tr><td><a href="#" class="volunteerManualConnect">Choose Volunteer</a></td></tr>
-                  {{/each}}
-              </div>
-          </div>
-
-          {{else}}
-          {{#if getUserRequestforManual}}
-          <div class="box box-primary">
-              <div class="box-header with-border">
-                  <h3 class="box-title">REQUEST</h3>
-              </div>
-              <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
-                      <tbody>
-
-                      <tr>
-                          <th>Request Name</th>
-                          <th>Requested For</th>
-                          <th>Requested At</th>
-                          <th>Aid</th>
-                          <th>Required by</th>
-                          <th>Is Emergency</th>
-                          <th>status</th>
-                      </tr>
-
-                      {{#each getUserRequestforManual}}
-                      <tr>
-                          <td>{{request_name}}</td>
-                          <td>{{requestType}}</td>
-                          <td> {{requestAddress.city}} </td>
-                          <td>{{aidName}}</td>
-                          <td>{{requiredBy}}</td>
-                          <td>{{emergency}}</td>
-                          <td>{{status}}</td>
-                          <td> <a href="#" class="requestManualConnect">Request for Manual connect</a></td>
-                      </tr>
-                      {{/each}}
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          {{/if}}
-          {{/if}}
-{{#if selectedRequestManual}}
-          <div class="box box-primary">
-              <div class="box-header with-border">
-                  <h3 class="box-title">{{selectedRequestManual.request_name}}
-                      </h3>
-              </div>
-              <div class="box-body">
-                  <dl class="dl-horizontal">
-                      <dt>Requesting for</dt>
-                      <dd> {{selectedRequestManual.aidName}}</dd>
-                      <dt>On</dt>
-                      <dd>{{formatDate selectedRequestManual.requiredBy}} </dd>
-                      <dt>At</dt>
-                      <dd>
-                          {{#if selectedRequestManual.requestAddress.line1}}
-                          {{selectedRequestManual.requestAddress.line1}},
-                          {{/if}}
-                          {{#if selectedRequestManual.requestAddress.line2}}
-                          {{selectedRequestManual.requestAddress.line2}},
-                          {{/if}}
-                          {{#if selectedRequestManual.requestAddress.city}}
-                          {{selectedRequestManual.requestAddress.city}},
-                          {{/if}}
-                          {{#if selectedRequestManual.requestAddress.country}}
-                          {{selectedRequestManual.requestAddress.country}},
-                          {{/if}}
-                          {{#if selectedRequestManual.requestAddress.pinCode}}
-                          {{selectedRequestManual.requestAddress.pinCode}}.
-                          {{/if}}
-                      </dd>
-                  </dl>
-              </div>
-          </div>
-
-          {{/if}}
-
-     {{#if volunteerManualConnect}}
-     <section class="content-header">
-         <h1>
-             Selected Volunteer
-         </h1>
-     </section>
-
-     <section class="content">
-
-         <div class="row">
-             <div class="col-md-6">
-                 <div class="box box-primary">
-                     <div class="box-body table-responsive no-padding">
-                         <table class="table table-hover">
-                             <tbody>
-                             <tr>
-                                 <th></th>
-                             </tr>
-                             <tr>
-                                 <td>{{volunteerManualConnect.profile.firstName}},{{volunteerManualConnect.profile.lastName}}, {{volunteerManualConnect.profile.gender}}, {{volunteerManualConnect.profile.address.city}}
-                                 </td>
-                             </tr>
-
-                             </tbody>
-                         </table>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </section>
-     {{/if}}
-
-     <section class="content-header">
-         <h1>
-             Manually Connect Users
-         </h1>
-     </section>
-
-     <section class="content">
-
-         <div class="row">
-             <div class="col-md-6">
-                 <div class="box box-primary">
-                     <div class="box-body table-responsive no-padding">
-                         <table class="table table-hover">
-                             <tbody>
-                             <tr>
-                                 <th></th>
-                             </tr>
-                             <tr>
-                                 <td>
-                                     <input type="button" class="manualConnect" value="Connect"
-                                             />
-                                 </td>
-                             </tr>
-
-                             </tbody>
-                         </table>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </section>
-
-
-
-      </section>
-      </div>
+        </div>
     </div>
-    </body>
+    <input hidden id='requestId' value="{{match.request._id}}"/>
+    <input hidden id='requestDate' value="{{match.request.requiredBy}}"/>
+    <input hidden id='aidId' value="{{match.request.aidId}}"/>
+</div>
+{{#if SearchUserforManual}}
 
-    </template>
 
-  <!--new code end -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+
+            <div class="form-group">
+
+                <label>Users</label>
+            </div>
+
+
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
+                    {{#each SearchUserforManual}}
+                    <tr>
+                        <td>
+
+                            <div class="text-left">
+                                {{profile.firstName}},{{profile.lastName}}
+                            </div>
+                            <div class="text-right">
+                                <a href="#" class="profileforManual">Choose Volunteer</a>
+                                &nbsp;&nbsp;<a href="#" class="requestforManual">Select Request</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{/if}}
+
+
+{{#if getUserProfileforManual}}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+
+            <div class="form-group">
+
+                <label>User Profile</label>
+            </div>
+            <div class="box-body">
+                {{#each getUserProfileforManual}}
+                <tr>
+                    <td><b> Name </b></td>
+                    <td>{{profile.firstName}},{{profile.lastName}}</td>
+                </tr>
+                <tr>
+                    <td><b></b></td>
+                    <td>{{profile.gender}}</td>
+                </tr>
+                <tr>
+                    <td><b>Address </b></td>
+                    <td> {{profile.address.line1}},{{profile.address.line2}} </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{profile.address.city}} ,
+                        {{profile.address.state}},{{profile.address.country}}-{{profile.address.pinCode}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td> {{#each emails}}{{address}}{{/each}}</td>
+                </tr>
+
+                <tr>
+                    <td><b>Contact number</b></td>
+                    <td>{{profile.phone}}</td>
+                </tr>
+                <!-- {{#if isInRole 'Admin'}} -->
+                <tr></tr>
+
+                <tr>
+
+                    <td>
+
+                        <input type="button" class="volunteerManualConnect" value="Choose Volunteer" id="chooseVolunteer"/>
+                       <!-- <a href="#" class="volunteerManualConnect">Choose Volunteer</a>--></td>
+
+                </tr>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+{{#if getUserRequestforManual}}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Request
+                </h3>
+            </div>
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody>
+
+            <tr>
+                <th>Name</th>
+                <th>At</th>
+                <th>Aid</th>
+                <th>Required by</th>
+                <th>status</th>
+            </tr>
+
+            {{#each getUserRequestforManual}}
+            {{#if isEqual status 'Submitted'}}
+            <tr>
+                <td>{{request_name}}</td>
+                <td> {{requestAddress.city}}</td>
+                <td>{{aidName}}</td>
+                <td>{{requiredBy}}</td>
+                <td>{{status}}</td>
+                <td><a href="#" class="requestManualConnect">Manual connect</a></td>
+            </tr>
+            {{/if}}
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+    </div>
+</div>
+
+{{/if}}
+{{/if}}
+{{#if selectedRequestManual}}
+
+<div class="row">
+    <div class="col-md-6">
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{selectedRequestManual.request_name}}
+        </h3>
+    </div>
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>Requesting for</dt>
+            <dd> {{selectedRequestManual.aidName}}</dd>
+            <dt>On</dt>
+            <dd>{{formatDate selectedRequestManual.requiredBy}}</dd>
+            <dt>At</dt>
+            <dd>
+                {{#if selectedRequestManual.requestAddress.line1}}
+                {{selectedRequestManual.requestAddress.line1}},
+                {{/if}}
+                {{#if selectedRequestManual.requestAddress.line2}}
+                {{selectedRequestManual.requestAddress.line2}},
+                {{/if}}
+                {{#if selectedRequestManual.requestAddress.city}}
+                {{selectedRequestManual.requestAddress.city}},
+                {{/if}}
+                {{#if selectedRequestManual.requestAddress.country}}
+                {{selectedRequestManual.requestAddress.country}},
+                {{/if}}
+                {{#if selectedRequestManual.requestAddress.pinCode}}
+                {{selectedRequestManual.requestAddress.pinCode}}.
+                {{/if}}
+            </dd>
+        </dl>
+    </div>
+</div>
+</div>
+    </div>
+{{/if}}
+
+{{#if volunteerManualConnect}}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">        Selected Volunteer
+                </h3>
+            </div>
+
+
+
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{volunteerManualConnect.profile.firstName}},{{volunteerManualConnect.profile.lastName}},
+                                {{volunteerManualConnect.profile.gender}},
+                                {{volunteerManualConnect.profile.address.city}}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+    </div>
+</div>
+
+            {{/if}}
+
+{{#if volunteerManualConnect}}
+<section class="content-header">
+    <h1>
+        Connect Users
+    </h1>
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="manualConnect" value="Connect"
+                                        />
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{/if}}
+
+</section>
+</div>
+</div>
+</body>
+
+</template>
+
+<!--new code end -->
 
 
