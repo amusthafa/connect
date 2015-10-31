@@ -20,9 +20,9 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Calendar</h3>
                                 </div>
-                                <div class="box-body">
 
-                                    <div class="box-header with-border">
+                                <div class="box-header with-border">
+                                    <div class="calendar">
                                         {{> fullcalendar
                                         class="mainCalendar"
                                         defaultView='month'
@@ -35,158 +35,160 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Highlights</h3>
-                                </div>
-                                <div class="box-body">
-                                    <div class="bg-gray-active color-palette">
-                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#carousel-example-generic" data-slide-to="0"
-                                                    class="active"></li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="1"
-                                                    class=""></li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="2"
-                                                    class=""></li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="3"
-                                                    class=""></li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="4"
-                                                    class=""></li>
-                                            </ol>
-                                            <div class="carousel-inner">
-                                                <div class="item active">
-                                                    <br>
-                                                    <br>
 
-                                                    <p align="center" class="lead">Welcome to OlaAmigos</p>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Highlights</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="bg-gray-active color-palette">
+                                            <div id="carousel-example-generic" class="carousel slide"
+                                                 data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carousel-example-generic" data-slide-to="0"
+                                                        class="active"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="1"
+                                                        class=""></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="2"
+                                                        class=""></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="3"
+                                                        class=""></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="4"
+                                                        class=""></li>
+                                                </ol>
+                                                <div class="carousel-inner">
+                                                    <div class="item active">
+                                                        <br>
+                                                        <br>
 
-                                                    <div class="carousel-caption">
-                                                        First Slide
+                                                        <p align="center" class="lead">Welcome to OlaAmigos</p>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+
+                                                        <div class="carousel-caption">
+                                                            First Slide
+                                                        </div>
                                                     </div>
+                                                    {{#if getDocInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Doctor/Hospital Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getDocInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Doctor/Hospital Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getAilInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Ailments Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getAilInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Ailments Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getEduInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Education Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getEduInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Educational Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getJobInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Job Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getJobInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Job Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if getRightsInfo}}
+                                                        <div class="item">
+                                                            <br>
+                                                            <br>
+
+                                                            <p align="center" class="lead">Rights Updates</p>
+                                                            <ul style="list-style-type:none">
+                                                                {{#each getRightsInfo}}
+                                                                    <li align="center">{{informationDescription}}</li>
+                                                                {{/each}}
+                                                            </ul>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="carousel-caption">
+                                                                Rights Info
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
                                                 </div>
-                                                {{#if getDocInfo}}
-                                                    <div class="item">
-                                                        <br>
-                                                        <br>
-
-                                                        <p align="center" class="lead">Doctor/Hospital Updates</p>
-                                                        <ul style="list-style-type:none">
-                                                            {{#each getDocInfo}}
-                                                                <li align="center">{{informationDescription}}</li>
-                                                            {{/each}}
-                                                        </ul>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-
-                                                        <div class="carousel-caption">
-                                                            Doctor/Hospital Info
-                                                        </div>
-                                                    </div>
-                                                {{/if}}
-                                                {{#if getAilInfo}}
-                                                    <div class="item">
-                                                        <br>
-                                                        <br>
-
-                                                        <p align="center" class="lead">Ailments Updates</p>
-                                                        <ul style="list-style-type:none">
-                                                            {{#each getAilInfo}}
-                                                                <li align="center">{{informationDescription}}</li>
-                                                            {{/each}}
-                                                        </ul>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-
-                                                        <div class="carousel-caption">
-                                                            Ailments Info
-                                                        </div>
-                                                    </div>
-                                                {{/if}}
-                                                {{#if getEduInfo}}
-                                                    <div class="item">
-                                                        <br>
-                                                        <br>
-
-                                                        <p align="center" class="lead">Education Updates</p>
-                                                        <ul style="list-style-type:none">
-                                                            {{#each getEduInfo}}
-                                                                <li align="center">{{informationDescription}}</li>
-                                                            {{/each}}
-                                                        </ul>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-
-                                                        <div class="carousel-caption">
-                                                            Educational Info
-                                                        </div>
-                                                    </div>
-                                                {{/if}}
-                                                {{#if getJobInfo}}
-                                                    <div class="item">
-                                                        <br>
-                                                        <br>
-
-                                                        <p align="center" class="lead">Job Updates</p>
-                                                        <ul style="list-style-type:none">
-                                                            {{#each getJobInfo}}
-                                                                <li align="center">{{informationDescription}}</li>
-                                                            {{/each}}
-                                                        </ul>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-
-                                                        <div class="carousel-caption">
-                                                            Job Info
-                                                        </div>
-                                                    </div>
-                                                {{/if}}
-                                                {{#if getRightsInfo}}
-                                                    <div class="item">
-                                                        <br>
-                                                        <br>
-
-                                                        <p align="center" class="lead">Rights Updates</p>
-                                                        <ul style="list-style-type:none">
-                                                            {{#each getRightsInfo}}
-                                                                <li align="center">{{informationDescription}}</li>
-                                                            {{/each}}
-                                                        </ul>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-                                                        <br>
-
-                                                        <div class="carousel-caption">
-                                                            Rights Info
-                                                        </div>
-                                                    </div>
-                                                {{/if}}
+                                                <a class="left carousel-control" href="#carousel-example-generic"
+                                                   data-slide="prev">
+                                                    <span class="fa fa-angle-left"></span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-example-generic"
+                                                   data-slide="next">
+                                                    <span class="fa fa-angle-right"></span>
+                                                </a>
                                             </div>
-                                            <a class="left carousel-control" href="#carousel-example-generic"
-                                               data-slide="prev">
-                                                <span class="fa fa-angle-left"></span>
-                                            </a>
-                                            <a class="right carousel-control" href="#carousel-example-generic"
-                                               data-slide="next">
-                                                <span class="fa fa-angle-right"></span>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
