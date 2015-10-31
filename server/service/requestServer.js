@@ -122,12 +122,21 @@ Meteor.methods({
             console.log("request.aid:", request.aid);
             var aid = Aid.findOne({'aidName': request.aid});
             console.log("aid name:", aid);
+            var requestorId;
+            if (request.requestorId === Meteor.userId()) {
+                requestorId = request.requestorId;
+            } else if (request.requestorId !== Meteor.userId()) {
+                var emailId = request.requestorId.split("-")[1];
+                id = JSON.stringify(Accounts.findUserByEmail(emailId));
+                requestorId = id.split(":")[1].split(",")[0].replace("\"", "").replace("\"", "");
+            }
+
 
             var requestDb = {
                 "request_name": request.requestName,
                 "requestType": request.requestType,
                 "creatorId": request.creatorId,
-                "requestorId": request.requestorId,
+                "requestorId": requestorId,
                 "aidId": aid._id,
                 "aidCategoryId": request.aidCategoryId,
                 "requiredBy": request.requiredBy,
