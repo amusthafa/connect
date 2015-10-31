@@ -13,7 +13,7 @@
 
     <body>
 
-    <div id="container" class="{{menuOpen}}">
+    <div id="container" class="{{menuOpen}}"  >
         <section id="menu">
             <div class="btns-group-vertical">
                 <div class="row">
@@ -22,8 +22,8 @@
 
 
                             <li class="treeview">
-                                <a href="{{pathFor route='createProfile'}}">
-                                    <span>Create Profile</span>
+                                <a href="/">
+                                    <span class="menu-header">Ola Amigos</span>
                                     <span class="label label-primary pull-right"></span>
                                 </a>
                             </li>
@@ -52,6 +52,13 @@
                             <li class="treeview">
                                 <a href="{{pathFor route='notifications'}}">
                                     <i class="fa  fa-bell"></i><span>Notifications</span>
+                                    <span class="label label-primary pull-right"></span>
+                                </a>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="{{pathFor route='createProfile'}}">
+                                    <span>Create Profile</span><i class="fa fa-edit"></i>>
                                     <span class="label label-primary pull-right"></span>
                                 </a>
                             </li>
@@ -142,23 +149,23 @@
         <div id="content-container">
 
 
-            <div class="page">
+            <div class="page" >
 
 
 
-                <nav class="navbar navbar-default" role="navigation">
+                <nav class="navbar navbar-default" role="navigation" >
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#">
                         </a>
                         &nbsp;
-                        <div class="btn-group">
+                        <div class="btn-group" >
                             <a href="#" class="navbar-button toggle"> <img src="/images/menu-icon.svg" width="15" height="15"></a>
                         </div>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1" >
                         <ul class="nav navbar-nav navbar-right">
                             <a href="#" class="navbar-brand">Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}!
                                 </a>
@@ -204,7 +211,6 @@
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
-
             </div>
         </div>
     </div>

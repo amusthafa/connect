@@ -8,16 +8,13 @@ Meteor.methods({updateAdminAuth: function (adminAuth) {
     console.log("adminAuth " + JSON.stringify(adminAuth ));
     Meteor.users.update({_id : adminAuth.user}, { $set :{"profile.status": adminAuth.status}}
         , function (error, result) {
-        console.log("result " + result + ' error ' + error );
-    if (error) {
-            console.log("Errors !!" + error + "  Result - " + result);
-            //TO-DO: error message()
-            // throw new Meteor.Error("insert-failed", error.message);
-            throw new Meteor.Error("update-failed", error);
-        }
+          console.log("Admin update" + JSON.stringify(result));
+          if (error) {
+              console.log("sanitizedError!!!:", error.sanitizedError);
+              throw new Meteor.Error(error.sanitizedError.error, error.message, error.sanitizedError.details);
+          }
+          else {
+               return true;
+          }
     });
-
-    return true;
-
-
 }});
