@@ -11,14 +11,16 @@
               <h1> Search User </h1>
              <section class="content">
                  <div class="row">
-                   <div class="col-md-6">
+                   <div class="col-md-8">
                      <form method="post" id="Searchbar">
-                           <div class="form-group">
+                           <div class="form-inline" >
                             <!-- <span class="glyphicon glyphicon-search form-control">  -->
-                              <input type="text" placeholder="Search by Username" id="Ename" name="name">
+                             <div class="col-md-6">
+                              <input type="text" placeholder="Search by Username" class="form-control" id="Ename" name="name">
                                <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i></button>
                               <!-- <button type="submit" class="search">Search</button></span> -->
                                </div>
+                             </div>
 
 
 {{#if searchuser}}
