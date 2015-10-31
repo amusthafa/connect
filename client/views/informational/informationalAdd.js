@@ -47,8 +47,8 @@ Template.informationAdd.events({
       info.pincode = event.target.s_pincode.value;
       info.contactPhone=event.target.infoPhone.value;
       info.addedById=Meteor.userId();
-      if (Roles.userIsInRole(Meteor.userId(),'Admin'))
-      info.verificationStatus=event.target.isVerified.value;
+      if (Roles.userIsInRole(Meteor.userId(),'Admin') || document.getElementById("isVerified").checked)
+      info.verificationStatus="Yes";
       else {
         info.verificationStatus='No';
       }

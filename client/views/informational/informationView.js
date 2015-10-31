@@ -31,15 +31,15 @@ Template.informationView.events({
 "change #isVerified": function(event, template) {
   var changeId=event.currentTarget.name;
   console.log("id is"+ changeId);
-    if($(event.currentTarget).val() == "Yes")
+    if(document.getElementsByName(changeId))
     {
-      Meteor.call("infoUpdate",changeId);
+      Meteor.call("infoUpdate",this._id);
       }
 
   },
   'click .Verify': function (event) {
       event.preventDefault();
-      console.log("varify button");
+      console.log("verify button");
       var Ftype =Session.get('sType');
       //
       Meteor.call("infoView",Ftype, function(error, result){

@@ -172,11 +172,11 @@ Template.createRequest.events({
           request.aid = event.target.aid.value;
           request.requiredBy =  event.target.requiredBy.value;
 
-          if(event.target.emergencyYes.checked){
-            request.emergency =  event.target.emergencyYes.value;
+          if(event.target.emergency.checked){
+            request.emergency = "Yes";
           }
           else{
-            request.emergency =  event.target.emergencyNo.value;
+            request.emergency = "No";
           }
           request.status =  "Submitted";
           request.comment = event.target.comment.value;
