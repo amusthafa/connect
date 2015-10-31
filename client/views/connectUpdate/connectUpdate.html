@@ -1,17 +1,17 @@
 <template name="connectUpdate">
 
-{{>include}}
-<body class="hold-transition skin-blue sidebar-mini">
+    {{>include}}
+    <body class="hold-transition skin-blue sidebar-mini">
 
 
     <div class="wrapper">
-     {{>common}}
-     {{>header}}
+        {{>common}}
+        {{>header}}
         {{>sAlert}}
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Connect  -  {{connectDetails.connect.status}}
+                    Connect -  {{connectDetails.connect.status}}
                 </h1>
             </section>
             <section class="content">
@@ -20,9 +20,10 @@
 
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title"> <span class="word-wrap">{{connectDetails.request.request_name}}</span>
+                                <h3 class="box-title"><span
+                                        class="word-wrap">{{connectDetails.request.request_name}}</span>
                                     {{#if isEqual connectDetails.request.emergency 'Yes'}}
-                                    <img src="../images/important.png"  width="25" height="25">
+                                        <img src="../images/important.png" width="25" height="25">
                                     {{/if}}
 
                                 </h3>
@@ -36,19 +37,19 @@
                                     <dt>At</dt>
                                     <dd>
                                         {{#if connectDetails.request.requestAddress.line1}}
-                                        {{connectDetails.request.requestAddress.line1}},
+                                            {{connectDetails.request.requestAddress.line1}},
                                         {{/if}}
                                         {{#if connectDetails.request.requestAddress.line2}}
-                                        {{connectDetails.request.requestAddress.line2}},
+                                            {{connectDetails.request.requestAddress.line2}},
                                         {{/if}}
                                         {{#if connectDetails.request.requestAddress.city}}
-                                        {{connectDetails.request.requestAddress.city}},
+                                            {{connectDetails.request.requestAddress.city}},
                                         {{/if}}
                                         {{#if connectDetails.request.requestAddress.country}}
-                                        {{connectDetails.request.requestAddress.country}},
+                                            {{connectDetails.request.requestAddress.country}},
                                         {{/if}}
                                         {{#if connectDetails.request.requestAddress.pinCode}}
-                                        {{connectDetails.request.requestAddress.pinCode}}.
+                                            {{connectDetails.request.requestAddress.pinCode}}.
                                         {{/if}}
                                     </dd>
                                     <dt>Contact number</dt>
@@ -70,31 +71,31 @@
 
                 </div>
                 {{#if isNotEqual connectDetails.mode  'view'}}
-                {{#if isEqual connectDetails.connect.status 'Initiated'}}
-                {{#if isEqual connectDetails.connect.loggedUser  connectDetails.connect.volunteerId}}
+                    {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                        {{#if isEqual connectDetails.connect.loggedUser  connectDetails.connect.volunteerId}}
 
-                <div class="form-group">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="Accepted" id="Accepted" value="Accepted">
-                            Accept the request
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="Declined" id="Declined" value="Declined">
-                            Decline the request
-                        </label>
-                    </div>
-                </div>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Accepted" id="Accepted" value="Accepted">
+                                        Accept the request
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Declined" id="Declined" value="Declined">
+                                        Decline the request
+                                    </label>
+                                </div>
+                            </div>
 
-                <input type="button" class="connectUpdateSubmit" value="Submit"/>
-                {{/if}}
-                {{/if}}
+                            <input type="button" class="connectUpdateSubmit" value="Submit"/>
+                        {{/if}}
+                    {{/if}}
                 {{/if}}
             </section>
 
-           <!-- {{#if isNotEqual connectDetails.connect.status 'Initiated'}}-->
+                <!-- {{#if isNotEqual connectDetails.connect.status 'Initiated'}}-->
             <section class="content">
                 <div class="row">
                     <div class="col-md-6">
@@ -104,31 +105,31 @@
                                 <h3 class="box-title">Volunteer Details</h3>
                             </div>
                             <div class="box-body">
-                            <dl class="dl-horizontal">
-                                <dt>Name</dt>
-                                <dd> {{connectDetails.volunteer.name}}
-                                </dd>
+                                <dl class="dl-horizontal">
+                                    <dt>Name</dt>
+                                    <dd> {{connectDetails.volunteer.name}}
+                                    </dd>
 
-                                <dd>
-                                    {{connectDetails.volunteer.gender}}
-                                </dd>
-                                <dd>
-                                    {{connectDetails.volunteer.age}} yrs
-                                </dd>
-                                <dd>{{connectDetails.volunteer.city}}</dd>
+                                    <dd>
+                                        {{connectDetails.volunteer.gender}}
+                                    </dd>
+                                    <dd>
+                                        {{connectDetails.volunteer.age}} yrs
+                                    </dd>
+                                    <dd>{{connectDetails.volunteer.city}}</dd>
 
-                                <dd> {{connectDetails.volunteer.number}}</dd>
+                                    <dd> {{connectDetails.volunteer.number}}</dd>
 
-                            </dl>
+                                </dl>
                             </div>
                         </div>
                     </div>
                 </div>
-               {{#if isEqual connectDetails.mode 'cancel'}}
-                <input type="button" class="cancelUpdate" value="Cancel Connect"/>
+                {{#if isEqual connectDetails.mode 'cancel'}}
+                    <input type="button" class="cancelUpdate" value="Cancel Connect"/>
                 {{/if}}
             </section>
-         <!--   {{/if}}-->
+                <!--   {{/if}}-->
 
             {{#if isEqual connectDetails.mode 'requestorComplete'}}
 
@@ -145,29 +146,32 @@
                                 </div>
                                 <div class="box-body">
 
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="Completed" id="Completed" value="Completed">
-                                            Successful. Rate about the experience.
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="UnSuccessful" id="UnSuccessful" value="UnSuccessful">
-                                            UnSuccessful. Please rate if the connect was Unsuccessful because of problems.
-                                        </label>
-                                    </div>
-                                </div>
-
-                                        <div  style="padding:10px">
-                                            {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="Completed" id="Completed" value="Completed">
+                                                Successful. Rate about the experience.
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="Completed" id="UnSuccessful"
+                                                       value="UnSuccessful">
+                                                UnSuccessful. Please rate if the connect was Unsuccessful because of
+                                                problems.
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="box-footer">
-                                        <button type="submit" class="rate">Submit</button>
-                                        <input hidden id='status' value="{{connectDetails.connect.status}}">
+
+
+                                    <div style="padding:10px">
+                                        {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
                                     </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="rate">Submit</button>
+                                    <input hidden id='status' value="{{connectDetails.connect.status}}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -177,35 +181,35 @@
 
             {{#if isEqual connectDetails.mode 'volunteerComplete'}}
 
-            <section class="content">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-6">
-                        <!-- general form elements -->
+                <section class="content">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-6">
+                            <!-- general form elements -->
 
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Rate Requestor</h3>
-                            </div>
-                            <div class="box-body">
-                                Rate your experience with Requestor
-                                <div  style="padding:10px">
-                                    {{> starsRating id="rating" star='\\f005' class="awesome" mutable=true size='lg'}}
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Rate Requestor</h3>
                                 </div>
-                            </div>
-                            <div class="box-footer">
-                                <button type="submit" class="rate">Submit</button>
-                                <input hidden id='status' value="{{connectDetails.connect.status}}">
+                                <div class="box-body">
+                                    Rate your experience with Requestor
+                                    <div style="padding:10px">
+                                        {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="rate">Submit</button>
+                                    <input hidden id='status' value="{{connectDetails.connect.status}}">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
             {{/if}}
         </div>
     </div>
-</body>
+    </body>
 </template>
 
