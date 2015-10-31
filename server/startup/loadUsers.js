@@ -38,10 +38,12 @@ Meteor.startup(function () {
     });
 
   Roles.addUsersToRoles( id, ['Admin']);
-  Accounts.sendVerificationEmail(id, 'olaamigo.app@gmail.com', function(err){
-  if (err) {
-    console.log('We are sorry but something went wrong.');
-  }
-  });
+  Meteor.users.update({_id: id}, {$set: {'emails.0.verified' : true}});
+
+  // Accounts.sendVerificationEmail(id, 'olaamigo.app@gmail.com', function(err){
+  // if (err) {
+  //   console.log('We are sorry but something went wrong.');
+  // }
+  // });
 }
 });
