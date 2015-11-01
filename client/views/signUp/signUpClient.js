@@ -1,4 +1,4 @@
-Session.setDefault("isOrg", "No");
+Session.setDefault("isOrg",false);
 // Session.setDefault("isUpdateFlow", true);
 // Session.set("isUpdateFlow", Router.current().params.id);
 
@@ -68,7 +68,7 @@ Meteor.startup(function () {
 
 });
 
-Template.createRequest.rendered = function() {
+Template.signUp.rendered = function() {
     // init fastclick
     FastClick.attach(document.body);
 };

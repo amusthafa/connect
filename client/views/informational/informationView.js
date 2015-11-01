@@ -1,5 +1,11 @@
 Session.setDefault("sType","Please Select");
 
+Template.informationView.onDestroyed(function () {
+
+    delete Session.keys['infoView'];
+
+});
+
 Template.informationView.helpers({
   typeList: function() {
     console.log("Session.get('typeList')",Session.get('typeList') );
