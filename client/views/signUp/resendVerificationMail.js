@@ -9,8 +9,8 @@ Template.resendVerificationMail.events({
         data.email=event.target.mailId.value;
         console.log(data.email);
         Meteor.call('resendVerificationEmail', data, function (err, result) {
-            if(err == 903) {
-              sAlert.error("Email is verified already");
+            if(err.error == 903) {
+              sAlert.error(err.reason);
             }
             else {
               sAlert.success('Verification mail has been sent to the user. Please confirm to activate your account!');
