@@ -1,4 +1,4 @@
-# olaamigos - find a friend, lend a hand
+# OlaAmigos - Find a friend, Lend a hand
 
 This is a meteor web application which is used to connect people with common needs.
 
@@ -20,10 +20,9 @@ This will install the meteor.
 ## How to setup connect application
 
 Clone the master branch
-Navigate to the connect folder
-Run command meteor
-Login to application with url http://localhost:3000/login
-Default Admin user will be created in the system with credentials available in docs.
-Admin user will setup the system details.
-Requestors and Volunteers can then start using the system.
-Details are available in the demo.
+Navigate to the connect folder<br/>
+Run command meteor<br/>
+Login to application with url http://localhost:3000/login<br/>
+Default Admin user will be created in the system with credentials available in docs.<br/>
+Admin user will setup the system details. Details are available in the demo.<br/>
+Requestors and Volunteers can then start using the system.<br/>
