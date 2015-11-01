@@ -29,89 +29,131 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="page-header">Authentication</h1>
+                                <h1 class="page-header">Authenticate Users</h1>
 
                             </div>
                         </div>
                     </div>
                     <div class="container-fluid">
 
-                    <div class="row">
-              <div class="col-md-6">
-                 <!-- general form elements -->
-                 <div class="box box-primary">
-                    <div class="row">
-                             <div class="col-md-6">
-                                 <div class="box box-primary">
-                                     <div class="box-header with-border">
-                                     Search User
-                                     </div>
-                                     <div class="box-body">
-
-                                             <input type="text" placeholder="Search by Username" id="Ename" name="name">
-                                            <input type="button" class="searchUser btn btn-primary" value="searchUser" id="searchUser"/>
-
-                                     </div>
-                                 </div>
-                             </div>
-                    </div>
-
-                    {{#if searchUser}}
-                    <div class="row">
-                       <div class="col-md-6">
-                         <div class="box box-primary">
-                           <div class="box-header with-border">
-                             <h3 class="box-title">Search Results</h3>
-                           </div>
-                              {{#each searchUser}}
-                              <div>
-                                  {{profile.firstName}}, {{profile.lastName}}
-                                  <a href="#" class="selectUser">Select</a>
-
-                              </div>
-                              {{/each}}
-                          </div>
-                        </div>
-                      </div>
-                    {{/if}}
-
-
-                      {{#if getUserName}}
-                      <div class="row">
-                         <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="box box-primary">
 
-                                  <div class="box-header with-border">
-                                      <h3 class="box-title">Manage User</h3>
-                                  </div>
 
-                                  <form action="" method="post" id="adminAuth">
-                                    <div class="form-group">
-                                        <input hidden id="user" type="text" value={{getUserName}}>
-                                        <select required id="status" class="form-control">
-                                            <option value="" disabled selected >Please Select</option>
-                                            <option>Authentic</option>
-                                            <option>Blacklist</option>
-                                            <option>Warned</option>
-                                        </select>
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">
+                                            Search User
+
+                                        </h3>
+
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <input type="text" required="required" class="form-control"
+                                                   id="Ename" name="name" placeholder="Enter Name"
+                                                    >
+                                        </div>
+
+                                        <div class="box-footer">
+                                            <input type="button" class="searchUser btn btn-primary" value="Search"
+                                                   id="searchUser"/>
+                                        </div>
                                     </div>
 
-                                    <div class="box-footer">
-                                        <button type="submit" class="adminAuth btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
 
-                              </div>
-                          </div>
+                                </div>
+                            </div>
                         </div>
-                      {{/if}}
+
+
+                        {{#if searchUser}}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box box-primary">
+
+
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">
+                                            Search Results
+
+                                        </h3>
+
+                                    </div>
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                            {{#each searchUser}}
+                                            <tr>
+                                                <td>
+                                                    {{profile.firstName}} {{profile.lastName}}
+                                                    {{#if profile.status}}
+                                                    , {{profile.status}} user
+                                                    {{/if}}
+                                                </td>
+                                                <td>
+                                                    <div class="text-align">
+
+                                                        <a href="#" class="selectUser">Select</a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{/if}}
+
+
+                        {{#if getUserName}}
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box box-primary">
+
+
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">
+                                            Update User status
+
+                                        </h3>
+
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <input hidden id="user" type="text" value={{getUserName}}>
+                                            <select required id="status" class="form-control">
+                                                <option value="" disabled selected>Please Select</option>
+                                                <option>Authentic</option>
+                                                <option>Blacklist</option>
+                                                <option>Warned</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="box-footer">
+                                            <button type="submit" class="adminAuth btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{/if}}
+                    </div>
                 </div>
-                </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
     </div>
-</body>
+    </body>
 </template>

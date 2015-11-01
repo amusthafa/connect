@@ -1,3 +1,5 @@
+
+
 Template.adminAuth.helpers({
 
     'searchUser': function () {
@@ -105,18 +107,23 @@ Template.adminAuth.events({
         Session.set("selectedUser", this._id);
     },
 
-    'submit form': function (event) {
+    'click .adminAuth': function (event) {
+    //'submit form': function (event) {
         event.preventDefault();
         //console.log('form submitted');
         var adminAuth = {};
-        adminAuth.user = event.target.user.value;
-        adminAuth.status = event.target.status.value;
+       // adminAuth.user = event.target.user.value;
+        adminAuth.user = Session.get("selectedUser");
+        //adminAuth.status = event.target.status.value;
+        adminAuth.status = $("#status").val();
+      //  alert('adminauth' +JSON.stringify(adminAuth));
 
-        Meteor.call("updateAdminAuth", adminAuth, function (error, result) {
-            console.log("Client : error" + error + "result - " + result);
+            Meteor.call("updateAdminAuth", adminAuth, function (error, result) {
+        //    alert("Client : error" + error + "result - " + result);
             if (error) {
                 console.log("error body", (error));
                 // sAlert.error(error.reason);
+
                 Router.go("/loadAdminAuth");
             }
             else {
