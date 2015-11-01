@@ -294,9 +294,9 @@ Template.createRequest.events({
           else{
             console.log("EDIT REQUEST:" , request);
             var requestID = event.target._id.value;
-            console.log("request ID being editted:", requestID);
+            //alert("request ID being editted:"+ requestID);
             Meteor.call("editRequest", requestID, request, function (error, result) {
-                console.log("Client editRequest" , JSON.stringify(result));
+           //     alert("Client editRequest" +JSON.stringify(result)  + " err "+err);
 
                 if (error) {
                   console.log("error body", (error));

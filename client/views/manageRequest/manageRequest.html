@@ -56,7 +56,30 @@
                                         <br>
 
                                         <div class="text-right">
-                                            <span class="label label-success">{{match.request.status}}</span>
+
+                                            {{#if isEqual match.request.status 'Submitted'}}
+                                                            <span class="label label-primary">
+                                                            {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+                                            {{#if isEqual match.request.status 'Closed'}}
+                                                        <span class="label label-success">
+                                                             {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+
+                                            {{#if isEqual match.request.status 'Deleted'}}
+                                                        <span class="label label-danger">
+                                                             {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+
+                                            {{#if isEqual match.request.status 'InProgress'}}
+                                                        <span class="label label-warning">
+                                                             {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+                                            <!--<span class="label label-success">{{match.request.status}}</span>-->
                                         </div>
                                     </div>
                                     <div class="box-body">

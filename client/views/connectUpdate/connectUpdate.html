@@ -28,7 +28,58 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">Connect -  {{connectDetails.connect.status}}</h1>
+            <h1 class="page-header">Connect -
+                {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                                                            <span class="label label-primary">
+                                                            {{status}}
+                                                        </span>
+                {{/if}}
+                {{#if isEqual connectDetails.connect.status 'Completed'}}
+                                                        <span class="label label-success">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+                {{#if isEqual connectDetails.connect.status 'Declined'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+                {{#if isEqual connectDetails.connect.status 'VolunteerCanceled'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+                {{#if isEqual connectDetails.connect.status 'RequestorCanceled'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+
+                {{#if isEqual connectDetails.connect.status 'Unsuccessful'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+                {{#if isEqual connectDetails.connect.status 'Accepted'}}
+                                                        <span class="label label-warning">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+                {{#if isEqual connectDetails.connect.status 'PendingCompletion'}}
+                                                        <span class="label label-warning">
+                                                             {{status}}
+                                                        </span>
+                {{/if}}
+
+<!--
+                {{connectDetails.connect.status}}-->
+            </h1>
 
         </div>
     </div>
