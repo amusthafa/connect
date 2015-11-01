@@ -1,24 +1,49 @@
 <template name="manageRequest">
     {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-            {{>common}}
-        {{>header}}
-        {{>sAlert}}
+    {{>sAlert}}
 
-        <div class="content-wrapper image">
-            <section class="content-header">
-                <h1>
-                    {{#if isNotEqual match.mode 'view'}}
-                    Connect
-                    {{/if}}
-                    {{#if isEqual match.mode 'view'}}
-                    Request
-                    {{/if}}
-                </h1>
-            </section>
-            <section class="content">
+    <body>
+    <div id="container" class="{{menuOpen}}">
+        <section id="menu">
+            <div class="btns-group-vertical">
                 <div class="row">
+                    <div class="sidebar">
+                        <ul class="nav nav-sidebar">
+                            {{>common}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="content-overlay"></div>
+
+        <div id="content-container">
+
+
+            <div class="page">
+
+                {{>header}}
+
+                <div class="content-scrollable">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-header">                               {{#if isNotEqual match.mode 'view'}}
+                                    Connect
+                                    {{/if}}
+                                    {{#if isEqual match.mode 'view'}}
+                                    Request
+                                    {{/if}}</h1>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+
+
+                    <div class="row">
                     <div class="col-md-6">
 
                         <div class="box box-primary">
@@ -121,10 +146,16 @@
                 {{/if}}
                 {{/if}}
 
-            </section>
 
         </div>
 
+
+    </div>
+
+            </div>
+
+
+        </div>
 
     </div>
 

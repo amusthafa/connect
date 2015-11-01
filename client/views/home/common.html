@@ -1,12 +1,14 @@
 <template name="common">
     {{#if currentUser}}
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <ul class="sidebar-menu" id="myNavmenu" role="navigation">
 
 
+                <li class="treeview">
+                    <a href="/">
+                        <span class="menu-header">Ola Amigos</span>
+                        <span class="label label-primary pull-right"></span>
+                    </a>
+                </li>
 
                 {{#if isInRole 'Admin'}}
                 <li class="treeview">
@@ -120,10 +122,6 @@
                 </li>
                 {{/if}}
 
-            </ul>
-        </section>
-
-    </aside>
     {{else}}
     {{>login}}
     {{/if}}

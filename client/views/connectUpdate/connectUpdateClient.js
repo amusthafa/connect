@@ -19,9 +19,50 @@ Template.connectUpdate.helpers({
 // alert('helper called');
 return (Session.get('connectDetails'));
 }
+    ///menu - start
+    ,
+    menuOpen: function() {
+        return Session.get(MENU_KEY) && 'menu-open';
+    },
+    userMenuOpen: function() {
+        return Session.get(USER_MENU_KEY);
+    },
+    connected: function() {
+        if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
+            return Meteor.status().connected;
+        } else {
+            return true;
+        }
+    }
+///menu - end
 
 });
 
+
+var MENU_KEY = 'menuOpen';
+Session.setDefault(MENU_KEY, true);
+
+var USER_MENU_KEY = 'userMenuOpen';
+Session.setDefault(USER_MENU_KEY, false);
+
+Meteor.startup(function () {
+    // set up a swipe left / right handler
+    $(document.body).touchwipe({
+        wipeLeft: function () {
+            Session.set(MENU_KEY, false);
+        },
+        wipeRight: function () {
+            Session.set(MENU_KEY, true);
+        },
+        preventDefaultEvents: false
+    });
+
+});
+
+Template.connectUpdate.rendered = function() {
+    // init fastclick
+    FastClick.attach(document.body);
+};
 
 Template.connectUpdate.onRendered(function() {
     //alert('oonrednder');
@@ -33,7 +74,14 @@ Template.connectUpdate.onRendered(function() {
 });
 
 Template.connectUpdate.events({
-
+    'click .toggle': function() {
+        Session.set(MENU_KEY, ! Session.get(MENU_KEY));
+        console.log(Session.get(MENU_KEY));
+    },
+    'click .content-overlay': function(event) {
+        Session.set(MENU_KEY, false);
+        event.preventDefault();
+    },
     'click .connectUpdateSubmit': function (event) {
         event.preventDefault();
         console.log('form submitted');

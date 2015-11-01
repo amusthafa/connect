@@ -1,19 +1,34 @@
 <template name="signUp">
 
-    <html>
+{{>include}}
+{{>sAlert}}
 
-    {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        {{#if currentUser}}
-            {{>common}}
-        {{/if}}
-        {{>header}}
-        {{>sAlert}}
+<body>
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
 
-        <div class="content-wrapper image">
-            <section class="content">
-                <div class="row">
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+
+<div class="container-fluid ">
+<div class="row">
                     <div class="col-md-6">
                         <div class="box box-primary">
                             <div class="box-header with-border">
@@ -411,9 +426,12 @@
                         </div>
                     </div>
                 </div>
-            </section>
+
         </div>
     </div>
+</div>
+</div>
+</div>
     </body>
-    </html>
+
 </template>

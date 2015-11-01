@@ -1,23 +1,44 @@
 <template name="viewFeedbacks">
     {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper image">
+    {{>sAlert}}
 
-        {{>common}}
-        {{>header}}
-        {{>sAlert}}
-
-
-        <div class="content-wrapper ">
-            <section class="content-header">
-                <h1>
-                   View Feedbacks
-                </h1>
-            </section>
-
-            <section class="content">
-
+    <body>
+    <div id="container" class="{{menuOpen}}">
+        <section id="menu">
+            <div class="btns-group-vertical">
                 <div class="row">
+                    <div class="sidebar">
+                        <ul class="nav nav-sidebar">
+                            {{>common}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="content-overlay"></div>
+
+        <div id="content-container">
+
+
+            <div class="page">
+
+                {{>header}}
+
+                <div class="content-scrollable">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-header">View Feedbacks</h1>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+
+
+                    <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-body table-responsive no-padding">
@@ -51,8 +72,9 @@
                         </div><!-- /.box -->
                     </div>
                 </div>
-            </section>
-
+       </div>
+    </div>
+            </div>
         </div>
     </div>
 </body>

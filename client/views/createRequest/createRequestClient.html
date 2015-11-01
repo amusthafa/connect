@@ -1,16 +1,35 @@
 <template name="createRequest">
 
 {{>include}}
-<body class="hold-transition skin-blue sidebar-mini">
+{{>sAlert}}
 
-    <div class="wrapper ">
+<body>
 
-        {{>common}}
-        {{>header}}
-        {{>sAlert}}
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
 
-        <div class="content-wrapper image">
-            <section class="content">
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+
+<div class="container-fluid ">
+
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-6">
@@ -367,8 +386,11 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+
     </div>
+</div>
+</div>
+</div>
 </body>
 </template>

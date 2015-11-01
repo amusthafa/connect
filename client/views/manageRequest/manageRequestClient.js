@@ -52,6 +52,23 @@ Template.manageRequest.helpers({
         console.log(Session.get('aidList'));
         return (Session.get('aidList'));
     }
+    ///menu - start
+    ,
+    menuOpen: function() {
+        return Session.get(MENU_KEY) && 'menu-open';
+    },
+    userMenuOpen: function() {
+        return Session.get(USER_MENU_KEY);
+    },
+    connected: function() {
+        if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
+            return Meteor.status().connected;
+        } else {
+            return true;
+        }
+    }
+///menu - end
+
 });
 
 

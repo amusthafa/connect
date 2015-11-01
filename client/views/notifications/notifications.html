@@ -1,16 +1,34 @@
 <template name="notifications">
-    {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper image">
+        {{>include}}
+        {{>sAlert}}
 
-        {{>common}}
-        {{>header}}
+        <body>
+        <div id="container" class="{{menuOpen}}">
+            <section id="menu">
+                <div class="btns-group-vertical">
+                    <div class="row">
+                        <div class="sidebar">
+                            <ul class="nav nav-sidebar">
+                                {{>common}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="content-overlay"></div>
 
-        <div class="content-wrapper">
+            <div id="content-container">
 
-            <section class="content">
 
-                <div class="row">
+                <div class="page">
+
+                    {{>header}}
+
+                    <div class="content-scrollable">
+
+                        <div class="container-fluid ">
+
+                        <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
@@ -47,8 +65,11 @@
                         <!-- /.box -->
                     </div>
                 </div>
-            </section>
+
         </div>
     </div>
+</div>
+                </div>
+            </div>
     </body>
-</template>
+        </template>
