@@ -26,13 +26,6 @@ return (Session.get('connectDetails'));
     },
     userMenuOpen: function() {
         return Session.get(USER_MENU_KEY);
-    },
-    connected: function() {
-        if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
-            return Meteor.status().connected;
-        } else {
-            return true;
-        }
     }
 ///menu - end
 
@@ -131,10 +124,11 @@ Template.connectUpdate.events({
           }
           else{
             console.log("success");
-            sAlert.success("Connection Cancelled!");
+            sAlert.success("Connection Canceled !");
             sAlert.success('', configOverwrite);
           }
         });
+        Router.go('/listOfRequests');
 
     },
 

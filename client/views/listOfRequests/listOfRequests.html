@@ -56,20 +56,46 @@
                                         <tr>
 
                                             <td>
-                                                <a href="#" class="view">{{subString request_name}}</a>
+                                                <a href="#" class="view">{{subString request_name}}
+
+                                                </a>
 
                                                 <!-- -->
                                                 <br>
 
                                                 <div>
                                                     <div class="text-left">
-                                                        {{formatDate requiredBy}}
+                                                        {{#if isEqual status 'Submitted'}}
+                                                            <span class="label label-primary">
+                                                            {{status}}
+                                                        </span>
+                                                        {{/if}}
+                                                        {{#if isEqual status 'Closed'}}
+                                                        <span class="label label-success">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'Deleted'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'InProgress'}}
+                                                        <span class="label label-warning">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{subString aidName}} on {{formatDate requiredBy}}
                                                     </div>
                                                     <div class="text-right">
 
-                                                        <span class="label label-success">{{status}}</span>
+
+
                                                         {{#if isEqual status 'Submitted'}}
-                                                            <input type="button" class="match btn btn-primary"
+                                                            <input type="button" class="match btn btn-primary btn-sm"
                                                                    value="Match" id="Match"/>
                                                             <!--      <a href="#" class="edit">Edit</a>
                                                                   <a href="#" class="delete">Delete</a>
@@ -80,7 +106,6 @@
                                             <!--     <td>{{aidName}}</td>
                                              <td>{{formatDate requiredBy}}</td>
                                         -->
-                                            <td></td>
                                             <!--        <td>-->
 
                                             <!-- <a href="#" class="view">View</a>-->
@@ -124,19 +149,72 @@
                                     {{#each getRequestList.connect}}
                                         <tr>
 
-                                            <td><a href="#" class="viewConnect">{{ subString requestName}} </a>
+                                            <td> <a href="#" class="viewConnect">{{ subString requestName}} </a>
                                                 <br>
 
                                                 <div>
                                                     <div class="text-left">
-                                                        {{formatDate requestedBy}}
+                                                        {{#if isEqual status 'Initiated'}}
+                                                            <span class="label label-primary">
+                                                            {{status}}
+                                                        </span>
+                                                        {{/if}}
+                                                        {{#if isEqual status 'Completed'}}
+                                                        <span class="label label-success">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'Declined'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'VolunteerCanceled'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'RequestorCanceled'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+
+                                                        {{#if isEqual status 'Unsuccessful'}}
+                                                        <span class="label label-danger">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'Accepted'}}
+                                                        <span class="label label-warning">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+                                                        {{#if isEqual status 'PendingCompletion'}}
+                                                        <span class="label label-warning">
+                                                             {{status}}
+                                                        </span>
+                                                        {{/if}}
+
+
+                                                        {{#if isEqual volunteerId loggedUser}}
+                                                           With  {{subStringName requestorName}} on {{formatDate requestedBy}}
+                                                        {{/if}}
+                                                        {{#if isEqual requestorId loggedUser}}
+                                                        With {{subStringName volunteerName}} on {{formatDate requestedBy}}
+                                                        {{/if}}
                                                     </div>
                                                     <div class="text-right">
 
-                                                        <span class="label label-success">{{status}}</span>
                                                         {{#if isEqual status "Initiated"}}
                                                             {{#if isEqual volunteerId loggedUser}}
-                                                                <input type="button" class="respond btn btn-primary"
+                                                                <input type="button" class="respond btn btn-primary btn-sm"
                                                                        value="Respond"
                                                                        id="Respond"/>
                                                             {{/if}}
@@ -148,7 +226,7 @@
                                                             {{#if isEqual requestorId loggedUser}}
 
                                                                 <input type="button"
-                                                                       class="requestorComplete btn btn-primary"
+                                                                       class="requestorComplete btn btn-primary btn-sm"
                                                                        value="Complete"
                                                                        id="requestorComplete"/>
                                                             {{/if}}
@@ -156,7 +234,7 @@
                                                         {{#if isEqual status "Completed"}}
                                                             {{#if isEqual volunteerId loggedUser}}
                                                                 {{#if isEqual requestorRating 0}}
-                                                                    <input type="button" class="volunteerComplete"
+                                                                    <input type="button" class="volunteerComplete  btn btn-primary btn-sm"
                                                                            value="Rate"
                                                                            id="Rate"/>
                                                                 {{/if}}

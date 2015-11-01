@@ -225,3 +225,10 @@ Template.registerHelper('subString', function(passedString) {
     return new Spacebars.SafeString(name)
 });
 
+
+Template.registerHelper('subStringName', function(passedString) {
+    var name  = passedString.substring(0,10); //same as truncate.
+    return new Spacebars.SafeString(name)
+});
+
+

@@ -179,7 +179,7 @@ Template.signUp.events({
                 // sAlert.success('', configOverwrite);
             }
         });
-        Router.go("/");
+        Router.go("/login");
       }
 
     }
