@@ -1,4 +1,9 @@
+Template.manualConnect.onDestroyed(function () {
 
+    delete Session.keys['getUserProfile'];
+    delete Session.keys['getUserRequest'];
+    delete Session.keys['searchResult'];
+});
 
 Template.manualConnect.helpers ({
 
@@ -133,12 +138,20 @@ Template.manualConnect.events({
    //   alert('connect - '+JSON.stringify(connect));
 
     Meteor.call("connect",connect, function (error, result) {
-        //  alert('connect - ' + result);
-        Router.go("/");
-        //  alert('error - ' + error);
 
+                      if (error) {
+                        console.log("error body", (error));
+                        sAlert.error(error.reason);
+                        Router.go("/manualConnect");
+                      }
+                      else{
+                        console.log("success");
+                        sAlert.success("Manual Connection Successful");
+                        sAlert.success('', configOverwrite);
+                      }
     });
 
+    Router.go("/");
 
 }
 });
@@ -147,23 +160,3 @@ Template.registerHelper('formatDate', function(date) {
     console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
     return moment(date).format('DD-MM-YYYY');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
