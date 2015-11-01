@@ -1,6 +1,14 @@
-Router.route('/', function () {
+Router.route('/', {
+  onBeforeAction: function () {
+    if (!(Meteor.user() || Meteor.loggingIn())) {
+      Router.go('/login');
+    }
+    this.next();
+  },
+  action : function () {
     this.render('home');
     SEO.set({title: 'Home - Ola Amigos!!'});
+  }
 });
 
 Router.route('/login', {
