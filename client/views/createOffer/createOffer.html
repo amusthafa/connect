@@ -1,0 +1,223 @@
+<template name="createOffer">
+{{>include}}
+{{>sAlert}}
+
+<body>
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
+
+<div id="content-container">
+
+
+    <div class="page">
+
+        {{>header}}
+
+        <div class="content-scrollable">
+
+            <div class="container-fluid ">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Create Offer</h3>
+                            </div>
+                            <form role="form" method="post" id="createOfferForm">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="userType" id="userType" value="Self" checked>
+                                                Self
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="userType" id="userType" value="Other"> Other
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {{#if isOtherChecked}}
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">User Name</label>
+                                            <input type="text" required="required" class="form-control"
+                                                   id="requestorId" name="requestorId" placeholder="Enter Name"
+                                                   value={{userId}}>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="searchUser" type="button" value="Search">Search</button>
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{#if searchUser}}
+                                                <label>Select</label>
+                                                <select id="selectedUser" class="form-control">
+                                                    <option selected="selected">First Name, Last Name - Email Id
+                                                    </option>
+                                                    {{#each searchUser}}
+                                                        <option type="selection">{{profile.firstName}},{{profile.lastName}}-{{#each emails}}{{address}}{{/each}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            {{/if}}
+                                        </div>
+                                    {{/if}}
+
+                                    <div class="form-group">
+                                        <label>Offer Name</label>
+                                        <input id='offerName' class="form-control" required="required" type="text"
+                                               placeholder="Default input">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Aid</label>
+                                        <select required id="Aid" class="form-control">
+                                            <option value="" disabled selected>Please Select</option>
+                                            {{#each aidList}}
+                                                <option value="{{_id}}">{{aidName}} </option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                <div  class="form-inline">
+
+                                        <div class="input-group">
+                                          <label>From Date</label>
+                                            <input type="date" class="form-control" required="required" id="fromDate">
+                                        </div>
+                                        <div class="input-group" style="padding-left:20px">
+                                            <label>To Date</label>
+                                            <input type="date" class="form-control" required="required" id="toDate" >
+                                        </div>
+                                  </div>
+                                  <br>
+
+                                    <div class="form-group">
+                                        <label>
+                                            <input id="address1" type="radio" value="Address1" name="Address" checked/>
+                                            Address 1:
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        <input type="text" class="form-control" id='p_line1'
+                                               value={{getAddress.profile.address.line1}} disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        <input type="text" class="form-control" id='p_line2'
+                                               value= {{getAddress.profile.address.line2}} disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" id='p_city'
+                                               value= {{getAddress.profile.address.city}} disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="text" class="form-control" id='p_state'
+                                               value= {{getAddress.profile.address.state}}  disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='p_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        <input type="text" class="form-control" id='p_pincode'
+                                               value={{getAddress.profile.address.pinCode}} disabled>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input id="address2" type="radio" value="Address2" name="Address"/>
+                                                Address 2:
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        <input type="text" class="form-control" id='s_line1'>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        <input type="text" class="form-control" id='s_line2'>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select  class="form-control" id="scity-select">
+                                            <option selected="selected">Please Select</option>
+                                            {{#each cityList}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <select class="form-control" id="sstate-select">
+                                            <option selected="selected">Please Select</option>
+                                            {{#each stateList}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='s_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        <input type="text" class="form-control" id='s_pincode'>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Comment</label>
+                                        <textarea id='comment' class="form-control" rows="3"
+                                                  placeholder="Enter ..."></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="submit" class="createOffer btn btn-primary">Create Offer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+</div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</template>

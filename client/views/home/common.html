@@ -1,0 +1,128 @@
+<template name="common">
+    {{#if currentUser}}
+    <!-- Left side column. contains the logo and sidebar -->
+
+
+    <li class="treeview">
+        <a href="/">
+            <span class="menu-header">OlaAmigos</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    {{#if isInRole 'Admin'}}
+    <li class="treeview">
+        <a href="{{pathFor route='adminAuth'}}">
+            <i class="fa fa-check"></i> <span>Authenticate Users</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+    {{/if}}
+
+    {{#if isInRole 'Admin'}}
+    <li class="treeview">
+        <a href="{{pathFor route='manualConnect'}}">
+            <i class="fa fa-adjust"></i>  <span>Manual Connect</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+    {{/if}}
+
+    <li class="treeview">
+        <a href="{{pathFor route='createRequest'}}">
+            <i class="fa fa-edit"></i><span>Create Request</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    <li>
+        <a href="{{pathFor route='createOffer'}}">
+            <i class="fa fa-edit"></i> <span>Create Offer</span>
+            <small class="label pull-right bg-red"></small>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="{{pathFor route='listOfRequests'}}">
+            <i class="fa fa-adjust"></i><span>Connect </span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="{{pathFor route='notifications'}}">
+            <i class="fa  fa-bell"></i><span>Notifications</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+
+    <li class="treeview">
+        <a href="{{pathFor route='createProfile'}}">
+            <i class="fa fa-edit"></i><span>Create Profile</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="{{pathFor route='SearchId'}}">
+            <i class="fa fa-search"></i><span>Search People</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="{{pathFor route='informationAdd'}}">
+            <i class="fa fa-plus"></i> <span>Add Information </span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    <li class="treeview">
+        <a href="{{pathFor route='informationView'}}">
+            <i class="fa fa-bullhorn"></i><span>Informations </span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+
+    {{#if isInRole 'Admin'}}
+    <li class="treeview">
+        <a href="{{pathFor route='analytics'}}">
+            <i class="fa fa-bar-chart"></i>  <span>Analytics</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+    {{/if}}
+
+    {{#if isInRole 'Admin'}}
+    <li class="treeview">
+        <a href="{{pathFor route='aid'}}">
+            <i class="fa fa-plus"></i><span>Add Aid</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+    {{/if}}
+
+    {{#if isInRole 'Admin'}}
+    <li class="treeview">
+        <a href="{{pathFor route='addTocontactUs'}}">
+            <i class="fa  fa-phone"></i><span>Update - Contact Us</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+    {{/if}}
+
+    {{#if isInRole 'Admin'}}
+    <li class="treeview">
+        <a href="{{pathFor route='viewFeedbacks'}}">
+            <i class="fa fa-paste"></i><span>View Feedbacks</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+    {{/if}}
+
+    {{else}}
+    {{>login}}
+    {{/if}}
+</template>

@@ -1,0 +1,238 @@
+<template name="connectUpdate">
+{{>include}}
+{{>sAlert}}
+
+<body>
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
+
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Connect -
+
+                {{connectDetails.connect.status}}
+            </h1>
+
+        </div>
+    </div>
+</div>
+    <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"><span
+                                        class="word-wrap">{{connectDetails.request.request_name}}</span>
+                                    {{#if isEqual connectDetails.request.emergency 'Yes'}}
+                                        <img src="../images/important.png" width="25" height="25">
+                                    {{/if}}
+
+                                </h3>
+                            </div>
+                            <div class="box-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Requesting for</dt>
+                                    <dd> {{connectDetails.request.aidName}}</dd>
+                                    <dt>On</dt>
+                                    <dd>{{formatDate connectDetails.request.requiredBy}} </dd>
+                                    <dt>At</dt>
+                                    <dd>
+                                        {{#if connectDetails.request.requestAddress.line1}}
+                                            {{connectDetails.request.requestAddress.line1}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.line2}}
+                                            {{connectDetails.request.requestAddress.line2}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.city}}
+                                            {{connectDetails.request.requestAddress.city}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.country}}
+                                            {{connectDetails.request.requestAddress.country}},
+                                        {{/if}}
+                                        {{#if connectDetails.request.requestAddress.pinCode}}
+                                            {{connectDetails.request.requestAddress.pinCode}}.
+                                        {{/if}}
+                                    </dd>
+                                    <dt>Contact number</dt>
+                                    <dd>{{connectDetails.request.number}}</dd>
+
+                                    <dt>Comments</dt>
+                                    <dd>{{connectDetails.request.comment}}
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <input hidden id='requestId' value="{{connectDetails.request._id}}">
+                    <input hidden id='requestDate' value="{{connectDetails.request.requiredBy}}">
+                    <input hidden id='aidId' value="{{connectDetails.request.aidId}}">
+                    <input hidden id='connectId' value="{{connectDetails.connect._id}}">
+                    <input hidden id='requestorId' value="{{connectDetails.connect.requestorId}}">
+                    <input hidden id='volunteerId' value="{{connectDetails.connect.volunteerId}}">
+
+                </div>
+                {{#if isNotEqual connectDetails.mode  'view'}}
+                    {{#if isEqual connectDetails.connect.status 'Initiated'}}
+                        {{#if isEqual connectDetails.connect.loggedUser  connectDetails.connect.volunteerId}}
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Accepted" id="Accepted" value="Accepted">
+                                        Accept the request
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Declined" id="Declined" value="Declined">
+                                        Decline the request
+                                    </label>
+                                </div>
+                            </div>
+
+                            <input type="button" class="connectUpdateSubmit btn btn-primary" value="Submit"/>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+
+</div>
+                <!-- {{#if isNotEqual connectDetails.connect.status 'Initiated'}}-->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Volunteer Details</h3>
+                            </div>
+                            <div class="box-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Name</dt>
+                                    <dd> {{connectDetails.volunteer.name}}
+                                    </dd>
+
+                                    <dd>
+                                        {{connectDetails.volunteer.gender}}
+                                    </dd>
+                                    <dd>
+                                        {{connectDetails.volunteer.age}} yrs
+                                    </dd>
+                                    <dd>{{connectDetails.volunteer.city}}</dd>
+
+                                    <dd> {{connectDetails.volunteer.number}}</dd>
+
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#if isEqual connectDetails.mode 'cancel'}}
+                    <input type="button" class="cancelUpdate" value="Cancel Connect"/>
+                {{/if}}
+            </section>
+                <!--   {{/if}}-->
+
+            {{#if isEqual connectDetails.mode 'requestorComplete'}}
+
+                <section class="content">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-6">
+                            <!-- general form elements -->
+
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Rate Volunteer</h3>
+                                </div>
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="Completed" id="Completed" value="Completed">
+                                                Successful. Rate about the experience.
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="UnSuccessful" id="UnSuccessful"
+                                                       value="UnSuccessful">
+                                                UnSuccessful. Please rate if the connect was Unsuccessful because of
+                                                problems.
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div style="padding:10px">
+                                        {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="rate btn btn-primary">Submit</button>
+                                    <input hidden id='status' value="{{connectDetails.connect.status}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            {{/if}}
+
+            {{#if isEqual connectDetails.mode 'volunteerComplete'}}
+
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-6">
+                            <!-- general form elements -->
+
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Rate Requestor</h3>
+                                </div>
+                                <div class="box-body">
+                                    Rate your experience with Requestor
+                                    <div style="padding:10px">
+                                        {{> starsRating id="rating" star='\\f005' class='mystar' mutable=true size='lg'}}
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="rate btn btn-primary">Submit</button>
+                                    <input hidden id='status' value="{{connectDetails.connect.status}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            {{/if}}
+
+
+        </div>
+</div>
+</div>
+</div>
+</body>
+
+</template>

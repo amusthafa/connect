@@ -1,0 +1,189 @@
+<template name="manageRequest">
+    {{>include}}
+    {{>sAlert}}
+
+    <body>
+    <div id="container" class="{{menuOpen}}">
+        <section id="menu">
+            <div class="btns-group-vertical">
+                <div class="row">
+                    <div class="sidebar">
+                        <ul class="nav nav-sidebar">
+                            {{>common}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="content-overlay"></div>
+
+        <div id="content-container">
+
+
+            <div class="page">
+
+                {{>header}}
+
+                <div class="content-scrollable">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-header"> {{#if isNotEqual match.mode 'view'}}
+                                    Connect
+                                    {{/if}}
+                                    {{#if isEqual match.mode 'view'}}
+                                    Request
+                                    {{/if}}</h1>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid">
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"><span
+                                                class="word-wrap">{{match.request.request_name}}</span>
+                                            {{#if isEqual match.request.emergency 'Yes'}}
+                                            <img src="/images/important.png" width="25" height="25">
+                                            {{/if}}</h3>
+                                        <br>
+
+                                        <div class="text-right">
+
+                                            {{#if isEqual match.request.status 'Submitted'}}
+                                                            <span class="label label-primary">
+                                                            {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+                                            {{#if isEqual match.request.status 'Closed'}}
+                                                        <span class="label label-success">
+                                                             {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+
+                                            {{#if isEqual match.request.status 'Deleted'}}
+                                                        <span class="label label-danger">
+                                                             {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+
+                                            {{#if isEqual match.request.status 'InProgress'}}
+                                                        <span class="label label-warning">
+                                                             {{match.request.status}}
+                                                        </span>
+                                            {{/if}}
+                                            <!--<span class="label label-success">{{match.request.status}}</span>-->
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <dl class="dl-horizontal">
+                                            <dt>Requestor</dt>
+                                            <dd> {{match.request.requestorName}}</dd>
+                                            <dt>Requesting for</dt>
+                                            <dd> {{match.request.aidName}}</dd>
+                                            <dt>On</dt>
+                                            <dd>{{formatDate match.request.requiredBy}}</dd>
+                                            <dt>At</dt>
+                                            <dd>
+                                                {{#if match.request.requestAddress.line1}}
+                                                {{match.request.requestAddress.line1}},
+                                                {{/if}}
+                                                {{#if match.request.requestAddress.line2}}
+                                                {{match.request.requestAddress.line2}},
+                                                {{/if}}
+                                                {{#if match.request.requestAddress.city}}
+                                                {{match.request.requestAddress.city}},
+                                                {{/if}}
+                                                {{#if match.request.requestAddress.country}}
+                                                {{match.request.requestAddress.country}},
+                                                {{/if}}
+                                                {{#if match.request.requestAddress.pinCode}}
+                                                {{match.request.requestAddress.pinCode}}.
+                                                {{/if}}
+                                            </dd>
+                                            <dt>Contact number</dt>
+                                            <dd>{{match.request.number}}</dd>
+
+                                            <dt>Comments</dt>
+
+                                            <dd><span class="word-wrap">{{match.request.comment}} </span></dd>
+                                        </dl>
+                                        {{#if isEqual match.mode 'view'}}
+                                        {{#if isEqual match.request.status 'Submitted'}}
+                                        <input type="button" class="edit btn btn-primary" value="Edit" id="edit"/>
+                                        <input type="button" class="delete btn btn-primary" value="Delete" id="delete"/>
+                                        {{/if}}
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input hidden id='requestId' value="{{match.request._id}}"/>
+                            <input hidden id='requestDate' value="{{match.request.requiredBy}}"/>
+                            <input hidden id='aidId' value="{{match.request.aidId}}"/>
+                        </div>
+
+                        {{#if isEqual match.request.status 'Submitted'}}
+                        {{#if match.volunteerList}}
+                        <section class="content-header">
+                            <h1>
+                                Choose a Volunteer
+                            </h1>
+                        </section>
+
+                        <section class="content">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="box box-primary">
+                                        <div class="box-body table-responsive no-padding">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                <tr>
+                                                    <th></th>
+                                                </tr>
+                                                {{#each match.volunteerList}}
+                                                <tr>
+                                                    <td>{{name}}, {{gender}}, {{age}} yrs, {{city}},
+                                                        {{#if isNotEqual connectCount 0}}
+                                                        {{connectCount}} connects,
+                                                        {{/if}}
+                                                        {{> starsRating rating=rating size='sm'}}
+                                                    </td>
+                                                    <td>
+                                                        <input type="button" class="connect btn btn-primary" value="Connect"/>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        {{/if}}
+                        {{/if}}
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    </body>
+</template>

@@ -1,0 +1,81 @@
+<template name="header">
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" href="#"><img
+                    src="/images/menu-icon.svg" width="15" height="15"></a>
+            &nbsp;
+            <div class="btn-group">
+                <a href="#" class="navbar-button toggle"> <img src="/images/menu-icon.svg" width="15"
+                                                               height="15"></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/updateProfile/1">Update Profile</a></li>
+                    <li><a href="{{pathFor route='resetPassword'}}">Reset Password</a></li>
+                    <li><a href="{{pathFor route='logout'}}">Logout</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="{{pathFor route='feedback'}}">Report a Problem</a></li>
+                    <li><a href="{{pathFor route='contactUs'}}">Contact Us</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell-o" style="color: white;"></i>
+                        {{#each getCount}}
+                            <span class="label label-warning">{{count}}</span>
+                        {{/each}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        {{#each getCount}}
+                            <li class="header">You have {{count}} notifications</li>
+                        {{/each}}
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                {{#each  notifications}}
+                                    <li>
+                                        <a href="{{pathFor route='notifications'}}">
+                                            <i class="fa fa-users text-aqua"></i> {{description}}
+                                        </a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                        <li class="footer"><a href="{{pathFor route='notifications'}}">View all</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="color: white;">Ola {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}
+                                !! </span>
+                    </a>
+                </li>
+
+                <li><a href="/"><span style="color: white;">Home</span></a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;"
+                                                                                     class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/updateProfile/1">Update Profile</a></li>
+                        <li><a href="{{pathFor route='resetPassword'}}">Reset Password</a></li>
+                        <li><a href="{{pathFor route='logout'}}">Logout</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{pathFor route='help'}}">Help</a></li>
+                        <li><a href="{{pathFor route='feedback'}}">Report a Problem</a></li>
+                        <li><a href="{{pathFor route='contactUs'}}">Contact Us</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</template>

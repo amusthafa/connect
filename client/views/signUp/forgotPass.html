@@ -1,0 +1,32 @@
+<template name="forgotPass">
+
+    <html>
+    {{>include}}
+    {{>sAlert}}
+    <body class="hold-transition login-page">
+      <div id="content-container">
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a><b>Ola</b>Amigos</a>
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">Forgot Password?</p>
+
+            <form method="post" id="forgotPassForm">
+                <div class="form-group has-feedback">
+                    <input required type="email" class="form-control" placeholder="Email" id="maidId" name="mailId">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="Send Mail" value="Send Mail">Send Mail</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+  </div>
+    </body>
+    </html>
+</template>

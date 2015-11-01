@@ -1,0 +1,370 @@
+<template name="createRequest">
+
+{{>include}}
+{{>sAlert}}
+
+<body>
+
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
+
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+
+<div class="container-fluid ">
+
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                              {{#if isEditFlow}}
+                                <h3 class="box-title">Edit Request</h3>
+                              {{else}}
+                                <h3 class="box-title">Create Request</h3>
+                              {{/if}}
+                            </div>
+                            <form role="form" method="post" id="requestForm">
+                              {{#if isEditFlow}}
+                                <td><input hidden id ='_id' value={{getRequest._id}} /></td>
+                                <td><input hidden id ='creatorId' value={{getRequest.creatorId}} /></td>
+                                <td><input hidden id ='requestorId' value={{getRequest.requestorId}} /></td>
+                                <td><input hidden id ='status' value={{getRequest.status}} /></td>
+                              {{/if}}
+                                <div class="box-body">
+                                    <div class="form-group">
+                                      {{#if isEditFlow}}
+                                        {{#if isOtherChecked}}
+                                          <div class="radio">
+                                              <label for="requestType Self">
+                                                  <input type="radio" name="requestType" id="requestType" value="Self" >
+                                                  Self
+                                              </label>
+                                          </div>
+                                          <div class="radio">
+                                              <label for="requestType Other">
+                                                  <input type="radio" name="requestType" id="requestType" value="Other" checked> Other
+                                              </label>
+                                          </div>
+                                        {{else}}
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="requestType" id="requestType" value="Self" checked >
+                                                Self
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="requestType" id="requestType" value="Other" > Other
+                                            </label>
+                                        </div>
+                                      {{/if}}
+
+                                      {{#if isOtherChecked}}
+                                          <div class="form-group">
+                                              <label for="exampleInputEmail1">User Name</label>
+                                              <input type="text" required="required" class="form-control"
+                                                     id="requestorId" name="requestorId" placeholder="Enter Name"
+                                                     value={{userId}}>
+                                          </div>
+                                          <div class="form-group">
+                                              <button class="searchUser" type="button" value="Search">Search</button>
+                                          </div>
+
+                                          <div class="form-group">
+                                              {{#if searchUser}}
+                                                  <label>Select</label>
+                                                  <select id="selectedUser" class="form-control">
+                                                      <option selected="selected">First Name, Last Name - Email Id
+                                                      </option>
+                                                      {{#each searchUser}}
+                                                          <option type="selection"> {{profile.firstName}}
+                                                              ,{{profile.lastName}}
+                                                              -{{#each emails}}{{address}}{{/each}}  </option>
+                                                      {{/each}}
+                                                  </select>
+                                              {{/if}}
+                                          </div>
+                                      {{/if}}
+
+                                    {{else}}
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="requestType" id="requestType" value="Self" checked >
+                                            Self
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="requestType" id="requestType" value="Other" > Other
+                                        </label>
+                                    </div>
+
+                                    {{#if isOtherChecked}}
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">User Name</label>
+                                            <input type="text" required="required" class="form-control"
+                                                   id="requestorId" name="requestorId" placeholder="Enter Name"
+                                                   value={{userId}}>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="searchUser" type="button" value="Search">Search</button>
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{#if searchUser}}
+                                                <label>Select</label>
+                                                <select id="selectedUser" class="form-control">
+                                                    <option selected="selected">First Name, Last Name - Email Id
+                                                    </option>
+                                                    {{#each searchUser}}
+                                                        <option type="selection"> {{profile.firstName}}
+                                                            ,{{profile.lastName}}
+                                                            -{{#each emails}}{{address}}{{/each}}  </option>
+                                                    {{/each}}
+                                                </select>
+                                            {{/if}}
+                                        </div>
+                                    {{/if}}
+
+                                    {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Request Name</label>
+                                        {{#if isEditFlow}}
+                                        <input required id='requestName' class="form-control" type="text"
+                                            value={{getRequest.request_name}} >
+                                        {{else}}
+                                        <input required id='requestName' class="form-control" type="text"
+                                               placeholder="Default input">
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                              	        <label>Aid</label>
+                              	        <select required id="aid" class="form-control">
+                                          {{#if isEditFlow}}
+                                            <option selected="selected">{{getRequest.aidName}}</option>
+                                          {{else}}
+                                            <option value="" disabled selected>Please Select</option>
+                                          {{/if}}
+                              	            {{#each aidList}}
+                              	                <option>{{aidName}} </option>
+                              	            {{/each}}
+                              	        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Request Date</label>
+
+                                        <div class="input-group">
+                                          {{#if isEditFlow}}
+                                            <input required id="requiredBy" value={{formatDate getRequest.requiredBy}}>
+                                          {{else}}
+                                            <input required type="date" id="requiredBy">
+                                          {{/if}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      {{#if isCreateFlow}}
+                                        <label>
+                                            <input id="address1" type="radio" value="Address1" name="Address" checked/>
+                                            Address 1:
+                                        </label>
+                                      {{else}}
+                                          <label>
+                                              Address :
+                                          </label>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 1</label>
+                                        {{#if isEditFlow}}
+                                          <input type="text" class="form-control" id='p_line1'
+                                                 value={{getRequest.requestAddress.line1}}>
+                                        {{else}}
+                                          <input type="text" class="form-control" id='p_line1'
+                                                   value={{getAddress.profile.address.line1}} disabled>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Line 2</label>
+                                        {{#if isEditFlow}}
+                                        <input type="text" class="form-control" id='p_line2'
+                                             value={{getRequest.requestAddress.line2}}>
+                                        {{else}}
+                                          <input type="text" class="form-control" id='p_line2'
+                                               value= {{getAddress.profile.address.line2}} disabled>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        {{#if isEditFlow}}
+                                            <select class="form-control" id="scity-select" value={{getRequest.requestAddress.city}}>
+                                              <option selected="selected">{{getRequest.requestAddress.city}}</option>
+                                              {{#each cityList}}
+                                                  <option value="{{this}}">{{this}}</option>
+                                              {{/each}}
+                                            </select>
+                                        {{else}}
+                                          <input type="text" class="form-control" id='p_city'
+                                                 value= {{getAddress.profile.address.city}} disabled>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        {{#if isEditFlow}}
+                                          <select class="form-control" id="sstate-select" value={{getRequest.requestAddress.state}} >
+                                              <option selected="selected">{{getRequest.requestAddress.state}} </option>
+                                              {{#each stateList}}
+                                                  <option value="{{this}}">{{this}}</option>
+                                              {{/each}}
+                                          </select>
+                                        {{else}}
+                                          <input type="text" class="form-control" id='p_state'
+                                               value= {{getAddress.profile.address.state}}  disabled>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" id='p_country' value="INDIA" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Pin Code</label>
+                                        {{#if isEditFlow}}
+                                          <input type="text" class="form-control" id='p_pincode'
+                                               value={{getRequest.requestAddress.pinCode}}>
+                                       {{else}}
+                                          <input type="text" class="form-control" id='p_pincode'
+                                               value={{getAddress.profile.address.pinCode}} disabled>
+                                       {{/if}}
+                                    </div>
+
+                                    {{#if isCreateFlow}}
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <label>
+                                                    <input id="address2" type="radio" value="Address2" name="Address"/>
+                                                    Address 2:
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Line 1</label>
+                                            <input type="text" class="form-control" id='s_line1'>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Line 2</label>
+                                            <input type="text" class="form-control" id='s_line2'>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <select class="form-control" id="scity-select">
+                                                <option selected="selected">Please Select</option>
+                                                {{#each cityList}}
+                                                    <option value="{{this}}">{{this}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label>State</label>
+                                            <select class="form-control" id="sstate-select">
+                                                <option selected="selected">Please Select</option>
+                                                {{#each stateList}}
+                                                    <option value="{{this}}">{{this}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" class="form-control" id='s_country' value="INDIA" disabled>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Pin Code</label>
+                                            <input type="text" class="form-control" id='s_pincode'>
+                                        </div>
+                                      {{/if}}
+
+                                    <div class="form-inline">
+                                      <label>Emergency</label>
+                                      {{#if isEditFlow}}
+                                            {{#if isEmergency}}
+                                                  <input type="checkbox" name="emergency" id="emergency" checked="checked">
+                                                {{else}}
+                                                  <input type="checkbox" name="emergency" id="emergency" >
+                                            {{/if}}
+
+                                      {{else}}
+
+                                            <input type="checkbox" name="emergency" id="emergency" >
+                                      {{/if}}
+                                    </div>
+                                    <br>
+
+                                    <div class="form-group">
+                                      <label>Comment</label>
+                                      {{#if isEditFlow}}
+                                      <textarea id='comment' class="form-control" rows="3"
+                                                placeholder="Enter ..."></textarea>
+                                      {{else}}
+                                        <textarea id='comment' class="form-control" rows="3"
+                                                  placeholder="Enter ..."></textarea>
+                                      {{/if}}
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer">
+                                  {{#if isEditFlow}}
+                                  <button type="submit" class="editRequest btn btn-primary" >Edit Request</button>
+                                    <!-- <input type="button" class="edit"  data-requestId ={{getRequest._id}} value="Edit Request" id="edit" /> -->
+                                  {{else}}
+                                  <button type="submit" class="createRequest btn btn-primary" >Create Request</button>
+                                    <!-- <input type="button" class="create" value="Create Request" id="create" /> -->
+                                  {{/if}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+</div>
+</div>
+</body>
+</template>

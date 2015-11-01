@@ -1,18 +1,59 @@
 <template name="aid">
+    {{>include}}
+    {{>sAlert}}
 
-<h1>Add Aid </h1>
-<form action="" method="post" id="aidform">
-<table>
-<tr>
-<td>Category: </td> <td><input id = 'aidCategory' /></td>
-</tr>
-<tr>
-<td>Aid Name: </td> <td><input id = 'aidName' /></td>
-</tr>
+    <body>
+    <div id="container" class="{{menuOpen}}">
+        <section id="menu">
+            <div class="btns-group-vertical">
+                <div class="row">
+                    <div class="sidebar">
+                        <ul class="nav nav-sidebar">
+                            {{>common}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="content-overlay"></div>
 
-</table>
-    <input type="submit" class="addaid" value="Add Aid" />
-</form>
+        <div id="content-container">
 
 
-</template>
+            <div class="page">
+
+                {{>header}}
+
+                <div class="content-scrollable">
+
+                    <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Add Aid</h3>
+                            </div>
+                            <form role="form" method="post" id="aidform">
+                              <div class="box-body">
+                                <div class="form-group">
+                                    <label>Aid Name</label>
+                                    <input id='aidName' class="form-control" type="text">
+                                </div>
+                              </div>
+                              <div class="box-footer">
+                                <button type="submit" class="addaid btn btn-primary" >Add Aid</button>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+
+          </div>
+      </div>
+</div>
+            </div>
+        </div>
+    </body>
+  </template>

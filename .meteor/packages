@@ -3,7 +3,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 less
 jquery
 underscore
@@ -11,7 +10,6 @@ accounts-password
 aldeed:collection2
 iron:router
 raix:handlebar-helpers
-matteodem:easy-security
 audit-argument-checks
 fastclick
 zimme:iron-router-active
@@ -23,3 +21,41 @@ dburles:collection-helpers
 meteorhacks:fast-render
 
 semantic:ui-css
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+twbs:bootstrap
+rajit:bootstrap3-datepicker
+aldeed:autoform
+aldeed:autoform-bs-datepicker
+matteodem:easy-search
+maazalik:highcharts
+email
+themeteorchef:jquery-validation
+accounts-ui
+meteorhacks:aggregate
+em0ney:amcharts
+insecure
+meteor-platform
+momentjs:moment
+percolate:synced-cron
+juliancwirko:s-alert
+juliancwirko:s-alert-slide
+semantic:ui
+mrt:fullcalendar
+rzymek:fullcalendar
+jasny:bootstrap
+alanning:roles
+zimme:select2-bootstrap3-css
+dandv:jquery-rateit
+barbatus:stars-rating

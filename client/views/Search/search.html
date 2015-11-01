@@ -1,0 +1,163 @@
+<template name = "SearchId">
+        {{>include}}
+        {{>sAlert}}
+
+        <body>
+        <div id="container" class="{{menuOpen}}">
+            <section id="menu">
+                <div class="btns-group-vertical">
+                    <div class="row">
+                        <div class="sidebar">
+                            <ul class="nav nav-sidebar">
+                                {{>common}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="content-overlay"></div>
+
+            <div id="content-container">
+
+
+                <div class="page">
+
+                    {{>header}}
+
+                    <div class="content-scrollable">
+
+                        <div class="container-fluid ">
+
+                 <div class="row">
+                     <div class="box-header">
+                         <h3 class="box-title">Search</h3>
+                     </div>
+                   <div class="col-md-6">
+
+                     <form method="post" id="Searchbar">
+                       <div class="box box-primary">
+                         <div class ="box-body">
+                           <div class="form-inline" >
+                            <span class="fa fa-search"> <input type="text" placeholder="Search by Username" class="form-control" id="Ename" name="name">
+                               <button type="submit" class="btn btn-primary">SEARCH</button> </span>
+                                 </div>
+                               </div>
+                             </div>
+
+<br>
+{{#if searchuser}}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Search Result</h3>
+          </div>
+          <div class="box-body table-responsive ">
+            <table class="table table-hover">
+            <tbody>
+          {{#each searchuser}}
+        <div>
+          <tr>
+            <td>
+
+               <label>
+                 {{profile.firstName}},{{profile.lastName}} </label>
+              </td>
+            <td>
+              <div class="text-right" style="padding-left:5px">
+              <a href="#" class="Profile">Profile</a>
+              </div>
+            </td>
+
+            <td>  {{#if isInRole 'Admin'}}
+              <div class="text-right" style="padding-left:5px">
+              <a href="#" class="Request">Request</a>
+                </div>
+              {{/if}}
+            </td>
+            </tr>
+            </div>
+        {{/each}}
+      </tbody>
+    </table>
+           </div>
+         </div>
+
+         {{/if}}
+
+{{#if getUserProfile}}
+       <div class="box box-primary">
+           {{#each getUserProfile}}
+       <div class="box-header with-border">
+       <h3 class="box-title">{{profile.firstName}},{{profile.lastName}}</h3>
+       </div>
+       <div class="box-body">
+            <tr><td><b>Gender:</b></td>
+            <td>{{profile.gender}}</td></tr>
+            <tr><td><b>Address:</b></td>
+            <td> {{profile.address.line1}} </td></tr>
+            <tr> <td></td><td>{{profile.address.line2}}</td></tr>
+            <tr> <td></td><td>{{profile.address.city}} , {{profile.address.state}},{{profile.address.country}}-{{profile.address.pinCode}}</td></tr>
+            <tr> <td> <b>Email:</b></td>
+            <td> {{#each emails}}{{address}}{{/each}} </td></tr>
+            {{#if profile.share_phone}}
+            <tr><td><b>PhoneNumber:</b></td>
+            <td>{{profile.phone}}</td></tr>
+            {{/if}}
+            <tr></tr>
+            {{#if isInRole 'Admin'}}
+            <tr><td><input type="button" class="addAdmin btn btn-primary" value="Add as Admin" /></td></tr>
+            {{/if}}
+
+           </div>
+             {{/each}}
+           </div>
+
+{{else}}
+      {{#if getUserRequest}}
+         <div class="box box-primary">
+         <div class="box-header with-border">
+          <h3 class="box-title">REQUEST</h3>
+          </div>
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+
+              <tr>
+                <th>Request Name</th>
+                <th>Requested For</th>
+                <th>Requested At</th>
+                <th>Aid</th>
+                <th>Required by</th>
+                <th>Is Emergency</th>
+                <th>status</th>
+              </tr>
+
+             {{#each getUserRequest}}
+              <tr>
+               <td>{{request_name}}</td>
+               <td>{{requestType}}</td>
+               <td> {{requestAddress.city}} </td>
+                <td>{{aidName}}</td>
+                <td>{{requiredBy}}</td>
+                <td>{{emergency}}</td>
+                <td>{{status}}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+                    </div>
+                    </div>
+                 {{/if}}
+{{/if}}
+</form>
+</div>
+    </div>
+
+      </div>
+        </div>
+</div>
+                </div>
+            </div>
+
+        </body>
+
+  </template>
