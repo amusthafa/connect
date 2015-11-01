@@ -23,3 +23,7 @@ Clone the master branch
 Navigate to the connect folder
 Run command meteor
 Login to application with url http://localhost:3000/login
+Default Admin user will be created in the system with credentials available in docs.
+Admin user will setup the system details.
+Requestors and Volunteers can then start using the system.
+Details are available in the demo.
