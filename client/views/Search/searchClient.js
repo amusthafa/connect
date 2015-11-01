@@ -6,6 +6,14 @@ Template.SearchId.onRendered(function() {
             })
 });
 
+
+Template.SearchId.onDestroyed(function () {
+
+    delete Session.keys['searchResult'];
+    delete Session.keys['getUserProfile'];
+    delete Session.keys['getUserRequest'];
+});
+
 Template.SearchId.helpers ({
       'isUser': function () {
         check();
