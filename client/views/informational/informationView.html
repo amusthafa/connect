@@ -64,7 +64,7 @@
     {{#each infoView}}
     {{#if isEqual verificationStatus "Yes"}}
   <tr><td>{{infoTitle}}</td>
-    <td>{{informationDescription}}</td>
+    <td><span class="word-wrap">{{informationDescription}}</span></td>
     <td>{{contactPhone}}</td>
     {{#if line1}}<td>{{line1}},{{line2}},{{city}}</td>{{/if}}</tr>
     {{/if}}

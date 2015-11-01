@@ -93,23 +93,18 @@ Template.home.created = function () {
 
 Template.home.onRendered(function () {
     Meteor.call('getDocInfo', function (err, result) {
-        console.log("inside meteor call");
         Session.set("getDocInfo", result);
     });
     Meteor.call('getAilInfo', function (err, result) {
-        console.log("inside meteor call");
         Session.set("getAilInfo", result);
     });
     Meteor.call('getEduInfo', function (err, result) {
-        console.log("inside meteor call");
         Session.set("getEduInfo", result);
     });
     Meteor.call('getJobInfo', function (err, result) {
-        console.log("inside meteor call");
         Session.set("getJobInfo", result);
     });
     Meteor.call('getRightsInfo', function (err, result) {
-        console.log("inside meteor call");
         Session.set("getRightsInfo", result);
     });
 });
@@ -129,23 +124,18 @@ Template.home.helpers({
     },
 
     getDocInfo: function () {
-        console.log(Session.get('getDocInfo'));
         return (Session.get('getDocInfo'));
     },
     getAilInfo: function () {
-        console.log(Session.get('getAilInfo'));
         return (Session.get('getAilInfo'));
     },
     getEduInfo: function () {
-        console.log(Session.get('getEduInfo'));
         return (Session.get('getEduInfo'));
     },
     getJobInfo: function () {
-        console.log(Session.get('getJobInfo'));
         return (Session.get('getJobInfo'));
     },
     getRightsInfo: function () {
-        console.log(Session.get('getRightsInfo'));
         return (Session.get('getRightsInfo'));
     },
     events: function () {
@@ -163,4 +153,3 @@ Template.home.helpers({
         };
     }
 });
-
