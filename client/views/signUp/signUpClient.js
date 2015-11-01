@@ -68,7 +68,7 @@ Meteor.startup(function () {
 
 });
 
-Template.createRequest.rendered = function() {
+Template.signUp.rendered = function() {
     // init fastclick
     FastClick.attach(document.body);
 };

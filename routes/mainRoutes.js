@@ -17,6 +17,13 @@ Router.route('/ForgotPassword', {
     }
 });
 
+Router.route('/ResendVerificationMail', {
+    name: 'resendMail',
+    action: function () {
+        this.render('resendVerificationMail');
+    }
+});
+
 Router.route('/logout', {
     name: 'logout',
     onBeforeAction: function () {
