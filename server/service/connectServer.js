@@ -75,7 +75,7 @@ Meteor.methods(
                                     to: user.emails[0].address,
                                     from: 'olaamigo.app@gmail.com',
                                     subject: 'OlaAmigos Request for Connect',
-                                    text: notificationData.description + "Thanks, Amigos"
+                                    text: notificationData.description +"\n \n Thanks, \n Amigos"
                                 });
                                 console.log('email sent');
 
@@ -97,7 +97,7 @@ Meteor.methods(
                         status: 'Unread',
                         userId: connect.volunteerId,
                         type: 'Accepted',
-                        description: 'A Connection is setup by Ola Amigos Admin for you. Please login to see the connection details.'
+                        description: 'A Connection is setup by Ola Amigos Admin for you.\n Please login to see the connection details.'
                     };
 
                     notiId = Notifications.insert(notificationData, function (error, result) {
@@ -115,7 +115,7 @@ Meteor.methods(
                                 to: user.emails[0].address,
                                 from: 'olaamigo.app@gmail.com',
                                 subject: 'OlaAmigos Connection for you',
-                                text: notificationData.description + "Thanks, Amigos"
+                                text: notificationData.description + "\n \n Thanks, \nAmigos"
                             });
                             console.log('email sent');
 
@@ -146,7 +146,7 @@ Meteor.methods(
                                     to: seeker.emails[0].address,
                                     from: 'olaamigo.app@gmail.com',
                                     subject: 'OlaAmigos Connection for you',
-                                    text: notificationData.description + "Thanks, Amigos"
+                                    text: notificationData.description + "\n \n Thanks,\n Amigos"
                                 });
                                 console.log('email sent');
 
