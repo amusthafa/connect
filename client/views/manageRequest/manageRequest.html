@@ -94,8 +94,8 @@
                                         </dl>
                                         {{#if isEqual match.mode 'view'}}
                                         {{#if isEqual match.request.status 'Submitted'}}
-                                        <input type="button" class="edit" value="Edit" id="edit"/>
-                                        <input type="button" class="delete" value="Delete" id="delete"/>
+                                        <input type="button" class="edit btn btn-primary" value="Edit" id="edit"/>
+                                        <input type="button" class="delete btn btn-primary" value="Delete" id="delete"/>
                                         {{/if}}
                                         {{/if}}
                                     </div>
@@ -135,7 +135,7 @@
                                                         {{> starsRating rating=rating size='sm'}}
                                                     </td>
                                                     <td>
-                                                        <input type="button" class="connect" value="Connect"/>
+                                                        <input type="button" class="connect btn btn-primary" value="Connect"/>
                                                     </td>
                                                 </tr>
                                                 {{/each}}
