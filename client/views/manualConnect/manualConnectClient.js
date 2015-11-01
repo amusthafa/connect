@@ -6,7 +6,6 @@ Template.manualConnect.onDestroyed(function () {
     delete Session.keys['selectedRequestManual'];
     delete Session.keys['volunteerManualConnect'];
     delete Session.keys['searchVolunteerforManual'];
-
 });
 
 

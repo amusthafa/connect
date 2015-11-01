@@ -1,4 +1,4 @@
-Session.setDefault("isOrg", "No");
+Session.setDefault("isOrg",false);
 // Session.setDefault("isUpdateFlow", true);
 // Session.set("isUpdateFlow", Router.current().params.id);
 
