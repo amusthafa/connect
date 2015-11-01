@@ -183,7 +183,7 @@ SyncedCron.add({
                     userId: connect.requestorId,
                     type: 'PendingCompletion',
                     //description: 'Was the request ' + request.request_name + ' successful. Please update us about how it went.'
-                    description:'How did '+ request.request_name + ' go? Please update us about your experience.'
+                    description:'How did '+ request.request_name + ' go? \n Please update us about your experience.'
                 };
                 console.log('notification innsertion ------------------------------- '+JSON.stringify(notificationData));
                 Notifications.insert(notificationData, function (error, result) {
@@ -196,7 +196,7 @@ SyncedCron.add({
                     }
                  else{   //send mail
                     Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
-                        text: notificationData.description + " Thanks, Amigos"});
+                        text: notificationData.description + " \n \n Thanks, \n Amigos"});
                     console.log('email sent');
                 }
                 });
@@ -227,7 +227,7 @@ SyncedCron.add({
                     status: 'Unread',
                     userId: connect.volunteerId,
                     type: 'Completed',
-                    description: 'How was your experience for ' + request.request_name + '. Can you rate the Requestor for us.'
+                    description: 'How was your experience for ' + request.request_name + '. \n Can you rate the Requestor for us.'
                 };
                 Notifications.insert(notificationData, function (error, result) {
                     console.log("notification id - " + result);
@@ -239,7 +239,7 @@ SyncedCron.add({
                     }
                     else{   //send mail
                         Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
-                            text: notificationData.description + "Thanks, Amigos"});
+                            text: notificationData.description + "\n \n Thanks, \n Amigos"});
                         console.log('email sent');
                     }
                 });
