@@ -30,9 +30,9 @@ Requestors and Volunteers can then start using the system.<br/>
 
 ## Demo documents
 
-Presentation - OlaAmigos_Presentation<br/>
-Demo video - Trial.mp4/ Trial_3withMusic.mp4<br/>
+Presentation - /docs/OlaAmigos_Presentation<br/>
+Demo video - /docs/Trial.mp4 or /docs/Trial_3withMusic.mp4<br/>
 <br/>
-Admin credentials - Admin.txt<br/>
-Data_Model_v4.xlsx<br/>
+Admin credentials - /docs/Admin.txt<br/>
+Data Model - /docs/Data_Model_v4.xlsx<br/>
 
