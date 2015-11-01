@@ -83,6 +83,7 @@ Template.signUp.onRendered(function () {
 Template.signUp.onDestroyed(function () {
 
     delete Session.keys['userDetails'];
+    delete Session.keys['isOrg'];
     // delete Session.keys['searchUser'];
 });
 
