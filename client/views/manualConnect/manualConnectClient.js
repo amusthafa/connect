@@ -1,8 +1,10 @@
 Template.manualConnect.onDestroyed(function () {
 
-    delete Session.keys['getUserProfile'];
-    delete Session.keys['getUserRequest'];
-    delete Session.keys['searchResult'];
+    delete Session.keys['SearchUserforManual'];
+    delete Session.keys['getUserProfileforManual'];
+    delete Session.keys['getUserRequestforManual'];
+    delete Session.keys['selectedRequestManual'];
+    delete Session.keys['volunteerManualConnect'];
 });
 
 Template.manualConnect.helpers ({
