@@ -19,23 +19,22 @@ Template.notifications.helpers({
     }
     ///menu - start
     ,
-    menuOpen: function() {
-    return Session.get(MENU_KEY) && 'menu-open';
-},
-userMenuOpen: function() {
-    return Session.get(USER_MENU_KEY);
-},
-connected: function() {
-    if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
-        return Meteor.status().connected;
-    } else {
-        return true;
+    menuOpen: function () {
+        return Session.get(MENU_KEY) && 'menu-open';
+    },
+    userMenuOpen: function () {
+        return Session.get(USER_MENU_KEY);
+    },
+    connected: function () {
+        if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
+            return Meteor.status().connected;
+        } else {
+            return true;
+        }
     }
-}
 ///menu - end
 
 });
-
 
 
 var MENU_KEY = 'menuOpen';
@@ -58,11 +57,10 @@ Meteor.startup(function () {
 
 });
 
-Template.createRequest.rendered = function() {
+Template.createRequest.rendered = function () {
     // init fastclick
     FastClick.attach(document.body);
 };
-
 
 
 Template.registerHelper('formatDateWithTime', function (date) {
@@ -73,7 +71,7 @@ Template.registerHelper('formatDateWithTime', function (date) {
 Template.notifications.onRendered(function () {
     Meteor.call('getNotifications', function (err, result) {
         if (err) {
-         //   alert("error" + error);
+            //   alert("error" + error);
         } else {
 
             var res = [];
@@ -98,11 +96,11 @@ Template.notifications.onRendered(function () {
 });
 
 Template.notifications.events({
-    'click .toggle': function() {
-        Session.set(MENU_KEY, ! Session.get(MENU_KEY));
+    'click .toggle': function () {
+        Session.set(MENU_KEY, !Session.get(MENU_KEY));
         console.log(Session.get(MENU_KEY));
     },
-    'click .content-overlay': function(event) {
+    'click .content-overlay': function (event) {
         Session.set(MENU_KEY, false);
         event.preventDefault();
     },
@@ -139,7 +137,7 @@ Template.notifications.events({
 
         event.preventDefault();
         if (this.type == "Initiated") {
-         //   alert(JSON.stringify(this));
+            //   alert(JSON.stringify(this));
             var connect = {}
             connect._id = this.connectId;
             connect.notificationId = this._id;
@@ -157,22 +155,22 @@ Template.notifications.events({
             var request = {};
             request._id = this.requestId;
             request.notificationId = this._id;
-           //alert('req - '+JSON.stringify(request));
+            //alert('req - '+JSON.stringify(request));
             Meteor.call("matchRequestVolunteer", request, function (error, result) {
                 console.log("Client : error" + error + "result - " + JSON.stringify(result));
                 Session.set("match", result);
                 Router.go('/manageRequest');
             });
         }
-        else if (this.type=="PendingCompletion") {
+        else if (this.type == "PendingCompletion") {
             event.preventDefault();
-           // alert(JSON.stringify(this));
-            var connect ={};
+            // alert(JSON.stringify(this));
+            var connect = {};
             connect._id = this.connectId;
-            connect.notificationId =this._id;
-            connect.mode='requestorComplete';
-         //   alert(JSON.stringify(connect));
-            Meteor.call('getConnectDetails', connect, function(err, result) {
+            connect.notificationId = this._id;
+            connect.mode = 'requestorComplete';
+            //   alert(JSON.stringify(connect));
+            Meteor.call('getConnectDetails', connect, function (err, result) {
                 //  alert(" result:"+ JSON.stringify(result));
                 Session.set('connectDetails', result);
                 //       alert(result);
@@ -180,21 +178,33 @@ Template.notifications.events({
             });
 
         }
-        else if (this.type=="Completed") {
+        else if (this.type == "Completed") {
             event.preventDefault();
-          //  alert(JSON.stringify(this));
-            var connect ={};
+            //  alert(JSON.stringify(this));
+            var connect = {};
             connect._id = this.connectId;
-            connect.notificationId =this._id;
-            connect.mode='volunteerComplete';
-          //  alert(JSON.stringify(connect));
-            Meteor.call('getConnectDetails', connect, function(err, result) {
+            connect.notificationId = this._id;
+            connect.mode = 'volunteerComplete';
+            //  alert(JSON.stringify(connect));
+            Meteor.call('getConnectDetails', connect, function (err, result) {
                 //  alert(" result:"+ JSON.stringify(result));
                 Session.set('connectDetails', result);
                 //       alert(result);
                 Router.go("/connectUpdate");
             });
 
+        } else if (this.type == "Accepted") {
+            var connect = {}
+            connect._id = this.connectId;
+            connect.notificationId = this._id;
+            connect.mode = 'cancel';
+            //alert(JSON.stringify(connect));
+            Meteor.call('getConnectDetails', connect, function (err, result) {
+                //  alert(" result:"+ JSON.stringify(result));
+                Session.set('connectDetails', result);
+                //       alert(result);
+                Router.go("/connectUpdate");
+            });
         }
 
     }
