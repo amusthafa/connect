@@ -1,7 +1,7 @@
-Final Demo document
+Final Demo documents
 
-Presentation - OlaAmigos_Presentation
-Demo video - Trial.mp4/ Trial_3withMusic.mp4
-
-Admin credentials - Admin.txt
-Data_Model_v4.xlsx
+Presentation - OlaAmigos_Presentation<br/>
+Demo video - Trial.mp4/ Trial_3withMusic.mp4<br/>
+<br/>
+Admin credentials - Admin.txt<br/>
+Data_Model_v4.xlsx<br/>
