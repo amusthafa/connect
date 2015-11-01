@@ -9,7 +9,7 @@ Template.resendVerificationMail.events({
         data.email=event.target.mailId.value;
         console.log(data.email);
         Meteor.call('resendVerificationEmail', data, function (err, result) {
-            if(err.error == 903) {
+            if(err) {
               sAlert.error(err.reason);
             }
             else {

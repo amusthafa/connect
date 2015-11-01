@@ -1,3 +1,10 @@
+var mustBeSignedIn = function() {
+  if (!(Meteor.user() || Meteor.loggingIn())) {
+    Router.go('/login');
+    this.next();
+  }
+};
+
 Router.route('/', function () {
     this.render('home');
     SEO.set({title: 'Home - Ola Amigos!!'});
@@ -51,6 +58,12 @@ Router.route('/AddAdmin', {
 
 Router.route('/CreateProfile/0', {
     name: 'createProfile',
+    onBeforeAction: function () {
+      if (!(Meteor.user() || Meteor.loggingIn())) {
+        Router.go('/login');
+      }
+      this.next();
+    },
     action: function () {
         this.render('signUp');
     }
