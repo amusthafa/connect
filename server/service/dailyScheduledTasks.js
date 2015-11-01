@@ -120,7 +120,8 @@ SyncedCron.add({
             var key = keys[i];
             var userRating = userRatingMap[key];
 
-            var avg = userRating.sum /userRating.count;
+            var avg =0;
+                avg=userRating.sum /userRating.count;
             console.log("userRating - "+JSON.stringify(userRating));
             Meteor.users.update({_id : userRating._id}, { $set :{"profile.rating": avg}}
                 , function (error, result) {
