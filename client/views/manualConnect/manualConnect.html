@@ -1,19 +1,39 @@
 <template name="manualConnect">
 {{>include}}
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-{{>common}}
-{{>header}}
 {{>sAlert}}
 
-<!-- new code -->
-<div class="content-wrapper">
-<section class="content-header">
-    <h1>
-        Manual Connect
-    </h1>
+<body>
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
 </section>
-<section class="content">
+<div class="content-overlay"></div>
+
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Manual Connect</h1>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-6">
         <div class="box box-primary">
@@ -293,7 +313,11 @@
 </section>
 {{/if}}
 
-</section>
+</div>
+</div>
+</div>
+
+
 </div>
 </div>
 </body>

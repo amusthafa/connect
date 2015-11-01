@@ -1,16 +1,35 @@
 <template name="createRequest">
 
 {{>include}}
-<body class="hold-transition skin-blue sidebar-mini">
+{{>sAlert}}
 
-    <!-- <div class="wrapper "> -->
+<body>
 
-        {{>common}}
-        {{>header}}
-        {{>sAlert}}
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
 
-        <div class="content-wrapper image">
-            <section class="content">
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+
+<div class="container-fluid ">
+
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-6">
@@ -299,47 +318,21 @@
                                         </div>
                                       {{/if}}
 
-                                    <div class="form-group">
+                                    <div class="form-inline">
                                       <label>Emergency</label>
                                       {{#if isEditFlow}}
                                             {{#if isEmergency}}
-                                                <div class="radio">
-                                                  <label>
-                                                  <input type="radio" name="emergency" id="emergencyYes" value="Yes" checked>Yes
-                                                </label>
-                                                </div>
-                                                <div class="radio">
-                                                  <label>
-                                                  <input type="radio" name="emergency" id="emergencyNo" value="No"> No
-                                                </label>
-                                                </div>
+                                                  <input type="checkbox" name="emergency" id="emergency" checked="checked">
                                                 {{else}}
-                                                <div class="radio">
-                                                  <label>
-                                                  <input type="radio" name="emergency" id="emergencyYes" value="Yes" >Yes
-                                                </label>
-                                                </div>
-                                                <div class="radio">
-                                                  <label>
-                                                    <input type="radio" name="emergency" id="emergencyNo" value="No" checked> No
-                                                  </label>
-                                                </div>
+                                                  <input type="checkbox" name="emergency" id="emergency" >
                                             {{/if}}
 
                                       {{else}}
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="emergency" id="emergencyYes" value="Yes" checked>
-                                                Yes
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="emergency" id="emergencyNo" value="No"> No
-                                            </label>
-                                        </div>
-                                        {{/if}}
+
+                                            <input type="checkbox" name="emergency" id="emergency" >
+                                      {{/if}}
                                     </div>
+                                    <br>
 
                                     <div class="form-group">
                                       <label>Comment</label>
@@ -367,8 +360,11 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-    <!-- </div> -->
+            </div>
+
+    </div>
+</div>
+</div>
+</div>
 </body>
 </template>

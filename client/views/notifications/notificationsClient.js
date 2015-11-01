@@ -17,7 +17,53 @@ Template.notifications.helpers({
         }
         return false;
     }
+    ///menu - start
+    ,
+    menuOpen: function() {
+    return Session.get(MENU_KEY) && 'menu-open';
+},
+userMenuOpen: function() {
+    return Session.get(USER_MENU_KEY);
+},
+connected: function() {
+    if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
+        return Meteor.status().connected;
+    } else {
+        return true;
+    }
+}
+///menu - end
+
 });
+
+
+
+var MENU_KEY = 'menuOpen';
+Session.setDefault(MENU_KEY, true);
+
+var USER_MENU_KEY = 'userMenuOpen';
+Session.setDefault(USER_MENU_KEY, false);
+
+Meteor.startup(function () {
+    // set up a swipe left / right handler
+    $(document.body).touchwipe({
+        wipeLeft: function () {
+            Session.set(MENU_KEY, false);
+        },
+        wipeRight: function () {
+            Session.set(MENU_KEY, true);
+        },
+        preventDefaultEvents: false
+    });
+
+});
+
+Template.createRequest.rendered = function() {
+    // init fastclick
+    FastClick.attach(document.body);
+};
+
+
 
 Template.registerHelper('formatDateWithTime', function (date) {
     console.log("format date:!!!!:", moment(date).format('MMMM DD, YYYY'));
@@ -52,6 +98,14 @@ Template.notifications.onRendered(function () {
 });
 
 Template.notifications.events({
+    'click .toggle': function() {
+        Session.set(MENU_KEY, ! Session.get(MENU_KEY));
+        console.log(Session.get(MENU_KEY));
+    },
+    'click .content-overlay': function(event) {
+        Session.set(MENU_KEY, false);
+        event.preventDefault();
+    },
     'click #getRequest': function (event) {
         event.preventDefault();
         var connect = {

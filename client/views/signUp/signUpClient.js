@@ -4,8 +4,8 @@ Session.setDefault("isOrg", "No");
 
 Template.signUp.helpers({
     'isOrganisation': function (event) {
-        console.log("Org" + (Session.get("isOrg") === "Yes"));
-        return (Session.get("isOrg") === "Yes");
+        console.log("Org" + (Session.get("isOrg")));
+        return (Session.get("isOrg"));
     },
     'cityList': function () {
         return (Session.get('cityList'));
@@ -28,8 +28,50 @@ Template.signUp.helpers({
         }
         return false;
     }
+    ///menu - start
+    ,
+    menuOpen: function() {
+        return Session.get(MENU_KEY) && 'menu-open';
+    },
+    userMenuOpen: function() {
+        return Session.get(USER_MENU_KEY);
+    },
+    connected: function() {
+        if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
+            return Meteor.status().connected;
+        } else {
+            return true;
+        }
+    }
+///menu - end
+
 });
 
+
+var MENU_KEY = 'menuOpen';
+Session.setDefault(MENU_KEY, true);
+
+var USER_MENU_KEY = 'userMenuOpen';
+Session.setDefault(USER_MENU_KEY, false);
+
+Meteor.startup(function () {
+    // set up a swipe left / right handler
+    $(document.body).touchwipe({
+        wipeLeft: function () {
+            Session.set(MENU_KEY, false);
+        },
+        wipeRight: function () {
+            Session.set(MENU_KEY, true);
+        },
+        preventDefaultEvents: false
+    });
+
+});
+
+Template.createRequest.rendered = function() {
+    // init fastclick
+    FastClick.attach(document.body);
+};
 
 Template.signUp.onRendered(function () {
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
@@ -51,9 +93,17 @@ Template.registerHelper('formatDateProfile', function (date) {
 });
 
 Template.signUp.events({
+    'click .toggle': function() {
+        Session.set(MENU_KEY, ! Session.get(MENU_KEY));
+        console.log(Session.get(MENU_KEY));
+    },
+    'click .content-overlay': function(event) {
+        Session.set(MENU_KEY, false);
+        event.preventDefault();
+    },
     'change #organisation': function (event) {
         console.log(event.currentTarget.name);
-        Session.set("isOrg", event.currentTarget.value);
+        Session.set("isOrg",document.getElementById("organisation").checked);
         console.log(Session.get("isOrg"));
     },
     'click #Cancel' : function(event) {
@@ -66,24 +116,18 @@ Template.signUp.events({
           console.log("Update");
           var userProfile = {};
           userProfile.mobileNo = event.target.mobileNo.value;
-          if (event.target.shareNo.value == "Yes")
-              userProfile.shareNo = true;
-          else
-              userProfile.shareNo = false;
+         userProfile.shareNo=  document.getElementById("shareNo").checked;
           userProfile.addr1 = event.target.addr1.value;
           userProfile.addr2 = event.target.addr2.value;
           userProfile.city = event.target.city.value;
           userProfile.state = event.target.state.value;
           userProfile.pincode = event.target.pincode.value;
-          userProfile.diffAbled = event.target.diffAbled.value;
+          userProfile.diffAbled=  document.getElementById("diffAbled").checked;
           userProfile.occupation = event.target.occupation.value;
           userProfile.role = event.target.role.value;
-          if (event.target.organisation.value == "Yes") {
-              userProfile.orgFlag = true;
+          userProfile.orgFlag=document.getElementById("organisation").checked;
               console.log(userProfile.orgFlag);
-          }
-          else
-              userProfile.orgFlag = false;
+
           if (userProfile.orgFlag)
               userProfile.organisationName = event.target.organisationName.value;
           else
@@ -101,10 +145,7 @@ Template.signUp.events({
         userProfile.email = event.target.mailId.value;
         userProfile.password = event.target.password.value;
         userProfile.mobileNo = event.target.mobileNo.value;
-        if (event.target.shareNo.value == "Yes")
-            userProfile.shareNo = true;
-        else
-            userProfile.shareNo = false;
+        userProfile.shareNo=  document.getElementById("shareNo").checked;
         userProfile.addr1 = event.target.addr1.value;
         userProfile.addr2 = event.target.addr2.value;
         userProfile.city = event.target.city.value;
@@ -112,14 +153,12 @@ Template.signUp.events({
         userProfile.country = event.target.country.value;
         userProfile.pincode = event.target.pincode.value;
         userProfile.gender = event.target.gender.value;
-        userProfile.diffAbled = event.target.diffAbled.value;
+        userProfile.diffAbled=  document.getElementById("diffAbled").checked;
         userProfile.dob = event.target.dob.value;
         userProfile.occupation = event.target.occupation.value;
         userProfile.role = event.target.role.value;
-        if (event.target.organisation.value == "Yes")
-            userProfile.orgFlag = true;
-        else
-            userProfile.orgFlag = false;
+        userProfile.orgFlag=document.getElementById("organisation").checked;
+          console.log(userProfile.orgFlag);
         if (userProfile.orgFlag)
             userProfile.organisationName = event.target.organisationName.value;
         else

@@ -1,19 +1,34 @@
 <template name="signUp">
 
-    <html>
+{{>include}}
+{{>sAlert}}
 
-    {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        {{#if currentUser}}
-            {{>common}}
-        {{/if}}
-        {{>header}}
-        {{>sAlert}}
+<body>
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
 
-        <div class="content-wrapper image">
-            <section class="content">
-                <div class="row">
+<div id="content-container">
+
+
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+
+<div class="container-fluid ">
+<div class="row">
                     <div class="col-md-6">
                         <div class="box box-primary">
                             <div class="box-header with-border">
@@ -64,18 +79,14 @@
                                             </div>
                                         </div>
 
+
                                         <div class="form-group">
-                                            <label>Share mobile no : </label>
-                                            <select name="shareNo" id="shareNo" class="form-control">
-                                                {{#if '{{getUserDetails.profile.sharePhone}}' }}
-                                                    <option selected="selected" value="No">No</option>
-                                                    <option value="Yes">Yes</option>
-                                                {{else}}
-                                                    <option value="No">No</option>
-                                                    <option selected="selected" value="Yes">Yes</option>
-                                                {{/if}}
-                                            </select>
-                                        </div>
+                                          {{#if isEqual getUserDetails.profile.sharePhone true}}
+                                              <label>Share phone no : <input type="checkbox" name="shareNo" id="shareNo" checked="checked"></label>
+                                              {{else}}
+                                              <label>Share phone no : <input type="checkbox" name="shareNo" id="shareNo"></label>
+                                              {{/if}}
+                                          </div>
 
                                         <div class="form-group">
                                             <label>Address Line 1 : </label>
@@ -136,37 +147,12 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Differently Abled : </label>
-                                            {{#if isEqual getUserDetails.profile.differentlyAbled 'No'}}
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="diffAbled" id="diffAbled" value="Yes">
-                                                        Yes
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="diffAbled" id="diffAbled" value="No"
-                                                               checked>
-                                                        No
-                                                    </label>
-                                                </div>
-                                            {{else}}
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="diffAbled" id="diffAbled" value="Yes"
-                                                               checked>
-                                                        Yes
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="diffAbled" id="diffAbled" value="No">
-                                                        No
-                                                    </label>
-                                                </div>
-                                            {{/if}}
-                                        </div>
+                                          {{#if isEqual getUserDetails.profile.differentlyAbled true}}
+                                              <label>Differently Abled : <input type="checkbox" name="diffAbled" id="diffAbled" checked="checked"></label>
+                                              {{else}}
+                                              <label>Differently Abled : <input type="checkbox" name="diffAbled" id="diffAbled"></label>
+                                              {{/if}}
+                                          </div>
 
                                         <div class="form-group">
                                             <label>Date of Birth : </label>
@@ -197,19 +183,15 @@
                                                 <option value="Both">Both</option>
                                             </select>
                                         </div>
-
                                         <div class="form-group">
-                                            <label> Organisation : </label>
-                                            <select name="organisation" id="organisation" class="form-control">
-                                                {{#if isEqual getUserDetails.profile.organizationFlag true}}
-                                                    <option value="No">No</option>
-                                                    <option selected="selected" value="Yes">Yes</option>
-                                                {{else}}
-                                                    <option selected="selected" value="No">No</option>
-                                                    <option value="Yes">Yes</option>
-                                                {{/if}}
-                                            </select>
-                                        </div>
+                                              <label>Organisation :
+                                                  {{#if isEqual getUserDetails.profile.organizationFlag true}}
+                                                 <input type="checkbox" name="organisation" id="organisation" checked="checked" >
+                                                 {{else}}
+                                                 <input type="checkbox" name="organisation" id="organisation" >
+                                                 {{/if}}
+                                                 </label>
+                                          </div>
 
                                         {{#if isEqual getUserDetails.profile.organizationFlag true}}
                                             <div class="form-group">
@@ -218,16 +200,18 @@
                                                        required="required" name="organisationName"
                                                        id="organisationName" class="form-control"/>
                                             </div>
-                                        {{/if}}
 
-                                        <!-- {{#if isOrganisation}}
+                                            {{else}}
+                                            {{#if isOrganisation}}
                                             <div class="form-group">
                                                 <label>Organisation Name : </label>
-                                                <input type="text" required="required" name="organisationName"
-                                                       id="organisationName" class="form-control"
-                                                       placeholder="Enter Organisation Name"/>
+                                                <input value={{getUserDetails.profile.organization}} type="text"
+                                                       required="required" name="organisationName"
+                                                       id="organisationName" class="form-control"/>
                                             </div>
-                                        {{/if}} -->
+                                            {{/if}}
+
+                                        {{/if}}
 
 
                                         <div class="form-group">
@@ -280,13 +264,11 @@
                                                        placeholder="Enter mobile no"/>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label>Share mobile no : </label>
-                                            <select name="shareNo" id="shareNo" class="form-control">
-                                                <option value="No">No</option>
-                                                <option value="Yes">Yes</option>
-                                            </select>
-                                        </div>
+                                              <label>Share phone no : <input type="checkbox" name="shareNo" id="shareNo" ></label>
+                                          </div>
+
                                         <div class="form-group">
                                             <label>Address Line 1 : </label>
                                             <input type="text" required name="addr1" id="addr1" class="form-control"/>
@@ -316,7 +298,7 @@
                                         <div class="form-group">
                                             <label>Country : </label>
                                             <input type="text" required name="country" id="country" class="form-control"
-                                                   placeholder="Enter Country"/>
+                                                   placeholder="Enter Country" value="INDIA"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Pincode : </label>
@@ -332,22 +314,9 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Differently Abled : </label>
+                                              <label>Differently Abled : <input type="checkbox" name="diffAbled" id="diffAbled" ></label>
+                                          </div>
 
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="diffAbled" id="diffAbled" value="Yes">
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="diffAbled" id="diffAbled" value="No"
-                                                           checked>
-                                                    No
-                                                </label>
-                                            </div>
-                                        </div>
                                         <div class="form-group">
                                             <label>Date of Birth : </label>
 
@@ -373,13 +342,10 @@
                                                 <option value="Both">Both</option>
                                             </select>
                                         </div>
+
                                         <div class="form-group">
-                                            <label> Organisation : </label>
-                                            <select name="organisation" id="organisation" class="form-control">
-                                                <option value="No">No</option>
-                                                <option value="Yes">Yes</option>
-                                            </select>
-                                        </div>
+                                              <label>Organisation :  <input type="checkbox" name="organisation" id="organisation" ></label>
+                                          </div>
                                         {{#if isOrganisation}}
                                             <div class="form-group">
                                                 <label>Organisation Name : </label>
@@ -390,15 +356,16 @@
                                         {{/if}}
                                         <div class="form-group">
                                             <label>Comments : </label>
-                  <textarea name="comments" id="comments" class="form-control" rows="4">
+                  <textarea name="comments" id="comments" class="form-control" rows="5" placeholder="Enter ...">
                   </textarea>
+
                                         </div>
                                     {{/if}}
                                 </div>
                                 <div class="box-footer">
                                     {{#if isUpdateFlow}}
                                         <div class=".btn.bg-purple">
-                                            <button type="button" onclick="clicked='Cancel'" class="btn btn-primary" value="Reset">Cancel</button>
+                                            <!-- <button type="reset" onclick="clicked='Reset'" class="btn btn-primary" value="Reset">Reset</button> -->
                                             <button type="submit" onclick="clicked='Update'" class="btn btn-primary" value="Update">Update</button>
                                         </div>
                                     {{else}}
@@ -411,9 +378,12 @@
                         </div>
                     </div>
                 </div>
-            </section>
+
         </div>
     </div>
+</div>
+</div>
+</div>
     </body>
-    </html>
+
 </template>

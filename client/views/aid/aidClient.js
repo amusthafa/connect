@@ -2,6 +2,24 @@ Template.aid.helpers({
     'add': function () {
         return "add aid";
     }
+
+    ///menu - start
+    ,
+    menuOpen: function() {
+        return Session.get(MENU_KEY) && 'menu-open';
+    },
+    userMenuOpen: function() {
+        return Session.get(USER_MENU_KEY);
+    },
+    connected: function() {
+        if (Session.get(SHOW_CONNECTION_ISSUE_KEY)) {
+            return Meteor.status().connected;
+        } else {
+            return true;
+        }
+    }
+///menu - end
+
 });
 
 Template.aid.events({
@@ -29,6 +47,39 @@ Template.aid.events({
 
         });
         Router.go("/");
+    },'click .toggle': function() {
+        Session.set(MENU_KEY, ! Session.get(MENU_KEY));
+        console.log(Session.get(MENU_KEY));
+    },
+    'click .content-overlay': function(event) {
+        Session.set(MENU_KEY, false);
+        event.preventDefault();
     }
 
 });
+
+
+var MENU_KEY = 'menuOpen';
+Session.setDefault(MENU_KEY, true);
+
+var USER_MENU_KEY = 'userMenuOpen';
+Session.setDefault(USER_MENU_KEY, false);
+
+Meteor.startup(function () {
+    // set up a swipe left / right handler
+    $(document.body).touchwipe({
+        wipeLeft: function () {
+            Session.set(MENU_KEY, false);
+        },
+        wipeRight: function () {
+            Session.set(MENU_KEY, true);
+        },
+        preventDefaultEvents: false
+    });
+
+});
+
+Template.aid.rendered = function() {
+    // init fastclick
+    FastClick.attach(document.body);
+};

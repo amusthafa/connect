@@ -1,20 +1,39 @@
 <template name="connectUpdate">
+{{>include}}
+{{>sAlert}}
 
-    {{>include}}
-    <body class="hold-transition skin-blue sidebar-mini">
+<body>
+<div id="container" class="{{menuOpen}}">
+<section id="menu">
+    <div class="btns-group-vertical">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    {{>common}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="content-overlay"></div>
+
+<div id="content-container">
 
 
-    <div class="wrapper">
-        {{>common}}
-        {{>header}}
-        {{>sAlert}}
-        <div class="content-wrapper image">
-            <section class="content-header">
-                <h1>
-                    Connect -  {{connectDetails.connect.status}}
-                </h1>
-            </section>
-            <section class="content">
+<div class="page">
+
+{{>header}}
+
+<div class="content-scrollable">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Connect -  {{connectDetails.connect.status}}</h1>
+
+        </div>
+    </div>
+</div>
+    <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
 
@@ -93,8 +112,8 @@
                         {{/if}}
                     {{/if}}
                 {{/if}}
-            </section>
 
+</div>
                 <!-- {{#if isNotEqual connectDetails.connect.status 'Initiated'}}-->
             <section class="content">
                 <div class="row">
@@ -180,7 +199,6 @@
 
             {{#if isEqual connectDetails.mode 'volunteerComplete'}}
 
-                <section class="content">
                     <div class="row">
                         <!-- left column -->
                         <div class="col-md-6">
@@ -204,10 +222,14 @@
                             </div>
                         </div>
                     </div>
-                </section>
 
             {{/if}}
+
+
         </div>
-    </div>
-    </body>
+</div>
+</div>
+</div>
+</body>
+
 </template>
