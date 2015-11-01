@@ -23,10 +23,15 @@ Template.help.helpers({
         } else {
             return true;
         }
-    }
+    },
 ///menu - end
+    'isAdmin': function () {
+        return (Session.get('isAdmin'));
+    }
 
 });
+
+
 
 
 var MENU_KEY = 'menuOpen';
