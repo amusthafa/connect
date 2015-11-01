@@ -73,7 +73,7 @@ Template.registerHelper('formatDateWithTime', function (date) {
 Template.notifications.onRendered(function () {
     Meteor.call('getNotifications', function (err, result) {
         if (err) {
-            alert("error" + error);
+         //   alert("error" + error);
         } else {
 
             var res = [];
@@ -139,7 +139,7 @@ Template.notifications.events({
 
         event.preventDefault();
         if (this.type == "Initiated") {
-            alert(JSON.stringify(this));
+         //   alert(JSON.stringify(this));
             var connect = {}
             connect._id = this.connectId;
             connect.notificationId = this._id;
@@ -166,12 +166,12 @@ Template.notifications.events({
         }
         else if (this.type=="PendingCompletion") {
             event.preventDefault();
-            alert(JSON.stringify(this));
+           // alert(JSON.stringify(this));
             var connect ={};
             connect._id = this.connectId;
             connect.notificationId =this._id;
             connect.mode='requestorComplete';
-            alert(JSON.stringify(connect));
+         //   alert(JSON.stringify(connect));
             Meteor.call('getConnectDetails', connect, function(err, result) {
                 //  alert(" result:"+ JSON.stringify(result));
                 Session.set('connectDetails', result);
@@ -182,12 +182,12 @@ Template.notifications.events({
         }
         else if (this.type=="Completed") {
             event.preventDefault();
-            alert(JSON.stringify(this));
+          //  alert(JSON.stringify(this));
             var connect ={};
             connect._id = this.connectId;
             connect.notificationId =this._id;
             connect.mode='volunteerComplete';
-            alert(JSON.stringify(connect));
+          //  alert(JSON.stringify(connect));
             Meteor.call('getConnectDetails', connect, function(err, result) {
                 //  alert(" result:"+ JSON.stringify(result));
                 Session.set('connectDetails', result);

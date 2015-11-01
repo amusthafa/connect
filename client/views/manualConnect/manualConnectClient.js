@@ -102,7 +102,7 @@ Template.manualConnect.events({
         Session.set('getUserRequest',0);
         Session.set('searchResult',0);
         EnteredName = $('#Ename').val();
-        alert('EnteredName- '+JSON.stringify(EnteredName));
+     //   alert('EnteredName- '+JSON.stringify(EnteredName));
         if(EnteredName) {
             Meteor.call("SearchUser",EnteredName, function(error, result) {
     //            alert('result- '+JSON.stringify(result));
