@@ -5,7 +5,7 @@
 
     <li class="treeview">
         <a href="/">
-            <span class="menu-header">Ola Amigos</span>
+            <span class="menu-header">OlaAmigos</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
@@ -13,20 +13,20 @@
     {{#if isInRole 'Admin'}}
     <li class="treeview">
         <a href="{{pathFor route='adminAuth'}}">
-            <i class="fa fa-check"></i> <span>Authentication/ Blacklisting</span>
+            <i class="fa fa-check"></i> <span>Authenticate Users</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
     {{/if}}
 
-    <!--   {{#if isInRole 'Admin'}}-->
+    {{#if isInRole 'Admin'}}
     <li class="treeview">
         <a href="{{pathFor route='manualConnect'}}">
-            <i class="fa fa-check"></i>  <span>Manual Connect</span>
+            <i class="fa fa-adjust"></i>  <span>Manual Connect</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
-    <!--   {{/if}}-->
+    {{/if}}
 
     <li class="treeview">
         <a href="{{pathFor route='createRequest'}}">

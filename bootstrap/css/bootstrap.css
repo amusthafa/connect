@@ -2778,6 +2778,7 @@ select[multiple].input-lg {
 }
 .has-feedback {
   position: relative;
+  background : url('images/background/flower.jpg');
 }
 .has-feedback .form-control {
   padding-right: 42.5px;
@@ -4541,8 +4542,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  background-color: #4C709C;border-color: #a9a9a9;
 }
 .navbar-default .navbar-brand {
   color: #777;

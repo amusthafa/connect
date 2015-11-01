@@ -5,10 +5,17 @@ Template.manualConnect.onDestroyed(function () {
     delete Session.keys['getUserRequestforManual'];
     delete Session.keys['selectedRequestManual'];
     delete Session.keys['volunteerManualConnect'];
+    delete Session.keys['searchVolunteerforManual'];
 });
+
 
 Template.manualConnect.helpers ({
 
+
+        'searchVolunteerforManual': function () {
+    //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
+    return (Session.get('searchVolunteerforManual'));
+},
     'SearchUserforManual': function () {
         //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
         return (Session.get('SearchUserforManual'));
@@ -120,7 +127,39 @@ Template.manualConnect.events({
             sAlert.error("Please enter a name to search");
 
     },
-    'click .requestforManual': function(event) {
+
+
+
+
+        'click .searchVolunteerforManual' : function (event) {
+    event.preventDefault();
+
+
+    Session.set('getUserProfile',0);
+    Session.set('getUserRequest',0);
+    Session.set('searchResult',0);
+    EnteredName = $('#EnameVol').val();
+    //   alert('EnteredName- '+JSON.stringify(EnteredName));
+    if(EnteredName) {
+        Meteor.call("SearchUser",EnteredName, function(error, result) {
+            //            alert('result- '+JSON.stringify(result));
+            if (result == 0) {
+                sAlert.error("No Result Found !")
+            }
+            else
+                Session.set('searchVolunteerforManual',result);
+                 //    alert('result- '+JSON.stringify(result));
+        });
+    }
+    else
+        sAlert.error("Please enter a name to search");
+
+},
+
+
+
+
+'click .requestforManual': function(event) {
         event.preventDefault();
         console.log("clicked request");
         var UserReq = Session.get('searchResult');
@@ -133,7 +172,7 @@ Template.manualConnect.events({
                 else {
                   //  alert('result' +result);
                     Session.set('getUserRequestforManual', result);
-                    Session.set('getUserProfileforManual', 0);
+                 //   Session.set('getUserProfileforManual', 0);
                     console.log("Requests:" + JSON.stringify(result));
                 }
             });
@@ -145,8 +184,8 @@ Template.manualConnect.events({
 
                 Meteor.call("SearchProfile", this._id, function(error, result) {
                     Session.set('getUserProfileforManual',result);
-                    Session.set('getUserRequestforManual',0);
-                 //   alert('result' +result);
+                   // Session.set('getUserRequestforManual',0);
+                //    alert('result' +result);
                 });
 
     },
@@ -157,6 +196,9 @@ Template.manualConnect.events({
         //    alert(JSON.stringify(this));
             var selectedRequestMC=(this);
             Session.set('selectedRequestManual',selectedRequestMC);
+        //reset others
+            delete Session.keys['getUserProfileforManual'];
+            delete Session.keys['getUserRequestforManual'];
 
 },
 
