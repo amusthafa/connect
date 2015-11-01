@@ -113,6 +113,7 @@ Template.SearchId.events({
  console.log("Clicked Profile");
  var UserReq = Session.get('searchResult');
   userId=this._id;
+  Session.set('userId',userId);
 if (Roles.userIsInRole(userId,'Admin'))
 { console.log("is admin : " + userId);
   Session.set('isAdmin','true');
@@ -146,6 +147,7 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
           'click .addAdmin': function(event){
               console.log("inside add admin");
               Roles.addUsersToRoles( Session.get('userId'), ['Admin']);
+              sAlert.success("Added as Admin!!");
               // Meteor.users.update({_id : Session.get('userId')}, {$set : {roles : "Admin"}});
           }
        });

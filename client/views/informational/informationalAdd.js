@@ -51,8 +51,12 @@ Meteor.startup(function () {
     });
 
 });
+Template.informationAdd.onDestroyed(function () {
 
-Template.createRequest.rendered = function() {
+    delete Session.keys['sType'];
+
+});
+Template.informationAdd.rendered = function() {
     // init fastclick
     FastClick.attach(document.body);
 };
@@ -110,7 +114,9 @@ Template.informationAdd.events({
           console.log("success");
             sAlert.success("Successfully added the Information")
 
+
       }
+      Router.go("/");
 
     });
 }
