@@ -1,4 +1,11 @@
+Template.manualConnect.onDestroyed(function () {
 
+    delete Session.keys['SearchUserforManual'];
+    delete Session.keys['getUserProfileforManual'];
+    delete Session.keys['getUserRequestforManual'];
+    delete Session.keys['selectedRequestManual'];
+    delete Session.keys['volunteerManualConnect'];
+});
 
 Template.manualConnect.helpers ({
 
@@ -97,7 +104,7 @@ Template.manualConnect.events({
         Session.set('getUserRequest',0);
         Session.set('searchResult',0);
         EnteredName = $('#Ename').val();
-        alert('EnteredName- '+JSON.stringify(EnteredName));
+     //   alert('EnteredName- '+JSON.stringify(EnteredName));
         if(EnteredName) {
             Meteor.call("SearchUser",EnteredName, function(error, result) {
     //            alert('result- '+JSON.stringify(result));
@@ -182,12 +189,20 @@ Template.manualConnect.events({
    //   alert('connect - '+JSON.stringify(connect));
 
     Meteor.call("connect",connect, function (error, result) {
-        //  alert('connect - ' + result);
-        Router.go("/");
-        //  alert('error - ' + error);
 
+                      if (error) {
+                        console.log("error body", (error));
+                        sAlert.error(error.reason);
+                        Router.go("/manualConnect");
+                      }
+                      else{
+                        console.log("success");
+                        sAlert.success("Manual Connection Successful");
+                        sAlert.success('', configOverwrite);
+                      }
     });
 
+    Router.go("/");
 
 }
 });
@@ -196,23 +211,3 @@ Template.registerHelper('formatDate', function(date) {
     console.log("format date:!!!!:", moment(date).format('DD-MM-YYYY'));
     return moment(date).format('DD-MM-YYYY');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

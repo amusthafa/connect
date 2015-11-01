@@ -277,3 +277,11 @@ Router.route('/manualConnect', {
         this.render('manualConnect');
     }
 });
+
+
+Router.route('/help', {
+    name: 'help',
+    action: function () {
+        this.render('help');
+    }
+});

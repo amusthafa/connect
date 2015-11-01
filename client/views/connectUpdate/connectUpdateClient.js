@@ -124,12 +124,19 @@ Template.connectUpdate.events({
         connectUpdate.requestId =  document.getElementById('requestId').value;
         //  alert('connectUpdate '+ connectUpdate);
         Meteor.call("updateConnect", connectUpdate, function (error, result) {
-            console.log("Client : error" + error + "result - " + result);
-            Router.go("/");
+          if (error) {
+            console.log("error body", (error));
+            sAlert.error(error.reason);
+            Router.go("/connectUpdate");
+          }
+          else{
+            console.log("success");
+            sAlert.success("Connection Cancelled!");
+            sAlert.success('', configOverwrite);
+          }
         });
 
-    }
-    ,
+    },
 
     'click .rate': function (event) {
         event.preventDefault();
@@ -167,10 +174,21 @@ Template.connectUpdate.events({
         //seeker
 
         Meteor.call("updateConnect", connectUpdate, function (error, result) {
-            console.log("Client : error" + error + "result - " + result);
-            Router.go("/");
+
+          if (error) {
+            console.log("error body", (error));
+            sAlert.error(error.reason);
+            Router.go("/connectUpdate");
+          }
+          else{
+            console.log("success");
+            sAlert.success("Thanks for rating!");
+            sAlert.success('', configOverwrite);
+          }
+
         });
 
+        Router.go("/");
     }
 });
 
