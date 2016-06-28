@@ -1,0 +1,90 @@
+<template name="allRequests">
+        {{>include}}
+        {{>sAlert}}
+
+        <body>
+        <div id="container" class="{{menuOpen}}">
+            <section id="menu">
+                <div class="btns-group-vertical">
+                    <div class="row">
+                        <div class="sidebar">
+                            <ul class="nav nav-sidebar">
+                                {{>common}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="content-overlay"></div>
+
+            <div id="content-container">
+
+
+                <div class="page">
+
+                    {{>header}}
+
+                    <div class="content-scrollable">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- left column -->
+                                <div class="col-md-6">
+                                    <!-- general form elements -->
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Request List</h3>
+                                        </div>
+                                        <form role="form" method="post" id="aidform">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label>Request Date</label>
+                                                    <input type="date" class="form-control" required="required" id="requestDate">
+                                                </div>
+                                            </div>
+                                            <div class="box-footer">
+                                                <button type="submit" class="addaid btn btn-primary" >Get Requests</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                        <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <!-- <table class="table table-striped">-->
+                                    <tbody>
+                                    <tr>
+                                        <th>Request </th>
+                                        <th>Requested by</th>
+                                        <th>Created on </th>
+                                        <th>Status</th>
+                                    </tr>
+
+                                    {{#each requestList}}
+                                        <tr>
+                                            <td>{{request_name}} - {{aidName}} on {{formatDateWithTime requiredBy}}</td>
+                                            <td>{{requestorName}}, {{number}}</td>
+                                            <td>{{formatDateWithTime rowCreated}}</td>
+                                            <td>{{status}}</td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+                            </div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+    </body>
+        </template>

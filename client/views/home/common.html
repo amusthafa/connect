@@ -87,6 +87,14 @@
 
 
     {{#if isInRole 'Admin'}}
+
+    <li class="treeview">
+        <a href="{{pathFor route='allRequests'}}">
+            <i class="fa  fa-bell"></i><span>Requests List</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
     <li class="treeview">
         <a href="{{pathFor route='analytics'}}">
             <i class="fa fa-bar-chart"></i>  <span>Analytics</span>

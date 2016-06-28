@@ -479,3 +479,16 @@ Router.route('/help', {
         this.render('help');
     }
 });
+
+Router.route('/allRequests', {
+    name: 'allRequests',
+    onBeforeAction: function () {
+      if (!(Meteor.user() || Meteor.loggingIn())) {
+        Router.go('/login');
+      }
+      this.next();
+    },
+    action: function () {
+        this.render('allRequests');
+    }
+});
