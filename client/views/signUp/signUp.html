@@ -183,6 +183,34 @@
                                                 <option value="Both">Both</option>
                                             </select>
                                         </div>
+
+                                        {{#if isNotEqual getUserDetails.profile.appRole "Seeker"}}
+                                        {{#if isEqual getUserDetails.profile.term "Short-term"}}
+                                            <div class="form-group">
+                                                <label><input type="radio" name="term" value="Short-term" id="term" checked="checked"> Short Term Volunteer</label>
+                                                <br>
+                                                <label><input type="radio" name="term" value="Long-term" id="term"> Long Term Volunteer</label>
+                                            </div>
+                                        {{/if}}
+
+                                        {{#if isEqual getUserDetails.profile.term "Long-term"}}
+                                            <div class="form-group">
+                                                <label><input type="radio" name="term" value="Short-term" id="term"> Short Term Volunteer</label>
+                                                <br>
+                                                <label><input type="radio" name="term" value="Long-term" id="term" checked="checked"> Long Term Volunteer</label>
+                                            </div>
+                                        {{/if}}
+                                        {{else}}
+                                        {{#if isVolunteer}}
+                                            <div class="form-group">
+                                                <label><input type="radio" name="term" value="Short-term" id="term" required="required"> Short Term Volunteer</label>
+                                                <br>
+                                                <label><input type="radio" name="term" value="Long-term" id="term" required="required"> Long Term Volunteer</label>
+                                            </div>
+                                        {{/if}}
+
+                                        {{/if}}
+
                                         <div class="form-group">
                                               <label>Organisation :
                                                   {{#if isEqual getUserDetails.profile.organizationFlag true}}
@@ -342,6 +370,15 @@
                                                 <option value="Both">Both</option>
                                             </select>
                                         </div>
+
+                                        {{#if isVolunteer}}
+                                            <div class="form-group">
+                                                <label><input type="radio" name="term" value="Short-term" id="term" required="required"> Short Term Volunteer</label>
+                                                <br>
+                                                <label><input type="radio" name="term" value="Long-term" id="term" required="required"> Long Term Volunteer</label>
+                                            </div>
+                                        {{/if}}
+
 
                                         <div class="form-group">
                                               <label>Organisation :  <input type="checkbox" name="organisation" id="organisation" ></label>

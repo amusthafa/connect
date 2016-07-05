@@ -1,4 +1,5 @@
 Session.setDefault("isOrg",false);
+Session.setDefault("isVolunteer",false);
 // Session.setDefault("isUpdateFlow", true);
 // Session.set("isUpdateFlow", Router.current().params.id);
 
@@ -6,6 +7,10 @@ Template.signUp.helpers({
     'isOrganisation': function (event) {
         console.log("Org" + (Session.get("isOrg")));
         return (Session.get("isOrg"));
+    },
+    'isVolunteer': function (event) {
+        console.log("Volunteer" + (Session.get("isVolunteer")));
+        return (Session.get("isVolunteer"));
     },
     'cityList': function () {
         return (Session.get('cityList'));
@@ -30,6 +35,12 @@ Template.signUp.helpers({
     }
     ///menu - start
     ,
+    isNotEqual: function (v1, v2) {
+        if (v1 != v2) {
+            return true;
+        }
+        return false;
+    },
     menuOpen: function() {
         return Session.get(MENU_KEY) && 'menu-open';
     },
@@ -84,6 +95,7 @@ Template.signUp.onDestroyed(function () {
 
     delete Session.keys['userDetails'];
     delete Session.keys['isOrg'];
+    delete Session.keys['isVolunteer'];
     // delete Session.keys['searchUser'];
 });
 
@@ -107,6 +119,16 @@ Template.signUp.events({
         Session.set("isOrg",document.getElementById("organisation").checked);
         console.log(Session.get("isOrg"));
     },
+    'change #role': function (event) {
+        console.log(event.currentTarget.name);
+        if (event.currentTarget.value != "Seeker") {
+          Session.set("isVolunteer", true);
+        }
+        else {
+          Session.set("isVolunteer", false);
+        }
+        console.log(Session.get("isVolunteer"));
+    },
     'click #Cancel' : function(event) {
       Router.go("/");
     },
@@ -124,6 +146,7 @@ Template.signUp.events({
           userProfile.state = event.target.state.value;
           userProfile.pincode = event.target.pincode.value;
           userProfile.diffAbled=  document.getElementById("diffAbled").checked;
+          userProfile.term = $("input[name='term']:checked").val();
           userProfile.occupation = event.target.occupation.value;
           userProfile.role = event.target.role.value;
           userProfile.orgFlag=document.getElementById("organisation").checked;
@@ -135,7 +158,7 @@ Template.signUp.events({
               userProfile.organisationName = "";
           userProfile.comments = event.target.comments.value;
           Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.mobileNo": userProfile.mobileNo, "profile.sharePhone" : userProfile.shareNo, "profile.address.line1" : userProfile.addr1, "profile.address.line2" : userProfile.addr2, "profile.address.city" : userProfile.city,
-              "profile.address.state" : userProfile.state, "profile.pinCode." : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.organizationFlag" : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
+              "profile.address.state" : userProfile.state, "profile.pinCode." : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.term" : userProfile.term, "profile.organizationFlag" : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
           sAlert.success("Profile updated successfully!!");
         }
         else{
@@ -155,6 +178,8 @@ Template.signUp.events({
         userProfile.pincode = event.target.pincode.value;
         userProfile.gender = event.target.gender.value;
         userProfile.diffAbled=  document.getElementById("diffAbled").checked;
+        userProfile.term = $("input[name='term']:checked").val();
+        console.log($("input[name='term']:checked").val());
         userProfile.dob = event.target.dob.value;
         userProfile.occupation = event.target.occupation.value;
         userProfile.role = event.target.role.value;
