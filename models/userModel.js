@@ -89,6 +89,12 @@ UserProfile = new SimpleSchema({
         optional: true
 
     },
+    term: {
+        type: String,
+        allowedValues: ['Long-term', 'Short-term'],
+        optional: true
+
+    },
     rating:{
     type: Number,
         min : 0,

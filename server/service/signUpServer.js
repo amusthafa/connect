@@ -29,7 +29,8 @@ Meteor.methods({
         country: userProfile.country,
         pinCode: userProfile.pincode,
         primary: "Yes"},
-        "appRole": userProfile.role
+        "appRole": userProfile.role,
+        "term" : userProfile.term
       }
       // "roles": "User"
     });
