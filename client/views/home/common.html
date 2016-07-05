@@ -13,7 +13,7 @@
     {{#if isInRole 'Admin'}}
     <li class="treeview">
         <a href="{{pathFor route='adminAuth'}}">
-            <i class="fa fa-check"></i> <span>Authenticate Users</span>
+            <i class="fa fa-check"></i> <span>Create/Authenticate Volunteer</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
@@ -22,7 +22,7 @@
     {{#if isInRole 'Admin'}}
     <li class="treeview">
         <a href="{{pathFor route='manualConnect'}}">
-            <i class="fa fa-adjust"></i>  <span>Manual Connect</span>
+            <i class="fa fa-adjust"></i>  <span>Assign Request to Volunteer</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
@@ -30,14 +30,14 @@
 
     <li class="treeview">
         <a href="{{pathFor route='createRequest'}}">
-            <i class="fa fa-edit"></i><span>Create Request</span>
+            <i class="fa fa-edit"></i><span>Submit Request</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li>
         <a href="{{pathFor route='createOffer'}}">
-            <i class="fa fa-edit"></i> <span>Create Offer</span>
+            <i class="fa fa-edit"></i> <span>Submit Offer</span>
             <small class="label pull-right bg-red"></small>
         </a>
     </li>
@@ -73,14 +73,14 @@
 
     <li class="treeview">
         <a href="{{pathFor route='informationAdd'}}">
-            <i class="fa fa-plus"></i> <span>Add Information </span>
+            <i class="fa fa-plus"></i> <span> Share this</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
         <a href="{{pathFor route='informationView'}}">
-            <i class="fa fa-bullhorn"></i><span>Informations </span>
+            <i class="fa fa-bullhorn"></i><span>Latest News/Event/Update </span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
