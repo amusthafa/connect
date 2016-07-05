@@ -28,19 +28,23 @@
     </li>
     {{/if}}
 
+    {{#if isNotEqual getUserRole "Volunteer"}}
     <li class="treeview">
         <a href="{{pathFor route='createRequest'}}">
             <i class="fa fa-edit"></i><span>Submit Request</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
+    {{/if}}
 
+    {{#if isNotEqual getUserRole "Seeker"}}
     <li>
         <a href="{{pathFor route='createOffer'}}">
             <i class="fa fa-edit"></i> <span>Submit Offer</span>
             <small class="label pull-right bg-red"></small>
         </a>
     </li>
+    {{/if}}
 
     <li class="treeview">
         <a href="{{pathFor route='listOfRequests'}}">
@@ -101,27 +105,21 @@
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
-    {{/if}}
 
-    {{#if isInRole 'Admin'}}
     <li class="treeview">
         <a href="{{pathFor route='aid'}}">
             <i class="fa fa-plus"></i><span>Add Aid</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
-    {{/if}}
 
-    {{#if isInRole 'Admin'}}
     <li class="treeview">
         <a href="{{pathFor route='addTocontactUs'}}">
             <i class="fa  fa-phone"></i><span>Update - Contact Us</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
-    {{/if}}
-
-    {{#if isInRole 'Admin'}}
+    
     <li class="treeview">
         <a href="{{pathFor route='viewFeedbacks'}}">
             <i class="fa fa-paste"></i><span>View Feedbacks</span>
