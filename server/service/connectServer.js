@@ -72,7 +72,7 @@ Meteor.methods(
                                 //send mail
                                 console.log('user email -- ' + user.emails[0].address);
                                 Email.send({
-                                    to: user.emails[0].address,
+                                    to: [user.emails[0].address,'olaamigo.app@gmail.com'],
                                     from: 'olaamigo.app@gmail.com',
                                     subject: 'OlaAmigos Request for Connect',
                                     text: notificationData.description +"\n \n Thanks, \n Amigos"
@@ -112,7 +112,7 @@ Meteor.methods(
                             //send mail
                             console.log('user email -- ' + user.emails[0].address);
                             Email.send({
-                                to: user.emails[0].address,
+                                to: [user.emails[0].address,'olaamigo.app@gmail.com'],
                                 from: 'olaamigo.app@gmail.com',
                                 subject: 'OlaAmigos Connection for you',
                                 text: notificationData.description + "\n \n Thanks, \nAmigos"
@@ -143,7 +143,7 @@ Meteor.methods(
                                 //send mail
                                 console.log('user email -- ' + seeker.emails[0].address);
                                 Email.send({
-                                    to: seeker.emails[0].address,
+                                    to: [user.emails[0].address,'olaamigo.app@gmail.com'],
                                     from: 'olaamigo.app@gmail.com',
                                     subject: 'OlaAmigos Connection for you',
                                     text: notificationData.description + "\n \n Thanks,\n Amigos"
