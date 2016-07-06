@@ -1,9 +1,8 @@
 Meteor.methods({
     loginVerify: function (credentials) {
-    console.log('login in server');
+    console.log('login in server!!');
     Accounts.validateLoginAttempt(function(loginAttempt){
     // If email verification is required check if the user has a valid email address and don't allow the login if he has none
-    console.log("user" +loginAttempt.user);
      if (!loginAttempt.user.emails[0].verified) {
          throw new Meteor.Error(902, 'Your email address has to be verified first.');
      }
@@ -20,5 +19,13 @@ Meteor.methods({
   }
   });
     console.log("Done");
+  },
+  getUserRole: function(id){
+    check(id,String);
+    var userData = {};
+    var user = Meteor.users.findOne({_id : id});
+    userData.roles = user.profile.appRole;
+    console.log("user dataaa!", JSON.stringify(userData));
+    return userData;
   }
 });

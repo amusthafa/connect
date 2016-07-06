@@ -26,6 +26,10 @@ Template.login.events({
     'submit form': function (event) {
         event.preventDefault();
         console.log('Logging in');
+        Meteor.call("getUserRole", Meteor.userId(), function (error, result) {
+            console.log("getUserRole!!", result.roles);
+            Session.set('userRole', result.roles);
+        });
         var credentials = {};
         credentials.email = event.target.mailId.value;
         credentials.password = event.target.password.value;
@@ -49,7 +53,10 @@ Template.login.events({
                 Router.go("/");
             }
         });
-        });
+        }
+
+
+      );
 
 
         //
