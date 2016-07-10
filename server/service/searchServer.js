@@ -25,7 +25,7 @@ Meteor.methods({
        var aid = Aid.findOne({_id: req.aidId});
        requestData[i].aidName=aid.aidName;
        }
-    console.log('req:'+JSON.stringify(requestData));   
+    console.log('req:'+JSON.stringify(requestData));
    return requestData;
  },
  "SearchProfile" : function(id) {
@@ -36,5 +36,21 @@ Meteor.methods({
  profileData=[]
  profileData=Meteor.users.find({_id : id}).fetch();
  return  profileData;
- }
+ },
+ "SearchAid": function (aidName) {
+   check(aidName, String);
+   console.log("The aid name is :" + aidName);
+   data = []
+   data =Aid.find({'aidName':{"$regex": aidName, "$options": "i"}}).fetch();
+   details = data;
+   return data;
+},
+"DeleteAid": function (aidId) {
+  check(aidId, String)
+  console.log("The aid id is :" + aidId);
+  data = []
+  data = Aid.remove({'_id': aidId});
+  details = data;
+  return data;
+}
 });

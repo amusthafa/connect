@@ -1,3 +1,7 @@
+Template.aid.onDestroyed(function () {
+
+    delete Session.keys['SearchAidforDelete'];
+});
 Template.aid.helpers({
     'add': function () {
         return "add aid";
@@ -5,6 +9,10 @@ Template.aid.helpers({
 
     ///menu - start
     ,
+    'SearchAidforDelete': function () {
+        //console.log("Search" + JSON.stringify('Session.get('searchResult')') );
+        return (Session.get('SearchAidforDelete'));
+    },
     menuOpen: function() {
         return Session.get(MENU_KEY) && 'menu-open';
     },
@@ -24,12 +32,12 @@ Template.aid.helpers({
 
 Template.aid.events({
 
-    'submit form': function (event) {
+    'click .addAid': function (event) {
         event.preventDefault();
         //console.log('form submitted');
-        console.log('clicked add aid' + event.target.aidName.value);
+        console.log('clicked add aid');
         var aid = {};
-        aid.aid_name = event.target.aidName.value;
+        aid.aid_name = $('#aidName').val();
 
         Meteor.call("addAid", aid, function (error, result) {
           console.log("Admin Add Aid" , JSON.stringify(result));
@@ -47,7 +55,45 @@ Template.aid.events({
 
         });
         Router.go("/");
-    },'click .toggle': function() {
+    },
+    'click .searchAid' : function(event) {
+      event.preventDefault();
+      Session.set('getUserProfile',0);
+      Session.set('getUserRequest',0);
+      Session.set('searchResult',0);
+      aidName = $('#aidSearch').val();
+      console.log(aidName);
+      if(aidName) {
+          Meteor.call("SearchAid",aidName, function(error, result) {
+            console.log(JSON.stringify(result));
+              if (result == 0) {
+                  sAlert.error("No Result Found !")
+              }
+              else
+                  Session.set('SearchAidforDelete',result);
+          });
+      }
+      else
+          sAlert.error("Please enter a name to search");
+    },
+    'click .deleteAid': function(event) {
+            event.preventDefault();
+            console.log("clicked aid delete");
+            Meteor.call("DeleteAid", this._id, function (error, result) {
+              if (error) {
+                console.log("error body", (error));
+                sAlert.error(error.reason);
+                Router.go("/loadAid");
+              }
+              else{
+                console.log("success");
+                sAlert.success("Aid Deleted Successfully!");
+              }
+            });
+            Router.go("/");
+    },
+
+    'click .toggle': function() {
         Session.set(MENU_KEY, ! Session.get(MENU_KEY));
         console.log(Session.get(MENU_KEY));
     },
