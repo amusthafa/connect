@@ -82,6 +82,7 @@
                                             <!--<span class="label label-success">{{match.request.status}}</span>-->
                                         </div>
                                     </div>
+
                                     <div class="box-body">
                                         <dl class="dl-horizontal">
                                             <dt>Requestor</dt>
@@ -115,12 +116,16 @@
 
                                             <dd><span class="word-wrap">{{match.request.comment}} </span></dd>
                                         </dl>
+
                                         {{#if isEqual match.mode 'view'}}
                                         {{#if isEqual match.request.status 'Submitted'}}
                                         <input type="button" class="edit btn btn-primary" value="Edit" id="edit"/>
                                         <input type="button" class="delete btn btn-primary" value="Delete" id="delete"/>
                                         {{/if}}
                                         {{/if}}
+                                        <div>
+                                            <input type="button" class="ManualConnectRequest btn btn-primary" value="Request For Manual Connect"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +137,9 @@
 
                         {{#if isEqual match.request.status 'Submitted'}}
                         {{#if match.volunteerList}}
+
+
+
                         <section class="content-header">
                             <h1>
                                 Choose a Volunteer

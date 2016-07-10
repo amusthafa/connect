@@ -152,12 +152,9 @@ Template.manageRequest.events({
     },
     'click .connect' : function (event) {
         event.preventDefault();
-
         var connect={};
-
         connect.volunteerAidId = this._id;
         connect.volunteerId = this.volunteerId;
-
         connect.requestId = document.getElementById('requestId').value;
         connect.requestDate = document.getElementById('requestDate').value;
         connect.seekerId=Meteor.userId();
@@ -176,12 +173,30 @@ Template.manageRequest.events({
                 console.log("success");
                 sAlert.success("Connect request is initiated. Volunteer is notified!");
                 sAlert.success('', configOverwrite);
-
-            }
-
-
+              }
         });
         Router.go("/");
+    },
+    'click .ManualConnectRequest' : function (event){
+      event.preventDefault();
+      var user = Meteor.user();
+      var reqId = document.getElementById('requestId').value;
+      console.log("REQIDD!!!:" + reqId);
+
+      Meteor.call("sendMail",user, reqId, function(error, result){
+        if (error) {
+            console.log("error body", (error));
+            sAlert.error(error.reason);
+            // Router.go("/manageRequest");
+        }
+        else{
+            console.log("success");
+            sAlert.success("A Mail was sent to the Admin requesting for Manual Connect");
+            sAlert.success('', configOverwrite);
+          }
+      })
+      Router.go("/");
+
     }
 });
 
