@@ -126,8 +126,8 @@ Template.allRequests.events({
     },
     'submit form': function (event) {
         event.preventDefault();
-        alert('form submitted');
-        alert('clicked add aid' + event.target.requestDate.value);
+        // alert('form submitted');
+        // alert('clicked add aid' + event.target.requestDate.value);
         var request = {};
         request.rowCreated = event.target.requestDate.value;
 console.log('form submitted' + request.rowCreated);
@@ -215,4 +215,3 @@ console.log('form submitted' + request.rowCreated);
     }
 
 });
-

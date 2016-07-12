@@ -12,7 +12,7 @@
 
     {{#if isInRole 'Admin'}}
     <li class="treeview">
-        <a href="{{pathFor route='adminAuth'}}">
+        <a title = "Admin can validate user as either Authentic, Blacklisted or Warned" href="{{pathFor route='adminAuth'}}">
             <i class="fa fa-check"></i> <span>Create/Authenticate Volunteer</span>
             <span class="label label-primary pull-right"></span>
         </a>
@@ -21,7 +21,7 @@
 
     {{#if isInRole 'Admin'}}
     <li class="treeview">
-        <a href="{{pathFor route='manualConnect'}}">
+        <a title = "Admin can manually connect a request with a volunteer when the requestor cannot find a match" href="{{pathFor route='manualConnect'}}">
             <i class="fa fa-adjust"></i>  <span>Assign Request to Volunteer</span>
             <span class="label label-primary pull-right"></span>
         </a>
@@ -30,7 +30,7 @@
 
     {{#if isNotEqual getUserRole "Volunteer"}}
     <li class="treeview">
-        <a href="{{pathFor route='createRequest'}}">
+        <a title = "A request can be created for self or for someone else for any of the available Aids for a specific Date" href="{{pathFor route='createRequest'}}">
             <i class="fa fa-edit"></i><span>Submit Request</span>
             <span class="label label-primary pull-right"></span>
         </a>
@@ -39,7 +39,7 @@
 
     {{#if isNotEqual getUserRole "Seeker"}}
     <li>
-        <a href="{{pathFor route='createOffer'}}">
+        <a title = "A volunteer can create an offer for self or for someone else based on their availablility for any specific Aid" href="{{pathFor route='createOffer'}}">
             <i class="fa fa-edit"></i> <span>Submit Offer</span>
             <small class="label pull-right bg-red"></small>
         </a>
@@ -47,14 +47,14 @@
     {{/if}}
 
     <li class="treeview">
-        <a href="{{pathFor route='listOfRequests'}}">
+        <a title= "Displays Requests and Connections associated with a User" href="{{pathFor route='listOfRequests'}}">
             <i class="fa fa-adjust"></i><span>Connect </span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='notifications'}}">
+        <a title= "Actionable Notifications are sent to users to respond accordingly" href="{{pathFor route='notifications'}}">
             <i class="fa  fa-bell"></i><span>Notifications</span>
             <span class="label label-primary pull-right"></span>
         </a>
@@ -62,28 +62,28 @@
 
 
     <li class="treeview">
-        <a href="{{pathFor route='createProfile'}}">
+        <a title= "Create a new Profile which included Email verification for the registered mail ID" href="{{pathFor route='createProfile'}}">
             <i class="fa fa-edit"></i><span>Create Profile</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='SearchId'}}">
+        <a title = "Search based on First Name/ Last Name to view their Profile" href="{{pathFor route='SearchId'}}">
             <i class="fa fa-search"></i><span>Search People</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='informationAdd'}}">
+        <a title = "Users can Add Information about available Hospitals/Doctors, Individual Rights, Ailments etc" href="{{pathFor route='informationAdd'}}">
             <i class="fa fa-plus"></i> <span> Share this</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='informationView'}}">
+        <a title= "Gives validated Information about available Hospitals/Doctors, Individual Rights, Ailments etc" href="{{pathFor route='informationView'}}">
             <i class="fa fa-bullhorn"></i><span>Latest News/Event/Update </span>
             <span class="label label-primary pull-right"></span>
         </a>
@@ -93,35 +93,35 @@
     {{#if isInRole 'Admin'}}
 
     <li class="treeview">
-        <a href="{{pathFor route='allRequests'}}">
+        <a title= "Admin can view all the Requests for a Specified Date" href="{{pathFor route='allRequests'}}">
             <i class="fa  fa-bell"></i><span>Requests List</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='analytics'}}">
+        <a title = "Analytic data representation" href="{{pathFor route='analytics'}}">
             <i class="fa fa-bar-chart"></i>  <span>Analytics</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='aid'}}">
+        <a title= "Admin can Add Aids into the system" href="{{pathFor route='aid'}}">
             <i class="fa fa-plus"></i><span>Add Aid</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a href="{{pathFor route='addTocontactUs'}}">
-            <i class="fa  fa-phone"></i><span>Update - Contact Us</span>
+        <a title = "Admin can add contact details" href="{{pathFor route='addTocontactUs'}}">
+            <i class="fa fa-phone"></i><span>Contact Us Details Update</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
-    
+
     <li class="treeview">
-        <a href="{{pathFor route='viewFeedbacks'}}">
+        <a title = "Admin can view/act upon the User Feedbacks" href="{{pathFor route='viewFeedbacks'}}">
             <i class="fa fa-paste"></i><span>View Feedbacks</span>
             <span class="label label-primary pull-right"></span>
         </a>
