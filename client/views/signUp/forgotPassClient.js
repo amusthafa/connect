@@ -28,7 +28,7 @@ Template.forgotPass.events({
         } else {
           console.log('Email Sent. Check your mailbox.');
           message = 'Email Sent. Check your mailbox.';
-          sAlert.success("Email Sent. Check your mailbox.")
+          sAlert.success("Email Sent. Please check your mailbox.",{timeout: 5000,  position: 'top-right', effect: 'slide'})
           sAlert.success('', configOverwrite);
         }
       });

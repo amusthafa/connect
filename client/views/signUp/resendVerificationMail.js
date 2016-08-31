@@ -13,7 +13,7 @@ Template.resendVerificationMail.events({
               sAlert.error(err.reason);
             }
             else {
-              sAlert.success('Verification mail has been sent to the user. Please confirm to activate your account!');
+              sAlert.success('Verification mail has been sent to the user. Please confirm to activate your account!',{timeout: 8000,  position: 'top-right', effect: 'slide'});
             }
         });
         Router.go("/login");

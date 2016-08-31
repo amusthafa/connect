@@ -128,6 +128,8 @@ Template.adminAuth.events({
             }
             else {
                 console.log("success");
+                sAlert.success("Updated Successfully!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success('', configOverwrite);
                 var succMsg = "Successfully updated!";
             }
         });

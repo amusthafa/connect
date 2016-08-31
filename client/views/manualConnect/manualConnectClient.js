@@ -239,7 +239,7 @@ Template.manualConnect.events({
                       }
                       else{
                         console.log("success");
-                        sAlert.success("Manual Connection Successful");
+                        sAlert.success("Manual Connection Successful",{timeout: 5000,  position: 'top-right', effect: 'slide'});
                         sAlert.success('', configOverwrite);
                       }
     });

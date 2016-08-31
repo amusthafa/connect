@@ -112,7 +112,7 @@ Template.informationAdd.events({
         }
         else{
           console.log("success");
-            sAlert.success("Successfully added the Information")
+            sAlert.success("Information Added Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'})
 
 
       }

@@ -165,7 +165,7 @@ Template.createOffer.events({
             }
             else{
               console.log("success");
-              sAlert.success("Successfully created your offer.");
+              sAlert.success("Offer created Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
               sAlert.success('', configOverwrite);
             }
         });

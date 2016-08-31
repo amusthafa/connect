@@ -147,7 +147,7 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
           'click .addAdmin': function(event){
               console.log("inside add admin");
               Roles.addUsersToRoles( Session.get('userId'), ['Admin']);
-              sAlert.success("Added as Admin!!");
+              sAlert.success("Added as Admin!!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
               // Meteor.users.update({_id : Session.get('userId')}, {$set : {roles : "Admin"}});
           }
        });

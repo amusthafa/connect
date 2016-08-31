@@ -253,7 +253,7 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                    var succMsg="Successfully created your request.";
+                    var succMsg="Request created Successfully";
 
                     var req ={};
                     req._id= result;
@@ -265,13 +265,13 @@ Template.createRequest.events({
                             succMsg =succMsg+  "There are volunteer matches !! ";
                             Session.set("match",result);
                             Router.go('/manageRequest');
-                            sAlert.success(succMsg);
+                            sAlert.success(succMsg,{timeout: 5000,  position: 'top-right', effect: 'slide'});
                             sAlert.success('', configOverwrite);
                         }
                         else
                         {
                             succMsg =succMsg+  "We are looking out for volunteer matches !! ";
-                            sAlert.success(succMsg);
+                            sAlert.success(succMsg,{timeout: 5000,  position: 'top-right', effect: 'slide'});
                             sAlert.success('', configOverwrite);
 
                         }
@@ -305,7 +305,7 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                  sAlert.success("Successfully saved you request!");
+                  sAlert.success("Request saved Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
                   sAlert.success('', configOverwrite);
                 }
             });

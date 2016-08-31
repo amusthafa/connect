@@ -159,7 +159,7 @@ Template.signUp.events({
           userProfile.comments = event.target.comments.value;
           Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.mobileNo": userProfile.mobileNo, "profile.sharePhone" : userProfile.shareNo, "profile.address.line1" : userProfile.addr1, "profile.address.line2" : userProfile.addr2, "profile.address.city" : userProfile.city,
               "profile.address.state" : userProfile.state, "profile.pinCode." : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.term" : userProfile.term, "profile.organizationFlag" : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
-          sAlert.success("Profile updated successfully!!");
+          sAlert.success("Profile updated successfully!!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
         }
         else{
           console.log("Insert");
@@ -201,7 +201,7 @@ Template.signUp.events({
             }
             else {
                 console.log("success");
-                sAlert.success("Verification mail has been sent to the user. Please confirm to activate your account!");
+                sAlert.success("Verification mail has been sent to the user. Please confirm to activate your account!",{timeout: 8000,  position: 'top-right', effect: 'slide'});
                 // sAlert.success('', configOverwrite);
             }
         });

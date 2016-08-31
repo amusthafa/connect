@@ -50,6 +50,8 @@ Template.login.events({
           }
             else{
               console.log("success");
+              sAlert.success("Logged in Successfully!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+              sAlert.success('', configOverwrite);
                 Router.go("/");
             }
         });

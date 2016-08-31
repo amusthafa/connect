@@ -207,7 +207,7 @@ Template.listOfRequests.events({
         }
         else{
           console.log("success");
-          sAlert.success("Successfully deleted your request.");
+          sAlert.success("Request deleted Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
           Router.go("/");
         }
 
@@ -230,5 +230,3 @@ Template.registerHelper('subStringName', function(passedString) {
     var name  = passedString.substring(0,10); //same as truncate.
     return new Spacebars.SafeString(name)
 });
-
-
