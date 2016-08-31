@@ -80,7 +80,7 @@
 
                                       {{#if isOtherChecked}}
                                           <div class="form-group">
-                                              <label for="exampleInputEmail1">User Name</label>
+                                              <label for="exampleInputEmail1">User Name*</label>
                                               <input type="text" required="required" class="form-control"
                                                      id="requestorId" name="requestorId" placeholder="Enter Name"
                                                      value={{userId}}>
@@ -120,7 +120,7 @@
 
                                     {{#if isOtherChecked}}
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">User Name</label>
+                                            <label for="exampleInputEmail1">User Name*</label>
                                             <input type="text" required="required" class="form-control"
                                                    id="requestorId" name="requestorId" placeholder="Enter Name"
                                                    value={{userId}}>
@@ -149,7 +149,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Request Name</label>
+                                        <label>Request Name*</label>
                                         {{#if isEditFlow}}
                                         <input required id='requestName' class="form-control" type="text"
                                             value={{getRequest.request_name}} >
@@ -160,7 +160,7 @@
                                     </div>
 
                                     <div class="form-group">
-                              	        <label>Aid</label>
+                              	        <label>Aid*</label>
                               	        <select required id="aid" class="form-control">
                                           {{#if isEditFlow}}
                                             <option selected="selected">{{getRequest.aidName}}</option>
@@ -174,7 +174,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Request Date</label>
+                                        <label>Request Date*</label>
 
                                         <div class="input-group">
                                           {{#if isEditFlow}}

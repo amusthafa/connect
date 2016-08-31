@@ -49,7 +49,7 @@ Template.aid.events({
           }
           else{
             console.log("success");
-            sAlert.success("Aid Added Successfully!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+            sAlert.success("Aid Added Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
             sAlert.success('', configOverwrite);
           }
 
@@ -87,7 +87,7 @@ Template.aid.events({
               }
               else{
                 console.log("success");
-                sAlert.success("Aid Deleted Successfully!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success("Aid Deleted Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
               }
             });
             Router.go("/");

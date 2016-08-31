@@ -74,8 +74,8 @@ Meteor.methods(
                                 Email.send({
                                     to: [user.emails[0].address,'olaamigo.app@gmail.com'],
                                     from: 'olaamigo.app@gmail.com',
-                                    subject: 'OlaAmigos Request for Connect',
-                                    text: notificationData.description +"\n \n Thanks, \n Amigos"
+                                    subject: 'Drishti Connect - Request for Connect',
+                                    text: notificationData.description +"\n \n Thanks, \n Drishti Connect"
                                 });
                                 console.log('email sent');
 
@@ -97,7 +97,7 @@ Meteor.methods(
                         status: 'Unread',
                         userId: connect.volunteerId,
                         type: 'Accepted',
-                        description: 'A Connection is setup by Ola Amigos Admin for you.\n Please login to see the connection details.'
+                        description: 'A Connection is setup by Drishti Connect Admin for you.\n Please login to see the connection details.'
                     };
 
                     notiId = Notifications.insert(notificationData, function (error, result) {
@@ -114,8 +114,8 @@ Meteor.methods(
                             Email.send({
                                 to: [user.emails[0].address,'olaamigo.app@gmail.com'],
                                 from: 'olaamigo.app@gmail.com',
-                                subject: 'OlaAmigos Connection for you',
-                                text: notificationData.description + "\n \n Thanks, \nAmigos"
+                                subject: 'Drishti Connect for you',
+                                text: notificationData.description + "\n \n Thanks, \n Drishti Connect"
                             });
                             console.log('email sent');
 
@@ -145,8 +145,8 @@ Meteor.methods(
                                 Email.send({
                                     to: [user.emails[0].address,'olaamigo.app@gmail.com'],
                                     from: 'olaamigo.app@gmail.com',
-                                    subject: 'OlaAmigos Connection for you',
-                                    text: notificationData.description + "\n \n Thanks,\n Amigos"
+                                    subject: 'Drishti Connect for you',
+                                    text: notificationData.description + "\n \n Thanks,\n Drishti Connect"
                                 });
                                 console.log('email sent');
 

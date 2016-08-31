@@ -59,7 +59,7 @@ Meteor.methods({
         cc: user.emails[0].address,
         from: 'olaamigo.app@gmail.com',
         subject: user.profile.firstName + user.profile.lastName + ' Requesting for Manual Connect ',
-        text: user.profile.firstName + user.profile.lastName +" has requested Admin to perform a Manual Connect to Authentic Volunteer \n \n Thanks, \n Amigos"
+        text: user.profile.firstName + user.profile.lastName +" has requested Admin to perform a Manual Connect to Authentic Volunteer \n \n Thanks, \n Drishti Connect"
     });
     console.log('email sent');
   }

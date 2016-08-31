@@ -253,7 +253,7 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                    var succMsg="Request created Successfully";
+                    var succMsg="Request created Successfully. ";
 
                     var req ={};
                     req._id= result;

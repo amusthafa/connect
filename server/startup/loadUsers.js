@@ -13,7 +13,7 @@ Meteor.startup(function () {
       email: 'olaamigo.app@gmail.com',
       password: 'admin',
       profile : {
-        "firstName": 'OlaAmigos',
+        "firstName": 'Drishti Connect',
         "lastName": 'Admin',
         "birthday": '',
         "gender": 'Female',

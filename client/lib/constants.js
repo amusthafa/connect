@@ -5,6 +5,6 @@ if (Meteor.App) {
 }
 
 Meteor.App = {
-  NAME: 'Ola Amigos',
+  NAME: 'Drishti Connect',
   DESCRIPTION: 'Find a friend, Lend a hand'
 };

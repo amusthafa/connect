@@ -6,12 +6,12 @@ Meteor.startup(function () {
     process.env.MAIL_URL='smtp://olaamigo.app%40gmail.com:123456xyz@smtp.gmail.com:465/';
 
     Accounts.emailTemplates = {
-  from: "Ola Amigos  <olaamigo.app@gmail.com>",
+  from: "Drishti Connect <olaamigo.app@gmail.com>",
   siteName: Meteor.absoluteUrl().replace(/^https?:\/\//, '').replace(/\/$/, ''),
 
   resetPassword: {
     subject: function(user) {
-      return "To reset your password for Ola Amigos " ;
+      return "To reset your password for Drishti Connect" ;
     },
     text: function(user, url) {
       var greeting = (user.profile && user.profile.firstName) ?
@@ -23,12 +23,12 @@ return greeting + "\n"
               + url + "\n"
               + "\n"
               + "Thanks,\n"
-              +"Amigos";
+              +"Drishti Connect";
             }
           },
         verifyEmail: {
       subject: function(user) {
-        return "Confirm Your Email Address for Ola Amigos ";
+        return "Confirm Your Email Address for Drishti Connect ";
       },
        text : function(user, url) {
          var greeting = (user.profile && user.profile.firstName) ?
@@ -43,7 +43,7 @@ return greeting + "\n"
                      + url+ "\n"
                      +"\n"
                      + "Thanks,\n"
-                     +"Amigos";
+                     +"Drishti Connect";
 
     }
   }

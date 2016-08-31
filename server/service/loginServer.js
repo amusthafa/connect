@@ -1,5 +1,6 @@
 Meteor.methods({
     loginVerify: function (credentials) {
+    check(credentials,Object);
     console.log('login in server!!');
     Accounts.validateLoginAttempt(function(loginAttempt){
     // If email verification is required check if the user has a valid email address and don't allow the login if he has none

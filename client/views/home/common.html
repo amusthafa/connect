@@ -5,7 +5,7 @@
 
     <li class="treeview">
         <a href="/">
-            <span class="menu-header">OlaAmigos</span>
+            <span class="menu-header">Drishti Connect</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
@@ -62,28 +62,30 @@
 
 
     <li class="treeview">
-        <a title= "Create a new Profile which included Email verification for the registered mail ID" href="{{pathFor route='createProfile'}}">
-            <i class="fa fa-edit"></i><span>Create Profile</span>
+        <a title= "Create a new Profile for Others which included Email verification for the registered mail ID" href="{{pathFor route='createProfile'}}">
+            <i class="fa fa-edit"></i><span>Create Profile for Others</span>
+            <span class="label label-primary pull-right"></span>
+        </a>
+    </li>
+
+    {{#if isInRole 'Admin'}}
+        <li class="treeview">
+            <a title = "Search based on First Name/ Last Name to view their Profile" href="{{pathFor route='SearchId'}}">
+                <i class="fa fa-search"></i><span>Search People</span>
+                <span class="label label-primary pull-right"></span>
+            </a>
+        </li>
+    {{/if}}
+
+    <li class="treeview">
+        <a title = "Users can Add Information about available Govt. Circulars, Events, Education, Jobs and Others" href="{{pathFor route='informationAdd'}}">
+            <i class="fa fa-plus"></i> <span> Add Latest Updates</span>
             <span class="label label-primary pull-right"></span>
         </a>
     </li>
 
     <li class="treeview">
-        <a title = "Search based on First Name/ Last Name to view their Profile" href="{{pathFor route='SearchId'}}">
-            <i class="fa fa-search"></i><span>Search People</span>
-            <span class="label label-primary pull-right"></span>
-        </a>
-    </li>
-
-    <li class="treeview">
-        <a title = "Users can Add Information about available Hospitals/Doctors, Individual Rights, Ailments etc" href="{{pathFor route='informationAdd'}}">
-            <i class="fa fa-plus"></i> <span> Share this</span>
-            <span class="label label-primary pull-right"></span>
-        </a>
-    </li>
-
-    <li class="treeview">
-        <a title= "Gives validated Information about available Hospitals/Doctors, Individual Rights, Ailments etc" href="{{pathFor route='informationView'}}">
+        <a title= "Gives validated Information about available Govt. Circulars, Events, Education, Jobs and Others" href="{{pathFor route='informationView'}}">
             <i class="fa fa-bullhorn"></i><span>Latest News/Event/Update </span>
             <span class="label label-primary pull-right"></span>
         </a>

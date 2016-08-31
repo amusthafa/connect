@@ -195,8 +195,8 @@ SyncedCron.add({
                         throw new Meteor.Error("insert-failed", error);
                     }
                  else{   //send mail
-                    Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
-                        text: notificationData.description + " \n \n Thanks, \n Amigos"});
+                    Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'Drishti Connect - How was your experience',
+                        text: notificationData.description + " \n \n Thanks, \n Drishti Connect"});
                     console.log('email sent');
                 }
                 });
@@ -238,8 +238,8 @@ SyncedCron.add({
                         throw new Meteor.Error("insert-failed", error);
                     }
                     else{   //send mail
-                        Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'OlaAmigos How was your experience',
-                            text: notificationData.description + "\n \n Thanks, \n Amigos"});
+                        Email.send({to: 'aeisha.musthafa@gmail.com', from: 'olaamigo.app@gmail.com', subject: 'Drishti Connect - How was your experience',
+                            text: notificationData.description + "\n \n Thanks, \n Drishti Connect"});
                         console.log('email sent');
                     }
                 });
