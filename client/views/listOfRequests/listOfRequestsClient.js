@@ -207,7 +207,7 @@ Template.listOfRequests.events({
         }
         else{
           console.log("success");
-          sAlert.success("Request deleted Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+          sAlert.success("Request deleted Successfully", {beep: 'alerts/reqDeleted.mp3'});
           Router.go("/");
         }
 

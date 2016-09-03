@@ -98,7 +98,7 @@ Template.SearchId.events({
  Meteor.call("SearchRequest",this._id, function(error, result) {
    if (result == 0)
    {
-     sAlert.error("No Request found for this User");
+     sAlert.error("No Request found for this User",{beep: 'alerts/noResultsFound.mp3'});
    }
    else {
      Session.set('getUserRequest',result);
@@ -134,7 +134,7 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
         if(EnteredName) {
         Meteor.call("SearchUser",EnteredName, function(error, result) {
                            if (result == 0) {
-                 sAlert.error("No Result Found !")
+                 sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'})
                }
                else
                    Session.set('searchResult',result);
@@ -147,7 +147,7 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
           'click .addAdmin': function(event){
               console.log("inside add admin");
               Roles.addUsersToRoles( Session.get('userId'), ['Admin']);
-              sAlert.success("Added as Admin!!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+              sAlert.success("Added as Admin!!",{beep: 'alerts/adminAdded.mp3'});
               // Meteor.users.update({_id : Session.get('userId')}, {$set : {roles : "Admin"}});
           }
        });

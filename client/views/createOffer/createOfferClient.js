@@ -165,7 +165,7 @@ Template.createOffer.events({
             }
             else{
               console.log("success");
-              sAlert.success("Offer created Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+              sAlert.success("Offer created Successfully",{beep: 'alerts/offerCreated.mp3'});
               sAlert.success('', configOverwrite);
             }
         });

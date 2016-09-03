@@ -116,7 +116,7 @@ Template.manualConnect.events({
             Meteor.call("SearchUser",EnteredName, function(error, result) {
     //            alert('result- '+JSON.stringify(result));
                 if (result == 0) {
-                    sAlert.error("No Result Found !")
+                    sAlert.error("No Result Found !", ,{beep: 'alerts/noResultsFound.mp3'})
                 }
                 else
                     Session.set('SearchUserforManual',result);
@@ -144,7 +144,7 @@ Template.manualConnect.events({
         Meteor.call("SearchUser",EnteredName, function(error, result) {
             //            alert('result- '+JSON.stringify(result));
             if (result == 0) {
-                sAlert.error("No Result Found !")
+                sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'})
             }
             else
                 Session.set('searchVolunteerforManual',result);
@@ -167,7 +167,7 @@ Template.manualConnect.events({
       // alert (JSON.stringify(this));
             Meteor.call("SearchRequest", this._id, function (error, result) {
                 if (result == 0) {
-                    sAlert.error("No Request found for this User");
+                    sAlert.error("No Request found for this User",{beep: 'alerts/noResultsFound.mp3'});
                 }
                 else {
                   //  alert('result' +result);
@@ -239,7 +239,7 @@ Template.manualConnect.events({
                       }
                       else{
                         console.log("success");
-                        sAlert.success("Manual Connection Successful",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                        sAlert.success("Manual Connection Successful",{beep: 'alerts/manualSuccess.mp3'});
                         sAlert.success('', configOverwrite);
                       }
     });

@@ -262,16 +262,16 @@ Template.createRequest.events({
                         console.log("on rendered result: ------------------------------" + JSON.stringify(result));
 
                         if (result && result.volunteerList && result.volunteerList.length >0){
-                            succMsg =succMsg+  "There are volunteer matches !! ";
+                            succMsg =succMsg+  "There are volunteer matches for you!! ";
                             Session.set("match",result);
                             Router.go('/manageRequest');
-                            sAlert.success(succMsg,{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                            sAlert.success(succMsg, {timeout : 7000, beep: 'alerts/reqCreatedMatchFound.mp3'});
                             sAlert.success('', configOverwrite);
                         }
                         else
                         {
                             succMsg =succMsg+  "We are looking out for volunteer matches !! ";
-                            sAlert.success(succMsg,{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                            sAlert.success(succMsg, {timeout : 7000, beep: 'alerts/reqCreatedLookingForMatches.mp3'});
                             sAlert.success('', configOverwrite);
 
                         }
@@ -305,7 +305,7 @@ Template.createRequest.events({
                 }
                 else{
                   console.log("success");
-                  sAlert.success("Request saved Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                  sAlert.success("Request saved Successfully",{beep: 'alerts/reqSaved.mp3'});
                   sAlert.success('', configOverwrite);
                 }
             });

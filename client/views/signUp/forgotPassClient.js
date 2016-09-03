@@ -19,7 +19,7 @@ Template.forgotPass.events({
           if (err.message === 'User not found [403]') {
             console.log('This email does not exist.');
             message = 'This email does not exist.';
-            sAlert.error("This email does not exist.");
+            sAlert.error("This email does not exist.",{beep: 'alerts/noEmailExists.mp3'});
           } else {
             console.log('We are sorry but something went wrong.');
             message = 'We are sorry but something went wrong.';
@@ -28,7 +28,7 @@ Template.forgotPass.events({
         } else {
           console.log('Email Sent. Check your mailbox.');
           message = 'Email Sent. Check your mailbox.';
-          sAlert.success("Email has been sent for password recovery. Please check your mailbox.",{timeout: 5000,  position: 'top-right', effect: 'slide'})
+          sAlert.success("A mail has been sent for password recovery. Please check your mailbox",{beep: 'alerts/passwordRecovery.mp3'})
           sAlert.success('', configOverwrite);
         }
       });

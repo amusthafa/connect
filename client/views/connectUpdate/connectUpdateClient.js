@@ -124,7 +124,7 @@ Template.connectUpdate.events({
           }
           else{
             console.log("success");
-            sAlert.success("Connection Canceled !",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+            sAlert.success("Connection Canceled",{beep: 'alerts/cancelConnection.mp3'});
             sAlert.success('', configOverwrite);
           }
         });
@@ -176,7 +176,7 @@ Template.connectUpdate.events({
           }
           else{
             console.log("success");
-            sAlert.success("Thanks for rating!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+            sAlert.success("Thank you for rating!",{beep: 'alerts/thanksForRating.mp3'});
             sAlert.success('', configOverwrite);
           }
 

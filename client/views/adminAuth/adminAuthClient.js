@@ -128,7 +128,7 @@ Template.adminAuth.events({
             }
             else {
                 console.log("success");
-                sAlert.success("Updated Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success("Updated Successfully", {beep: 'alerts/updatedSuccessfully.mp3'});
                 sAlert.success('', configOverwrite);
                 var succMsg = "Updated Successfully";
             }

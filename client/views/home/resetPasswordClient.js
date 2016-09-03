@@ -25,7 +25,7 @@ Template.resetPassword.events({
             } else {
                 // message = 'You reset your password!'
                 // alert("success");
-                sAlert.success("Password is reset successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success("Password is reset successfully",{beep: 'alerts/passwordResetSuccess.mp3'});
                 // sAlert.success('', configOverwrite);
                 Router.go("/");
             }

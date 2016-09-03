@@ -49,7 +49,7 @@ Template.aid.events({
           }
           else{
             console.log("success");
-            sAlert.success("Aid Added Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+            sAlert.success("Aid Added Successfully", {beep: 'alerts/aidAdded.mp3'});
             sAlert.success('', configOverwrite);
           }
 
@@ -67,14 +67,14 @@ Template.aid.events({
           Meteor.call("SearchAid",aidName, function(error, result) {
             console.log(JSON.stringify(result));
               if (result == 0) {
-                  sAlert.error("No Result Found !")
+                  sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'} )
               }
               else
                   Session.set('SearchAidforDelete',result);
           });
       }
       else
-          sAlert.error("Please enter a name to search");
+          sAlert.error("Please enter a name to search", {beep: 'alerts/searchError.mp3'});
     },
     'click .deleteAid': function(event) {
             event.preventDefault();
@@ -87,7 +87,7 @@ Template.aid.events({
               }
               else{
                 console.log("success");
-                sAlert.success("Aid Deleted Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success("Aid Deleted Successfully",{beep: 'alerts/aidDeleted.mp3'});
               }
             });
             Router.go("/");

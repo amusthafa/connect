@@ -140,7 +140,7 @@ Template.manageRequest.events({
             }
             else{
                 console.log("success");
-                sAlert.success("Request deleted Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success("Request deleted Successfully", {beep: 'alerts/reqDeleted.mp3'});
                 sAlert.success('', configOverwrite);
 
             }
@@ -171,7 +171,7 @@ Template.manageRequest.events({
             }
             else{
                 console.log("success");
-                sAlert.success("Connect request is initiated. Volunteer is notified!",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+                sAlert.success("Connect request is initiated and Volunteer has been notified!",{beep: 'alerts/connectInitiated.mp3'});
                 sAlert.success('', configOverwrite);
               }
         });
@@ -191,7 +191,7 @@ Template.manageRequest.events({
         }
         else{
             console.log("success");
-            sAlert.success("A Mail was sent to the Admin requesting for Manual Connect",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+            sAlert.success("A Mail has been sent to the Admin requesting for Manual Connect",{beep: 'alerts/mailSent.mp3'});
             sAlert.success('', configOverwrite);
           }
       })

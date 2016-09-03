@@ -39,18 +39,18 @@ Template.login.events({
             if (error.error === 902) {
               console.log(error);
               console.log("Email not verified");
-              sAlert.error("Email id is not verified. Kindly check your mail and verify the account");
+              sAlert.error("Email id is not verified. Kindly check your mail and verify the account",{beep: 'alerts/emailNotVerified.mp3'});
               Router.go("/login");
             }
             else if (error) {
               console.log("error body", (error));
-              sAlert.error("Email id or password is wrong");
+              sAlert.error("Please check your login Credentials",{beep: 'alerts/wrongCredentials.mp3'});
               Router.go("/login");
             }
           }
             else{
               console.log("success");
-              sAlert.success("Logged in Successfully",{timeout: 5000,  position: 'top-right', effect: 'slide'});
+              sAlert.success("Logged in Successfully", {beep: 'alerts/loginSuccess.mp3'});
               Router.go("/");
             }
         });
