@@ -197,8 +197,8 @@ Template.signUp.events({
 
             if (error) {
                 console.log("error body", (error));
-                sAlert.error(error.reason);
-                Router.go("/SignUp/0");
+                sAlert.error(error.reason,{beep: 'alerts/mailExists.mp3' });
+                // Router.go("/SignUp/0");
             }
             else {
                 console.log("success");

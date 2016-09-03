@@ -50,11 +50,14 @@ Meteor.startup(
         sAlert.config({
         effect: '',
         position: 'top',
-        timeout: 5000,
+        timeout: 4000,
         html: false,
         onRouteClose: false,
         stack: true,
         offset: 0,
-        beep: 'alerts/success.mp3'
+        beep: {
+          success : 'alerts/success.mp3',
+          error : 'alerts/error.mp3'
+        }
         });
     });
