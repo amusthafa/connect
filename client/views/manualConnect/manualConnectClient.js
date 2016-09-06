@@ -116,7 +116,7 @@ Template.manualConnect.events({
             Meteor.call("SearchUser",EnteredName, function(error, result) {
     //            alert('result- '+JSON.stringify(result));
                 if (result == 0) {
-                    sAlert.error("No Result Found !", ,{beep: 'alerts/noResultsFound.mp3'})
+                    sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'})
                 }
                 else
                     Session.set('SearchUserforManual',result);
