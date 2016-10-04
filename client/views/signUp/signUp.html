@@ -32,11 +32,16 @@
                     <div class="col-md-6">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                {{#if isUpdateFlow}}
-                                    <h3 class="box-title">Update Profile</h3>
-                                {{else}}
-                                    <h3 class="box-title">Sign Up</h3>
-                                {{/if}}
+
+                                  {{#if isUpdateFlow}}
+                                      <h3 class="box-title">Update Profile</h3>
+                                  {{else}}
+                                    {{#if currentUser}}
+                                        <h3 class="box-title">Create Profile for Others</h3>
+                                    {{else}}
+                                        <h3 class="box-title">Sign Up</h3>
+                                    {{/if}}
+                                  {{/if}}
                             </div>
                             <form class="signUp" role="form" action="" method="post" id="SignUpform">
                                 <div class="box-body">
