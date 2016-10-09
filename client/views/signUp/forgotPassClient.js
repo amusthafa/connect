@@ -28,7 +28,7 @@ Template.forgotPass.events({
         } else {
           console.log('Email Sent. Check your mailbox.');
           message = 'Email Sent. Check your mailbox.';
-          sAlert.success("A mail has been sent for password recovery. Please check your mailbox",{beep: 'alerts/passwordRecovery.mp3'})
+          sAlert.success("A mail has been sent for password recovery. Please check your mailbox",{timeout : 6000,beep: 'alerts/passwordRecovery.mp3'})
           sAlert.success('', configOverwrite);
         }
       });

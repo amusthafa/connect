@@ -167,7 +167,7 @@ Template.manualConnect.events({
       // alert (JSON.stringify(this));
             Meteor.call("SearchRequest", this._id, function (error, result) {
                 if (result == 0) {
-                    sAlert.error("No Request found for this User",{beep: 'alerts/noResultsFound.mp3'});
+                    sAlert.error("No Request found for this User",{beep: 'alerts/noRequests.mp3'});
                 }
                 else {
                   //  alert('result' +result);

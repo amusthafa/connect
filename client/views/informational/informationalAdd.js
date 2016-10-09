@@ -98,10 +98,10 @@ Template.informationAdd.events({
       info.pincode = event.target.s_pincode.value;
       info.contactPhone=event.target.infoPhone.value;
       info.addedById=Meteor.userId();
-      if (Roles.userIsInRole(Meteor.userId(),'Admin') || document.getElementById("isVerified").checked)
+      if (Roles.userIsInRole(Meteor.userId(),'Admin'))
       info.verificationStatus="Yes";
       else {
-        info.verificationStatus='No';
+        info.verificationStatus="No";
       }
       console.log("information"+JSON.stringify(info));
       Meteor.call("AddInfo",info,function (error, result){

@@ -50,7 +50,7 @@ Template.login.events({
           }
             else{
               console.log("success");
-              sAlert.success("Logged in Successfully", {beep: 'alerts/loginSuccess.mp3'});
+              sAlert.success("Logged in Successfully", {timeout:3000 , beep: 'alerts/loginSuccess.mp3'});
               Router.go("/");
             }
         });
