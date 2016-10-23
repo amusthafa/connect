@@ -40,6 +40,7 @@ function requestCreatedChart() {
 }
 
 Template.analyticsOfferCreatedPerMonth.onRendered(function () {
+  Session.set(MENU_KEY, false);
 
     Meteor.call('getAnalyticsByOffertPerMonth', function (err, result) {
         if (err) {
@@ -53,4 +54,3 @@ Template.analyticsOfferCreatedPerMonth.onRendered(function () {
         }
     });
 })
-

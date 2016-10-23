@@ -71,7 +71,7 @@ connected: function() {
 });
 
 var MENU_KEY = 'menuOpen';
-Session.setDefault(MENU_KEY, true);
+Session.setDefault(MENU_KEY, false);
 
 var USER_MENU_KEY = 'userMenuOpen';
 Session.setDefault(USER_MENU_KEY, false);
@@ -92,8 +92,9 @@ Meteor.startup(function () {
 
 Template.createRequest.rendered = function() {
     // init fastclick
+    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
-};
+    };
 
 
 
@@ -107,6 +108,7 @@ Template.createRequest.onDestroyed(function () {
 
 Template.createRequest.onRendered(function () {
     // Session.get('request');
+    Session.set(MENU_KEY, false);
     var requestId = Session.get('requestId');
     console.log("requestId :!!", requestId);
     if(typeof requestId !== "undefined" ){

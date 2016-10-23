@@ -40,6 +40,7 @@ function aidChart() {
 }
 
 Template.analyticsAidRequestedFor.onRendered(function () {
+  Session.set(MENU_KEY, false);
     Meteor.call('getAnalyticsForAidRequested', function (err, result) {
         if (err) {
             console.log("Errors !!" + error + "  Result - " + result);

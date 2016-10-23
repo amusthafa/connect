@@ -55,6 +55,7 @@ function offerCreatedChart() {
 
 
 Template.analyticsOfferCreated.onRendered(function () {
+  Session.set(MENU_KEY, false);
     Meteor.call('getAnalyticsByOfferCreatedDate', function (err, result) {
 
         if (err) {

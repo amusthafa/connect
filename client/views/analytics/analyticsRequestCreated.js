@@ -30,6 +30,7 @@ function requestCreatedChart() {
 }
 
 Template.analyticsRequestCreated.onRendered(function () {
+  Session.set(MENU_KEY, false);
 
     Meteor.call('getAnalyticsByRequestCreatedDate', function (err, result) {
 
@@ -44,4 +45,3 @@ Template.analyticsRequestCreated.onRendered(function () {
 
 
 })
-

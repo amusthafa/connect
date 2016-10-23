@@ -78,6 +78,7 @@ Meteor.startup(function () {
 
 Template.home.rendered = function() {
     // init fastclick
+    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 

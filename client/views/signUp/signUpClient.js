@@ -60,7 +60,7 @@ Template.signUp.helpers({
 
 
 var MENU_KEY = 'menuOpen';
-Session.setDefault(MENU_KEY, true);
+Session.setDefault(MENU_KEY, false);
 
 var USER_MENU_KEY = 'userMenuOpen';
 Session.setDefault(USER_MENU_KEY, false);
@@ -88,6 +88,7 @@ Template.signUp.onRendered(function () {
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         console.log("onrender" + JSON.stringify(result));
         Session.set("userDetails", result);
+        Session.setDefault(MENU_KEY, false);
     });
 });
 

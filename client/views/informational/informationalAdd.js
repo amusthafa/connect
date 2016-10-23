@@ -58,6 +58,7 @@ Template.informationAdd.onDestroyed(function () {
 });
 Template.informationAdd.rendered = function() {
     // init fastclick
+    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
