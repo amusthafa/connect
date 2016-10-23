@@ -74,7 +74,7 @@ Meteor.startup(function () {
 
 });
 
-Template.createRequest.rendered = function() {
+Template.createOffer.rendered = function() {
     // init fastclick
     Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
@@ -177,6 +177,7 @@ Template.createOffer.events({
 });
 
 Template.createOffer.onRendered(function () {
+  Session.set(MENU_KEY, false);
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         Session.set("userDetails", result);
     });

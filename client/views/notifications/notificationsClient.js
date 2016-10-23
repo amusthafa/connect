@@ -59,7 +59,6 @@ Meteor.startup(function () {
 
 Template.createRequest.rendered = function () {
     // init fastclick
-    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
@@ -70,6 +69,7 @@ Template.registerHelper('formatDateWithTime', function (date) {
 });
 
 Template.notifications.onRendered(function () {
+  Session.set(MENU_KEY, false);
     Meteor.call('getNotifications', function (err, result) {
         if (err) {
             //   alert("error" + error);

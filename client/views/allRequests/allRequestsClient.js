@@ -75,6 +75,7 @@ Template.registerHelper('formatDateWithTime', function (date) {
 });
 
 Template.allRequests.onRendered(function () {
+  Session.set(MENU_KEY, false);
     Meteor.call('getAllRequests', function (err, result) {
         if (err) {
             //   alert("error" + error);

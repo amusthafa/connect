@@ -87,7 +87,6 @@ Meteor.startup(function () {
 
 Template.resetPassword.rendered = function() {
     // init fastclick
-    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
@@ -101,6 +100,7 @@ Template.manageRequest.helpers({getRequest : function() {
 });
 
 Template.manageRequest.onRendered(function() {
+  Session.set(MENU_KEY, false);
     Session.get('match');
 });
 

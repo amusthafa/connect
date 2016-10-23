@@ -65,6 +65,7 @@ Template.createRequest.rendered = function() {
 
 
 Template.listOfRequests.onRendered(function() {
+  Session.set(MENU_KEY, false);
   // if ( _.isEmpty(Session.get('req')) ) {
     var creatorId = Meteor.user()._id ;
    // var creatorId = this.userId ;

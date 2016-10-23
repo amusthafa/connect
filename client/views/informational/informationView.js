@@ -45,7 +45,7 @@ isEqual: function(v1, v2) {
 
 
 var MENU_KEY = 'menuOpen';
-Session.setDefault(MENU_KEY, true);
+Session.setDefault(MENU_KEY,false);
 
 var USER_MENU_KEY = 'userMenuOpen';
 Session.setDefault(USER_MENU_KEY, false);
@@ -63,11 +63,11 @@ Meteor.startup(function () {
     });
 });
 
-Template.home.rendered = function() {
+Template.informationView.rendered = function() {
     // init fastclick
     Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
-};
+    };
 Template.informationView.events({
     'click .toggle': function() {
         Session.set(MENU_KEY, ! Session.get(MENU_KEY));

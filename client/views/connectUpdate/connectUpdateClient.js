@@ -61,6 +61,7 @@ Template.connectUpdate.rendered = function() {
 Template.connectUpdate.onRendered(function() {
     //alert('oonrednder');
     //alert($('.rateit'));
+      Session.set(MENU_KEY, false);
     $('.rateit').rateit();
     $(".rateit").on('rated', function (event, value) {
         console.log('Rating:' + value)

@@ -52,21 +52,25 @@ Meteor.startup(function () {
 
 Template.contactUs.rendered = function() {
     // init fastclick
+      Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
 Template.feedback.rendered = function() {
     // init fastclick
+      Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
 Template.viewFeedbacks.rendered = function() {
     // init fastclick
+      Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
 Template.addTocontactUs.rendered = function() {
     // init fastclick
+      Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 

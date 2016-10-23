@@ -81,14 +81,15 @@ Meteor.startup(function () {
 
 Template.signUp.rendered = function() {
     // init fastclick
+    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
 };
 
 Template.signUp.onRendered(function () {
+  Session.setDefault(MENU_KEY, false);
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         console.log("onrender" + JSON.stringify(result));
         Session.set("userDetails", result);
-        Session.setDefault(MENU_KEY, false);
     });
 });
 
