@@ -59,14 +59,16 @@
                                     <tbody>
                                     <tr>
                                         <th>Request </th>
-                                        <th>Requested by</th>
-                                        <th>Created on </th>
+                                        <th>Required On </th>
+                                        <th>Requestor</th>
+                                        <th>Created on</th>
                                         <th>Status</th>
                                     </tr>
 
                                     {{#each requestList}}
                                         <tr>
-                                            <td>{{request_name}} - {{aidName}} on {{formatDateWithTime requiredBy}}</td>
+                                            <td>{{request_name}} - {{aidName}} </td>
+                                            <td>{{formatDateWithTime requiredBy}} </td>
                                             <td>{{requestorName}}, {{number}}</td>
                                             <td>{{formatDateWithTime rowCreated}}</td>
                                             <td>{{status}}</td>
