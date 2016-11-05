@@ -10,20 +10,8 @@ Template.allRequests.helpers({
         return (Session.get('requestList'));
     },
 
-    getCount: function () {
-        var req = Session.get('count');
-        console.log("Count" + JSON.stringify(Session.get('count')));
-        return (Session.get('count'));
-    },
-
-    isEqual: function (v1, v2) {
-        if (v1 === v2) {
-            return true;
-        }
-        return false;
-    }
     ///menu - start
-    ,
+    
     menuOpen: function () {
         return Session.get(MENU_KEY) && 'menu-open';
     },
@@ -62,44 +50,13 @@ Meteor.startup(function () {
 
 });
 
-Template.createRequest.rendered = function () {
-      // init fastclick
-      Session.set(MENU_KEY, false);
-    FastClick.attach(document.body);
-};
-
-
-Template.registerHelper('formatDateWithTime', function (date) {
-    console.log("format date:!!!!:", moment(date).format('MMMM DD, YYYY'));
-    return moment(date).format('MMMM DD, YYYY');
+Template.allRequests.onDestroyed(function () {
+    delete Session.keys['requestList'];
 });
 
-Template.allRequests.onRendered(function () {
-  Session.set(MENU_KEY, false);
-    Meteor.call('getAllRequests', function (err, result) {
-        if (err) {
-            //   alert("error" + error);
-        } else {
- //alert("result - " + result)
-            /*var res = [];
-            var count = [];
-            for (var i in result) {
-                not = result[i];
-                for (var x in not.notification) {
-                    resfinal = not.notification[x];
-                    res.push(resfinal);
-                }
-
-                for (var y in not.count) {
-                    countFinal = not.count[y];
-                    console.log("Count" + countFinal);
-                    count.push(countFinal);
-                }
-            }*/
-            Session.set('requestList', result);
-            //Session.set('count', count);
-        }
-    });
+Template.registerHelper('formatDateWithTime', function (date) {
+    console.log("format date:", moment(date).format('MMMM DD, YYYY'));
+    return moment(date).format('MMMM DD, YYYY');
 });
 
 Template.allRequests.events({
@@ -131,11 +88,11 @@ Template.allRequests.events({
         // alert('form submitted');
         // alert('clicked add aid' + event.target.requestDate.value);
         var request = {};
-        request.rowCreated = event.target.requestDate.value;
-console.log('form submitted' + request.rowCreated);
+        request.requiredBy = event.target.requestDate.value;
+        console.log('form submitted' + request.requiredBy);
         Meteor.call("getAllRequests", request, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
-
+            Session.set('requestList', result);
       //      Router.go("/");
         });
 
