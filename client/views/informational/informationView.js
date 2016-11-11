@@ -65,7 +65,6 @@ Meteor.startup(function () {
 
 Template.informationView.rendered = function() {
     // init fastclick
-    Session.set(MENU_KEY, false);
     FastClick.attach(document.body);
     };
 Template.informationView.events({

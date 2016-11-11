@@ -100,7 +100,6 @@ Template.manageRequest.helpers({getRequest : function() {
 });
 
 Template.manageRequest.onRendered(function() {
-  Session.set(MENU_KEY, false);
     Session.get('match');
 });
 

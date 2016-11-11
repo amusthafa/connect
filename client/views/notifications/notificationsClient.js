@@ -69,8 +69,7 @@ Template.registerHelper('formatDateWithTime', function (date) {
 });
 
 Template.notifications.onRendered(function () {
-  Session.set(MENU_KEY, false);
-    Meteor.call('getNotifications', function (err, result) {
+  Meteor.call('getNotifications', function (err, result) {
         if (err) {
             //   alert("error" + error);
         } else {

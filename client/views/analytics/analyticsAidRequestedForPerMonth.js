@@ -62,7 +62,6 @@ function aidChart() {
 }
 
 Template.analyticsRequestPerRegion.onRendered(function () {
-  Session.set(MENU_KEY, false);
     Meteor.call('getAnalyticsByAidPerRegion', function (err, result) {
         if (err) {
             console.log("Errors !!" + error + "  Result - " + result);

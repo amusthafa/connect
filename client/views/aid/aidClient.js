@@ -126,7 +126,6 @@ Meteor.startup(function () {
 });
 
 Template.aid.rendered = function() {
-  Session.set(MENU_KEY, false);
     // init fastclick
     FastClick.attach(document.body);
 };
