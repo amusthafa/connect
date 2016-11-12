@@ -26,23 +26,32 @@
 
                     <div class="content-scrollable">
 
-                        <div class="container-fluid ">
-
+                <div class="container-fluid ">
                  <div class="row">
-                     <div class="box-header">
-                         <h3 class="box-title">Search</h3>
-                     </div>
-                   <div class="col-md-6">
+                     <div class="col-md-6">
 
-                     <form method="post" id="Searchbar">
-                       <div class="box box-primary">
-                         <div class ="box-body">
-                           <div class="form-inline" >
-                            <span class="fa fa-search"> <input type="text" placeholder="Search by Username" class="form-control" id="Ename" name="name">
-                               <button type="submit" class="btn btn-primary">SEARCH</button> </span>
-                                 </div>
-                               </div>
+                         <div class="box box-primary">
+                             <div class="box-header with-border">
+                                 <h3 class="box-title">Search</h3>
                              </div>
+                          <form method="post" id="Searchbar">
+
+
+
+
+                           <div class="form-inline" >
+                                      <select required id="searchBy" class="form-control">
+                                          <option value="0" disabled selected>Please Select</option>
+
+                                          <option value="name">Name </option>
+                                          <option value="city">City </option>
+
+                                      </select>
+                                <input type="text" class="form-control" id="Ename" name="name">
+                               <button type="submit" class="btn btn-primary">SEARCH</button>
+                            </div>
+
+
 
 <br>
 {{#if searchuser}}
@@ -157,7 +166,7 @@
 </div>
                 </div>
             </div>
-
+        </div>
         </body>
 
   </template>

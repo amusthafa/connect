@@ -4,11 +4,25 @@ Meteor.methods({
      //Check is made for name
      check(name, String);
      console.log("The name is :" + name);
-     count_value =Meteor.users.find({$or:[{'profile.firstName':{"$regex": "^" + name + "\\b", "$options": "i"}},{'profile.lastName': {"$regex": "^" + name + "\\b", "$options": "i"}}]}).count();
-     console.log(count_value);
        data = []
        data =Meteor.users.find({$or:[{'profile.firstName':{"$regex": "^" + name + "\\b", "$options": "i"}},{'profile.lastName': {"$regex": "^" + name + "\\b", "$options": "i"}}]}).fetch();
-       details = data;
+
+       return data;
+
+ },
+   "SearchUserCity": function (search) {
+ check(search, Object);
+
+     name=search.name
+     city=search.city
+     type=search.type
+
+     console.log("The name is :" + name + ' - city ' +city +' - type ' + type);
+       data = []
+        if (type == 'name')
+            data = Meteor.users.find({$or:[{'profile.firstName':{"$regex": "^" + name + "\\b", "$options": "i"}},{'profile.lastName': {"$regex": "^" + name + "\\b", "$options": "i"}}]}).fetch();
+        else if (type == 'city')
+        data =Meteor.users.find({$or:[{'profile.address.city':{"$regex": "^" + city + "\\b", "$options": "i"}},{'profile.address.city': {"$regex": "^" + city + "\\b", "$options": "i"}}]}).fetch();
        return data;
 
  },

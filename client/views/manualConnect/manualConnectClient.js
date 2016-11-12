@@ -110,11 +110,18 @@ Template.manualConnect.events({
         Session.set('getUserProfile',0);
         Session.set('getUserRequest',0);
         Session.set('searchResult',0);
-        EnteredName = $('#Ename').val();
-     //   alert('EnteredName- '+JSON.stringify(EnteredName));
-        if(EnteredName) {
-            Meteor.call("SearchUser",EnteredName, function(error, result) {
-    //            alert('result- '+JSON.stringify(result));
+        EnteredName =  $('#Ename').val();
+                    searchBy =  $('#searchBy').val();
+                     var search = {};
+                    if(EnteredName) {
+                     if (searchBy == "name")
+                        search.name = EnteredName
+                    else if (searchBy == "city")
+                        search.city = EnteredName
+                     search.type=searchBy
+
+                    Meteor.call("SearchUserCity",search, function(error, result) {
+               //            alert('result- '+JSON.stringify(result));
                 if (result == 0) {
                     sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'})
                 }
@@ -138,11 +145,18 @@ Template.manualConnect.events({
     Session.set('getUserProfile',0);
     Session.set('getUserRequest',0);
     Session.set('searchResult',0);
-    EnteredName = $('#EnameVol').val();
-    //   alert('EnteredName- '+JSON.stringify(EnteredName));
-    if(EnteredName) {
-        Meteor.call("SearchUser",EnteredName, function(error, result) {
-            //            alert('result- '+JSON.stringify(result));
+    EnteredName =  $('#EnameVol').val();
+        searchBy =  $('#searchByVol').val();
+         var search = {};
+        if(EnteredName) {
+         if (searchBy == "name")
+            search.name = EnteredName
+        else if (searchBy == "city")
+            search.city = EnteredName
+         search.type=searchBy
+
+        Meteor.call("SearchUserCity",search, function(error, result) {
+                //            alert('result- '+JSON.stringify(result));
             if (result == 0) {
                 sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'})
             }

@@ -130,10 +130,19 @@ Meteor.call("SearchProfile",this._id, function(error, result) {
         Session.set('getUserProfile',0);
         Session.set('getUserRequest',0);
         Session.set('searchResult',0);
-        EnteredName = event.target.Ename.value;
+
+EnteredName = event.target.Ename.value;
+        searchBy = event.target.searchBy.value;
+         var search = {};
         if(EnteredName) {
-        Meteor.call("SearchUser",EnteredName, function(error, result) {
-                           if (result == 0) {
+         if (searchBy == "name")
+            search.name = EnteredName
+        else if (searchBy == "city")
+            search.city = EnteredName
+         search.type=searchBy
+
+        Meteor.call("SearchUserCity",search, function(error, result) {
+                                   if (result == 0) {
                  sAlert.error("No Result Found !",{beep: 'alerts/noResultsFound.mp3'})
                }
                else
