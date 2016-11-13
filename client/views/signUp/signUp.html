@@ -5,6 +5,7 @@
 
 <body>
 <div id="container" class="{{menuOpen}}">
+{{#if currentUser}}
 <section id="menu">
     <div class="btns-group-vertical">
         <div class="row">
@@ -16,6 +17,7 @@
         </div>
     </div>
 </section>
+{{/if}}
 <div class="content-overlay"></div>
 
 <div id="content-container">
