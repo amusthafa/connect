@@ -107,7 +107,7 @@ Template.createRequest.onDestroyed(function () {
 
 Template.createRequest.onRendered(function () {
     // Session.get('request');
-    Session.set(MENU_KEY, false);
+    Session.set(MENU_KEY, true);
     var requestId = Session.get('requestId');
     console.log("requestId :!!", requestId);
     if(typeof requestId !== "undefined" ){

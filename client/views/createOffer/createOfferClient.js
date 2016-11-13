@@ -176,7 +176,7 @@ Template.createOffer.events({
 });
 
 Template.createOffer.onRendered(function () {
-  Session.set(MENU_KEY, false);
+  Session.set(MENU_KEY, true);
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         Session.set("userDetails", result);
     });

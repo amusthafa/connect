@@ -86,7 +86,17 @@ Template.signUp.rendered = function() {
 };
 
 Template.signUp.onRendered(function () {
+alert('rendering');
+var currentUser = Session.get("currentUser");
+  var isUpdateFlow = Session.get("isUpdateFlow");
+  alert('after');
+alert(currentUser);
+alert(isUpdateFlow);
+if (currentUser || isUpdateFlow)
+  Session.setDefault(MENU_KEY, true);
+  else
   Session.setDefault(MENU_KEY, false);
+  
     Meteor.call('getAddress', Meteor.userId(), function (err, result) {
         console.log("onrender" + JSON.stringify(result));
         Session.set("userDetails", result);
