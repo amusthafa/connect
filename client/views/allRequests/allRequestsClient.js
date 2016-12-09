@@ -11,7 +11,7 @@ Template.allRequests.helpers({
     },
 
     ///menu - start
-    
+
     menuOpen: function () {
         return Session.get(MENU_KEY) && 'menu-open';
     },
@@ -88,8 +88,9 @@ Template.allRequests.events({
         // alert('form submitted');
         // alert('clicked add aid' + event.target.requestDate.value);
         var request = {};
-        request.requiredBy = event.target.requestDate.value;
-        console.log('form submitted' + request.requiredBy);
+        request.fromDate = event.target.requestFromDate.value;
+        request.toDate = event.target.requestToDate.value;
+        console.log('form submitted' + JSON.stringify(request));
         Meteor.call("getAllRequests", request, function (error, result) {
             console.log("Client : error" + error + "result - " + result);
             Session.set('requestList', result);
