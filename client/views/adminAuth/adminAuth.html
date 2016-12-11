@@ -34,6 +34,53 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-xs-12">
+                        <div class="box">
+
+                            <div class="box-body table-responsive no-padding">
+                              <div class="box-header with-border">
+                                  <h3 class="box-title">
+                                    New Users to be Authenticated:
+                                  </h3>
+                              </div>
+                                <table class="table table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <th>FirstName </th>
+                                        <th>LastName </th>
+                                        <th>Status</th>
+                                    </tr>
+
+                                    {{#each toBeAuthenticatedList}}
+                                        <tr>
+                                            <td>{{profile.firstName}}  </td>
+                                            <td>{{profile.lastName}} </td>
+                                            <td>
+                                              <div class="form-group">
+                                                    <input hidden id="firstName" type="text" value={{profile.firstName}}>
+                                                    <input hidden id='lastName' type="text" value="{{profile.lastName}}">
+                                                    <select required id="authstatus" class="form-control">
+                                                        <option value="" disabled selected>Please Select</option>
+                                                        <option>Authentic</option>
+                                                        <option>Blacklist</option>
+                                                        <option>Warned</option>
+                                                    </select>
+                                                </div>
+                                              </td>
+                                              <td>
+                                                  <input type="button" class="updateStatus btn btn-primary" value="Submit"/>
+                                              </td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+
                     <div class="container-fluid">
 
                         <div class="row">
@@ -153,6 +200,10 @@
 
                         {{/if}}
                     </div>
+
+
+
+
                 </div>
             </div>
         </div>

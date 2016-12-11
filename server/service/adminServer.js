@@ -1,7 +1,8 @@
 /**
  * Created by amusthafa on 9/27/2015.
  */
-Meteor.methods({updateAdminAuth: function (adminAuth) {
+Meteor.methods({
+  updateAdminAuth: function (adminAuth) {
 
     //TO-DO: remove check()
     check(adminAuth, Object);
@@ -17,4 +18,12 @@ Meteor.methods({updateAdminAuth: function (adminAuth) {
                return true;
           }
     });
-}});
+},
+
+toBeAuthenticated: function () {
+  console.log("in function toBeAuthenticated!!");
+    var list = Meteor.users.find( {$and: [{"profile.status":null}, {"roles":{$ne:"Admin"}}]}).fetch();
+    console.log("list!!!!" , JSON.stringify(list));
+    return list;
+  }
+});

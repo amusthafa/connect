@@ -10,6 +10,11 @@ Template.adminAuth.helpers({
     'getUserName': function () {
         console.log("getUserName" + JSON.stringify(Session.get('selectedUser')));
         return (Session.get('selectedUser'));
+    },
+
+    'toBeAuthenticatedList': function(){
+      console.log("toBeAuthenticated:" + JSON.stringify(Session.get('toBeAuthenticated')));
+      return (Session.get('toBeAuthenticated'));
     }
     ///menu - start
     ,
@@ -50,12 +55,14 @@ Meteor.startup(function () {
 
 });
 
-Template.createRequest.rendered = function() {
-    // init fastclick
-  
-    FastClick.attach(document.body);
-};
 
+Template.adminAuth.onRendered(function () {
+  Meteor.call('toBeAuthenticated', function(err, result) {
+        console.log("on rendered : toBeAuthenticated: !! result:", JSON.stringify(result));
+        Session.set('toBeAuthenticated',result);
+
+});
+});
 
 Template.adminAuth.onDestroyed(function () {
 
@@ -135,5 +142,29 @@ Template.adminAuth.events({
             }
         });
         Router.go("/");
-    }
+},
+
+'click .updateStatus': function (event) {
+
+  var adminAuth = {};
+  adminAuth.user = this._id;
+  adminAuth.status = $("#authstatus").val();
+  Meteor.call("updateAdminAuth", adminAuth, function (error, result) {
+//    alert("Client : error" + error + "result - " + result);
+  if (error) {
+      console.log("error body", (error));
+      // sAlert.error(error.reason);
+
+      Router.go("/loadAdminAuth");
+  }
+  else {
+      console.log("success");
+      sAlert.success("Updated Successfully", {beep: 'alerts/updatedSuccessfully.mp3'});
+      sAlert.success('', configOverwrite);
+      var succMsg = "Updated Successfully";
+  }
+});
+
+}
+
 });
