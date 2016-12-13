@@ -124,6 +124,7 @@ Meteor.methods(
         },
 
         getAnalyticsByOffertPerMonth: function () {
+        console.log('entering offer per month');
             var pipeline = [
                 {
                     $group: {
@@ -195,7 +196,14 @@ Meteor.methods(
 
             resultChanged = JSON.parse(result.split("\"aid\":[{").join("").split("\"key\":").join("").split(",\"value\"").join("").split("},{").join(",").split("}],\"city\"").join("},{\"city\"").replace("}]}]", "}]"));
             console.log("Aid Per Region" + JSON.stringify(resultChanged));
-            return resultChanged;
+
+            var final ={};
+            final.chart = resultChanged;
+            final.table=perRegion;
+            console.log("Aid Per Region" + JSON.stringify(final));
+
+
+            return final;
         },
 
         getUniqueAidPerRegion: function () {

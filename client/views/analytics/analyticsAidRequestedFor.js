@@ -60,23 +60,30 @@ Template.analytics.helpers ({
     },
 
     analyticsByAidPerRegiontable: function () {
-          alert("analyticsByAidPerRegiontable - " + JSON.stringify(Session.get("analyticsByAidPerRegiontable")));
+       //   alert("analyticsByAidPerRegiontable - " + JSON.stringify(Session.get("analyticsByAidPerRegiontable")));
         return Session.get("analyticsByAidPerRegiontable");
     }
 ,
 
     analyticsByRequestCreatedDate: function () {
-          alert("analyticsByRequestCreatedDate - " + JSON.stringify(Session.get("analyticsByRequestCreatedDate")));
+     //     alert("analyticsByRequestCreatedDate - " + JSON.stringify(Session.get("analyticsByRequestCreatedDate")));
         return  Session.get("analyticsByRequestCreatedDate");
     }
 ,
+analyticsByOfferCreatedDate: function () {
+ //                 alert("analyticsByOfferCreatedDate - " + JSON.stringify(Session.get("analyticsByOfferCreatedDate")));
+  return  Session.get("analyticsByOfferCreatedDate");
+                               }
+                           ,
+analyticsByRequestPerMonth: function () {
+ return  Session.get("analyticsByRequestPerMonth");},
 
+analyticsByOfferPerMonth: function () {
 
-
+return  Session.get("analyticsByOfferPerMonth");},
 
     ///menu - start
-
-    menuOpen
+   menuOpen
 :
 function () {
     return Session.get(MENU_KEY) && 'menu-open';
