@@ -66,7 +66,9 @@ Template.analyticsRequestPerRegion.onRendered(function () {
         if (err) {
             console.log("Errors !!" + error + "  Result - " + result);
         } else {
-            Session.set("analyticsByAidPerRegion", result);
+
+            Session.set("analyticsByAidPerRegion",  result.chart);
+             Session.set("analyticsByAidPerRegiontable",  result.table);
             Meteor.call('getUniqueAidPerRegion', function (err, result) {
                 if (err) {
                     console.log("Errors !!" + error + "  Result - " + result);

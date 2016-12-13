@@ -53,6 +53,27 @@ Template.analyticsAidRequestedFor.onRendered(function () {
 
 })
 Template.analytics.helpers ({
+
+
+    analyticsForRequestedAid: function () {
+        return (Session.get('analyticsForRequestedAid'));
+    },
+
+    analyticsByAidPerRegiontable: function () {
+          alert("analyticsByAidPerRegiontable - " + JSON.stringify(Session.get("analyticsByAidPerRegiontable")));
+        return Session.get("analyticsByAidPerRegiontable");
+    }
+,
+
+    analyticsByRequestCreatedDate: function () {
+          alert("analyticsByRequestCreatedDate - " + JSON.stringify(Session.get("analyticsByRequestCreatedDate")));
+        return  Session.get("analyticsByRequestCreatedDate");
+    }
+,
+
+
+
+
     ///menu - start
 
     menuOpen
