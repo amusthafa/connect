@@ -61,11 +61,11 @@
                                               <div class="form-group">
                                                     <input hidden id="firstName" type="text" value={{profile.firstName}}>
                                                     <input hidden id='lastName' type="text" value="{{profile.lastName}}">
-                                                    <select required id="authstatus" class="form-control">
+                                                    <select required id="authstatus_{{_id}}" class="form-control">
                                                         <option value="" disabled selected>Please Select</option>
-                                                        <option>Authentic</option>
-                                                        <option>Blacklist</option>
-                                                        <option>Warned</option>
+                                                        <option value="Authentic">Authentic</option>
+                                                        <option value="Blacklist">Blacklist</option>
+                                                        <option value="Warned">Warned</option>
                                                     </select>
                                                 </div>
                                               </td>

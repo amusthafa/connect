@@ -148,7 +148,10 @@ Template.adminAuth.events({
 
   var adminAuth = {};
   adminAuth.user = this._id;
-  adminAuth.status = $("#authstatus").val();
+  // adminAuth.status = $("#authstatus").val();
+  console.log("this" + JSON.stringify(this));
+  adminAuth.status = $("#authstatus_" + adminAuth.user).val();
+  // alert("status:" + $("#authstatus_" + adminAuth.user).val());
   Meteor.call("updateAdminAuth", adminAuth, function (error, result) {
 //    alert("Client : error" + error + "result - " + result);
   if (error) {
