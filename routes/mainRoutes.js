@@ -7,7 +7,7 @@ Router.route('/', {
   },
   action : function () {
     this.render('home');
-    SEO.set({title: 'Home - Drishti Connect!!'});
+    SEO.set({title: 'Home - Drishti Connect'});
   }
 });
 
