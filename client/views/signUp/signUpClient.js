@@ -157,7 +157,6 @@ Template.signUp.events({
           userProfile.term = $("input[name='term']:checked").val();
           userProfile.occupation = event.target.occupation.value;
           userProfile.role = event.target.role.value;
-          userProfile.status = "";
           userProfile.orgFlag=document.getElementById("organisation").checked;
               console.log(userProfile.orgFlag);
 
@@ -167,7 +166,7 @@ Template.signUp.events({
               userProfile.organisationName = "";
           userProfile.comments = event.target.comments.value;
           Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.phone": userProfile.mobileNo, "profile.sharePhone" : userProfile.shareNo, "profile.address.line1" : userProfile.addr1, "profile.address.line2" : userProfile.addr2, "profile.address.city" : userProfile.city,
-              "profile.address.state" : userProfile.state, "profile.address.pinCode" : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.status":userProfile.status, "profile.term" : userProfile.term, "profile.organizationFlag" : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
+              "profile.address.state" : userProfile.state, "profile.address.pinCode" : userProfile.pincode, "profile.differentlyAbled" : userProfile.diffAbled, "profile.occupation" : userProfile.occupation, "profile.appRole" : userProfile.role, "profile.term" : userProfile.term, "profile.organizationFlag" : userProfile.orgFlag, "profile.organization" : userProfile.organisationName,  "profile.comments" : userProfile.comments}});
           sAlert.success("Profile updated successfully",{beep: 'alerts/profileUpdate.mp3'});
           Router.go("/");
         }
